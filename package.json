@@ -1,12 +1,12 @@
 {
-  "name": "EricHoweyDev",
+  "name": "erichoweydev",
   "description": "A basic site starter based on the Gatsby-Theme-Catalyst-Onepage",
   "version": "0.0.1",
   "author": "Eric Howey <ehowey@gmail.com>",
   "dependencies": {
     "gatsby": "^2.10.0",
     "gatsby-plugin-manifest": "^2.2.0",
-    "gatsby-theme-catalyst-core": "^0.0.6",
+    "gatsby-theme-catalyst-core": "^0.0.7",
     "gatsby-theme-catalyst-onepage": "^0.0.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
