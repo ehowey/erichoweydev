@@ -42,7 +42,7 @@ const WelcomeImage = styled(Img)`
   grid-row: 1 / 2;
 @media (min-width: ${props => props.theme.screen.tablet}) {
   grid-column: 1 / 2;
-  grid-row: 1 / 3;
+  grid-row: 1 / -1;
 }
 `
 
@@ -53,7 +53,7 @@ const WelcomeContent = styled.div`
   justify-self: center;
 @media (min-width: ${props => props.theme.screen.tablet}) {
   grid-column: 2 / 3;
-  grid-row: 2 / 3;
+  grid-row: 1 / -1;
 }
 `
 const WelcomeTitle = styled.h1`
