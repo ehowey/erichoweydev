@@ -62,8 +62,11 @@ const WelcomeContent = styled.div`
 `
 const WelcomeTitle = styled.h1`
   margin-bottom: 2rem;
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   @media (min-width: ${props => props.theme.screen.tablet}) {
+  font-size: 1.5rem;
+}
+@media (min-width: ${props => props.theme.screen.laptop}) {
   font-size: 2rem;
 }
 `
