@@ -6,8 +6,8 @@
   "dependencies": {
     "gatsby": "^2.10.0",
     "gatsby-plugin-manifest": "^2.2.0",
-    "gatsby-theme-catalyst-core": "^0.0.7",
-    "gatsby-theme-catalyst-onepage": "^0.0.3",
+    "gatsby-theme-catalyst-core": "^0.0.8",
+    "gatsby-theme-catalyst-onepage": "^0.0.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
