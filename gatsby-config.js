@@ -19,7 +19,7 @@ module.exports = {
         link:'#work'
       },
       {
-        name:'Talk to me',
+        name:'Contact',
         link:'#contact'
       }
         ]
