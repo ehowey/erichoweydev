@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { graphql, useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
+import FeatherIcon from 'feather-icons-react';
 
 const Section = styled.section`
   margin: 4rem 0;
@@ -10,7 +11,7 @@ const Section = styled.section`
 
 const ContactContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   grid-row-gap: 3rem;
   max-width: 1024px;
@@ -29,22 +30,51 @@ const ContactHeader = styled.h1`
 `
 
 const ContactContent = styled.div`
-grid-column: 2 / 3;
+grid-column: 1 / -1;
+grid-row: 1 / 2;
+@media (min-width: ${props => props.theme.screen.tablet}) {
+grid-column: 1 / 3;
 grid-row: 1 / 2;
 align-self: center;
 justify-self: center;
+}
+`
+
+const ContactSocial = styled.div`
+display: flex;
+justify-content: space-evenly;
+@media (min-width: ${props => props.theme.screen.tablet}) {
+  width: 350px;
+  margin: 0 auto;
+}
 `
 
 const ContactFish = styled(Img)`
-height: 100px;
-grid-column: 1 / 2;
-grid-row: 1 / 2;
-align-self: center;
+height: 60px;
+width: 100px;
+margin-bottom: -6rem;
+margin-left: 1rem;
+margin-top: 4rem;
 `
+
 const ContactEars = styled(Img)`
 height: 300px;
+grid-column: 1 / -1;
+grid-row: 2 / 3;
+transform: rotate(90deg);
+@media (min-width: ${props => props.theme.screen.tablet}) {
 grid-column: 3 / 4;
 grid-row: 1 / 2;
+}
+`
+
+const Icon = styled(FeatherIcon)`
+padding: 0.5rem;
+border-radius: 50%;
+background-color: ${props => props.theme.color.secondary};
+color: white;
+width: 48px;
+height: 48px;
 `
 
 const siteSection = () => {
@@ -71,16 +101,17 @@ const siteSection = () => {
             <ContactContainer>
                 <ContactHeader>Talk To Me</ContactHeader>
                 <ContactContent>
-                <h3>Always</h3>
-                <a href="mailto:eric@erichowey.dev">eric@erichowey.dev</a>
-                <h3>Sometimes</h3>
-                <a href="https://github.com/ehowey">Github</a>
-                <h3>Rarely</h3>
-                <a href="https://twitter.com/erichoweydev">Twitter</a>
+                <h3>Inspired idea? New direction for your online presence? Creating something brand new? Let's talk.</h3>
+                <p>The best way to reach me is email, old school, I know. I don't do a lot of social media for a whole bunch of reasons but am regularly active on Github and occasionally check Twitter. I'm excited to start listening!</p>
+                <ContactSocial>
+                <a href="mailto:eric@erichowey.dev"><Icon icon="mail" /></a>
+                <a href="https://github.com/ehowey"><Icon icon="github" /></a>
+                <a href="https://twitter.com/erichoweydev"><Icon icon="twitter" /></a>
+                </ContactSocial>
                 </ContactContent>
-                <ContactFish fluid={data.contactImage1.childImageSharp.fluid} alt="Talking Fish" imgStyle={{ objectFit: 'contain' }}/>
                 <ContactEars fluid={data.contactImage2.childImageSharp.fluid} alt="All Ears" imgStyle={{ objectFit: 'contain' }}/>
             </ContactContainer>
+            <ContactFish fluid={data.contactImage1.childImageSharp.fluid} alt="Talking Fish" imgStyle={{ objectFit: 'contain' }}/>
         </Section>
     )
 }
