@@ -7,8 +7,8 @@
     "feather-icons-react": "^0.3.2",
     "gatsby": "^2.10.0",
     "gatsby-plugin-manifest": "^2.2.0",
-    "gatsby-theme-catalyst-core": "^0.0.9",
-    "gatsby-theme-catalyst-onepage": "^0.0.4",
+    "gatsby-theme-catalyst-core": "^0.0.10",
+    "gatsby-theme-catalyst-onepage": "^0.0.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
