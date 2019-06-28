@@ -65,6 +65,7 @@ transform: rotate(90deg);
 @media (min-width: ${props => props.theme.screen.tablet}) {
 grid-column: 3 / 4;
 grid-row: 1 / 2;
+transform: rotate(0deg);
 }
 `
 
