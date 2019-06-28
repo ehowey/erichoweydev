@@ -13,7 +13,6 @@ const ContactContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
-  grid-row-gap: 3rem;
   max-width: 1024px;
   margin: 0 auto;
   padding: 0 1rem;
@@ -22,21 +21,18 @@ const ContactContainer = styled.div`
 const ContactHeader = styled.h1`
   grid-column: 1 / -1;
   grid-row: 1 / 2;
-  color: #f2f3f4;
+  color: #949494;
   font-size: 4rem;
   text-transform: uppercase;
-  margin-top: -2.5rem;
   margin-left: -1.2rem;
 `
 
 const ContactContent = styled.div`
 grid-column: 1 / -1;
-grid-row: 1 / 2;
+grid-row: 2 / 3;
 @media (min-width: ${props => props.theme.screen.tablet}) {
 grid-column: 1 / 3;
-grid-row: 1 / 2;
-align-self: center;
-justify-self: center;
+grid-row: 2 / 3;
 }
 `
 
@@ -49,23 +45,13 @@ justify-content: space-evenly;
 }
 `
 
-const ContactFish = styled(Img)`
-height: 60px;
-width: 100px;
-margin-bottom: -6rem;
-margin-left: 1rem;
-margin-top: 4rem;
-`
-
-const ContactEars = styled(Img)`
-height: 300px;
+const ContactImage = styled(Img)`
+transform: scaleX(-1);
 grid-column: 1 / -1;
-grid-row: 2 / 3;
-transform: rotate(90deg);
+grid-row: 3 / 4;
 @media (min-width: ${props => props.theme.screen.tablet}) {
-grid-column: 3 / 4;
-grid-row: 1 / 2;
-transform: rotate(0deg);
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
 }
 `
 
@@ -81,14 +67,7 @@ height: 48px;
 const siteSection = () => {
     const data = useStaticQuery(graphql`
     query {
-      contactImage1: file(relativePath: { eq: "images/absurd-fish.png" }) {
-        childImageSharp {
-          fluid(maxWidth:1024) {
-            ...GatsbyImageSharpFluid_withWebp
-              }
-        }
-      }
-      contactImage2: file(relativePath: { eq: "images/absurd-ears.png" }) {
+      contactImage1: file(relativePath: { eq: "images/absurd-fish-talking.png" }) {
         childImageSharp {
           fluid(maxWidth:1024) {
             ...GatsbyImageSharpFluid_withWebp
@@ -102,7 +81,7 @@ const siteSection = () => {
             <ContactContainer>
                 <ContactHeader>Talk To Me</ContactHeader>
                 <ContactContent>
-                <h3>Inspired idea? New direction for your online presence? Creating something brand new? Let's talk.</h3>
+                <h3>Inspired idea? New direction? Creating something amazing? Let's talk.</h3>
                 <p>The best way to reach me is email, old school, I know. I don't do a lot of social media for a whole bunch of reasons but am regularly active on Github and occasionally check Twitter. I'm excited to start listening!</p>
                 <ContactSocial>
                 <a href="mailto:eric@erichowey.dev"><Icon icon="mail" /></a>
@@ -110,9 +89,8 @@ const siteSection = () => {
                 <a href="https://twitter.com/erichoweydev"><Icon icon="twitter" /></a>
                 </ContactSocial>
                 </ContactContent>
-                <ContactEars fluid={data.contactImage2.childImageSharp.fluid} alt="All Ears" imgStyle={{ objectFit: 'contain' }}/>
+                <ContactImage fluid={data.contactImage1.childImageSharp.fluid} alt="Talking Fish" imgStyle={{ objectFit: 'contain' }}/>
             </ContactContainer>
-            <ContactFish fluid={data.contactImage1.childImageSharp.fluid} alt="Talking Fish" imgStyle={{ objectFit: 'contain' }}/>
         </Section>
     )
 }

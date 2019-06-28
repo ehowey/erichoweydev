@@ -12,7 +12,6 @@ const AboutContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
-  grid-gap: 2rem;
   max-width: 1024px;
   margin: 0 auto;
   padding: 0 1rem;
@@ -21,60 +20,59 @@ const AboutContainer = styled.div`
 const AboutHeader = styled.h1`
   grid-column: 1 / -1;
   grid-row: 1 / 2;
-  color: #f2f3f4;
-  font-size: 4rem;
+  color: #949494;
+  font-size: 3rem;
   text-transform: uppercase;
-  margin-top: -2.5rem;
   margin-left: -1.2rem;
 `
 
 const AboutContent1 = styled.div`
   grid-column: 1 / -1;
-  grid-row: 1 / 2;
+  grid-row: 2 / 3;
 
   @media (min-width: ${props => props.theme.screen.tablet}) {
   grid-column: 1 / 3;
-  grid-row: 1 / 2;
+  grid-row: 2 / 3;
 }
 `;
 
 const AboutImage1 = styled(Img)`
   grid-column: 1 / -1;
-  grid-row: 2 / 3;
+  grid-row: 3 / 4;
 
   @media (min-width: ${props => props.theme.screen.tablet}) {
   grid-column: 3 / -1;
-  grid-row: 1 / 2;
+  grid-row: 2 / 3;
   }
 `;
 
 const AboutContent2 = styled.div`
   grid-column: 1 / -1;
-  grid-row: 3 / 4;
+  grid-row: 4 / 5;
 
   @media (min-width: ${props => props.theme.screen.tablet}) {
   grid-column: 2 / -1;
-  grid-row: 2 / 3;
+  grid-row: 3 / 4;
   }
 `;
 
 const AboutImage2 = styled(Img)`
   grid-column: 1 / -1;
-  grid-row: 4 / 5;
+  grid-row: 5 / 6;
 
   @media (min-width: ${props => props.theme.screen.tablet}) {
   grid-column: 1 / 2;
-  grid-row: 2 / 3;
+  grid-row: 3 / 4;
   }
 `;
 
 const AboutContent3 = styled.div`
   grid-column: 1 / -1;
-  grid-row: 5 / 6;
+  grid-row: 6 / 7;
 
   @media (min-width: ${props => props.theme.screen.tablet}) {
   grid-column: 1 / 3;
-  grid-row: 3 / 4;
+  grid-row: 4 / 5;
   }
 `;
 
@@ -84,7 +82,7 @@ const AboutImage3 = styled(Img)`
   @media (min-width: ${props => props.theme.screen.tablet}) {
   display: block;
   grid-column: 3 / -1;
-  grid-row: 3 / 4;
+  grid-row: 4 / 5;
   }
 `;
 
