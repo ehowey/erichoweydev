@@ -12,7 +12,7 @@ const Theme = ({ children }) => (
          },
          options: {
           contentWidth: '100%',
-          headerPosition: 'sticky'
+          headerPosition: 'fixed'
          },
          screen: {
             tablet: '768px',

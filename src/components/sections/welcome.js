@@ -2,42 +2,32 @@ import React from "react";
 import styled from "styled-components";
 import { graphql, useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
+import AnchorLink from 'react-anchor-link-smooth-scroll';
+
 
 const Section = styled.section`
   background: ${props => props.theme.color.primary};
   padding: 1rem 0;
-  height: calc(100vh - 80px);
-`
-
-const CTA = styled.a`
-  color: ${props => props.theme.color.textBlack};
-  text-decoration: none;
-  border: 2px solid ${props => props.theme.color.secondary};
-  background-color: ${props => props.theme.color.secondary};
-  color: ${props => props.theme.color.textWhite};
-  padding: 0.5rem 0.8rem;
-  border-radius: 24px;
-  transition-duration: 0.3s;
-  letter-spacing: 1px;
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  &::after {
-    content: "\\00A0 \\2192";
+  margin-top: 60px;
+  @media (min-width: ${props => props.theme.screen.tablet}) {
+    margin-top: 80px;
   }
 `
 
 const WelcomeContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 60%;
   grid-gap: 1rem;
   max-width: 1024px;
-  max-height: calc(100vh - 80px);
+  height: calc(100vh - 100px);
   margin: 0 auto;
   padding: 0 1rem;
+  @media (min-width: ${props => props.theme.screen.tablet}) {
+    height: calc(100vh - 120px);
+    grid-template-rows: 1fr 1fr;
+    }
+
 `
 
 const WelcomeImage = styled(Img)`
@@ -71,6 +61,25 @@ const WelcomeTitle = styled.h1`
 }
 `
 
+const CTA = styled(AnchorLink)`
+  color: ${props => props.theme.color.textBlack};
+  text-decoration: none;
+  border: 2px solid ${props => props.theme.color.secondary};
+  background-color: ${props => props.theme.color.secondary};
+  color: ${props => props.theme.color.textWhite};
+  padding: 0.5rem 0.8rem;
+  border-radius: 24px;
+  transition-duration: 0.3s;
+  letter-spacing: 1px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &::after {
+    content: "\\00A0 \\2192";
+  }
+`
 
 const siteSection = () => {
     const data = useStaticQuery(graphql`
@@ -90,7 +99,7 @@ const siteSection = () => {
                 <WelcomeImage fluid={data.welcomeImage.childImageSharp.fluid} alt="Arrangement of lightbulbs" imgStyle={{ objectFit: 'contain' }} />
                 <WelcomeContent>
                   <WelcomeTitle>Bespoke websites.<br />Created by listening and caring.</WelcomeTitle>
-                  <CTA href="#contact">Talk to me</CTA>
+                  <CTA href="#contact" offset='80'>Talk to me</CTA>
                 </WelcomeContent>
             </WelcomeContainer>
         </Section>
