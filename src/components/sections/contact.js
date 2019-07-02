@@ -48,6 +48,7 @@ display: none;
 @media (min-width: ${props => props.theme.screen.tablet}) {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
+  display: block;
 }
 `
 
