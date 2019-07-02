@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
 
 const Section = styled.section`
-  margin: 4rem 0;
+  margin: 2rem 0;
   padding: 2rem 0;
 `;
 
@@ -12,19 +12,11 @@ const AboutContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
+  grid-gap: 2rem;
   max-width: 1024px;
   margin: 0 auto;
   padding: 0 1rem;
 `;
-
-const AboutHeader = styled.h1`
-  grid-column: 1 / -1;
-  grid-row: 1 / 2;
-  color: #949494;
-  font-size: 3rem;
-  text-transform: uppercase;
-  margin-left: -1.2rem;
-`
 
 const AboutContent1 = styled.div`
   grid-column: 1 / -1;
@@ -90,7 +82,7 @@ const AboutImage3 = styled(Img)`
 const siteSection = () => {
     const data = useStaticQuery(graphql`
     query {
-      aboutImage1: file(relativePath: { eq: "images/absurd-face-large.png" }) {
+      aboutImage1: file(relativePath: { eq: "images/absurd-face-circle.png" }) {
         childImageSharp {
           fluid(maxWidth:500) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
@@ -116,7 +108,6 @@ const siteSection = () => {
     return (
         <Section id="me">
             <AboutContainer>
-                <AboutHeader>Me</AboutHeader>
                 <AboutContent1>
                     <h3>I built my first website in 1998</h3>
                     <p>It sucked.</p>

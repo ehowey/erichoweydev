@@ -98,7 +98,7 @@ const siteSection = () => {
               <WelcomeContainer>
                 <WelcomeImage fluid={data.welcomeImage.childImageSharp.fluid} alt="Arrangement of lightbulbs" imgStyle={{ objectFit: 'contain' }} />
                 <WelcomeContent>
-                  <WelcomeTitle>Bespoke websites.<br />Created by listening and caring.</WelcomeTitle>
+                  <WelcomeTitle>Bespoke websites.<br />Listening and caring.</WelcomeTitle>
                   <CTA href="#contact" offset='80'>Talk to me</CTA>
                 </WelcomeContent>
             </WelcomeContainer>
