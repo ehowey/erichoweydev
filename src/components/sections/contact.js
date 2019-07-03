@@ -11,7 +11,7 @@ const Section = styled.section`
 
 const ContactContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
   grid-gap: 2rem;
   max-width: 1024px;
@@ -22,8 +22,9 @@ const ContactContainer = styled.div`
 const ContactContent = styled.div`
 grid-column: 1 / -1;
 grid-row: 1 / 2;
+z-index: 5;
 @media (min-width: ${props => props.theme.screen.tablet}) {
-grid-column: 2 / 4;
+grid-column: 2 / 6;
 grid-row: 1 / 2;
 }
 `
@@ -37,18 +38,19 @@ a:hover {
 }
 
 @media (min-width: ${props => props.theme.screen.tablet}) {
-  width: 350px;
-  margin: 0 auto;
+  width: 300px;
 }
 `
 
 const ContactImage = styled(Img)`
 transform: scaleX(-1);
-display: none;
+grid-column: 1 / -1;
+grid-row: 1 / 2;
+opacity: 0.2;
 @media (min-width: ${props => props.theme.screen.tablet}) {
-  grid-column: 1 / 2;
+  grid-column: 1 / 3;
   grid-row: 1 / 2;
-  display: block;
+  opacity: 1;
 }
 `
 
@@ -57,8 +59,21 @@ padding: 0.5rem;
 border-radius: 50%;
 background-color: ${props => props.theme.color.secondary};
 color: white;
-width: 48px;
-height: 48px;
+width: 52px;
+height: 52px;
+`
+
+const ImageOverlay = styled.div`
+z-index: 3;
+display: none;
+background: linear-gradient(90deg, transparent, #ffffff);
+background-size: cover;
+
+@media (min-width: ${props => props.theme.screen.tablet}) {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+  display: block;
+}
 `
 
 const siteSection = () => {
@@ -86,6 +101,7 @@ const siteSection = () => {
                 </ContactSocial>
                 </ContactContent>
                 <ContactImage fluid={data.contactImage1.childImageSharp.fluid} alt="Talking Fish" imgStyle={{ objectFit: 'contain' }}/>
+                <ImageOverlay />
             </ContactContainer>
         </Section>
     )
