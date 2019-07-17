@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { graphql, useStaticQuery } from "gatsby";
-import Img from "gatsby-image";
-import AnchorLink from 'react-anchor-link-smooth-scroll';
+/** @jsx jsx */
+import { jsx } from "theme-ui"
+import { graphql, useStaticQuery } from "gatsby"
+import Img from "gatsby-image"
+import AnchorLink from "react-anchor-link-smooth-scroll"
 
 
 const Section = styled.section`
@@ -86,7 +86,7 @@ const siteSection = () => {
     query {
       welcomeImage: file(relativePath: { eq: "images/absurd-lightbulb-head.png" }) {
         childImageSharp {
-          fluid(maxWidth:500) {
+          fluid(maxWidth:1024) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
               }
         }
@@ -94,15 +94,71 @@ const siteSection = () => {
     }
     `)
     return (
-            <Section>
-              <WelcomeContainer>
-                <WelcomeImage fluid={data.welcomeImage.childImageSharp.fluid} alt="Arrangement of lightbulbs" imgStyle={{ objectFit: 'contain' }} />
-                <WelcomeContent>
-                  <WelcomeTitle>Bespoke websites.<br />Listening and caring.</WelcomeTitle>
-                  <CTA href="#contact" offset='80'>Talk to me</CTA>
-                </WelcomeContent>
-            </WelcomeContainer>
-        </Section>
+            <section
+            sx={{
+          backgroundColor: "primary",
+          py: 3,
+          px: 0,
+          marginTop: ["60px", "80px", null]
+            }}
+            >
+              <div
+              sx={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gridTemplateRows: ["1fr 60%", "1fr 1fr", null],
+              gridGap: "1rem",
+              max-width: "1024px",
+              height: ["calc(100vh - 100px)","calc(100vh - 120px)", null],
+              margin: "0 auto",
+              padding: "0 1rem",
+              }}
+              >
+                <Img
+                sx={{
+                grid-column: ["1 / -1", "1 / 2", null],
+                grid-row: ["1 / 2", "1 / -1", null]
+                }}
+                fluid={data.welcomeImage.childImageSharp.fluid} 
+                alt="Arrangement of lightbulbs" 
+                imgStyle={{ objectFit: 'contain' }} 
+                />
+                <div
+                sx={{
+                gridColumn: ["1 / -1", "2 / 3", null],
+                grid-row: ["2 / 3", "1 / -1", null]
+                align-self: center;
+                justify-self: center;
+                }}
+                >
+                  <h1>Bespoke websites.<br />Listening and caring.</h1>
+                  <AnchorLink
+                  sx={{
+                  color: "white",
+                  textDecoration: "none",
+                  border: "2px solid secondary",
+                  backgroundColor: "secondary",
+                  padding: "0.5rem 0.8rem",
+                  borderRadius: "24px",
+                  transitionDuration: "0.3s",
+                  letterSpacing: "1px"
+
+                  ":hover" {
+                    opacity: "0.8"
+                  }
+
+                  "::after" {
+                    content: ""\\00A0 \\2192""
+                  }
+                  }}
+                  href="#contact" 
+                  offset='80'
+                  >
+                  Talk to me
+                  </AnchorLink>
+                </div>
+            </div>
+        </section>
     )
 }
 
