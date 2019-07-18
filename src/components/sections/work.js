@@ -1,26 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { graphql, useStaticQuery } from "gatsby";
-import Img from "gatsby-image";
-
-const Section = styled.section`
-  margin: 2rem 0;
-  background-color: ${props => props.theme.color.primary};
-  padding: 2rem 0;
-`;
-
-const WorkContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  grid-gap: 2rem;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  @media (min-width: ${props => props.theme.screen.laptop}) {
-  padding: 0 2rem;
-}
-`
+/** @jsx jsx */
+import { jsx } from "theme-ui"
+import { graphql, useStaticQuery } from "gatsby"
+import Img from "gatsby-image"
 
 const Postcard = styled.a`
 grid-column: 1 / -1;
@@ -81,8 +62,27 @@ const siteSection = () => {
     }
     `)
     return (
-            <Section id="work">
-                <WorkContainer>
+            <section
+            sx={{
+            backgroundColor: "primary",
+            my: 5,
+            mx: 0,
+            py: 5,
+            px: 0,
+            }}
+            id="work"
+            >
+                <div
+                sx={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr 1fr",
+                gridTemplateRows: "auto",
+                gridGap: 5,
+                maxWidth: "1440px",
+                margin: "0 auto",
+                padding: ["0 1rem", null, "0 2rem"]
+                }}
+                >
                   <Postcard href="https://www.lifewithbenjamin.com/">
                     <PostcardImage fluid={data.projectImage1.childImageSharp.fluid} alt="Life With Benjamin"/>
                     <PostcardText>
@@ -104,8 +104,8 @@ const siteSection = () => {
                     <p>These are a series of Gatsby themes and starter templates I created and open-sourced to speed up the development time for web projects.</p>
                     </PostcardText>
                   </Postcard>
-                </WorkContainer>
-            </Section>
+                </div>
+            </section>
     )
 }
 
