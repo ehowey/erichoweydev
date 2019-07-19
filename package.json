@@ -5,18 +5,19 @@
   "author": "Eric Howey <ehowey@gmail.com>",
   "dependencies": {
     "feather-icons-react": "^0.3.2",
-    "gatsby": "^2.13.14",
+    "gatsby": "^2.13.28",
     "gatsby-plugin-manifest": "^2.2.0",
-    "gatsby-theme-catalyst-core": "^0.1.2",
-    "gatsby-theme-catalyst-onepage": "^0.1.2",
+    "gatsby-theme-catalyst-core": "^0.1.4",
+    "gatsby-theme-catalyst-onepage": "^0.1.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "prettier": "^1.17.1"
+    "prettier": "^1.18.2"
   },
   "keywords": [
     "gatsby",
+    "gatsbyJS",
     "gatsby-starter"
   ],
   "license": "MIT",
