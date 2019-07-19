@@ -21,7 +21,7 @@ const siteSection = () => {
       sx={{
       my: 5,
       mx: 0,
-      py: 5
+      py: 5,
       px: 0
       }}
       id="contact"
@@ -68,7 +68,6 @@ const siteSection = () => {
                      />
                      </a>
                     <a href="https://github.com/ehowey">
-                    <FeatherIcon 
                     <FeatherIcon
                     sx={{
                     padding: 1,
@@ -82,7 +81,6 @@ const siteSection = () => {
                     />
                     </a>
                     <a href="https://twitter.com/erichoweydev">
-                    <FeatherIcon 
                     <FeatherIcon
                     sx={{
                     padding: 1,
@@ -101,7 +99,7 @@ const siteSection = () => {
                 sx={{
                 transform: "scaleX(-1)",
                 gridColumn: ["1 / -1", "1 / 3", null],
-                grid-row: 1 / 2,
+                gridRow: "1 / 2",
                 opacity:["0.2", "1", null]
                 }}
                 fluid={data.contactImage1.childImageSharp.fluid} 

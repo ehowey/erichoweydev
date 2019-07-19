@@ -3,38 +3,6 @@ import { jsx } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 
-const Postcard = styled.a`
-grid-column: 1 / -1;
-min-width: 200px;
-max-width: 650px;
-box-shadow: 0 2px 15px rgba(0,0,0,.1);
-transition: all .15s ease-in-out;
-text-decoration: none;
-color: inherit;
-background-color: #fff;
-margin: 0 auto;
-
-
-:hover {
-  box-shadow: 0 2px 30px rgba(0,0,0,.15);
-  transform: translateY(-1px);
-}
-
-@media (min-width: ${props => props.theme.screen.laptop}) {
-  grid-column: auto;
-}
-`
-
-const PostcardImage = styled(Img)`
-height: 200px;
-`
-
-const PostcardText = styled.div`
-background-color: #ffffff;
-padding: 2rem 1rem 1rem 1rem;
-`
-
-
 const siteSection = () => {
     const data = useStaticQuery(graphql`
     query {
@@ -83,27 +51,114 @@ const siteSection = () => {
                 padding: ["0 1rem", null, "0 2rem"]
                 }}
                 >
-                  <Postcard href="https://www.lifewithbenjamin.com/">
-                    <PostcardImage fluid={data.projectImage1.childImageSharp.fluid} alt="Life With Benjamin"/>
-                    <PostcardText>
+                  <a
+                  sx={{
+                    gridColumn: ["1 / -1", null, "auto"],
+                    minWidth: "200px",
+                    maxWidth: "650px",
+                    boxShadow: "0 2px 15px rgba(0,0,0,.1)",
+                    transition: "all .15s ease-in-out",
+                    textDecoration: "none",
+                    color: "inherit",
+                    backgroundColor: "#fff",
+                    margin: "0 auto",
+
+                    ":hover": {
+                      boxShadow: "0 2px 30px rgba(0,0,0,.15)",
+                      transform: "translateY(-3px)"
+                    }
+                  }}
+                  href="https://www.lifewithbenjamin.com/"
+                  >
+                    <Img
+                    sx={{
+                      height: "200px"
+                    }}
+                    fluid={data.projectImage1.childImageSharp.fluid} 
+                    alt="Life With Benjamin"
+                    />
+                    <div
+                    sx={{
+                      backgroundColor: "#ffffff",
+                      padding: "2rem 1rem 1rem 1rem"
+                    }}
+                    >
                     <h4>www.lifewithbenjamin.com</h4>
                     <p>A personal blog and small business website for a creative professional who specializes in content creation, photography and videography.</p>
-                    </PostcardText>
-                  </Postcard>
-                  <Postcard href="https://www.briannasharpe.com/">
-                    <PostcardImage fluid={data.projectImage2.childImageSharp.fluid} alt="Life With Benjamin"/>
-                    <PostcardText>
-                    <h4>www.briannasharpe.com</h4>
-                    <p>Brianna is a writer and yoga instructor who needed a better online presence for herself as her writing business grew and expanded.</p>
-                    </PostcardText>
-                  </Postcard>
-                  <Postcard href="https://github.com/ehowey/gatsby-theme-catalyst-core">
-                    <PostcardImage fluid={data.projectImage3.childImageSharp.fluid} alt="Life With Benjamin"/>
-                    <PostcardText>
-                    <h4>Gatsby Catalyst Theme</h4>
-                    <p>These are a series of Gatsby themes and starter templates I created and open-sourced to speed up the development time for web projects.</p>
-                    </PostcardText>
-                  </Postcard>
+                    </div>
+                  </a>
+                  <a
+                  sx={{
+                    gridColumn: ["1 / -1", null, "auto"],
+                    minWidth: "200px",
+                    maxWidth: "650px",
+                    boxShadow: "0 2px 15px rgba(0,0,0,.1)",
+                    transition: "all .15s ease-in-out",
+                    textDecoration: "none",
+                    color: "inherit",
+                    backgroundColor: "#fff",
+                    margin: "0 auto",
+
+                    ":hover": {
+                      boxShadow: "0 2px 30px rgba(0,0,0,.15)",
+                      transform: "translateY(-3px)"
+                    }
+                  }}
+                  href="https://www.lifewithbenjamin.com/"
+                  >
+                    <Img
+                    sx={{
+                      height: "200px"
+                    }}
+                    fluid={data.projectImage1.childImageSharp.fluid} 
+                    alt="Life With Benjamin"
+                    />
+                    <div
+                    sx={{
+                      backgroundColor: "#ffffff",
+                      padding: "2rem 1rem 1rem 1rem"
+                    }}
+                    >
+                    <h4>www.lifewithbenjamin.com</h4>
+                    <p>A personal blog and small business website for a creative professional who specializes in content creation, photography and videography.</p>
+                    </div>
+                  </a>
+                  <a
+                  sx={{
+                    gridColumn: ["1 / -1", null, "auto"],
+                    minWidth: "200px",
+                    maxWidth: "650px",
+                    boxShadow: "0 2px 15px rgba(0,0,0,.1)",
+                    transition: "all .15s ease-in-out",
+                    textDecoration: "none",
+                    color: "inherit",
+                    backgroundColor: "#fff",
+                    margin: "0 auto",
+
+                    ":hover": {
+                      boxShadow: "0 2px 30px rgba(0,0,0,.15)",
+                      transform: "translateY(-3px)"
+                    }
+                  }}
+                  href="https://www.lifewithbenjamin.com/"
+                  >
+                    <Img
+                    sx={{
+                      height: "200px"
+                    }}
+                    fluid={data.projectImage1.childImageSharp.fluid} 
+                    alt="Life With Benjamin"
+                    />
+                    <div
+                    sx={{
+                      backgroundColor: "#ffffff",
+                      padding: "2rem 1rem 1rem 1rem"
+                    }}
+                    >
+                    <h4>www.lifewithbenjamin.com</h4>
+                    <p>A personal blog and small business website for a creative professional who specializes in content creation, photography and videography.</p>
+                    </div>
+                  </a>
                 </div>
             </section>
     )
