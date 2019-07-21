@@ -57,7 +57,8 @@ export default merge({}, onePageTheme, {
         //"3rem"
       //],
       sizes: {
-        container: "100%",
+        maxContentWidth: "100%", // Sets the container size on larger screens, e.g. tablets and laptops
+        ContentWidth: "100%" // Sets the container width on smaller screens, results in a 5vw margin on the left and right
       },
       //breakpoints: [
         //'48em', '64em'
