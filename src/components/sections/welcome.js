@@ -23,7 +23,6 @@ const siteSection = () => {
               backgroundColor: "primary",
               py: 3,
               px: 0,
-              marginTop: ["40px", "60px", null]
             }}
             >
               <div
@@ -33,7 +32,7 @@ const siteSection = () => {
               gridTemplateRows: ["1fr 60%", "1fr 1fr", null],
               gridGap: "1rem",
               maxWidth: "1024px",
-              height: ["calc(100vh - 100px)","calc(100vh - 120px)", null],
+              height: ["calc(100vh - 60px)", "calc(100vh - 80px)", null],
               margin: "0 auto",
               padding: "0 1rem",
               }}
@@ -66,6 +65,10 @@ const siteSection = () => {
                   borderRadius: "24px",
                   transitionDuration: "0.3s",
                   letterSpacing: "1px",
+
+                  "::after": {
+                    content: '"\\00A0 \\2192"'
+                  },
 
                   ":hover": {
                     opacity: "0.8"
