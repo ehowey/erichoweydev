@@ -1,7 +1,7 @@
-import merge from "lodash.merge"
+import merge from "deepmerge"
 import { onePageTheme } from "gatsby-theme-catalyst-onepage"
 
-export default merge({}, onePageTheme, {
+export default merge(onePageTheme, {
     colors: {
         primary: "#9ce5f4",
         secondary: "#2e7da4",
