@@ -70,6 +70,7 @@ const siteSection = () => {
               borderRadius: "24px",
               transitionDuration: "0.3s",
               letterSpacing: "1px",
+              cursor: "pointer",
 
               "::after": {
                 content: '"\\00A0 \\2192"'

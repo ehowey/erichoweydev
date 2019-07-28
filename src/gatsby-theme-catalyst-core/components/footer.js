@@ -1,29 +1,66 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui"
-import { graphql, useStaticQuery } from "gatsby"
+import { jsx } from "theme-ui";
+import { useStaticQuery, graphql } from "gatsby";
+import { Social } from "gatsby-theme-catalyst-core";
 
 const siteFooter = () => {
-    const data = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query {
-        site {
-          siteMetadata {
-            author
+      site {
+        siteMetadata {
+          title
+          socialLinks {
+            name
+            url
           }
         }
       }
-    `)
-    return (
-        <footer
+    }
+  `);
+  return (
+    <footer
       sx={{
-      padding: 3,
-      backgroundColor: "footer.background",
-      color: "footer.text"
-      }}
-      >
-          <p>Created by <a href="mailto:eric@erichowey.dev">{data.site.siteMetadata.author}</a><br/>
-          Illustrations by <a href="https://twitter.com/diana_valeanu">Diana Valeanu</a></p>
-        </footer>
-    )
-}
+        color: "footer.text",
+        backgroundColor: "footer.background",
+        px: 3,
+        py: 3,
 
-export default siteFooter
+        a: {
+          color: "footer.links"
+        },
+
+        "a:hover": {
+          color: "primary"
+        }
+      }}
+    >
+      <div
+        sx={{
+          a: {
+            color: "footer.icons",
+            mr: 3
+          },
+          "a:last-of-type": {
+            mr: 0
+          },
+          "a:hover": {
+            color: "primary"
+          }
+        }}
+      >
+        <Social />
+      </div>
+      <p
+        sx={{
+          my: 0
+        }}
+      >
+        Illustrations by{" "}
+        <a href="https://twitter.com/diana_valeanu">Diana Valeanu</a>
+        <br />© {new Date().getFullYear()} {data.site.siteMetadata.title}
+      </p>
+    </footer>
+  );
+};
+
+export default siteFooter;

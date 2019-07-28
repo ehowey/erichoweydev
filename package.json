@@ -4,7 +4,6 @@
   "version": "0.0.1",
   "author": "Eric Howey <ehowey@gmail.com>",
   "dependencies": {
-    "feather-icons-react": "^0.3.2",
     "gatsby": "^2.13.41",
     "gatsby-plugin-manifest": "^2.2.4",
     "gatsby-theme-catalyst-onepage": "^0.1.9",
