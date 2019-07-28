@@ -59,9 +59,9 @@ const siteSection = () => {
           <h3>I built my first website in 1998</h3>
           <p>It sucked.</p>
           <p>
-            A lot has changed since then. I build kickass websites that don’t
+            A lot has changed since then. I develop kickass websites that don’t
             suck using the latest technologies and performance architecture. I
-            can also now grow facial hair and have two super awesome kids. It{" "}
+            can grow facial hair and have two super awesome kids. It{" "}
             <i>really</i> has changed.
           </p>
         </div>
@@ -111,9 +111,9 @@ const siteSection = () => {
           <h3>Slow is smooth, smooth is fast</h3>
           <p>I don’t do rushed.</p>
           <p>
-            Creating bespoke websites is a process that requires time, focus,
-            and creativity. I only work on a few projects per year and
-            appreciate the craftsmanship of a well made product.
+            Building a fast, easy to use, website is a slow process. It requires
+            focus, collaboration and creativity. I only work on a few projects
+            per year and appreciate the craftsmanship of a well made product.
           </p>
         </div>
         <Img

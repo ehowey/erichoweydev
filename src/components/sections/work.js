@@ -87,8 +87,8 @@ const siteSection = () => {
             <h4>Gatsby Catalyst Themes</h4>
             <p>
               A set of opinionated themes and starters I built to accelerate my
-              own workflow when building new Gatsby projects. Uses Theme-UI for
-              design tokens.
+              own workflow when building new Gatsby projects. Free and open
+              source.
             </p>
             <p
               sx={{
@@ -191,8 +191,8 @@ const siteSection = () => {
             <h4>www.briannasharpe.com</h4>
             <p>
               A website to showcase Brianna's professional writing and yoga
-              teaching. In the process of moving the site from Wordpress to
-              Gatsby.
+              teaching. In the process of transitioning the site from Wordpress
+              to Gatsby.
             </p>
             <p
               sx={{
