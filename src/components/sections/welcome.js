@@ -21,6 +21,7 @@ const siteSection = () => {
   return (
     <section
       sx={{
+        height: ["calc(100vh - 60px)", "calc(100vh - 80px)", null],
         backgroundColor: "primary",
         py: 3,
         px: 0
@@ -30,10 +31,11 @@ const siteSection = () => {
         sx={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gridTemplateRows: ["1fr 60%", "1fr 1fr", null],
+          gridTemplateRows: ["50vh 1fr", "30vh 30vh", null],
           gridGap: "1rem",
+          alignContent: ["start", "center", null],
           maxWidth: "1024px",
-          height: ["calc(100vh - 60px)", "calc(100vh - 80px)", null],
+          height: "100%",
           margin: "0 auto",
           padding: "0 1rem"
         }}
@@ -41,7 +43,9 @@ const siteSection = () => {
         <Img
           sx={{
             gridColumn: ["1 / -1", "1 / 2", null],
-            gridRow: ["1 / 2", "1 / -1", null]
+            gridRow: ["1 / 2", "1 / -1", null],
+            height: "100%",
+            width: "100%"
           }}
           fluid={data.welcomeImage.childImageSharp.fluid}
           alt="Arrangement of lightbulbs"
@@ -51,8 +55,9 @@ const siteSection = () => {
           sx={{
             gridColumn: ["1 / -1", "2 / 3", null],
             gridRow: ["2 / 3", "1 / -1", null],
-            alignSelf: "center",
-            justifySelf: "center"
+            alignSelf: ["start", "center", null],
+            justifySelf: "center",
+            mt: [2, 0, null]
           }}
         >
           <h1>
@@ -66,7 +71,7 @@ const siteSection = () => {
               textDecoration: "none",
               border: "2px solid secondary",
               backgroundColor: "secondary",
-              padding: "0.5rem 0.8rem",
+              padding: "0.8rem 1rem",
               borderRadius: "24px",
               transitionDuration: "0.3s",
               letterSpacing: "1px",

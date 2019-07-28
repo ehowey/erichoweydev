@@ -33,9 +33,8 @@ const siteSection = () => {
     <section
       sx={{
         backgroundColor: "primary",
-        my: 5,
-        mx: 0,
-        py: 5,
+        m: 0,
+        py: "8rem",
         px: 0
       }}
       id="work"

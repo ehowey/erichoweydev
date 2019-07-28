@@ -1,5 +1,6 @@
 import merge from "deepmerge";
 import { baseTheme } from "gatsby-theme-catalyst-core";
+import "typeface-raleway";
 
 export default merge(baseTheme, {
   colors: {
@@ -19,8 +20,15 @@ export default merge(baseTheme, {
 
     footer: {
       background: "#2e7da4",
-      text: "#ffffff"
+      text: "#ffffff",
+      links: "#ffffff",
+      icons: "#ffffff"
     }
+  },
+  fonts: {
+    text: "Raleway, sans-serif",
+    heading: "inherit",
+    monospace: "Menlo, monospace"
   },
   sizes: {
     maxContentWidth: "100%", // Sets the container size on larger screens, e.g. tablets and laptops
