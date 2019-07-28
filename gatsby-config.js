@@ -3,7 +3,12 @@ module.exports = {
     title: `erichowey.dev`,
     description: `Speed up your Gatsby development workflow. Designed as an opinionated and high speed starter.`,
     author: `Eric Howey`,
-    menuLinks: [{}],
+    menuLinks: [
+      {
+        name: `Home`,
+        link: `/`
+      }
+    ],
     anchorLinks: [
       {
         name: `Me`,
