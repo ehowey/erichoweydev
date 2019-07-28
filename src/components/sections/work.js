@@ -81,7 +81,11 @@ const siteSection = () => {
           />
           <div
             sx={{
-              padding: 2
+              padding: 2,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              height: "calc(100% - 200px)"
             }}
           >
             <h4>Gatsby Catalyst Themes</h4>
@@ -133,6 +137,10 @@ const siteSection = () => {
           />
           <div
             sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              height: "calc(100% - 200px)",
               padding: 2
             }}
           >
@@ -185,6 +193,10 @@ const siteSection = () => {
           />
           <div
             sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              height: "calc(100% - 200px)",
               padding: 2
             }}
           >

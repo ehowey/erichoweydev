@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import { useStaticQuery, graphql } from "gatsby";
-import { Social } from "gatsby-theme-catalyst-core";
+import { SocialFooter } from "gatsby-theme-catalyst-core";
 
 const siteFooter = () => {
   const data = useStaticQuery(graphql`
@@ -48,7 +48,7 @@ const siteFooter = () => {
           }
         }}
       >
-        <Social />
+        <SocialFooter />
       </div>
       <p
         sx={{

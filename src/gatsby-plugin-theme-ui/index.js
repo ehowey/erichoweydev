@@ -15,7 +15,10 @@ export default merge(baseTheme, {
       background: "#9ce5f4",
       backgroundOpen: "#333333",
       text: "#333333",
-      textOpen: "#ffffff"
+      textOpen: "#ffffff",
+      icons: "#333333",
+      iconsHover: "#2e7da4",
+      iconsOpen: "#ffffff"
     },
 
     footer: {
