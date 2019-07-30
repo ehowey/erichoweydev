@@ -5,8 +5,8 @@ module.exports = {
     author: `Eric Howey`,
     menuLinks: [
       {
-        name: `Home`,
-        link: `/`
+        name: "",
+        link: ""
       }
     ],
     anchorLinks: [
@@ -43,7 +43,12 @@ module.exports = {
   },
   plugins: [
     `gatsby-theme-catalyst-core`,
-    `gatsby-theme-catalyst-onepage`,
+    {
+      resolve: `gatsby-theme-catalyst-onepage`,
+      options: {
+        blendedNav: true
+      }
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
