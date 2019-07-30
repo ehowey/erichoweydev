@@ -6,7 +6,7 @@ import Img from "gatsby-image";
 const siteSection = () => {
   const data = useStaticQuery(graphql`
     query {
-      aboutImage1: file(relativePath: { eq: "images/absurd-face-circle.png" }) {
+      aboutImage1: file(relativePath: { eq: "images/absurd-eh-face.png" }) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG

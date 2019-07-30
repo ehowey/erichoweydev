@@ -6,21 +6,21 @@ import Img from "gatsby-image";
 const siteSection = () => {
   const data = useStaticQuery(graphql`
     query {
-      projectImage1: file(relativePath: { eq: "images/catalyst-logo.png" }) {
+      projectImage1: file(relativePath: { eq: "images/work-catalyst.png" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
             ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
-      projectImage2: file(relativePath: { eq: "images/lwb.png" }) {
+      projectImage2: file(relativePath: { eq: "images/work-lwb.png" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
             ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
-      projectImage3: file(relativePath: { eq: "images/brisharpe.png" }) {
+      projectImage3: file(relativePath: { eq: "images/work-brisharpe.png" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
             ...GatsbyImageSharpFluid_withWebp
