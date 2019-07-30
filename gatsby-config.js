@@ -43,12 +43,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-theme-catalyst-core`,
-    {
-      resolve: `gatsby-theme-catalyst-onepage`,
-      options: {
-        blendedNav: true
-      }
-    },
+    `gatsby-theme-catalyst-onepage`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
