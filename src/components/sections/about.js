@@ -111,9 +111,10 @@ const siteSection = () => {
           <h3>Slow is smooth, smooth is fast</h3>
           <p>I don’t do rushed.</p>
           <p>
-            Building a fast, easy to use, website is a slow process. It requires
-            focus, collaboration and creativity. I only work on a few projects
-            per year and appreciate the craftsmanship of a well made product.
+            Building a fast and easy to use, website is a slow process. It
+            requires focus, collaboration and creativity. I only work on a few
+            projects per year and appreciate the craftsmanship of a well made
+            product.
           </p>
         </div>
         <Img

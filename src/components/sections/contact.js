@@ -51,6 +51,17 @@ const siteSection = () => {
             Inspired idea? New direction? Creating something amazing? Let's
             talk!
           </h3>
+          <p>
+            The best way to reach me is via{" "}
+            <a href="mailto:eric@erichowey.dev">email.</a>
+          </p>
+          <p>
+            From there we can start talking, in person or on the phone. Building
+            a good working relationship is an absolute priority to me.
+            Unfortunately I can't post my phone number publicly - privacy and
+            boundaries are important to me beacuse of my other role in
+            healthcare.
+          </p>
         </div>
         <Img
           sx={{
