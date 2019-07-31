@@ -1,8 +1,18 @@
+const {
+  NODE_ENV,
+  URL: NETLIFY_SITE_URL = "https://www.erichowey.dev",
+  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
+  CONTEXT: NETLIFY_ENV = NODE_ENV
+} = process.env;
+const isNetlifyProduction = NETLIFY_ENV === "production";
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
+
 module.exports = {
   siteMetadata: {
     title: `erichowey.dev`,
-    description: `Speed up your Gatsby development workflow. Designed as an opinionated and high speed starter.`,
+    description: `Eric Howey, Frontend Web Developer and Designer. Based in Calgary, Alberta.`,
     author: `Eric Howey`,
+    siteUrl,
     menuLinks: [
       {
         name: "",
@@ -42,8 +52,28 @@ module.exports = {
     ]
   },
   plugins: [
-    `gatsby-theme-catalyst-core`,
     `gatsby-theme-catalyst-onepage`,
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        resolveEnv: () => NETLIFY_ENV,
+        env: {
+          production: {
+            policy: [{ userAgent: "*" }]
+          },
+          "branch-deploy": {
+            policy: [{ userAgent: "*", disallow: ["/"] }],
+            sitemap: null,
+            host: null
+          },
+          "deploy-preview": {
+            policy: [{ userAgent: "*", disallow: ["/"] }],
+            sitemap: null,
+            host: null
+          }
+        }
+      }
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
