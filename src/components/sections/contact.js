@@ -68,7 +68,7 @@ const siteSection = () => {
             transform: "scaleX(-1)",
             gridColumn: ["1 / -1", "1 / 3", null],
             gridRow: "1 / 2",
-            opacity: ["0.2", "1", null]
+            opacity: ["0.1", "1", null]
           }}
           fluid={data.contactImage1.childImageSharp.fluid}
           alt="Talking Fish"

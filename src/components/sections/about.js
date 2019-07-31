@@ -68,7 +68,7 @@ const siteSection = () => {
         <Img
           sx={{
             gridColumn: ["1 / -1", "3 / -1", null],
-            gridRow: ["3 / 4", "2 / 3", null]
+            gridRow: ["1 / 2", "2 / 3", null]
           }}
           fluid={data.aboutImage1.childImageSharp.fluid}
           alt="A fun face"
@@ -95,7 +95,7 @@ const siteSection = () => {
         <Img
           sx={{
             gridColumn: ["1 / -1", "1 / 2", null],
-            gridRow: ["5 / 6", "3 / 4", null]
+            gridRow: ["3 / 4", "3 / 4", null]
           }}
           fluid={data.aboutImage2.childImageSharp.fluid}
           alt="A picture of a grad cap"
@@ -119,9 +119,8 @@ const siteSection = () => {
         </div>
         <Img
           sx={{
-            display: ["none", "block", null],
-            gridColumn: "3 / -1",
-            gridRow: "4 / 5"
+            gridColumn: ["1 / -1", "3 / -1", null],
+            gridRow: ["5 / 6", "4 / 5", null]
           }}
           fluid={data.aboutImage3.childImageSharp.fluid}
           alt="A slow race"
