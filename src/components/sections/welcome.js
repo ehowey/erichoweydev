@@ -31,7 +31,7 @@ const siteSection = () => {
         sx={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gridTemplateRows: ["50vh 1fr", "30vh 30vh", null],
+          gridTemplateRows: ["40vh 1fr", "30vh 30vh", null],
           gridGap: "1rem",
           alignContent: ["start", "center", null],
           maxWidth: "1024px",
@@ -60,7 +60,11 @@ const siteSection = () => {
             mt: [2, 0, null]
           }}
         >
-          <h1>
+          <h1
+            sx={{
+              fontSize: [5, 6, 7]
+            }}
+          >
             Bespoke websites.
             <br />
             Listening and caring.
