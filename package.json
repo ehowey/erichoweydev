@@ -15,8 +15,8 @@
   },
   "keywords": [
     "gatsby",
-    "gatsbyJS",
-    "gatsby-starter"
+    "gatsby-starter",
+    "gatsby-plugin"
   ],
   "license": "MIT",
   "scripts": {
