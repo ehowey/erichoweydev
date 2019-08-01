@@ -3,7 +3,7 @@ module.exports = {
     title: `erichowey.dev`,
     description: `Eric Howey, Frontend Web Developer and Designer. Based in Calgary, Alberta.`,
     author: `Eric Howey`,
-    siteUrl:`https://www.erichowey.dev`
+    siteUrl:`https://www.erichowey.dev`,
     menuLinks: [
       {
         name: "",
