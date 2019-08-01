@@ -57,6 +57,8 @@ const siteFooter = () => {
       >
         Illustrations by{" "}
         <a href="https://twitter.com/diana_valeanu">Diana Valeanu</a>
+        <br />Design inspired by{" "}
+        <a href="https://www.gatsbyjs.org/starters/ajayns/gatsby-absurd/">Gatsby-Absurd</a>
         <br />© {new Date().getFullYear()} {data.site.siteMetadata.title}
       </p>
     </footer>
