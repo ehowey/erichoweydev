@@ -1,9 +1,18 @@
+const {
+  NODE_ENV,
+  URL: NETLIFY_SITE_URL = "https://www.erichowey.dev",
+  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
+  CONTEXT: NETLIFY_ENV = NODE_ENV
+} = process.env;
+const isNetlifyProduction = NETLIFY_ENV === "production";
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
+
 module.exports = {
   siteMetadata: {
     title: `erichowey.dev`,
     description: `Eric Howey, Frontend Web Developer and Designer. Based in Calgary, Alberta.`,
     author: `Eric Howey`,
-    siteUrl:`https://www.erichowey.dev`,
+    siteUrl,
     menuLinks: [
       {
         name: "",
