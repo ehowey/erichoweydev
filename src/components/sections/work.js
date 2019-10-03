@@ -3,7 +3,7 @@ import { jsx } from "theme-ui";
 import { graphql, useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
 
-const siteSection = () => {
+const SiteSection = () => {
   const data = useStaticQuery(graphql`
     query {
       projectImage1: file(relativePath: { eq: "images/work-catalyst.png" }) {
@@ -223,4 +223,4 @@ const siteSection = () => {
   );
 };
 
-export default siteSection;
+export default SiteSection;

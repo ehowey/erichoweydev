@@ -3,7 +3,7 @@ import { jsx } from "theme-ui";
 import { graphql, useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
 
-const siteSection = () => {
+const SiteSection = () => {
   const data = useStaticQuery(graphql`
     query {
       contactImage1: file(
@@ -56,11 +56,10 @@ const siteSection = () => {
             <a href="mailto:eric@erichowey.dev">email.</a>
           </p>
           <p>
-            From there we can start talking, in person or on the phone. Building
-            a good working relationship is an absolute priority to me.
-            Unfortunately I can't post my phone number publicly - privacy and
-            boundaries are important to me beacuse of my other role in
-            healthcare.
+            I am excited to start talking. Building a prouctive working
+            relationship is an absolute priority for me. The quality of my
+            overall work depends on our ability to have clear and open
+            communication about design and development decisions.
           </p>
         </div>
         <Img
@@ -89,4 +88,4 @@ const siteSection = () => {
   );
 };
 
-export default siteSection;
+export default SiteSection;

@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
 import { Link } from "react-scroll";
 
-const siteSection = () => {
+const SiteSection = () => {
   const data = useStaticQuery(graphql`
     query {
       welcomeImage: file(
@@ -100,4 +100,4 @@ const siteSection = () => {
   );
 };
 
-export default siteSection;
+export default SiteSection;

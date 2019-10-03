@@ -3,7 +3,7 @@ import { jsx } from "theme-ui";
 import { graphql, useStaticQuery } from "gatsby";
 import Img from "gatsby-image";
 
-const siteSection = () => {
+const SiteSection = () => {
   const data = useStaticQuery(graphql`
     query {
       aboutImage1: file(relativePath: { eq: "images/absurd-eh-face.png" }) {
@@ -131,4 +131,4 @@ const siteSection = () => {
   );
 };
 
-export default siteSection;
+export default SiteSection;

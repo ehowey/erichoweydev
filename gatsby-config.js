@@ -9,11 +9,11 @@ const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 
 module.exports = {
   siteMetadata: {
-    title: `erichowey.dev`,
-    description: `Eric Howey, Frontend Web Developer and Designer. Based in Calgary, Alberta.`,
+    title: `eric howey`,
+    description: `Frontend Web Developer and Designer. Based in Calgary, Alberta.`,
     author: `Eric Howey`,
     siteUrl,
-    menuLinks: [
+    pageLinks: [
       {
         name: "",
         link: ""
@@ -52,7 +52,17 @@ module.exports = {
     ]
   },
   plugins: [
-    `gatsby-theme-catalyst-onepage`,
+    {
+      resolve: `gatsby-theme-catalyst-core`,
+      options: {
+        displaySiteLogo: true,
+        displaySiteTitle: true,
+        invertSiteLogo: true,
+        mobileMenuBreakpoint: "768px",
+        navType: "anchor", // "default", "anchor", "blended"
+        headerPosition: "sticky" // "static" or "sticky" work best, "fixed" is possible
+      }
+    },
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
