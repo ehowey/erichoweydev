@@ -6,9 +6,7 @@ import Img from "gatsby-image";
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
     query {
-      contactImage1: file(
-        relativePath: { eq: "images/absurd-fish-talking.png" }
-      ) {
+      contactImage1: file(relativePath: { eq: "absurd-fish-talking.png" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
             ...GatsbyImageSharpFluid_withWebp
@@ -23,7 +21,10 @@ const SiteSection = () => {
         my: 5,
         mx: 0,
         py: 5,
-        px: 0
+        px: 0,
+        width: "100vw",
+        position: "relative",
+        left: "calc(-50vw + 50%)"
       }}
       id="contact"
     >

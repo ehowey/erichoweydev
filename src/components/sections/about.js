@@ -6,21 +6,21 @@ import Img from "gatsby-image";
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
     query {
-      aboutImage1: file(relativePath: { eq: "images/absurd-eh-face.png" }) {
+      aboutImage1: file(relativePath: { eq: "absurd-eh-face.png" }) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
           }
         }
       }
-      aboutImage2: file(relativePath: { eq: "images/absurd-grad.png" }) {
+      aboutImage2: file(relativePath: { eq: "absurd-grad.png" }) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
           }
         }
       }
-      aboutImage3: file(relativePath: { eq: "images/absurd-race.png" }) {
+      aboutImage3: file(relativePath: { eq: "absurd-race.png" }) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
@@ -36,7 +36,10 @@ const SiteSection = () => {
         my: 5,
         mx: 0,
         py: 5,
-        px: 0
+        px: 0,
+        width: "100vw",
+        position: "relative",
+        left: "calc(-50vw + 50%)"
       }}
     >
       <div

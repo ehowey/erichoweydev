@@ -58,10 +58,14 @@ module.exports = {
         displaySiteLogo: true,
         displaySiteTitle: true,
         invertSiteLogo: true,
-        mobileMenuBreakpoint: "768px",
+        mobileMenuBreakpoint: "600px",
         navType: "anchor", // "default", "anchor", "blended"
         headerPosition: "sticky" // "static" or "sticky" work best, "fixed" is possible
       }
+    },
+    {
+      resolve: `gatsby-theme-catalyst-blog`,
+      options: {}
     },
     {
       resolve: "gatsby-plugin-robots-txt",

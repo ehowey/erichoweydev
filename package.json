@@ -1,13 +1,14 @@
 {
   "name": "erichoweydev",
   "description": "Custom site based on Gatsby-Theme-Catalyst-Core",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": "Eric Howey <ehowey@gmail.com>",
   "dependencies": {
-    "gatsby": "^2.15.28",
-    "gatsby-theme-catalyst-core": "^0.6.4",
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1",
+    "gatsby": "^2.16.4",
+    "gatsby-theme-catalyst-blog": "^0.0.4",
+    "gatsby-theme-catalyst-core": "^0.9.1",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
     "typeface-raleway": "^0.0.75"
   },
   "devDependencies": {

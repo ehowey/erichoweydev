@@ -6,21 +6,21 @@ import Img from "gatsby-image";
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
     query {
-      projectImage1: file(relativePath: { eq: "images/work-catalyst.png" }) {
+      projectImage1: file(relativePath: { eq: "work-catalyst.png" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
             ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
-      projectImage2: file(relativePath: { eq: "images/work-lwb.png" }) {
+      projectImage2: file(relativePath: { eq: "work-lwb.png" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
             ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
-      projectImage3: file(relativePath: { eq: "images/work-brisharpe.png" }) {
+      projectImage3: file(relativePath: { eq: "work-brisharpe.png" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
             ...GatsbyImageSharpFluid_withWebp
@@ -35,7 +35,10 @@ const SiteSection = () => {
         backgroundColor: "primary",
         m: 0,
         py: "8rem",
-        px: 0
+        px: 0,
+        width: "100vw",
+        position: "relative",
+        left: "calc(-50vw + 50%)"
       }}
       id="work"
     >
@@ -68,7 +71,7 @@ const SiteSection = () => {
               backgroundColor: "#f5f5f5"
             }
           }}
-          href="https://github.com/ehowey/gatsby-theme-catalyst-core"
+          href="https://github.com/ehowey/gatsby-theme-catalyst"
           target="_blank"
           rel="noopener noreferrer"
         >

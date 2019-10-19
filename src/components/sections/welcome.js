@@ -7,9 +7,7 @@ import { Link } from "react-scroll";
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
     query {
-      welcomeImage: file(
-        relativePath: { eq: "images/absurd-lightbulb-head.png" }
-      ) {
+      welcomeImage: file(relativePath: { eq: "absurd-lightbulb-head.png" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
@@ -21,10 +19,18 @@ const SiteSection = () => {
   return (
     <section
       sx={{
-        height: ["calc(100vh - 60px)", "calc(100vh - 80px)", null],
+        height: [
+          "calc(100vh - 56px)",
+          "calc(100vh - 66px)",
+          "calc(100vh - 76px)"
+        ],
         backgroundColor: "primary",
+        mt: -5,
         py: 3,
-        px: 0
+        px: 0,
+        width: "100vw",
+        position: "relative",
+        left: "calc(-50vw + 50%)"
       }}
     >
       <div
