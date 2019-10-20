@@ -34,14 +34,26 @@ const SiteSection = () => {
       sx={{
         backgroundColor: "primary",
         m: 0,
-        py: "8rem",
-        px: 0,
+        p: 0,
         width: "100vw",
         position: "relative",
         left: "calc(-50vw + 50%)"
       }}
       id="work"
     >
+      <div
+        sx={{
+          padding: "0 1rem"
+        }}
+      >
+        <h2
+          sx={{
+            textTransform: "uppercase"
+          }}
+        >
+          Work
+        </h2>
+      </div>
       <div
         sx={{
           display: "grid",

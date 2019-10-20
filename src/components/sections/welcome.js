@@ -26,8 +26,7 @@ const SiteSection = () => {
         ],
         backgroundColor: "primary",
         mt: -3,
-        py: 3,
-        px: 0,
+        p: 0,
         width: "100vw",
         position: "relative",
         left: "calc(-50vw + 50%)"
