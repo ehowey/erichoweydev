@@ -57,10 +57,9 @@ const SiteSection = () => {
             <a href="mailto:eric@erichowey.dev">email.</a>
           </p>
           <p>
-            I am excited to start talking. Building a prouctive working
-            relationship is an absolute priority for me. The quality of my
-            overall work depends on our ability to have clear and open
-            communication about design and development decisions.
+            I am excited to start talking and working together. Building an open
+            and collaborative relationship is critical. Developing a final
+            product we are all happy with depends on it.
           </p>
         </div>
         <Img
