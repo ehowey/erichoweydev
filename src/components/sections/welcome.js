@@ -25,7 +25,7 @@ const SiteSection = () => {
           "calc(100vh - 76px)"
         ],
         backgroundColor: "primary",
-        mt: -5,
+        mt: -3,
         py: 3,
         px: 0,
         width: "100vw",
@@ -37,7 +37,7 @@ const SiteSection = () => {
         sx={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gridTemplateRows: ["40vh 1fr", "30vh 30vh", null],
+          gridTemplateRows: ["35vh 1fr", "30vh 30vh", null],
           gridGap: "1rem",
           alignContent: ["start", "center", null],
           maxWidth: "1024px",
@@ -63,7 +63,7 @@ const SiteSection = () => {
             gridRow: ["2 / 3", "1 / -1", null],
             alignSelf: ["start", "center", null],
             justifySelf: "center",
-            mt: [2, 0, null]
+            mt: [3, 0, null]
           }}
         >
           <h1
