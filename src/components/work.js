@@ -20,7 +20,7 @@ const SiteSection = () => {
           }
         }
       }
-      projectImage3: file(relativePath: { eq: "work-brisharpe.png" }) {
+      projectImage3: file(relativePath: { eq: "work-bsharpe.png" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
             ...GatsbyImageSharpFluid_withWebp
@@ -205,9 +205,8 @@ const SiteSection = () => {
           >
             <h4>www.briannasharpe.com</h4>
             <p>
-              A website to showcase Brianna's professional writing and yoga
-              teaching. In the process of transitioning the site from Wordpress
-              to Gatsby.
+              A personal portfolio website to showcase Brianna's freelance
+              writing. Built using GatsbyJS and Catalyst Themes.
             </p>
             <p
               sx={{
@@ -225,5 +224,4 @@ const SiteSection = () => {
     </section>
   );
 };
-
 export default SiteSection;

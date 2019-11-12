@@ -13,35 +13,32 @@ module.exports = {
     description: `Frontend Web Developer and Designer. Based in Calgary, Alberta.`,
     author: `Eric Howey`,
     siteUrl,
-    pageLinks: [
-      {
-        name: "",
-        link: ""
-      }
-    ],
-    anchorLinks: [
+    menuLinks: [
       {
         name: `Me`,
-        link: `#me`
+        link: `#me`,
+        type: `anchor`
       },
       {
         name: `Work`,
-        link: `#work`
+        link: `#work`,
+        type: `anchor`
       },
       {
         name: `Contact`,
-        link: `#contact`
+        link: `#contact`,
+        type: `anchor`
       }
     ],
     socialLinks: [
       {
         name: `Email`,
-        url: `eric@erichowey.dev`,
+        link: `eric@erichowey.dev`,
         location: `footer`
       },
       {
         name: `Github`,
-        url: `https://www.github.com/ehowey`,
+        link: `https://www.github.com/ehowey`,
         location: `all`
       },
       {
@@ -59,14 +56,11 @@ module.exports = {
         displaySiteTitle: true,
         invertSiteLogo: true,
         mobileMenuBreakpoint: "600px",
-        navType: "anchor", // "default", "anchor", "blended"
-        headerPosition: "sticky" // "static" or "sticky" work best, "fixed" is possible
+        useStickyHeader: true
       }
     },
-    {
-      resolve: `gatsby-theme-catalyst-blog`,
-      options: {}
-    },
+    `gatsby-theme-catalyst-header-basic`,
+    `gatsby-theme-catalyst-footer-basic`,
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
@@ -97,7 +91,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#000000`,
         display: `minimal-ui`,
-        icon: `src/images/logo.png` // This path is relative to the root of the site.
+        icon: `content/assets/logo.png` // This path is relative to the root of the site.
       }
     }
   ]
