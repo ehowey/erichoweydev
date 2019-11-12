@@ -1,22 +1,10 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import { useStaticQuery, graphql } from "gatsby";
-import { FooterSocialIcons } from "gatsby-theme-catalyst-core";
+import { SocialFooter } from "gatsby-theme-catalyst-core";
+import { useSiteMetadata } from "gatsby-theme-catalyst-core";
 
 const SiteFooter = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          title
-          socialLinks {
-            name
-            url
-          }
-        }
-      }
-    }
-  `);
+  const { title } = useSiteMetadata();
   return (
     <footer
       sx={{
@@ -48,7 +36,7 @@ const SiteFooter = () => {
           }
         }}
       >
-        <FooterSocialIcons />
+        <SocialFooter />
       </div>
       <p
         sx={{
@@ -62,7 +50,7 @@ const SiteFooter = () => {
         <a href="https://www.gatsbyjs.org/starters/ajayns/gatsby-absurd/">
           Gatsby-Absurd
         </a>
-        <br />© {new Date().getFullYear()} {data.site.siteMetadata.title}
+        <br />© {new Date().getFullYear()} {title}
       </p>
     </footer>
   );

@@ -20,9 +20,9 @@ const SiteSection = () => {
     <section
       sx={{
         height: [
-          "calc(100vh - 56px)",
-          "calc(100vh - 66px)",
-          "calc(100vh - 76px)"
+          "calc(100vh - 58px)",
+          "calc(100vh - 80px)",
+          "calc(100vh - 80px)"
         ],
         backgroundColor: "primary",
         mt: -3,
@@ -80,7 +80,7 @@ const SiteSection = () => {
               textDecoration: "none",
               border: "2px solid secondary",
               backgroundColor: "secondary",
-              padding: "0.8rem 1rem",
+              padding: ["0.5rem 0.8rem", null, "0.8rem 1rem", null, null],
               borderRadius: "24px",
               transitionDuration: "0.3s",
               letterSpacing: "1px",

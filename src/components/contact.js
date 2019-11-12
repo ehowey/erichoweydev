@@ -18,27 +18,16 @@ const SiteSection = () => {
   return (
     <section
       sx={{
-        m: 0,
-        p: 0,
+        my: 5,
+        mx: 0,
+        py: 5,
+        px: 0,
         width: "100vw",
         position: "relative",
         left: "calc(-50vw + 50%)"
       }}
       id="contact"
     >
-      <div
-        sx={{
-          padding: "0 1rem"
-        }}
-      >
-        <h2
-          sx={{
-            textTransform: "uppercase"
-          }}
-        >
-          Contact
-        </h2>
-      </div>
       <div
         sx={{
           display: "grid",
@@ -68,10 +57,9 @@ const SiteSection = () => {
             <a href="mailto:eric@erichowey.dev">email.</a>
           </p>
           <p>
-            I am excited to start talking. Building a productive working
-            relationship is an absolute priority for me. The quality of my
-            overall work depends on our ability to have clear and open
-            communication about design and development decisions.
+            I am excited to start talking and working together. Building an open
+            and collaborative relationship is critical. Developing a final
+            product we are all happy with depends on it.
           </p>
         </div>
         <Img
