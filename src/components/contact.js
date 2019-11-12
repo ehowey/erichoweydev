@@ -58,8 +58,8 @@ const SiteSection = () => {
           </p>
           <p>
             I am excited to start talking and working together. Building an open
-            and collaborative relationship is critical. Developing a final
-            product we are all happy with depends on it.
+            and collaborative working relationship is crucial. Developing a
+            final product we are all happy with depends on it.
           </p>
         </div>
         <Img
