@@ -24,7 +24,7 @@ const SiteSection = () => {
           "calc(100vh - 80px)",
           "calc(100vh - 80px)"
         ],
-        backgroundColor: "primary",
+        backgroundColor: "accent",
         mt: -3,
         p: 0,
         width: "100vw",
@@ -65,11 +65,7 @@ const SiteSection = () => {
             mt: [3, 0, null]
           }}
         >
-          <h1
-            sx={{
-              fontSize: [5, 6, 7]
-            }}
-          >
+          <h1>
             Bespoke websites.
             <br />
             Listening and caring.

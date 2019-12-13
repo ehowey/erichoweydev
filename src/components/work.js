@@ -32,7 +32,7 @@ const SiteSection = () => {
   return (
     <section
       sx={{
-        backgroundColor: "primary",
+        backgroundColor: "accent",
         m: 0,
         py: "8rem",
         px: 0,

@@ -10,8 +10,23 @@ const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 module.exports = {
   siteMetadata: {
     title: `eric howey`,
-    description: `Frontend Web Developer and Designer. Based in Calgary, Alberta.`,
+    description: `Frontend web developer and designer, based in Calgary, Alberta. Specializing in Javascript, React, and Gatsby.`,
+    keywords: [
+      `web developer`,
+      `Cochrane`,
+      `web design`,
+      `Calgary`,
+      `Gatsby`,
+      `websites`,
+      `react`,
+      `javascript`,
+      `front end`,
+      `frontend`,
+      `frontend web developer`,
+      `GatsbyJS`
+    ],
     author: `Eric Howey`,
+    twitter: `@erchwy`,
     siteUrl,
     menuLinks: [
       {
@@ -52,11 +67,11 @@ module.exports = {
     {
       resolve: `gatsby-theme-catalyst-core`,
       options: {
-        displaySiteLogo: true,
-        displaySiteTitle: true,
+        displaySiteTitle: false,
         invertSiteLogo: true,
         mobileMenuBreakpoint: "600px",
-        useStickyHeader: true
+        useStickyHeader: true,
+        useHero: true
       }
     },
     `gatsby-theme-catalyst-header-basic`,
@@ -91,7 +106,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#000000`,
         display: `minimal-ui`,
-        icon: `content/assets/logo.png` // This path is relative to the root of the site.
+        icon: `content/assets/catalyst-icon.png` // This path is relative to the root of the site.
       }
     }
   ]
