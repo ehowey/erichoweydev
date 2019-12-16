@@ -6264,7 +6264,7 @@ gatsby-theme-catalyst-core@^0.15.0:
     remark-slug "^5.1.2"
     theme-ui "^0.2.49"
 
-gatsby-theme-catalyst-footer-basic@^0.2.2:
+gatsby-theme-catalyst-footer-basic@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-footer-basic/-/gatsby-theme-catalyst-footer-basic-0.2.1.tgz#49db005b8c3865c4eeaf017f2d9b6b73796fcde5"
   integrity sha512-Kbm1EBVALXxXEo5eSwlvcCryBH4rA9aeYc4Gn2yDU46SIjojwIe+orCIlfOKtZ0BEyu2Ti+SI7ArEI1HtDcNkg==
@@ -13410,6 +13410,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
+
+typeface-raleway@^0.0.75:
+  version "0.0.75"
+  resolved "https://registry.yarnpkg.com/typeface-raleway/-/typeface-raleway-0.0.75.tgz#cc79688aa3175452744ecd19540b54dad153e8f3"
+  integrity sha512-mUvT/klCTGA2HporaIMNY3ap45YxBErxFv/1pv82LhbFdNc3m+6ddfoexP6xxwMZ5yZ2VmDhMqk1yikDEoxU/Q==
 
 ua-parser-js@^0.7.18:
   version "0.7.19"

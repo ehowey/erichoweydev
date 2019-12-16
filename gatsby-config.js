@@ -2,10 +2,10 @@ const {
   NODE_ENV,
   URL: NETLIFY_SITE_URL = "https://www.erichowey.dev",
   DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
-  CONTEXT: NETLIFY_ENV = NODE_ENV
-} = process.env;
-const isNetlifyProduction = NETLIFY_ENV === "production";
-const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
+  CONTEXT: NETLIFY_ENV = NODE_ENV,
+} = process.env
+const isNetlifyProduction = NETLIFY_ENV === "production"
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
 
 module.exports = {
   siteMetadata: {
@@ -23,7 +23,7 @@ module.exports = {
       `front end`,
       `frontend`,
       `frontend web developer`,
-      `GatsbyJS`
+      `GatsbyJS`,
     ],
     author: `Eric Howey`,
     twitter: `@erchwy`,
@@ -32,36 +32,36 @@ module.exports = {
       {
         name: `Me`,
         link: `#me`,
-        type: `anchor`
+        type: `anchor`,
       },
       {
         name: `Work`,
         link: `#work`,
-        type: `anchor`
+        type: `anchor`,
       },
       {
         name: `Contact`,
         link: `#contact`,
-        type: `anchor`
-      }
+        type: `anchor`,
+      },
     ],
     socialLinks: [
       {
         name: `Email`,
         link: `eric@erichowey.dev`,
-        location: `footer`
+        location: `footer`,
       },
       {
         name: `Github`,
         link: `https://www.github.com/ehowey`,
-        location: `all`
+        location: `all`,
       },
       {
         name: `Twitter`,
         url: `https://www.twitter.com/erchwy`,
-        location: `footer`
-      }
-    ]
+        location: `footer`,
+      },
+    ],
   },
   plugins: [
     {
@@ -69,10 +69,10 @@ module.exports = {
       options: {
         displaySiteTitle: false,
         invertSiteLogo: true,
-        mobileMenuBreakpoint: "600px",
+        mobileMenuBreakpoint: "580px",
         useStickyHeader: true,
-        useHero: true
-      }
+        useHero: true,
+      },
     },
     `gatsby-theme-catalyst-header-basic`,
     `gatsby-theme-catalyst-footer-basic`,
@@ -82,20 +82,20 @@ module.exports = {
         resolveEnv: () => NETLIFY_ENV,
         env: {
           production: {
-            policy: [{ userAgent: "*" }]
+            policy: [{ userAgent: "*" }],
           },
           "branch-deploy": {
             policy: [{ userAgent: "*", disallow: ["/"] }],
             sitemap: null,
-            host: null
+            host: null,
           },
           "deploy-preview": {
             policy: [{ userAgent: "*", disallow: ["/"] }],
             sitemap: null,
-            host: null
-          }
-        }
-      }
+            host: null,
+          },
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -106,8 +106,8 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#000000`,
         display: `minimal-ui`,
-        icon: `content/assets/catalyst-icon.png` // This path is relative to the root of the site.
-      }
-    }
-  ]
-};
+        icon: `content/assets/catalyst-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+  ],
+}

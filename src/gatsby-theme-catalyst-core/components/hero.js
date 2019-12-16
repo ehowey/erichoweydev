@@ -1,13 +1,13 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
-import { graphql, useStaticQuery } from "gatsby";
-import Img from "gatsby-image";
-import { Link } from "react-scroll";
+import { jsx, Styled } from "theme-ui"
+import { graphql, useStaticQuery } from "gatsby"
+import Img from "gatsby-image"
+import ButtonPrimaryAnchor from "../../components/button-primary-anchor"
 
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
     query {
-      welcomeImage: file(relativePath: { eq: "absurd-lightbulb-head.png" }) {
+      welcomeImage: file(relativePath: { eq: "absurd-eh-face.png" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
@@ -15,70 +15,54 @@ const SiteSection = () => {
         }
       }
     }
-  `);
+  `)
   return (
     <section
       sx={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gridTemplateRows: "auto auto",
-        alignContent: ["start", null, "center", null, null],
-        backgroundColor: "accent",
-        p: 3
+        bg: "accent",
+        px: 3,
+        py: 5,
       }}
     >
-      <Img
-        sx={{
-          gridColumn: ["1 / -1", null, "1 / 2", null, null],
-          gridRow: ["1 / 2", null, "1 / -1", null, null]
-          // height: "100%",
-          // width: "100%",
-          // maxHeight: ["25vh", "35vh", "80vh", null, null]
-        }}
-        fluid={data.welcomeImage.childImageSharp.fluid}
-        alt="Lightbulb on top of a person watering a plant"
-        // imgStyle={{ objectFit: "cotainn" }}
-      />
       <div
         sx={{
-          gridColumn: ["1 / -1", null, "2 / 3", null, null],
-          gridRow: ["2 / 3", null, "1 / -1", null, null],
-          alignSelf: ["start", null, "center", null, null],
-          justifySelf: "center",
-          mt: [3, null, 0, null, null]
+          display: "grid",
+          gridTemplateColumns: [
+            "1fr",
+            "180px minmax(auto, 400px)",
+            "200px minmax(400px, 600px)",
+            null,
+            null,
+          ],
+          gridGap: 4,
+          alignItems: "center",
+          justifyItems: "center",
+          justifyContent: "center",
         }}
       >
-        <h1>
-          Hello! My name is Eric Howey. I am a web developer and mental health
-          therapist. I listen and care.
-        </h1>
-        <Link
+        <Img
           sx={{
-            color: "white",
-            textDecoration: "none",
-            backgroundColor: "primary",
-            padding: ["0.5rem 0.8rem", null, "0.8rem 1rem", null, null],
-            borderRadius: "24px",
-            transitionDuration: "0.3s",
-            letterSpacing: "1px",
-            cursor: "pointer",
-
-            "::after": {
-              content: '"\\00A0 \\2192"'
-            },
-
-            ":hover": {
-              opacity: "0.8"
-            }
+            width: ["200px", "100%", null, null, null],
+            height: ["200px", "100%", null, null, null],
           }}
-          to="contact"
-          smooth={true}
+          fluid={data.welcomeImage.childImageSharp.fluid}
+          alt="Eric Howey"
+          imgStyle={{ objectFit: "contain" }}
+        />
+        <Styled.p
+          sx={{
+            fontSize: 4,
+            m: 0,
+            textAlign: ["left", null, "justify", null, null],
+          }}
         >
-          Talk to me
-        </Link>
+          <span sx={{ fontWeight: "bold" }}>Hello and Welcome!</span> My name is
+          Eric Howey. I am a web developer and mental health therapist. I listen
+          and care.
+        </Styled.p>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default SiteSection;
+export default SiteSection

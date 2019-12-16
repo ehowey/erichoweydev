@@ -1,12 +1,12 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
-import { graphql, useStaticQuery } from "gatsby";
-import Img from "gatsby-image";
+import { jsx, Styled } from "theme-ui"
+import { graphql, useStaticQuery } from "gatsby"
+import Img from "gatsby-image"
 
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
     query {
-      aboutImage1: file(relativePath: { eq: "absurd-eh-face.png" }) {
+      aboutImage1: file(relativePath: { eq: "absurd-lightbulb-head.png" }) {
         childImageSharp {
           fluid(maxWidth: 500) {
             ...GatsbyImageSharpFluid_withWebp_tracedSVG
@@ -28,7 +28,7 @@ const SiteSection = () => {
         }
       }
     }
-  `);
+  `)
   return (
     <section
       id="me"
@@ -39,7 +39,7 @@ const SiteSection = () => {
         px: 0,
         width: "100vw",
         position: "relative",
-        left: "calc(-50vw + 50%)"
+        left: "calc(-50vw + 50%)",
       }}
     >
       <div
@@ -50,28 +50,31 @@ const SiteSection = () => {
           gridGap: "2rem",
           maxWidth: "1024px",
           margin: "0 auto",
-          padding: "0 1rem"
+          padding: "0 1rem",
         }}
       >
+        <div sx={{ gridColumn: "1 / -1" }}>
+          <Styled.h2>About Me</Styled.h2>
+        </div>
         <div
           sx={{
             gridColumn: ["1 / -1", "1 / 3", null],
-            gridRow: "2 / 3"
+            gridRow: "2 / 3",
           }}
         >
-          <h3>I built my first website in 1998</h3>
-          <p>It sucked.</p>
-          <p>
+          <Styled.h3>I built my first website in 1998</Styled.h3>
+          <Styled.p>It sucked.</Styled.p>
+          <Styled.p>
             A lot has changed since then. I develop kickass websites that don’t
             suck using the latest technologies and performance architecture. I
             can grow facial hair and have two super awesome kids. It{" "}
             <i>really</i> has changed.
-          </p>
+          </Styled.p>
         </div>
         <Img
           sx={{
             gridColumn: ["1 / -1", "3 / -1", null],
-            gridRow: ["1 / 2", "2 / 3", null]
+            gridRow: ["1 / 2", "2 / 3", null],
           }}
           fluid={data.aboutImage1.childImageSharp.fluid}
           alt="A fun face"
@@ -81,24 +84,24 @@ const SiteSection = () => {
         <div
           sx={{
             gridColumn: ["1 / -1", "2 / -1", null],
-            gridRow: ["4 / 5", "3 / 4", null]
+            gridRow: ["4 / 5", "3 / 4", null],
           }}
         >
-          <h3>By passion a frontend web developer</h3>
-          <p>
+          <Styled.h3>By passion a frontend web developer</Styled.h3>
+          <Styled.p>
             I have degrees in philosophy and social work, not computer science.
-          </p>
-          <p>
+          </Styled.p>
+          <Styled.p>
             I enjoy the juxtaposition between creating websites and my full time
             job as a mental health therapist. Fixing a line of code is
             reassuringly certain when contrasted with the nuance of human
             experience.
-          </p>
+          </Styled.p>
         </div>
         <Img
           sx={{
             gridColumn: ["1 / -1", "1 / 2", null],
-            gridRow: ["3 / 4", "3 / 4", null]
+            gridRow: ["3 / 4", "3 / 4", null],
           }}
           fluid={data.aboutImage2.childImageSharp.fluid}
           alt="A picture of a grad cap"
@@ -108,22 +111,22 @@ const SiteSection = () => {
         <div
           sx={{
             gridColumn: ["1 / -1", "1 / 3", null],
-            gridRow: ["6 / 7", "4 / 5", null]
+            gridRow: ["6 / 7", "4 / 5", null],
           }}
         >
-          <h3>Slow is smooth, smooth is fast</h3>
-          <p>I don’t do rushed.</p>
-          <p>
+          <Styled.h3>Slow is smooth, smooth is fast</Styled.h3>
+          <Styled.p>I don’t do rushed.</Styled.p>
+          <Styled.p>
             Building a fast and easy to use, website is a slow process. It
             requires focus, collaboration and creativity. I only work on a few
             projects per year and appreciate the craftsmanship of a well made
             product.
-          </p>
+          </Styled.p>
         </div>
         <Img
           sx={{
             gridColumn: ["1 / -1", "3 / -1", null],
-            gridRow: ["5 / 6", "4 / 5", null]
+            gridRow: ["5 / 6", "4 / 5", null],
           }}
           fluid={data.aboutImage3.childImageSharp.fluid}
           alt="A slow race"
@@ -131,7 +134,7 @@ const SiteSection = () => {
         />
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default SiteSection;
+export default SiteSection
