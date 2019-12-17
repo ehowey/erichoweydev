@@ -4,6 +4,8 @@ import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
+import { plus } from "./patterns"
+import Button from "./button"
 
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
@@ -18,7 +20,7 @@ const SiteSection = () => {
     }
   `)
   return (
-    <SectionWrapper id="contact">
+    <SectionWrapper id="contact" pattern={plus}>
       <SectionHeader>Let's Talk</SectionHeader>
       <div
         sx={{
@@ -37,21 +39,26 @@ const SiteSection = () => {
             zIndex: 5,
           }}
         >
-          <Styled.h3>I'm ready to listen!</Styled.h3>
           <Styled.h3>
-            Inspired idea? New direction? Creating something amazing? Let me
-            help you built a fast, secure and robust web presence that promotes
-            your brand and business goals.
+            I'm ready to listen! Inspired idea? New direction? Creating
+            something amazing?
           </Styled.h3>
+
           <Styled.p>
-            The best way to reach me is via{" "}
-            <a href="mailto:eric@erichowey.dev">email.</a>
+            Let me help you built a fast, secure and robust web presence that
+            promotes your brand and achieves your business goals. Establishing
+            an open and collaborative relationship is critical to developing a
+            final product everyone is happy with it.
           </Styled.p>
+
           <Styled.p>
-            I am excited to start talking and working together. Building an open
-            and collaborative working relationship is crucial. Developing a
-            final product we are all happy with depends on it.
+            The best way to start the conversation is via email. We will then
+            connect in person (if geography allows it) or over the phone to talk
+            in more detail about your ideas. I am excited to start talking!
           </Styled.p>
+          <Styled.a as={Button} href="mailto:eric@erichowey.dev">
+            Email Me
+          </Styled.a>
         </div>
         <Img
           sx={{

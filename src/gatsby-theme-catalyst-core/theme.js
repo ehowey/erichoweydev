@@ -89,7 +89,7 @@ export default {
   },
   variants: {
     main: {
-      mt: 0,
+      my: 0,
     },
   },
 }
