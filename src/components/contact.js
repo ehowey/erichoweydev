@@ -1,7 +1,9 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
-import { graphql, useStaticQuery } from "gatsby";
-import Img from "gatsby-image";
+import { jsx, Styled } from "theme-ui"
+import { graphql, useStaticQuery } from "gatsby"
+import Img from "gatsby-image"
+import SectionWrapper from "./section-wrapper"
+import SectionHeader from "./section-header"
 
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
@@ -14,60 +16,49 @@ const SiteSection = () => {
         }
       }
     }
-  `);
+  `)
   return (
-    <section
-      sx={{
-        my: 5,
-        mx: 0,
-        py: 5,
-        px: 0,
-        width: "100vw",
-        position: "relative",
-        left: "calc(-50vw + 50%)"
-      }}
-      id="contact"
-    >
+    <SectionWrapper id="contact">
+      <SectionHeader>Let's Talk</SectionHeader>
       <div
         sx={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
           gridTemplateRows: "auto",
-          gridGap: 5,
+          gridGap: 4,
           maxWidth: "1024px",
           margin: "0 auto",
-          py: 0,
-          px: 3
         }}
       >
         <div
           sx={{
-            gridColumn: ["1 / -1", "2 / 6", null],
+            gridColumn: ["1 / -1", "2 / 6", null, null, null],
             gridRow: "1 / 2",
-            zIndex: 5
+            zIndex: 5,
           }}
         >
-          <h2>I'm ready to listen!</h2>
-          <h3>
-            Inspired idea? New direction? Creating something amazing? Let's
-            talk!
-          </h3>
-          <p>
+          <Styled.h3>I'm ready to listen!</Styled.h3>
+          <Styled.h3>
+            Inspired idea? New direction? Creating something amazing? Let me
+            help you built a fast, secure and robust web presence that promotes
+            your brand and business goals.
+          </Styled.h3>
+          <Styled.p>
             The best way to reach me is via{" "}
             <a href="mailto:eric@erichowey.dev">email.</a>
-          </p>
-          <p>
+          </Styled.p>
+          <Styled.p>
             I am excited to start talking and working together. Building an open
             and collaborative working relationship is crucial. Developing a
             final product we are all happy with depends on it.
-          </p>
+          </Styled.p>
         </div>
         <Img
           sx={{
             transform: "scaleX(-1)",
-            gridColumn: ["1 / -1", "1 / 3", null],
+            gridColumn: ["1 / -1", "1 / 3", null, null, null],
             gridRow: "1 / 2",
-            opacity: ["0.1", "1", null]
+            opacity: ["0.1", "1", null, null, null],
           }}
           fluid={data.contactImage1.childImageSharp.fluid}
           alt="Talking Fish"
@@ -78,14 +69,14 @@ const SiteSection = () => {
             gridColumn: "1 / 3",
             gridRow: "1 / 2",
             zIndex: "3",
-            display: ["none", "block", null],
+            display: ["none", "block", null, null, null],
             background: "linear-gradient(90deg, transparent, #ffffff)",
-            backgroundSize: "cover"
+            backgroundSize: "cover",
           }}
         />
       </div>
-    </section>
-  );
-};
+    </SectionWrapper>
+  )
+}
 
-export default SiteSection;
+export default SiteSection

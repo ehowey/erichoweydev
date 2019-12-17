@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
+import Img from "gatsby-image"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import WorkCard from "./work-card"
@@ -26,6 +27,27 @@ const SiteSection = () => {
       projectImage3: file(relativePath: { eq: "work-bsharpe.png" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+      logo1: file(relativePath: { eq: "gatsby-logo.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 200) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+      logo2: file(relativePath: { eq: "react-logo.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 200) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+      logo3: file(relativePath: { eq: "js-logo.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 200) {
             ...GatsbyImageSharpFluid_withWebp
           }
         }
@@ -72,14 +94,35 @@ const SiteSection = () => {
       </div>
       <div
         sx={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gridTemplateRows: "auto",
-          gridGap: 4,
-          maxWidth: "1440px",
+          display: "flex",
+          justifyContent: "space-between",
+          width: "400px",
           margin: "0 auto",
+          pt: 5,
         }}
-      ></div>
+      >
+        <Img
+          sx={{
+            width: "80px",
+          }}
+          fluid={data.logo1.childImageSharp.fluid}
+          alt="Gatsby Theme Catalyst"
+        />
+        <Img
+          sx={{
+            width: "80px",
+          }}
+          fluid={data.logo2.childImageSharp.fluid}
+          alt="Gatsby Theme Catalyst"
+        />
+        <Img
+          sx={{
+            width: "80px",
+          }}
+          fluid={data.logo3.childImageSharp.fluid}
+          alt="Gatsby Theme Catalyst"
+        />
+      </div>
     </SectionWrapper>
   )
 }

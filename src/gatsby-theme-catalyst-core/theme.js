@@ -5,7 +5,7 @@ import "typeface-raleway"
 
 export default {
   ...tailwind,
-  breakpoints: ["580px", "768px", "1100px", "1440px"],
+  breakpoints: ["580px", "768px", "1200px", "1440px"],
   fonts: {
     ...tailwind.fonts,
     body: "Raleway, sans-serif",
