@@ -2,7 +2,6 @@
 import { jsx, Styled } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
-import ButtonPrimaryAnchor from "../../components/button-primary-anchor"
 
 const SiteSection = () => {
   const data = useStaticQuery(graphql`

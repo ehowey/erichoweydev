@@ -2,6 +2,9 @@
 import { jsx, Styled } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
+import SectionWrapper from "./section-wrapper"
+import SectionHeader from "./section-header"
+import { contours } from "./patterns"
 
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
@@ -30,39 +33,26 @@ const SiteSection = () => {
     }
   `)
   return (
-    <section
-      id="me"
-      sx={{
-        my: 5,
-        mx: 0,
-        py: 5,
-        px: 0,
-        width: "100vw",
-        position: "relative",
-        left: "calc(-50vw + 50%)",
-      }}
-    >
+    <SectionWrapper id="me" pattern={contours}>
+      <SectionHeader>About Me</SectionHeader>
       <div
         sx={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr",
           gridTemplateRows: "auto",
-          gridGap: "2rem",
+          gridGap: 4,
           maxWidth: "1024px",
           margin: "0 auto",
-          padding: "0 1rem",
+          pt: 5,
         }}
       >
-        <div sx={{ gridColumn: "1 / -1" }}>
-          <Styled.h2>About Me</Styled.h2>
-        </div>
         <div
           sx={{
-            gridColumn: ["1 / -1", "1 / 3", null],
-            gridRow: "2 / 3",
+            gridColumn: ["1 / -1", null, "1 / 3", null, null],
+            gridRow: ["2 / 3", null, "1 / 2", null, null],
           }}
         >
-          <Styled.h3>I built my first website in 1998</Styled.h3>
+          <Styled.h3 sx={{ mt: 0 }}>I built my first website in 1998</Styled.h3>
           <Styled.p>It sucked.</Styled.p>
           <Styled.p>
             A lot has changed since then. I develop kickass websites that don’t
@@ -73,8 +63,11 @@ const SiteSection = () => {
         </div>
         <Img
           sx={{
-            gridColumn: ["1 / -1", "3 / -1", null],
-            gridRow: ["1 / 2", "2 / 3", null],
+            width: ["250px", "300px", "100%", null, null],
+            height: "100%",
+            justifySelf: "center",
+            gridColumn: ["1 / -1", null, "3 / -1", null, null],
+            gridRow: ["1 / 2", null, "1 / 2", null, null],
           }}
           fluid={data.aboutImage1.childImageSharp.fluid}
           alt="A fun face"
@@ -83,8 +76,8 @@ const SiteSection = () => {
 
         <div
           sx={{
-            gridColumn: ["1 / -1", "2 / -1", null],
-            gridRow: ["4 / 5", "3 / 4", null],
+            gridColumn: ["1 / -1", null, "2 / -1", null, null],
+            gridRow: ["4 / 5", null, "3 / 4", null, null],
           }}
         >
           <Styled.h3>By passion a frontend web developer</Styled.h3>
@@ -100,8 +93,11 @@ const SiteSection = () => {
         </div>
         <Img
           sx={{
-            gridColumn: ["1 / -1", "1 / 2", null],
-            gridRow: ["3 / 4", "3 / 4", null],
+            width: ["250px", "300px", "100%", null, null],
+            height: "100%",
+            justifySelf: "center",
+            gridColumn: ["1 / -1", null, "1 / 2", null, null],
+            gridRow: ["3 / 4", null, "3 / 4", null, null],
           }}
           fluid={data.aboutImage2.childImageSharp.fluid}
           alt="A picture of a grad cap"
@@ -110,8 +106,8 @@ const SiteSection = () => {
 
         <div
           sx={{
-            gridColumn: ["1 / -1", "1 / 3", null],
-            gridRow: ["6 / 7", "4 / 5", null],
+            gridColumn: ["1 / -1", null, "1 / 3", null, null],
+            gridRow: ["6 / 7", null, "4 / 5", null, null],
           }}
         >
           <Styled.h3>Slow is smooth, smooth is fast</Styled.h3>
@@ -125,15 +121,17 @@ const SiteSection = () => {
         </div>
         <Img
           sx={{
-            gridColumn: ["1 / -1", "3 / -1", null],
-            gridRow: ["5 / 6", "4 / 5", null],
+            width: ["250px", "300px", "100%", null, null],
+            justifySelf: "center",
+            gridColumn: ["1 / -1", null, "3 / -1", null, null],
+            gridRow: ["5 / 6", null, "4 / 5", null, null],
           }}
           fluid={data.aboutImage3.childImageSharp.fluid}
           alt="A slow race"
           imgStyle={{ objectFit: "contain" }}
         />
       </div>
-    </section>
+    </SectionWrapper>
   )
 }
 

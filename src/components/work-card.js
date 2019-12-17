@@ -1,0 +1,64 @@
+/** @jsx jsx */
+import { jsx, Styled } from "theme-ui"
+import Img from "gatsby-image"
+
+const Card = props => {
+  return (
+    <a
+      sx={{
+        gridColumn: ["1 / -1", null, null, "auto", null],
+        minWidth: "300px",
+        maxWidth: "650px",
+        boxShadow: "0 2px 15px rgba(0,0,0,.1)",
+        transition: "all .15s ease-in-out",
+        textDecoration: "none",
+        color: "inherit",
+        backgroundColor: "#fff",
+        margin: "0 auto",
+
+        ":hover": {
+          boxShadow: "0 2px 30px rgba(0,0,0,.15)",
+          transform: "translateY(-3px)",
+          backgroundColor: "#f5f5f5",
+        },
+      }}
+      href={props.link}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Img
+        sx={{
+          height: "200px",
+        }}
+        fluid={props.image}
+        alt="Gatsby Theme Catalyst"
+      />
+      <div
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          padding: 2,
+          height: ["auto", null, null, "350px", null],
+        }}
+      >
+        <Styled.h4 sx={{ flex: "0", mt: 3 }}>{props.title}</Styled.h4>
+        <Styled.p sx={{ flex: ["0", null, null, "1", null] }}>
+          {props.description}
+        </Styled.p>
+        <Styled.p
+          sx={{
+            fontWeight: "bold",
+            flex: "0",
+            "::after": {
+              content: '"\\00A0 \\2192"',
+            },
+          }}
+        >
+          Check it out
+        </Styled.p>
+      </div>
+    </a>
+  )
+}
+
+export default Card
