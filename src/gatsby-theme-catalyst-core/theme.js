@@ -16,6 +16,7 @@ export default {
   colors: {
     ...tailwind.colors,
     primary: baseColors.orange[6],
+    primaryHover: baseColors.orange[8],
     secondary: baseColors.orange[6],
     accent: "#9ce5f4",
     textWhite: baseColors.gray[1],
@@ -25,7 +26,7 @@ export default {
       text: baseColors.gray[8],
       textOpen: baseColors.gray[1],
       icons: baseColors.gray[8],
-      iconsHover: baseColors.red[8],
+      iconsHover: baseColors.orange[6],
       iconsOpen: baseColors.gray[1],
     },
     footer: {
@@ -84,6 +85,20 @@ export default {
       code: {
         color: "inherit",
         p: 0,
+      },
+    },
+  },
+  buttons: {
+    primary: {
+      bg: "primary",
+      color: "textWhite",
+      borderRadius: "default",
+      transition: "all 0.3s ease 0s",
+      "::after": {
+        content: '"\\00A0 \\2192"',
+      },
+      ":hover": {
+        bg: "primaryHover",
       },
     },
   },

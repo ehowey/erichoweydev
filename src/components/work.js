@@ -96,28 +96,28 @@ const SiteSection = () => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          width: "400px",
+          width: ["300px", null, "400px", null, null],
           margin: "0 auto",
           pt: 5,
         }}
       >
         <Img
           sx={{
-            width: "80px",
+            width: ["60px", null, "80px", null, null],
           }}
           fluid={data.logo1.childImageSharp.fluid}
           alt="Gatsby Theme Catalyst"
         />
         <Img
           sx={{
-            width: "80px",
+            width: ["60px", null, "80px", null, null],
           }}
           fluid={data.logo2.childImageSharp.fluid}
           alt="Gatsby Theme Catalyst"
         />
         <Img
           sx={{
-            width: "80px",
+            width: ["60px", null, "80px", null, null],
           }}
           fluid={data.logo3.childImageSharp.fluid}
           alt="Gatsby Theme Catalyst"

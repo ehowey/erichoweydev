@@ -5,7 +5,7 @@ import Img from "gatsby-image"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import { plus } from "./patterns"
-import Button from "./button"
+import { Button } from "@theme-ui/components"
 
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
@@ -45,27 +45,26 @@ const SiteSection = () => {
           </Styled.h3>
 
           <Styled.p>
-            Let me help you built a fast, secure and robust web presence that
-            promotes your brand and achieves your business goals. Establishing
-            an open and collaborative relationship is critical to developing a
-            final product everyone is happy with it.
+            Let me help you succeed with a fast, secure and robust web presence
+            that achieves your business goals and promotes your brand.
           </Styled.p>
 
           <Styled.p>
-            The best way to start the conversation is via email. We will then
-            connect in person (if geography allows it) or over the phone to talk
-            in more detail about your ideas. I am excited to start talking!
+            The best way to begin the conversation is via{" "}
+            <Styled.a href="mailto:eric@erichowey.dev">email</Styled.a>. We will
+            meet in person (if geography allows it) or over the phone to discuss
+            your ideas in more detail. I am excited to get going!
           </Styled.p>
-          <Styled.a as={Button} href="mailto:eric@erichowey.dev">
+          <Button variant="primary" as="a" href="mailto:eric@erichowey.dev">
             Email Me
-          </Styled.a>
+          </Button>
         </div>
         <Img
           sx={{
             transform: "scaleX(-1)",
             gridColumn: ["1 / -1", "1 / 3", null, null, null],
             gridRow: "1 / 2",
-            opacity: ["0.1", "1", null, null, null],
+            opacity: ["0.05", "1", null, null, null],
           }}
           fluid={data.contactImage1.childImageSharp.fluid}
           alt="Talking Fish"
