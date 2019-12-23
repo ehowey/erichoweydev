@@ -4,6 +4,7 @@ import { Link, graphql, useStaticQuery } from "gatsby"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import { triangles } from "./patterns"
+import { Button } from "@theme-ui/components"
 
 const RecentWriting = () => {
   const data = useStaticQuery(graphql`
@@ -21,7 +22,7 @@ const RecentWriting = () => {
   `)
   const posts = data.allCatalystPost.edges
   return (
-    <SectionWrapper id="me" pattern={triangles}>
+    <SectionWrapper id="writing" pattern={triangles}>
       <SectionHeader>Recent Writing</SectionHeader>
       <div
         sx={{
@@ -40,23 +41,19 @@ const RecentWriting = () => {
           {posts.map(({ node }) => (
             <li>
               <Styled.h3>
-                <Link
-                  sx={{
-                    color: "primary",
-                    textDecoration: "none",
-                    ":hover": {
-                      textDecoration: "underline",
-                    },
-                  }}
-                  to={node.slug}
-                >
+                <Styled.a to={node.slug} as={Link}>
                   {node.title}
-                </Link>
+                </Styled.a>
               </Styled.h3>
               <Styled.p>{node.excerpt.substr(0, 140)}</Styled.p>
             </li>
           ))}
         </ul>
+        <Styled.p>
+          <Button variant="alt" as={Link} to="/writing">
+            More Writing
+          </Button>
+        </Styled.p>
       </div>
     </SectionWrapper>
   )

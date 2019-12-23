@@ -111,6 +111,39 @@ export default {
         bg: "primaryHover",
       },
     },
+    secondary: {
+      bg: "transparent",
+      color: "primary",
+      borderColor: "primary",
+      borderStyle: "solid",
+      borderWidth: "2px",
+      borderRadius: "default",
+      transition: "all 0.3s ease 0s",
+      "::after": {
+        content: '"\\00A0 \\2192"',
+      },
+      ":hover": {
+        bg: baseColors.gray[1],
+      },
+    },
+    alt: {
+      bg: "transparent",
+      border: "none",
+      color: "primary",
+      fontWeight: "bold",
+      letterSpacing: "wider",
+      px: 0,
+      m: 0,
+      transition: "all 0.3s ease 0s",
+      "::after": {
+        content: '"\\00A0 \\2192"',
+      },
+      ":hover": {
+        textDecoration: "underline",
+        bg: "transparent",
+        border: "none",
+      },
+    },
   },
   variants: {
     main: {
