@@ -24,6 +24,8 @@ module.exports = {
       `frontend`,
       `frontend web developer`,
       `GatsbyJS`,
+      `Sanity`,
+      `Sanity.io`,
     ],
     author: `Eric Howey`,
     twitter: `@erchwy`,
@@ -33,6 +35,11 @@ module.exports = {
         name: `Me`,
         link: `#me`,
         type: `anchor`,
+      },
+      {
+        name: `Writing`,
+        link: `/writing`,
+        type: `internal`,
       },
       {
         name: `Work`,
@@ -76,6 +83,13 @@ module.exports = {
     },
     `gatsby-theme-catalyst-header-basic`,
     `gatsby-theme-catalyst-footer-basic`,
+    {
+      resolve: `gatsby-theme-catalyst-blog`,
+      options: {
+        basePath: "/writing",
+        excerptLength: 300,
+      },
+    },
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {

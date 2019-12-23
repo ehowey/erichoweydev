@@ -6176,6 +6176,13 @@ gatsby-remark-images@^3.1.34:
     unist-util-select "^1.5.0"
     unist-util-visit-parents "^2.1.2"
 
+gatsby-remark-reading-time@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-reading-time/-/gatsby-remark-reading-time-1.1.0.tgz#f23590ae34233c3625e656e0368ad0e0e84761a1"
+  integrity sha512-J2I/Aerw6iEcYUs9MH5r7Ky5PIe7Aiq7+M3sDWdRa0ddWYIOZGxPq8U1xYsIBwQjVtPovk8N4aMTau9kjQQLQA==
+  dependencies:
+    reading-time "^1.1.3"
+
 gatsby-remark-smartypants@^2.1.17:
   version "2.1.17"
   resolved "https://registry.yarnpkg.com/gatsby-remark-smartypants/-/gatsby-remark-smartypants-2.1.17.tgz#fc36ecc696101d0bd3b61963aa8867960d5f1a84"
@@ -6230,10 +6237,15 @@ gatsby-telemetry@^1.1.40:
     stack-utils "1.0.2"
     uuid "3.3.3"
 
-gatsby-theme-catalyst-core@^0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-core/-/gatsby-theme-catalyst-core-0.15.0.tgz#e68a849fec84432604802890e5b9df86e0832079"
-  integrity sha512-KYDYs1CeqBstegNd/z3PyGJvw+faatgl/yc8m8nacj/yOCJ3V3hPyQ3c4KIC6DUDb/nVqbMXoNdkF164IkpelQ==
+gatsby-theme-catalyst-blog@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-blog/-/gatsby-theme-catalyst-blog-0.3.0.tgz#ec4f9149310c803ab8d53f150ea1dbf381931bdd"
+  integrity sha512-EJPGv8ZX6aGbwUYKor0by1Yy7BIyt5PjPXIch4Q8Ie//noJo49UQ3knb3z41MHjRo5vSsOdkwpgc8vI2jgwWuA==
+
+gatsby-theme-catalyst-core@^0.16.1:
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-core/-/gatsby-theme-catalyst-core-0.16.1.tgz#8d30dddb1a9e0aaab7a3319abadd50e9b9304517"
+  integrity sha512-y7RBn4i48ojNivf882VArNHNGGbO4j6KrMyxQ+5miAErENEJYIFzjH9YOqMtL98mX2Yftf7dM40mG8D+okXEvw==
   dependencies:
     "@emotion/core" "^10.0.22"
     "@mdx-js/mdx" "^1.5.1"
@@ -6253,6 +6265,7 @@ gatsby-theme-catalyst-core@^0.15.0:
     gatsby-plugin-theme-ui "^0.2.43"
     gatsby-remark-copy-linked-files "^2.1.31"
     gatsby-remark-images "^3.1.34"
+    gatsby-remark-reading-time "^1.1.0"
     gatsby-remark-smartypants "^2.1.17"
     gatsby-source-filesystem "^2.1.39"
     gatsby-transformer-sharp "^2.3.6"
@@ -6264,15 +6277,15 @@ gatsby-theme-catalyst-core@^0.15.0:
     remark-slug "^5.1.2"
     theme-ui "^0.2.49"
 
-gatsby-theme-catalyst-footer-basic@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-footer-basic/-/gatsby-theme-catalyst-footer-basic-0.2.1.tgz#49db005b8c3865c4eeaf017f2d9b6b73796fcde5"
-  integrity sha512-Kbm1EBVALXxXEo5eSwlvcCryBH4rA9aeYc4Gn2yDU46SIjojwIe+orCIlfOKtZ0BEyu2Ti+SI7ArEI1HtDcNkg==
+gatsby-theme-catalyst-footer-basic@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-footer-basic/-/gatsby-theme-catalyst-footer-basic-0.2.3.tgz#c74c4dd85d19e6d36871160854319a69d815e0b9"
+  integrity sha512-Wgdu898NL7bIiH5uvqzaZD0NtLJ+2Sb/TJeKYwNoHgG6ytrqzWozFAM29X3Hhh1piC5Gp7D4q8W05pCYhTMx1Q==
 
-gatsby-theme-catalyst-header-basic@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-header-basic/-/gatsby-theme-catalyst-header-basic-0.2.2.tgz#a76d8948fae5036384850062df4776b7053be907"
-  integrity sha512-KcO1lT5OTE6fJQlZATYrU6pwGlOI0DU95vGDNMAmaajbCqZK4G7Ee4nYpeO6CxBXCGLNyD4Zx6r0MJ8JeLM7BQ==
+gatsby-theme-catalyst-header-basic@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-header-basic/-/gatsby-theme-catalyst-header-basic-0.3.1.tgz#97d1612e1c2158ab94873fda6d2efba47a21ed16"
+  integrity sha512-ZiQ6OPxCJPA7tI/TOFW5WiHeumnR1hxSjicdFU0TdCyacAjCplw9TvAvrAxv7p5LoQp5uEGug9Gd56FrGbVRAg==
 
 gatsby-transformer-sharp@^2.3.6:
   version "2.3.6"
@@ -11335,6 +11348,11 @@ readdirp@~3.2.0:
   integrity sha512-crk4Qu3pmXwgxdSgGhgA/eXiJAPQiX4GMOZZMXnqKxHX7TaoL+3gQVo/WeuAiogr07DpnfjIMpXXa+PAIvwPGQ==
   dependencies:
     picomatch "^2.0.4"
+
+reading-time@^1.1.3:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/reading-time/-/reading-time-1.2.0.tgz#ced71c06715762f805506328dcc1fd45d8249ac4"
+  integrity sha512-5b4XmKK4MEss63y0Lw0vn0Zn6G5kiHP88mUnD8UeEsyORj3sh1ghTH0/u6m1Ax9G2F4wUZrknlp6WlIsCvoXVA==
 
 recursive-readdir@2.2.1:
   version "2.2.1"
