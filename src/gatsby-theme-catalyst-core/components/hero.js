@@ -60,9 +60,11 @@ const SiteSection = () => {
               textAlign: ["left", null, "justify", null, null],
             }}
           >
-            <span sx={{ fontWeight: "bold" }}>Hello and Welcome!</span> My name
-            is Eric Howey. I am a web developer and mental health therapist. I
-            listen and care.
+            <Styled.h1 sx={{ fontSize: 4, display: "inline" }}>
+              Hello and Welcome!
+            </Styled.h1>{" "}
+            My name is Eric Howey. I am a web developer and mental health
+            therapist. I listen and care.
           </Styled.p>
         </div>
       </section>

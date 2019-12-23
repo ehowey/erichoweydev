@@ -63,7 +63,7 @@ const SiteSection = () => {
           gridTemplateColumns: "1fr 1fr 1fr",
           gridTemplateRows: "auto",
           gridGap: 4,
-          maxWidth: "1440px",
+          maxWidth: "maxPageWidth",
           margin: "0 auto",
           pt: 5,
         }}

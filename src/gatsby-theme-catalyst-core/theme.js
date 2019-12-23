@@ -116,5 +116,11 @@ export default {
     main: {
       my: 0,
     },
+    postListContainer: {
+      my: 5,
+    },
+    postContainer: {
+      my: 5,
+    },
   },
 }

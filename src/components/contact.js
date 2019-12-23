@@ -76,7 +76,7 @@ const SiteSection = () => {
             gridRow: "1 / 2",
             zIndex: "3",
             display: ["none", "block", null, null, null],
-            background: "linear-gradient(90deg, transparent, #ffffff)",
+            background: "linear-gradient(90deg, transparent, #ffffff 60%)",
             backgroundSize: "cover",
           }}
         />
