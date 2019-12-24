@@ -6,10 +6,11 @@ const PostImage = props => {
   return (
     <Img
       sx={{
+        gridColumn: "1 / -1",
+        gridRow: "1 / 3",
         display: ["none", "block", null, null, null],
-        height: [null, "250px", "300px", "350px", "400px"],
-        mb: 3,
         variant: "variants.postImage",
+        zIndex: 10,
       }}
       fluid={props.image}
       alt={props.altText}

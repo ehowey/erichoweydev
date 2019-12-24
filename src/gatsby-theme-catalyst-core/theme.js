@@ -152,8 +152,5 @@ export default {
     postListContainer: {
       my: 5,
     },
-    postContainer: {
-      my: 5,
-    },
   },
 }

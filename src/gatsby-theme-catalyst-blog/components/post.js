@@ -19,15 +19,25 @@ const Post = ({ data: { post }, previous, next }) => (
       image={post.featuredImage.childImageSharp.fluid}
       altText={post.title}
     />
-    <PostTitle>{post.title}</PostTitle>
-    <PostMeta>
-      <a href={post.authorLink} target="_blank" rel="noopener noreferrer">
-        {post.author}
-      </a>{" "}
-      &bull; {post.date}
-    </PostMeta>
-    <MDXRenderer>{post.body}</MDXRenderer>
-    <PostFooter {...{ previous, next }} />
+    <div
+      sx={{
+        gridColumn: " 2 / 3",
+        gridRow: "2 / -1",
+        zIndex: 20,
+        bg: "white",
+        p: 5,
+      }}
+    >
+      <PostTitle>{post.title}</PostTitle>
+      <PostMeta>
+        <a href={post.authorLink} target="_blank" rel="noopener noreferrer">
+          {post.author}
+        </a>{" "}
+        &bull; {post.date}
+      </PostMeta>
+      <MDXRenderer>{post.body}</MDXRenderer>
+      <PostFooter {...{ previous, next }} />
+    </div>
   </PostContainer>
 )
 

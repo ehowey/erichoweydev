@@ -6,6 +6,13 @@ const PostContainer = props => {
     <div
       sx={{
         variant: "variants.postContainer",
+        display: "grid",
+        gridTemplateRows: "200px 150px auto",
+        gridTemplateColumns: "1fr 768px 1fr",
+        justifyContent: "center",
+        width: "100vw",
+        position: "relative",
+        left: "calc(-50vw + 50%)",
       }}
     >
       {props.children}
