@@ -21,11 +21,11 @@ const Post = ({ data: { post }, previous, next }) => (
     />
     <div
       sx={{
-        gridColumn: " 2 / 3",
-        gridRow: "2 / -1",
+        gridColumn: "2 / 3",
+        gridRow: ["1 / -1", "2 / -1", null, null, null],
         zIndex: 20,
         bg: "white",
-        p: 5,
+        p: [3, null, 5, null, null],
       }}
     >
       <PostTitle>{post.title}</PostTitle>

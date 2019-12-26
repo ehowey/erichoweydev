@@ -7,8 +7,14 @@ const PostContainer = props => {
       sx={{
         variant: "variants.postContainer",
         display: "grid",
-        gridTemplateRows: "200px 150px auto",
-        gridTemplateColumns: "1fr 768px 1fr",
+        gridTemplateRows: [
+          "auto",
+          "250px auto",
+          "150px 250px auto",
+          null,
+          null,
+        ],
+        gridTemplateColumns: "1fr minmax(auto, 768px) 1fr",
         justifyContent: "center",
         width: "100vw",
         position: "relative",

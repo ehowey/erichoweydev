@@ -7,7 +7,7 @@ const PostImage = props => {
     <Img
       sx={{
         gridColumn: "1 / -1",
-        gridRow: "1 / 3",
+        gridRow: [null, "1 / 2", "1 / 3", null, null],
         display: ["none", "block", null, null, null],
         variant: "variants.postImage",
         zIndex: 10,
