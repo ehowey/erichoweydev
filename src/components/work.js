@@ -1,7 +1,11 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui";
-import { graphql, useStaticQuery } from "gatsby";
-import Img from "gatsby-image";
+import { jsx } from "theme-ui"
+import { graphql, useStaticQuery } from "gatsby"
+import Img from "gatsby-image"
+import SectionWrapper from "./section-wrapper"
+import SectionHeader from "./section-header"
+import WorkCard from "./work-card"
+import { rain } from "./patterns"
 
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
@@ -27,201 +31,99 @@ const SiteSection = () => {
           }
         }
       }
+      logo1: file(relativePath: { eq: "gatsby-logo.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 200) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+      logo2: file(relativePath: { eq: "react-logo.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 200) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+      logo3: file(relativePath: { eq: "js-logo.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 200) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
     }
-  `);
+  `)
   return (
-    <section
-      sx={{
-        backgroundColor: "primary",
-        m: 0,
-        py: "8rem",
-        px: 0,
-        width: "100vw",
-        position: "relative",
-        left: "calc(-50vw + 50%)"
-      }}
-      id="work"
-    >
+    <SectionWrapper id="work" bg="accent" pattern={rain}>
+      <SectionHeader>Selected Work</SectionHeader>
       <div
         sx={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr",
           gridTemplateRows: "auto",
-          gridGap: 5,
-          maxWidth: "1440px",
+          gridGap: 4,
+          maxWidth: "maxPageWidth",
           margin: "0 auto",
-          padding: ["0 1rem", null, "0 2rem"]
+          pt: 5,
         }}
       >
-        <a
-          sx={{
-            gridColumn: ["1 / -1", null, "auto"],
-            minWidth: "200px",
-            maxWidth: "650px",
-            boxShadow: "0 2px 15px rgba(0,0,0,.1)",
-            transition: "all .15s ease-in-out",
-            textDecoration: "none",
-            color: "inherit",
-            backgroundColor: "#fff",
-            margin: "0 auto",
-
-            ":hover": {
-              boxShadow: "0 2px 30px rgba(0,0,0,.15)",
-              transform: "translateY(-3px)",
-              backgroundColor: "#f5f5f5"
-            }
-          }}
-          href="https://github.com/ehowey/gatsby-theme-catalyst"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Img
-            sx={{
-              height: "200px"
-            }}
-            fluid={data.projectImage1.childImageSharp.fluid}
-            alt="Gatsby Theme Catalyst"
-          />
-          <div
-            sx={{
-              padding: 2,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              height: "calc(100% - 200px)"
-            }}
-          >
-            <h4>Gatsby Catalyst Themes</h4>
-            <p>
-              A set of opinionated themes and starters I built to accelerate my
-              own workflow when building new Gatsby projects. Free and open
-              source.
-            </p>
-            <p
-              sx={{
-                fontWeight: "bold",
-                "::after": {
-                  content: '"\\00A0 \\2192"'
-                }
-              }}
-            >
-              Check it out
-            </p>
-          </div>
-        </a>
-        <a
-          sx={{
-            gridColumn: ["1 / -1", null, "auto"],
-            minWidth: "200px",
-            maxWidth: "650px",
-            boxShadow: "0 2px 15px rgba(0,0,0,.1)",
-            transition: "all .15s ease-in-out",
-            textDecoration: "none",
-            color: "inherit",
-            backgroundColor: "#fff",
-            margin: "0 auto",
-
-            ":hover": {
-              boxShadow: "0 2px 30px rgba(0,0,0,.15)",
-              transform: "translateY(-3px)",
-              backgroundColor: "#f5f5f5"
-            }
-          }}
-          href="https://www.lifewithbenjamin.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Img
-            sx={{
-              height: "200px"
-            }}
-            fluid={data.projectImage2.childImageSharp.fluid}
-            alt="Life With Benjamin"
-          />
-          <div
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              height: "calc(100% - 200px)",
-              padding: 2
-            }}
-          >
-            <h4>www.lifewithbenjamin.com</h4>
-            <p>
-              A personal blog and small business website for a creative
+        <WorkCard
+          link="https://github.com/ehowey/gatsby-theme-catalyst"
+          image={data.projectImage1.childImageSharp.fluid}
+          title="Gatsby Theme Catalyst"
+          description="A set of opinionated themes and starters I built to accelerate my
+              own workflow when building new Gatsby projects. Uses ThemeUI and MDX. Free and open
+              source."
+        />
+        <WorkCard
+          link="https://www.briannasharpe.com/"
+          image={data.projectImage3.childImageSharp.fluid}
+          title="www.briannasharpe.com"
+          description="A portfolio website to showcase Brianna's freelance
+              writing and brand. Built using GatsbyJS and Catalyst Themes."
+        />
+        <WorkCard
+          link="https://www.lifewithbenjamin.com/"
+          image={data.projectImage2.childImageSharp.fluid}
+          title="www.lifewithbenjamin.com"
+          description="A  small business website for a creative
               professional who specializes in content creation, photography and
-              videography.
-            </p>
-            <p
-              sx={{
-                fontWeight: "bold",
-                "::after": {
-                  content: '"\\00A0 \\2192"'
-                }
-              }}
-            >
-              Check it out
-            </p>
-          </div>
-        </a>
-        <a
-          sx={{
-            gridColumn: ["1 / -1", null, "auto"],
-            minWidth: "200px",
-            maxWidth: "650px",
-            boxShadow: "0 2px 15px rgba(0,0,0,.1)",
-            transition: "all .15s ease-in-out",
-            textDecoration: "none",
-            color: "inherit",
-            backgroundColor: "#fff",
-            margin: "0 auto",
-
-            ":hover": {
-              boxShadow: "0 2px 30px rgba(0,0,0,.15)",
-              transform: "translateY(-3px)",
-              backgroundColor: "#f5f5f5"
-            }
-          }}
-          href="https://www.briannasharpe.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Img
-            sx={{
-              height: "200px"
-            }}
-            fluid={data.projectImage3.childImageSharp.fluid}
-            alt="Brianna Sharpe"
-          />
-          <div
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              height: "calc(100% - 200px)",
-              padding: 2
-            }}
-          >
-            <h4>www.briannasharpe.com</h4>
-            <p>
-              A personal portfolio website to showcase Brianna's freelance
-              writing. Built using GatsbyJS and Catalyst Themes.
-            </p>
-            <p
-              sx={{
-                fontWeight: "bold",
-                "::after": {
-                  content: '"\\00A0 \\2192"'
-                }
-              }}
-            >
-              Check it out
-            </p>
-          </div>
-        </a>
+              videography. Built using Wordpress and WPRig."
+        />
       </div>
-    </section>
-  );
-};
-export default SiteSection;
+      <div
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          width: ["300px", null, "400px", null, null],
+          margin: "0 auto",
+          pt: 5,
+        }}
+      >
+        <Img
+          sx={{
+            width: ["60px", null, "80px", null, null],
+          }}
+          fluid={data.logo1.childImageSharp.fluid}
+          alt="Gatsby Theme Catalyst"
+        />
+        <Img
+          sx={{
+            width: ["60px", null, "80px", null, null],
+          }}
+          fluid={data.logo2.childImageSharp.fluid}
+          alt="Gatsby Theme Catalyst"
+        />
+        <Img
+          sx={{
+            width: ["60px", null, "80px", null, null],
+          }}
+          fluid={data.logo3.childImageSharp.fluid}
+          alt="Gatsby Theme Catalyst"
+        />
+      </div>
+    </SectionWrapper>
+  )
+}
+export default SiteSection

@@ -1,19 +1,21 @@
 {
   "name": "erichoweydev",
-  "description": "Custom site based on Gatsby-Theme-Catalyst-Core",
-  "version": "0.5.0",
+  "description": "Personal site based on Gatsby-Theme-Catalyst",
+  "private": true,
+  "version": "1.0.0",
   "author": "Eric Howey <ehowey@gmail.com>",
   "dependencies": {
-    "gatsby": "^2.18.5",
-    "gatsby-theme-catalyst-core": "^0.13.4",
-    "gatsby-theme-catalyst-header-basic": "^0.0.6",
-    "gatsby-theme-catalyst-footer-basic": "^0.0.6",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
+    "gatsby": "^2.18.17",
+    "gatsby-theme-catalyst-core": "^0.18.0",
+    "gatsby-theme-catalyst-footer-basic": "^0.3.0",
+    "gatsby-theme-catalyst-header-basic": "^0.5.0",
+    "gatsby-theme-catalyst-blog": "^0.4.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "typeface-raleway": "^0.0.75"
   },
   "devDependencies": {
-    "prettier": "^1.18.2"
+    "prettier": "^1.19.1"
   },
   "keywords": [
     "gatsby",

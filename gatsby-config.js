@@ -2,85 +2,114 @@ const {
   NODE_ENV,
   URL: NETLIFY_SITE_URL = "https://www.erichowey.dev",
   DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
-  CONTEXT: NETLIFY_ENV = NODE_ENV
-} = process.env;
-const isNetlifyProduction = NETLIFY_ENV === "production";
-const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
+  CONTEXT: NETLIFY_ENV = NODE_ENV,
+} = process.env
+const isNetlifyProduction = NETLIFY_ENV === "production"
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
 
 module.exports = {
   siteMetadata: {
     title: `eric howey`,
-    description: `Frontend Web Developer and Designer. Based in Calgary, Alberta.`,
+    description: `Frontend web developer and designer, based in Calgary, Alberta. Specializing in Javascript, React, and Gatsby. Let's build something amazing!`,
+    keywords: [
+      `web developer`,
+      `Cochrane`,
+      `web design`,
+      `Calgary`,
+      `Gatsby`,
+      `websites`,
+      `react`,
+      `javascript`,
+      `front end`,
+      `frontend`,
+      `frontend web developer`,
+      `GatsbyJS`,
+      `Sanity`,
+      `Sanity.io`,
+    ],
     author: `Eric Howey`,
+    twitter: `@erchwy`,
     siteUrl,
     menuLinks: [
       {
         name: `Me`,
         link: `#me`,
-        type: `anchor`
+        type: `anchor`,
+      },
+      {
+        name: `Writing`,
+        link: `/writing`,
+        type: `internal`,
       },
       {
         name: `Work`,
         link: `#work`,
-        type: `anchor`
+        type: `anchor`,
       },
       {
         name: `Contact`,
         link: `#contact`,
-        type: `anchor`
-      }
+        type: `anchor`,
+      },
     ],
     socialLinks: [
       {
         name: `Email`,
         link: `eric@erichowey.dev`,
-        location: `footer`
+        location: `footer`,
       },
       {
         name: `Github`,
         link: `https://www.github.com/ehowey`,
-        location: `all`
+        location: `all`,
       },
       {
         name: `Twitter`,
         url: `https://www.twitter.com/erchwy`,
-        location: `footer`
-      }
-    ]
+        location: `footer`,
+      },
+    ],
   },
   plugins: [
     {
       resolve: `gatsby-theme-catalyst-core`,
       options: {
-        displaySiteLogo: true,
-        displaySiteTitle: true,
+        displaySiteTitle: false,
         invertSiteLogo: true,
-        mobileMenuBreakpoint: "600px",
-        useStickyHeader: true
-      }
+        mobileMenuBreakpoint: "580px",
+        useStickyHeader: true,
+        useHero: true,
+      },
     },
     `gatsby-theme-catalyst-header-basic`,
     `gatsby-theme-catalyst-footer-basic`,
+    {
+      resolve: `gatsby-theme-catalyst-blog`,
+      options: {
+        basePath: "/writing",
+        excerptLength: 300,
+      },
+    },
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         resolveEnv: () => NETLIFY_ENV,
         env: {
           production: {
-            policy: [{ userAgent: "*" }]
+            policy: [{ userAgent: "*" }],
           },
           "branch-deploy": {
             policy: [{ userAgent: "*", disallow: ["/"] }],
             sitemap: null,
-            host: null
+            host: null,
           },
           "deploy-preview": {
             policy: [{ userAgent: "*", disallow: ["/"] }],
             sitemap: null,
-            host: null
-          }
-        }
-      }
+            host: null,
+          },
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -91,8 +120,8 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#000000`,
         display: `minimal-ui`,
-        icon: `content/assets/logo.png` // This path is relative to the root of the site.
-      }
-    }
-  ]
-};
+        icon: `content/assets/catalyst-site-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+  ],
+}
