@@ -9,7 +9,11 @@ import { Button } from "@theme-ui/components"
 const RecentWriting = () => {
   const data = useStaticQuery(graphql`
     {
-      allCatalystPost(limit: 2, sort: { fields: date, order: DESC }) {
+      allCatalystPost(
+        limit: 2
+        sort: { fields: date, order: DESC }
+        filter: { draft: { eq: false } }
+      ) {
         edges {
           node {
             title
