@@ -1,8 +1,36 @@
 ---
-title: An introduction to Catalyst Themes for Gatsby
+title: An introduction to Gatsby Theme Catalyst
 author: Eric Howey
 authorLink: https://twitter.com/erchwy
 tags: [Gatsby, Catalyst, Themes]
-date: 2019-04-15
-featuredImage: ../assets/posts/featured4.jpg
+date: 2020-01-01
+featuredImage: ../assets/posts/legoblocks.jpg
 ---
+
+I built this series of themes and starters to accelerate the development process and have a modular approach for my freelance projects - my goal was to increase productivity and minimize rewriting code on every single project. [Gatsby Theme Catalyst](https://github.com/ehowey/gatsby-theme-catalyst) is my opinionated view of a modern tech stack relying on a combination of [Gatsby](https://www.gatsbyjs.org/), [MDX](https://mdxjs.com/), [Theme-UI](https://theme-ui.com/), and [SANITY.io](https://theme-ui.com/). The themes and starters are managed in a monorepo with Github Actions and Lerna for deployment.
+
+[Documentation](https://github.com/ehowey/gatsby-theme-catalyst) is currently housed on Github in the main repository.
+
+## How it works?
+
+Imagine Lego. A set of interlocking blocks that connect together to create a final form.
+
+It all starts with a solid core theme. This acts as a base layer for other themes providing package dependencies, hooks, SEO, initial plugin configurations and more.
+
+You then pick additional themes as necessary such as a header theme and footer theme to match your site design. This provides a basic, unstyled, starting point for building a custom site. Change the colours, add branding, add content, shadow components and you are ready to go. For an example of this in action see [gatsby-starter-catalyst-basic](https://gatsby-starter-catalyst-basic.netlify.com/) (raw and unstyled) and this site (styled and customized).
+
+![Model of catalyst themes and starters](../assets/posts/catalyst-model.jpg "Model of catalyst themes and starters")
+
+There are also more “complete” themes with CMS integration, custom components, and styling. These themes require less customization before being ready to go - but are also less flexible because of how tightly integrated they are. For an example of this in action you can see [gatsby-starter-catalyst-writer](https://gatsby-starter-catalyst-writer.netlify.com/) (base theme) and [briannasharpe.com](https://www.briannasharpe.com/) (customized version of the base theme).
+
+## Getting started
+
+Example spin up of a basic site.
+
+## Next steps for Gatsby Theme Catalyst
+
+This project is growing and uses semantic versioning to manage future changes. Currently there a limited number of themes or “Lego blocks” to work with but I will be adding more over time and focusing on enhancements now that the core API and themes are stable.
+
+Contributions are welcome and encouraged. If you have a suggestion or run into a problem please submit an issue on Github.
+
+Get building!
