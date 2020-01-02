@@ -16,6 +16,7 @@ const RecentWriting = () => {
       ) {
         edges {
           node {
+            id
             title
             slug
             excerpt
@@ -43,7 +44,7 @@ const RecentWriting = () => {
           }}
         >
           {posts.map(({ node }) => (
-            <li>
+            <li key={node.id}>
               <Styled.h3>
                 <Styled.a to={node.slug} as={Link}>
                   {node.title}

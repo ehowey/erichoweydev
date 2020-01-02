@@ -52,12 +52,6 @@ export default {
     logoHeightM: "50px", // Logo height on medium screens, 768px - 1024px
     logoHeightL: "60px", // Logo height on large screens, 1024px - 1440px
     logoHeightXL: "60px", // Logo height on extra large screens, above 1440px
-    logoWidthSmall: "76px", // Logo width on small screens, up to 768px
-    logoWidthMedium: "92px", // Logo width on medium screens, 768px - 1024px
-    logoWidthLarge: "92px", // Logo width on large screens, above 1024px
-    logoHeightSmall: "50px", // Logo height on small screens, up to 768px
-    logoHeightMedium: "60px", // Logo width on medium screens, 768px - 1024px
-    logoHeightLarge: "60px", // Logo width on large screens, above 1024px
     iconsFooter: "32px", // Sets the icons size for the footer
     iconsHeader: "20px", // Sets the icons size for the header
   },
@@ -81,11 +75,11 @@ export default {
       fontFamily: "monospace",
       backgroundColor: "muted",
       p: 1,
-      fontSize: 2,
+      fontSize: 1,
     },
     pre: {
       fontFamily: "monospace",
-      fontSize: 2,
+      fontSize: 1,
       overflowX: "auto",
       bg: "muted",
       p: 3,
