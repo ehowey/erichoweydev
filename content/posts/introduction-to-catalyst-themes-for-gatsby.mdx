@@ -8,7 +8,7 @@ date: 2020-01-01
 featuredImage: ../post-assets/lego-header-pink.jpg
 ---
 
-[Gatsby Theme Catalyst](https://github.com/ehowey/gatsby-theme-catalyst) is my opinionated view of a modern tech stack relying on a combination of [Gatsby](https://www.gatsbyjs.org/), [MDX](https://mdxjs.com/), [Theme-UI](https://theme-ui.com/), and [SANITY.io](https://theme-ui.com/). I built this series of themes to accelerate the development process and have a modular approach for my freelance work. As a side benefit building the themes has been a great way to learn an exciting set of new technologies including React and GraphQL. The themes are all open source, managed in a monorepo, and I have done my best to provide [robust documentation on github.](https://github.com/ehowey/gatsby-theme-catalyst) Contributions are welcome and encouraged. If you have a suggestion or run into a problem please submit an issue on Github.
+[Gatsby Theme Catalyst](https://github.com/ehowey/gatsby-theme-catalyst) is my opinionated view of a modern tech stack relying on a combination of [Gatsby](https://www.gatsbyjs.org/), [MDX](https://mdxjs.com/), [Theme-UI](https://theme-ui.com/), and [SANITY.io](https://theme-ui.com/). I built this series of themes to accelerate web development and have a modular approach for my freelance work. As a side benefit building the themes has been a great way to learn exciting new technologies including React and GraphQL. The themes are all open source, managed in a monorepo, and I have done my best to provide [robust documentation on github.](https://github.com/ehowey/gatsby-theme-catalyst) Contributions are welcome and encouraged. If you have a suggestion or run into a problem please submit an issue on Github.
 
 ## How it works?
 
@@ -50,13 +50,13 @@ You should now have something that looks like this:
 
 You can now configure a whole host of options via `gatsby-config.js` including your site title, social links, menu links, etc. There is documentation about the [options for this on Github](https://github.com/ehowey/gatsby-theme-catalyst#modifying-gatsby-configjs).
 
-You can change colors, fonts, spacings and more via `src/gatsby-theme-catalyst-core/theme.js`, again there is more detail on how to do this with in the github repo and via [Theme-UI's excellent docs](https://theme-ui.com/getting-started).
+You can change colors, fonts, spacings and more via `src/gatsby-theme-catalyst-core/theme.js`, again there is more detail on how to do this in the docs on github and via [Theme-UI's excellent docs](https://theme-ui.com/getting-started).
 
-The logo can be changed by replacing the `catalyst-site-logo.png` file in `content/assets`. This can be a .jpg file as well but the name needs to remain catalyst-site-logo. You could also shadow the logo component for more granular control but that would be a more advanced solution.
+The logo can be changed by replacing `content/assets/catalyst-site-logo.png`. This can be a .jpg file as well but the name needs to remain `catalyst-site-logo` for the query to work. You could also shadow the entire logo component for more granular control but that is a more advanced solution.
 
 ### Add some of your own content
 
-Create a new file called `new-post.mdx` in `content/posts`.
+Create a new file in your posts directory like this, `content/posts/new-post.mdx`.
 
 Add the following information to the file and save it.
 
@@ -67,12 +67,13 @@ author: My name
 authorLink: https://twitter.com
 date: 2020-01-05
 featuredImage: ../assets/featured1.jpg
+draft: false
 ---
 
 Here is my awesome new post
 ```
 
-Congratulations you have just done your first blog post! You can find information on [additional supported frontmatter fields](https://github.com/ehowey/gatsby-theme-catalyst/tree/master/themes/gatsby-theme-catalyst-blog#frontmatter-fields) in the docs.
+Congratulations you have just started your first blog post! You can find information on [additional supported frontmatter fields](https://github.com/ehowey/gatsby-theme-catalyst/tree/master/themes/gatsby-theme-catalyst-blog#frontmatter-fields) in the docs.
 
 ### Deploying and beyond
 
