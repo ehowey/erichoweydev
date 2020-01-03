@@ -1,16 +1,14 @@
 ---
-title: An introduction to Gatsby Theme Catalyst
+title: Introduction to Gatsby Theme Catalyst
 author: Eric Howey
 authorLink: https://twitter.com/erchwy
 tags: [Gatsby, Catalyst, Themes]
 slug: /writing/introduction-to-gatsby-theme-catalyst
 date: 2020-01-01
-featuredImage: ../assets/posts/legoblocks.jpg
+featuredImage: ../assets/posts/lego-header-green.jpg
 ---
 
-I built this series of themes and starters to accelerate the development process and have a modular approach for my freelance work - my goal was to increase productivity and minimize rewriting code. [Gatsby Theme Catalyst](https://github.com/ehowey/gatsby-theme-catalyst) is my opinionated view of a modern tech stack relying on a combination of [Gatsby](https://www.gatsbyjs.org/), [MDX](https://mdxjs.com/), [Theme-UI](https://theme-ui.com/), and [SANITY.io](https://theme-ui.com/). The themes and starters are managed in a monorepo with Github Actions and Lerna for deployment.
-
-[Documentation](https://github.com/ehowey/gatsby-theme-catalyst) is currently housed on Github in the main repository.
+[Gatsby Theme Catalyst](https://github.com/ehowey/gatsby-theme-catalyst) is my opinionated view of a modern tech stack relying on a combination of [Gatsby](https://www.gatsbyjs.org/), [MDX](https://mdxjs.com/), [Theme-UI](https://theme-ui.com/), and [SANITY.io](https://theme-ui.com/). I built this series of themes to accelerate the development process and have a modular approach for my freelance work. As a side benefit building the themes has been a great way to learn an exciting set of new technologies including React and GraphQL. The themes are all open source, managed in a monorepo, and I have done my best to provide [robust documentation on github.](https://github.com/ehowey/gatsby-theme-catalyst) Contributions are welcome and encouraged. If you have a suggestion or run into a problem please submit an issue on Github.
 
 ## How it works?
 
@@ -18,98 +16,45 @@ Imagine Lego. A set of interlocking blocks that connect together to create a fin
 
 It all starts with a solid core theme. This acts as a base layer for other themes providing package dependencies, hooks, SEO, initial plugin configurations and more.
 
-You then pick additional themes as necessary such as a header theme and footer theme to match your site design. This provides a basic, unstyled, starting point for building a custom site. Change the colours, add branding, add content, shadow components and you are ready to go. For an example of this in action see [gatsby-starter-catalyst-basic](https://gatsby-starter-catalyst-basic.netlify.com/) (raw and unstyled) and this site (styled and customized).
+You then pick additional themes as necessary such as a header theme and footer theme to match your site design. This provides a basic, unstyled, starting point for building a custom site. Change the colours, add branding, add content, shadow components and you are ready to go. For an example of this in action see [gatsby-starter-catalyst-basic](https://gatsby-starter-catalyst-basic.netlify.com/) and this site which is a styled version of the starter.
 
 ![Model of catalyst themes and starters](../assets/posts/catalyst-model.jpg "Model of catalyst themes and starters")
 
-There are also more “complete” themes with CMS integration, custom components, and styling. These themes require less customization before being ready to go - but are also less flexible because of how tightly integrated they are. For an example of this in action you can see [gatsby-starter-catalyst-writer](https://gatsby-starter-catalyst-writer.netlify.com/) (base theme) and [briannasharpe.com](https://www.briannasharpe.com/) (customized version of the base theme).
+There are also more “complete” themes with CMS integration, custom components, and styling. These themes require less customization before being ready to go - but are less flexible because of how tightly integrated they are. For an example of this in action you can see [gatsby-starter-catalyst-writer](https://gatsby-starter-catalyst-writer.netlify.com/) and [briannasharpe.com](https://www.briannasharpe.com/), which is a customized version of the starter.
 
-## Getting started
+Currently there a limited number of themes and starters to work with but I will be adding more over time and focusing on enhancements now that the core API and base themes are stable.
 
-This will walk you through setting up a basic blog using gatsby-theme-catalyst. I assume you have a development environment already setup for Gatsby. For instructions on that please check the [GatsbyJS getting starter docs](https://www.gatsbyjs.org/tutorial/).
+## Catalyzing start
 
-### 1. Use gatsby-starter-catalyst-blog to get setup
+This will walk you through a setup for a basic blog using Gatsby Theme Catalyst. I assume you have a development environment already setup for Gatsby and some familiarity with Gatsby in general. If you are completely new to Gatsby I would suggest starting with [the official tutorial first.](https://www.gatsbyjs.org/tutorial/)
+
+### Use gatsby-starter-catalyst-blog for an initial setup
+
+This starter implements four themes, `gatsby-starter-catalyst-core`, `gatsby-starter-catalyst-header-basic`, `gatsby-starter-catalyst-footer-basic`, and `gatsby-starter-catalyst-blog`. It is purposefully unstyled to give a clean starting point for building a custom Gatsby based blog.
 
 ```
+# create a new Gatsby site using the catalyst basic starter site
 gatsby new catalyst-blog https://github.com/ehowey/gatsby-starter-catalyst-blog
-```
-
-### 2. 'Develop' it for the first time
-
-```
+# change to your new directory
 cd catalyst-blog
-gatsby-develop
+# run gatsby develop for the first time
+gatsby develop
+
 ```
 
-You should have something that looks like this:
+You should now have something that looks like this:
 
 ![Catalyst Blog Screenshot 1](../assets/posts/cat-blog-screenshot-1.png "Catalyst Blog Screenshot 1")
 
-### 3. Modify your gatsby-config.js file
+### Customize your siteMetadata, socialLinks, logo, theme colors and more
 
-Now we will change a few fields in the `siteMetaData` to start getting your site set up. Change the following fields to match your site, don't worry, you can change these again later easily. If you don't have a twitter account, just leave it blank.
+You can now configure a whole host of options via `gatsby-config.js` including your site title, social links, menu links, etc. There is documentation about the [options for this on Github](https://github.com/ehowey/gatsby-theme-catalyst#modifying-gatsby-configjs).
 
-```
-title: `Catalyst Blog`,
-description: `Speed up your Gatsby development workflow.`,
-keywords: [`gatsby`, `theme`, `react`, `blog`],
-author: `Eric Howey`,
-twitter: `@erchwy`,
-```
+You can change colors, fonts, spacings and more via `src/gatsby-theme-catalyst-core/theme.js`, again there is more detail on how to do this with in the github repo and via [Theme-UI's excellent docs](https://theme-ui.com/getting-started).
 
-You will see an array in the `gatsby-config.js` file that is called `socialLinks`. Modify this to reflect your social media presence. It looks somethinglike this:
+The logo can be changed by replacing the `catalyst-site-logo.png` file in `content/assets`. This can be a .jpg file as well but the name needs to remain catalyst-site-logo. You could also shadow the logo component for more granular control but that would be a more advanced solution.
 
-```
-socialLinks: [
-      {
-        name: `Email`,
-        link: `eric@erichowey.dev`,
-        location: `footer`, //Options are "all", "header", "footer"
-      },
-      {
-        name: `Github`,
-        link: `https://www.github.com/ehowey`,
-        location: `all`, //Options are "all", "header", "footer"
-      },
-    ],
-```
-
-You may also need to stop your development server by hitting `Ctrl+C` and then run `gatsby develop` again to get the changes to `gatsby-config.js` to fully take effect.
-
-### 4. Add an about me page
-
-In your code editor goto `content/pages` and make a new page called `about.mdx`.
-
-Copy and paste the following text into the page and save:
-
-```
-<SEO title="About me" />
-
-# About me
-
-I live on the moon and like to ride rocketships.
-```
-
-Now goto `http://localhost:8000/about` and view your new page.
-
-Next, open up `gatsby-config.js` again, and look for the section entitled `menuLinks` and modify it to include your new about page. Save the file, you may need to reload the page to see the change take effect. It should look like this when you are done:
-
-```
-menuLinks: [
-      {
-        name: `About`,
-        link: `/about`,
-        type: `internal`, //internal or anchor
-      },
-      {
-        name: `Blog`,
-        link: `/blog`,
-        type: `internal`, //internal or anchor
-      },
-    ],
-```
-
-### 5. Add a new blog post
+### Add some of your own content
 
 Create a new file called `new-post.mdx` in `content/posts`.
 
@@ -127,54 +72,10 @@ featuredImage: ../assets/featured1.jpg
 Here is my awesome new post
 ```
 
-### 6. Change your logo
+Congratulations you have just done your first blog post! You can find information on [additional supported frontmatter fields](https://github.com/ehowey/gatsby-theme-catalyst/tree/master/themes/gatsby-theme-catalyst-blog#frontmatter-fields) in the docs.
 
-Pick any image you want, a picture of your face, a photo of your home, your actual business logo. It should be either a `.png` or `.jpg` file to work with gatsby-image. Rename this file to `catalyst-site-logo.png`(or.jpg). Place this file in `content/assets` and overwrite the existing logo file. Gatsby should automatically rebuild your site with the new logo, sometimes you need to refresh the page once for it to display properly.
+### 4. Deploying and beyond
 
-### 7. Pick some better colors
+You can deploy this project however you want but I would recommend either [Gatsby Cloud](https://www.gatsbyjs.com/cloud/) or [Netlify](https://www.gatsbyjs.org/docs/deploying-to-netlify/) because of how straightforward they can be.
 
-The theme ships with pretty bland colors on purpose. You change these colors in the `theme.js` file located at `src/gatsby-theme-catalyst-core/theme.js`.
-
-Try something like this in the colors object:
-
-```
-colors: {
-    ...tailwind.colors,
-    primary: baseColors.orange[6],
-    primaryHover: baseColors.orange[8],
-    secondary: baseColors.orange[6],
-    accent: baseColors.blue[3],
-    textWhite: baseColors.gray[1],
-    header: {
-      background: baseColors.blue[3],
-      backgroundOpen: baseColors.blue[7],
-      text: baseColors.gray[8],
-      textOpen: baseColors.gray[1],
-      icons: baseColors.gray[8],
-      iconsHover: baseColors.orange[6],
-      iconsOpen: baseColors.gray[1],
-    },
-    footer: {
-      background: baseColors.blue[3],
-      text: baseColors.gray[8],
-      links: baseColors.gray[8],
-      icons: baseColors.gray[8],
-    },
-  },
-```
-
-Now your site should look something like this:
-
-![Catalyst Blog Screenshot 2](../assets/posts/cat-blog-screenshot-2.png "Catalyst Blog Screenshot 2")
-
-### Deploying and beyond
-
-This just scratches the surface of what you can do with this set of themes and starters. There is [additional documentation on github.](https://github.com/ehowey/gatsby-theme-catalyst) I would recommend using Netlify or Gatsby Cloud to deploy your project.
-
-## Next steps for Gatsby Theme Catalyst
-
-This project is growing and uses semantic versioning to manage future changes. Currently there a limited number of themes or “Lego blocks” to work with but I will be adding more over time and focusing on enhancements now that the core API and themes are stable.
-
-Contributions are welcome and encouraged. If you have a suggestion or run into a problem please submit an issue on Github.
-
-Get building!
+If you build something with Gatsby Theme Catalyst I would love to see what you create, please send me a note on [Twitter](https://twitter.com/erchwy) or an [email](mailto:eric@erichowey.dev). Get building and have fun!

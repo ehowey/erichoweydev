@@ -26,7 +26,7 @@ const Post = ({ data: { post }, previous, next }) => (
         gridRow: ["1 / -1", "2 / -1", null, null, null],
         zIndex: 20,
         bg: "white",
-        p: [3, null, 5, null, null],
+        p: [3, null, 4, null, null],
       }}
     >
       <PostTitle>{post.title}</PostTitle>
