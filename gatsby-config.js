@@ -79,6 +79,7 @@ module.exports = {
         mobileMenuBreakpoint: "580px",
         useStickyHeader: true,
         useHero: true,
+        assetPath: `content/site-assets`,
       },
     },
     `gatsby-theme-catalyst-header-basic`,
@@ -88,6 +89,7 @@ module.exports = {
       options: {
         basePath: "/writing",
         excerptLength: 300,
+        assetPath: `content/post-assets`,
       },
     },
     {
@@ -120,7 +122,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#000000`,
         display: `minimal-ui`,
-        icon: `content/assets/catalyst-site-icon.png`, // This path is relative to the root of the site.
+        icon: `content/site-assets/catalyst-site-icon.png`, // This path is relative to the root of the site.
       },
     },
   ],
