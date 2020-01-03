@@ -15,9 +15,9 @@ export default {
   },
   colors: {
     ...tailwind.colors,
-    primary: baseColors.orange[6],
+    primary: baseColors.orange[7],
     primaryHover: baseColors.orange[8],
-    secondary: baseColors.orange[6],
+    secondary: baseColors.orange[7],
     accent: "#9ce5f4",
     textWhite: baseColors.gray[1],
     header: {
@@ -26,7 +26,7 @@ export default {
       text: baseColors.gray[8],
       textOpen: baseColors.gray[1],
       icons: baseColors.gray[8],
-      iconsHover: baseColors.orange[6],
+      iconsHover: baseColors.orange[7],
       iconsOpen: baseColors.gray[1],
     },
     footer: {

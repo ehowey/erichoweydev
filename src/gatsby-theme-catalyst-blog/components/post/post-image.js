@@ -9,8 +9,11 @@ const PostImage = props => {
         gridColumn: "1 / -1",
         gridRow: [null, "1 / 2", "1 / 3", null, null],
         display: ["none", "block", null, null, null],
-        variant: "variants.postImage",
         zIndex: 10,
+        width: "100%",
+        maxWidth: "maxPageWidth",
+        mx: "auto",
+        variant: "variants.postImage",
       }}
       fluid={props.image}
       alt={props.altText}

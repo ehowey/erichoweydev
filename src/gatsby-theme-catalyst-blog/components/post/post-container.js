@@ -14,7 +14,7 @@ const PostContainer = props => {
           null,
           null,
         ],
-        gridTemplateColumns: "1fr minmax(auto, 768px) 1fr",
+        gridTemplateColumns: "1fr minmax(0px, 768px) 1fr",
         justifyContent: "center",
         width: "100vw",
         position: "relative",
