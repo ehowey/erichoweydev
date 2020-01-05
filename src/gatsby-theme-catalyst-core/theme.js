@@ -1,6 +1,7 @@
 // See https://theme-ui.com/ for more info and also https://www.gatsbyjs.org/docs/theme-ui/
 // Try changing some of the colors below to see what happens.
 import { tailwind, baseColors } from "@theme-ui/preset-tailwind"
+import github from "@theme-ui/prism/presets/github"
 import "typeface-raleway"
 
 export default {
@@ -34,6 +35,13 @@ export default {
       text: baseColors.gray[8],
       links: baseColors.gray[8],
       icons: baseColors.gray[8],
+    },
+    modes: {
+      dark: {
+        text: "#fff",
+        background: "#000",
+        primary: "#0cf",
+      },
     },
   },
   sizes: {
@@ -72,24 +80,10 @@ export default {
       borderColor: "primary",
     },
     inlineCode: {
-      fontFamily: "monospace",
-      backgroundColor: "muted",
-      p: 1,
-      fontSize: 1,
+      ...github,
     },
     pre: {
-      fontFamily: "monospace",
-      fontSize: 1,
-      overflowX: "auto",
-      bg: "muted",
-      p: 3,
-      border: "1px solid",
-      borderColor: "grey",
-      borderRadius: "0.25rem",
-      code: {
-        color: "inherit",
-        p: 0,
-      },
+      ...github,
     },
   },
   buttons: {
