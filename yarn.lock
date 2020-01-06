@@ -5965,10 +5965,10 @@ gatsby-theme-catalyst-blog@^0.4.0:
   resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-blog/-/gatsby-theme-catalyst-blog-0.4.0.tgz#ff18efa231d76c890c08d54728c3d5867ba00e4c"
   integrity sha512-022UXPkXZQa9SQ3BOZCu5T/OJYktNx73Im38zm+XkyqeXCqcWOKwUNGyF+ew4DiF4odIkiYRqhdUM7LaZHAOuQ==
 
-gatsby-theme-catalyst-core@^0.18.4:
-  version "0.18.4"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-core/-/gatsby-theme-catalyst-core-0.18.4.tgz#742215b77ef6478d688559c2f0e115b30ac613fe"
-  integrity sha512-Qs3rR7OxssgncWdEpJF/0PBdQ9yESl34XoYA1eaxJRWyP9WIVnL3et0CvcTYuiLxXD+bkxjLPcjIxyQtPEZREQ==
+gatsby-theme-catalyst-core@^0.18.5:
+  version "0.18.5"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-core/-/gatsby-theme-catalyst-core-0.18.5.tgz#98a37c9f31bdd289cf9c7660b7349944eac4aef0"
+  integrity sha512-JIYXZwXWBI4EJRj0ci2aKUdF8xMBBMkay3CkF0hd5tBC4aHkvmC9Djc1/o+12FnWeYPTUw6ORPrkz1jVVKMv3A==
   dependencies:
     "@emotion/core" "^10.0.27"
     "@mdx-js/mdx" "^1.5.3"

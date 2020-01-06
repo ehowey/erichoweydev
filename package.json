@@ -7,7 +7,7 @@
   "dependencies": {
     "gatsby": "^2.18.17",
     "gatsby-theme-catalyst-blog": "^0.4.0",
-    "gatsby-theme-catalyst-core": "^0.18.4",
+    "gatsby-theme-catalyst-core": "^0.18.5",
     "gatsby-theme-catalyst-footer-basic": "^0.3.0",
     "gatsby-theme-catalyst-header-basic": "^0.5.2",
     "react": "^16.12.0",
