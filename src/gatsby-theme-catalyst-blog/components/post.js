@@ -25,7 +25,7 @@ const Post = ({ data: { post }, previous, next }) => (
         gridColumn: "2 / 3",
         gridRow: ["1 / -1", "2 / -1", null, null, null],
         zIndex: 20,
-        bg: "white",
+        bg: "background",
         p: [3, null, 4, null, null],
       }}
     >

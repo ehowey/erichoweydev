@@ -13,13 +13,13 @@ const Card = props => {
         transition: "all .15s ease-in-out",
         textDecoration: "none",
         color: "inherit",
-        backgroundColor: "#fff",
+        backgroundColor: "background",
         margin: "0 auto",
 
         ":hover": {
           boxShadow: "0 2px 30px rgba(0,0,0,.15)",
           transform: "translateY(-3px)",
-          backgroundColor: "#f5f5f5",
+          backgroundColor: "muted",
         },
       }}
       href={props.link}

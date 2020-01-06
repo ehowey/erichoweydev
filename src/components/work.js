@@ -5,7 +5,7 @@ import Img from "gatsby-image"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import WorkCard from "./work-card"
-import { rain } from "./patterns"
+import { rain, darkRain } from "./patterns"
 
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
@@ -55,7 +55,7 @@ const SiteSection = () => {
     }
   `)
   return (
-    <SectionWrapper id="work" bg="accent" pattern={rain}>
+    <SectionWrapper id="work" bg="accent" pattern={rain} darkPattern={darkRain}>
       <SectionHeader>Selected Work</SectionHeader>
       <div
         sx={{

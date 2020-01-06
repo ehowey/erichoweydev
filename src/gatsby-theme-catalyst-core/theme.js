@@ -1,9 +1,11 @@
 // See https://theme-ui.com/ for more info and also https://www.gatsbyjs.org/docs/theme-ui/
 // Try changing some of the colors below to see what happens.
 import { tailwind, baseColors } from "@theme-ui/preset-tailwind"
+import prism from "@theme-ui/prism/presets/oceanic-next"
 import "typeface-raleway"
 
 export default {
+  useColorSchemeMediaQuery: true,
   ...tailwind,
   breakpoints: ["580px", "768px", "1200px", "1440px"],
   fonts: {
@@ -17,9 +19,11 @@ export default {
     ...tailwind.colors,
     primary: baseColors.orange[7],
     primaryHover: baseColors.orange[8],
-    secondary: baseColors.orange[7],
+    secondary: baseColors.orange[6],
     accent: "#9ce5f4",
+    textBlack: baseColors.gray[8],
     textWhite: baseColors.gray[1],
+    codeBg: baseColors.gray[9],
     header: {
       background: "#9ce5f4",
       backgroundOpen: "#2e7da4",
@@ -34,6 +38,33 @@ export default {
       text: baseColors.gray[8],
       links: baseColors.gray[8],
       icons: baseColors.gray[8],
+    },
+    modes: {
+      dark: {
+        text: baseColors.gray[1],
+        background: baseColors.gray[9],
+        primary: baseColors.orange[7],
+        secondary: baseColors.orange[6],
+        accent: "#006453",
+        gray: baseColors.gray[5],
+        muted: baseColors.gray[7],
+        codeBg: baseColors.gray[8],
+        header: {
+          background: "#006453",
+          backgroundOpen: "#354b45",
+          text: baseColors.gray[1],
+          textOpen: baseColors.gray[1],
+          icons: baseColors.gray[1],
+          iconsHover: baseColors.orange[7],
+          iconsOpen: baseColors.gray[1],
+        },
+        footer: {
+          background: "#006453",
+          text: baseColors.gray[1],
+          links: baseColors.gray[1],
+          icons: baseColors.gray[1],
+        },
+      },
     },
   },
   sizes: {
@@ -72,24 +103,18 @@ export default {
       borderColor: "primary",
     },
     inlineCode: {
-      fontFamily: "monospace",
-      backgroundColor: "muted",
-      p: 1,
+      ...prism,
       fontSize: 1,
+      p: 1,
+      backgroundColor: "muted",
+      color: "text",
     },
     pre: {
-      fontFamily: "monospace",
+      ...prism,
       fontSize: 1,
-      overflowX: "auto",
-      bg: "muted",
       p: 3,
-      border: "1px solid",
-      borderColor: "grey",
-      borderRadius: "0.25rem",
-      code: {
-        color: "inherit",
-        p: 0,
-      },
+      overflowX: "auto",
+      backgroundColor: "codeBg",
     },
   },
   buttons: {

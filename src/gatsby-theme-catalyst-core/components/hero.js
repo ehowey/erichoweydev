@@ -53,19 +53,22 @@ const SiteSection = () => {
             alt="Eric Howey"
             imgStyle={{ objectFit: "contain" }}
           />
-          <Styled.p
-            sx={{
-              fontSize: 4,
-              m: 0,
-              textAlign: ["left", null, "justify", null, null],
-            }}
-          >
+          <div>
             <Styled.h1 sx={{ fontSize: 4, display: "inline" }}>
               Hello and Welcome!
             </Styled.h1>{" "}
-            My name is Eric Howey. I am a web developer and mental health
-            therapist. I listen and care.
-          </Styled.p>
+            <Styled.p
+              sx={{
+                fontSize: 4,
+                m: 0,
+                display: "inline",
+                textAlign: ["left", null, "justify", null, null],
+              }}
+            >
+              My name is Eric Howey. I am a web developer and mental health
+              therapist. I listen and care.
+            </Styled.p>
+          </div>
         </div>
       </section>
     )
