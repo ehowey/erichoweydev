@@ -5,6 +5,7 @@ import github from "@theme-ui/prism/presets/github"
 import "typeface-raleway"
 
 export default {
+  useColorSchemeMediaQuery: true,
   ...tailwind,
   breakpoints: ["580px", "768px", "1200px", "1440px"],
   fonts: {
@@ -20,6 +21,7 @@ export default {
     primaryHover: baseColors.orange[8],
     secondary: baseColors.orange[7],
     accent: "#9ce5f4",
+    textBlack: baseColors.gray[8],
     textWhite: baseColors.gray[1],
     header: {
       background: "#9ce5f4",
@@ -38,9 +40,26 @@ export default {
     },
     modes: {
       dark: {
-        text: "#fff",
-        background: "#000",
-        primary: "#0cf",
+        text: baseColors.gray[1],
+        background: baseColors.gray[9],
+        primary: baseColors.orange[7],
+        accent: "#006453",
+        muted: baseColors.gray[7],
+        header: {
+          background: "#006453",
+          backgroundOpen: "#354b45",
+          text: baseColors.gray[1],
+          textOpen: baseColors.gray[1],
+          icons: baseColors.gray[1],
+          iconsHover: baseColors.orange[7],
+          iconsOpen: baseColors.gray[1],
+        },
+        footer: {
+          background: "#006453",
+          text: baseColors.gray[1],
+          links: baseColors.gray[1],
+          icons: baseColors.gray[1],
+        },
       },
     },
   },

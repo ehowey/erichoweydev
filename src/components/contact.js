@@ -1,10 +1,10 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui"
+import { jsx, Styled, useColorMode } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
-import { plus } from "./patterns"
+import { plus, darkPlus } from "./patterns"
 import { Button } from "@theme-ui/components"
 
 const SiteSection = () => {
@@ -19,8 +19,11 @@ const SiteSection = () => {
       }
     }
   `)
+  const [mode] = useColorMode()
+  const isDark = mode === "dark"
+
   return (
-    <SectionWrapper id="contact" pattern={plus}>
+    <SectionWrapper id="contact" pattern={plus} darkPattern={darkPlus}>
       <SectionHeader>Let's Talk</SectionHeader>
       <div
         sx={{
@@ -65,6 +68,7 @@ const SiteSection = () => {
             gridColumn: ["1 / -1", "1 / 3", null, null, null],
             gridRow: "1 / 2",
             opacity: ["0.05", "1", null, null, null],
+            filter: isDark ? "invert(1)" : "none",
           }}
           fluid={data.contactImage1.childImageSharp.fluid}
           alt="Talking Fish"
@@ -76,7 +80,9 @@ const SiteSection = () => {
             gridRow: "1 / 2",
             zIndex: "3",
             display: ["none", "block", null, null, null],
-            background: "linear-gradient(90deg, transparent, #ffffff 60%)",
+            background: isDark
+              ? "linear-gradient(90deg, transparent, #1a202c 60%)"
+              : "linear-gradient(90deg, transparent, #ffffff 60%)",
             backgroundSize: "cover",
           }}
         />

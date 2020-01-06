@@ -3,7 +3,7 @@ import { jsx, Styled } from "theme-ui"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
-import { triangles } from "./patterns"
+import { triangles, darkTriangles } from "./patterns"
 import { Button } from "@theme-ui/components"
 
 const RecentWriting = () => {
@@ -26,8 +26,13 @@ const RecentWriting = () => {
     }
   `)
   const posts = data.allCatalystPost.edges
+
   return (
-    <SectionWrapper id="writing" pattern={triangles}>
+    <SectionWrapper
+      id="writing"
+      pattern={triangles}
+      darkPattern={darkTriangles}
+    >
       <SectionHeader>Recent Writing</SectionHeader>
       <div
         sx={{

@@ -1,10 +1,10 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui"
+import { jsx, Styled, useColorMode } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
-import { contours } from "./patterns"
+import { contours, darkContours } from "./patterns"
 
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
@@ -32,8 +32,11 @@ const SiteSection = () => {
       }
     }
   `)
+  const [mode] = useColorMode()
+  const isDark = mode === "dark"
+
   return (
-    <SectionWrapper id="me" pattern={contours}>
+    <SectionWrapper id="me" pattern={contours} darkPattern={darkContours}>
       <SectionHeader>About Me</SectionHeader>
       <div
         sx={{
@@ -68,6 +71,7 @@ const SiteSection = () => {
             justifySelf: "center",
             gridColumn: ["1 / -1", null, "3 / -1", null, null],
             gridRow: ["1 / 2", null, "1 / 2", null, null],
+            filter: isDark ? "invert(1)" : "none",
           }}
           fluid={data.aboutImage1.childImageSharp.fluid}
           alt="A fun face"
@@ -98,6 +102,7 @@ const SiteSection = () => {
             justifySelf: "center",
             gridColumn: ["1 / -1", null, "1 / 2", null, null],
             gridRow: ["3 / 4", null, "3 / 4", null, null],
+            filter: isDark ? "invert(1)" : "none",
           }}
           fluid={data.aboutImage2.childImageSharp.fluid}
           alt="A picture of a grad cap"
@@ -125,6 +130,7 @@ const SiteSection = () => {
             justifySelf: "center",
             gridColumn: ["1 / -1", null, "3 / -1", null, null],
             gridRow: ["5 / 6", null, "4 / 5", null, null],
+            filter: isDark ? "invert(1)" : "none",
           }}
           fluid={data.aboutImage3.childImageSharp.fluid}
           alt="A slow race"
