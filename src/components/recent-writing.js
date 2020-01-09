@@ -10,7 +10,7 @@ const RecentWriting = () => {
   const data = useStaticQuery(graphql`
     {
       allCatalystPost(
-        limit: 2
+        limit: 1
         sort: { fields: date, order: DESC }
         filter: { draft: { eq: false } }
       ) {
