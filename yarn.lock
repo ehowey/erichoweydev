@@ -6001,11 +6001,6 @@ gatsby-theme-catalyst-core@^0.18.7:
     remark-slug "^5.1.2"
     theme-ui "^0.2.52"
 
-gatsby-theme-catalyst-footer-basic@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-footer-basic/-/gatsby-theme-catalyst-footer-basic-0.3.0.tgz#60cd774efa1d75757e8821100c22c06731e09875"
-  integrity sha512-67o7CmnoJ/T/V49cLYVViiEu8JfyG0/1SYEk3kD4zuY/KxlAazgQGqxnKdmzbqu/kmbrkpAbgQUQQuEn3n4HuQ==
-
 gatsby-theme-catalyst-header-basic@^0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-header-basic/-/gatsby-theme-catalyst-header-basic-0.5.2.tgz#b0d3cc98ebbb48a0b41ea8f0b12888d06280452f"

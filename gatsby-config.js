@@ -78,12 +78,10 @@ module.exports = {
         invertSiteLogo: true,
         mobileMenuBreakpoint: "580px",
         useStickyHeader: true,
-        useHero: true,
         assetPath: `content/site-assets`,
       },
     },
     `gatsby-theme-catalyst-header-basic`,
-    `gatsby-theme-catalyst-footer-basic`,
     {
       resolve: `gatsby-theme-catalyst-blog`,
       options: {
