@@ -1,0 +1,113 @@
+---
+title: Understanding latent component shadowing in Gatsby themes
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+tags: [Catalyst, Gatsby, Themes]
+date: 2020-01-12
+featuredImage: ../post-assets/featured-latent-shadowing.jpg
+---
+
+As I worked on building themes for Gatsby I went through a number of different iterations trying to find an approach that would allow for easy composition and clear separation of concerns. The lightbulb went off for me when I read [John Otander’s blog post](https://johno.com/latent-component-shadowing) on the topic of latent component shadowing.
+
+Here is a metaphor that has helped me to conceptualize how latent shadowing works using a core theme and set of sub-themes.
+
+We are all familiar with computers and computer ports (USB, HDMI, SD card, etc). When these ports are unused they sit idle, doing nothing. But when you plug something in they suddenly power on and provide access to a host of new features, e.g. an external monitor.
+
+In this analogy the core theme is the computer and sub-themes are different peripheral devices. The core theme provides specific “ports” for sub-themes to link with. When "plugged in" these sub-themes then extend the core theme adding new functions or actions but rely on the core theme for their “power”.
+
+![Model of latent component shadowing](../post-assets/model-latent-shadowing.png "Model of latent component shadowing")
+
+## Let’s take a look at this idea in action
+
+With Gatsby Theme Catalyst one of my goals was to be able to easily swap out headers and footers without modifying the core theme. To enable this functionality the core theme has two “ports”, or components, one for a header and one for a footer - `header.js` and `footer.js`.
+
+In the [core theme](https://gatsby-starter-catalyst-core.netlify.com/) these components just return a placeholder div but could even return null if you wanted to remove them entirely. But the presence of these components in the core theme means they can be shadowed by a sub-theme to add functioning headers and footers. The beauty in this approach is that the header exists as a discrete unit that can be deleted, modified or changed without affecting the core theme in any way.
+
+Upgrading your external monitor? Unplug the old one, plug in the new one. Changing your site header? Unplug the old one, plug in the new one. It is that straight forward and that powerful!
+
+## The Code
+
+You can dig into the [Gatsby Catalyst Theme Repo](https://github.com/ehowey/gatsby-theme-catalyst) to see this example in more detail. This shows how I implemented a latent header.js component in the core theme and then shadowed it in a sub-theme. You can check out the result of this process with the [catalyst basic](https://gatsby-starter-catalyst-basic.netlify.com/) which includes sub-themes for the header and footer on top of the core theme.
+
+**gatsby-theme-catalyst-core/src/components/header.js**
+
+This is the latent component, or "port", that exists as a placeholder in the core theme.
+
+```jsx
+// This is a placeholder for latent shadowing in sibling themes
+/** @jsx jsx */
+import { jsx } from "theme-ui"
+
+const SiteHeader = () => {
+  return (
+    <header
+      sx={{
+        bg: "#ddd",
+        p: 3,
+        variant: "variants.header",
+      }}
+      id="header"
+    >
+      <p>Header area for latent shadowing in sibling themes</p>
+    </header>
+  )
+}
+
+export default SiteHeader
+```
+
+**gatsby-theme-catalyst-header-basic/src/gatsby-theme-catalyst-core/components/header.js**
+
+This is the shadowing of the latent component that happens in the header sub-theme, note the omission of a second `src/` in the folder structure.
+
+```jsx
+import Header from "../../components/header"
+
+export default Header
+```
+
+**gatsby-theme-catalyst-header-basic/src/components/header.js**
+
+The actual header component that will now be used in the sub-theme.
+
+```jsx
+/** @jsx jsx */
+import { jsx } from "theme-ui"
+import { useContext } from "react"
+import HeaderLayout from "./header-layout"
+import Branding from "./branding/branding"
+import Nav from "./navbar/nav-layout"
+import { NavContext } from "gatsby-theme-catalyst-core"
+import { useCatalystConfig } from "gatsby-theme-catalyst-core"
+
+const SiteHeader = () => {
+  const [isNavOpen] = useContext(NavContext)
+  const { useStickyHeader } = useCatalystConfig()
+
+  return (
+    <header
+      sx={{
+        display: "grid",
+        position: useStickyHeader ? "sticky" : "static",
+        top: 0,
+        width: "100%",
+        color: isNavOpen ? "header.textOpen" : "header.text",
+        backgroundColor: isNavOpen
+          ? "header.backgroundOpen"
+          : "header.background",
+        zIndex: "888", // Ensure the header is always on top
+      }}
+      id="header"
+    >
+      <HeaderLayout>
+        <Branding />
+        <Nav />
+      </HeaderLayout>
+    </header>
+  )
+}
+
+export default SiteHeader
+```
+
+Understanding the power of latent component shadowing unlocked a whole new set of possibilities for me when building complex themes with Gatsby. I hope this explanation helps along your journey! Happy coding!
