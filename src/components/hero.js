@@ -10,7 +10,7 @@ const Hero = () => {
       welcomeImage: file(relativePath: { eq: "absurd-eh-face.png" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
-            ...GatsbyImageSharpFluid_withWebp_tracedSVG
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
