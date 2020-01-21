@@ -75,13 +75,14 @@ module.exports = {
       resolve: `gatsby-theme-catalyst-core`,
       options: {
         displaySiteTitle: false,
+        displaySiteTitleMobile: false,
         invertSiteLogo: true,
         mobileMenuBreakpoint: "580px",
         useStickyHeader: true,
         assetPath: `content/site-assets`,
       },
     },
-    `gatsby-theme-catalyst-header-basic`,
+    `gatsby-theme-catalyst-header-top`,
     {
       resolve: `gatsby-theme-catalyst-blog`,
       options: {

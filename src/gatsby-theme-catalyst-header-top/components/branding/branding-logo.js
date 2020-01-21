@@ -5,7 +5,7 @@ import { useContext } from "react"
 import { NavContext } from "gatsby-theme-catalyst-core"
 import { useCatalystConfig } from "gatsby-theme-catalyst-core"
 import { useSiteMetadata } from "gatsby-theme-catalyst-core"
-import LinkWrapper from "gatsby-theme-catalyst-header-basic/src/components/branding/branding-link-wrapper"
+import LinkWrapper from "gatsby-theme-catalyst-header-top/src/components/branding/branding-link-wrapper"
 
 const SiteLogo = () => {
   const { title, logo } = useSiteMetadata()

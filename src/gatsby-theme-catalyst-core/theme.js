@@ -88,7 +88,7 @@ export default {
   },
   styles: {
     ...tailwind.styles,
-    Layout: {
+    root: {
       backgroundColor: "background",
       color: "text",
       fontFamily: "body",
