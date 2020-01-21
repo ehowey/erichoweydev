@@ -165,7 +165,7 @@ export default {
     },
   },
   variants: {
-    main: {
+    contentContainer: {
       my: 0,
     },
     postListContainer: {
