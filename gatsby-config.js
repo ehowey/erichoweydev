@@ -28,7 +28,6 @@ module.exports = {
       `Sanity.io`,
     ],
     author: `Eric Howey`,
-    twitter: `@erchwy`,
     siteUrl,
     menuLinks: [
       {
@@ -65,8 +64,8 @@ module.exports = {
       },
       {
         name: `Twitter`,
-        url: `https://www.twitter.com/erchwy`,
-        location: `footer`,
+        link: `https://www.twitter.com/erchwy`,
+        location: `all`,
       },
     ],
   },

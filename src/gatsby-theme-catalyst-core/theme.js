@@ -29,9 +29,9 @@ export default {
       backgroundOpen: "#2e7da4",
       text: baseColors.gray[8],
       textOpen: baseColors.gray[1],
-      icons: baseColors.gray[8],
+      icons: baseColors.gray[6],
       iconsHover: baseColors.orange[7],
-      iconsOpen: baseColors.gray[1],
+      iconsOpen: baseColors.gray[5],
     },
     footer: {
       background: "#9ce5f4",
@@ -54,9 +54,9 @@ export default {
           backgroundOpen: "#324b50",
           text: baseColors.gray[1],
           textOpen: baseColors.gray[1],
-          icons: baseColors.gray[1],
+          icons: baseColors.gray[5],
           iconsHover: baseColors.orange[7],
-          iconsOpen: baseColors.gray[1],
+          iconsOpen: baseColors.gray[5],
         },
         footer: {
           background: "#00616f",
@@ -119,7 +119,7 @@ export default {
   },
   buttons: {
     primary: {
-      bg: "primary",
+      bg: "#bb5420",
       color: "textWhite",
       borderRadius: "default",
       transition: "all 0.3s ease 0s",

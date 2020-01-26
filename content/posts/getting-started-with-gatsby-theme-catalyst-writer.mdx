@@ -1,0 +1,57 @@
+---
+title: Getting Started With Gatsby Theme Catalyst Writer
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+tags: [Gatsby, Catalyst, Themes]
+date: 2020-01-21
+featuredImage: ../post-assets/feature-darkmode.jpg
+draft: true
+---
+
+This theme is designed for freelance writers who want a fast, easy to maintain, and elegant portfolio. The backend data is organized using [SANITY.io](https://www.sanity.io/). The front end is based on the [Catalyst series of themes](https://github.com/ehowey/gatsby-theme-catalyst).
+
+Here is are two demos of the theme in action:
+
+- [https://www.briannasharpe.com/](https://www.briannasharpe.com/)
+- [https://gatsby-starter-catalyst-writer.netlify.com/](https://gatsby-starter-catalyst-writer.netlify.com/)
+
+In this guide I assume you have some basic web development background and are familiar with Gatsby. If you are starting completely from the beginning I would recommend starting with [Gatsby's excellent tutorial series](https://www.gatsbyjs.org/tutorial/) and then coming back here.
+
+## Install the theme using a starter
+
+```sh
+# create a new Gatsby site using the catalyst writer starter site
+gatsby new catalyst-writer https://github.com/ehowey/gatsby-starter-catalyst-writer
+```
+
+## Install SANITY.io
+
+```sh
+npm install -g @sanity/cli
+```
+
+## Initialize SANITY.io and setup Content Studio
+
+```sh
+# Move to the starter directory
+cd catalyst-writer
+# Move to the content studio directory
+cd sanity-studio
+# Initialize SANITY
+sanity init
+# Configure the studio - answer Y
+? The current folder contains a configured Sanity studio. Would you like to reconfigure it? Y
+# Register or login to SANITY following their prompts
+# Create a new SANITY project
+Good stuff, you're now authenticated. You'll need a project to keep your
+datasets and collaborators safe and snug.
+? Select project to use (Use arrow keys)
+❯ Create new project
+# Give your project a name
+? Your project name: Catalyst Writer
+# Use the default dataset configuration - you can change this later
+? Use the default dataset configuration? (Y/n) Y
+# Start your studio on a localhost
+sanity start
+Content Studio successfully compiled! Go to http://localhost:3333
+```
