@@ -7,13 +7,13 @@ date: 2020-02-01
 featuredImage: ../post-assets/featured-theme-options.jpg
 ---
 
-The ability to define options for Gatsby themes unlocks a powerful set of dynamic development opportunities. You may have already used an option like `contentPath` before but there is so much more you can do!
+The ability to define options for Gatsby themes unlocks a powerful set of development opportunities. You may have already used an option like `contentPath` before but there is so much more you can do!
 
-Before you go any further, you need to pause and read [Chris Biscardi's excellent post](https://www.christopherbiscardi.com/post/applying-theme-options-using-custom-configuration-nodes/) about setting up a custom GraphQL node for theme options that can then be queried in components. I won't repeat what he has already said so well!
+Before you go any further, you need to pause and read [Chris Biscardi's excellent post](https://www.christopherbiscardi.com/post/applying-theme-options-using-custom-configuration-nodes/) about setting up a custom GraphQL node for theme options which can then be queried in components. I won't repeat what he has already said so well!
 
 ## Setup a hook for your theme options
 
-Once you have your GraphQL node setup following Chris's instructions I would suggest writing a utility hook for the query to keep queries separate from components and improve readability, something like `useThemeOptions`.
+Once you have your GraphQL node setup following Chris's instructions next you will want to build a utility hook for the query. This keeps queries separate from presentational components and improves readability, something like `useThemeOptions`.
 
 ```jsx
 import { useStaticQuery, graphql } from "gatsby"
