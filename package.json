@@ -14,7 +14,9 @@
     "typeface-raleway": "^0.0.75"
   },
   "devDependencies": {
-    "prettier": "^1.19.1"
+    "cypress": "^3.8.3",
+    "prettier": "^1.19.1",
+    "start-server-and-test": "^1.10.8"
   },
   "keywords": [
     "gatsby",
@@ -29,7 +31,8 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "test": "start-server-and-test develop http://localhost:8000 cy:open",
+    "cy:open": "cypress open"
   },
   "repository": {
     "type": "git",
