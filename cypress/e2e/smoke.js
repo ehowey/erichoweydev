@@ -1,5 +1,5 @@
-describe("themes", () => {
+describe("site", () => {
   it("works", () => {
-    cy.visit(`/`).assertRoute(`/`)
+    cy.visit(`/`)
   })
 })
