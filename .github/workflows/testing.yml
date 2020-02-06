@@ -11,6 +11,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v1
         with:
-          start: gatsby develop
+          start: yarn develop
           wait-on: "http://localhost:8000"
           wait-on-timeout: 120
