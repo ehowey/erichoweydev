@@ -14,7 +14,9 @@
     "typeface-raleway": "^0.0.75"
   },
   "devDependencies": {
+    "@testing-library/cypress": "^5.2.1",
     "cypress": "^3.8.3",
+    "gatsby-cypress": "^0.2.22",
     "prettier": "^1.19.1",
     "start-server-and-test": "^1.10.8"
   },
