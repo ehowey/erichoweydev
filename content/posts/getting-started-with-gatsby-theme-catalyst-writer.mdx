@@ -127,8 +127,25 @@ sanity hook create
 ? Hook URL: https://api.netlify.com/build_hooks/<someId>
 ```
 
+## Setup siteUrl in gatsby-config.js
+
+Most site metadata is generated from SANITY however generating both `robots.txt` and `sitemap.xml` depend on a properly defined `siteUrl` field found in `gatsby-config.js`.
+
+```js
+module.exports = {
+  siteMetadata: {
+    siteUrl: `https://www.example.com`, //Change to you site address, required for sitemap.xml and robots.txt file among other things
+    ],
+  },
+}
+```
+
 ## Next steps
 
 Odds are you will want to customize colors, fonts, and more. Instructions for customizing these themes are based in the [docs on github](https://github.com/ehowey/gatsby-theme-catalyst). Many of the changes can be made with design tokens in the theme file which is located in `catalyst-writer/src/gatsby-theme-catalyst-core/theme.js`. This theme file is implemented using [Theme-UI](https://theme-ui.com/).
 
 I would love to hear about your results and see what you create!
+
+```
+
+```
