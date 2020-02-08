@@ -6,7 +6,7 @@ const PostTitle = props => {
     <Styled.h1
       sx={{
         textAlign: "center",
-        variant: "variants.postTitle",
+        fontSize: [5, 6, null, null, null],
         "::after": {
           display: "block",
           content: '""',
@@ -17,6 +17,7 @@ const PostTitle = props => {
           borderBottomColor: "primary",
           margin: "0 auto",
         },
+        variant: "variants.postTitle",
       }}
     >
       {props.children}
