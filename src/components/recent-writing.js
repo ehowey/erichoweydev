@@ -10,7 +10,7 @@ const RecentWriting = () => {
   const data = useStaticQuery(graphql`
     {
       allCatalystPost(
-        limit: 1
+        limit: 3
         sort: { fields: date, order: DESC }
         filter: { draft: { eq: false } }
       ) {
@@ -49,7 +49,12 @@ const RecentWriting = () => {
           }}
         >
           {posts.map(({ node }) => (
-            <li key={node.id}>
+            <li
+              key={node.id}
+              sx={{
+                mb: 4,
+              }}
+            >
               <Styled.h3>
                 <Styled.a to={node.slug} as={Link}>
                   {node.title}

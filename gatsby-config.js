@@ -31,14 +31,14 @@ module.exports = {
     siteUrl,
     menuLinks: [
       {
-        name: `Me`,
-        link: `#me`,
-        type: `anchor`,
-      },
-      {
         name: `Writing`,
         link: `/writing`,
         type: `internal`,
+      },
+      {
+        name: `Me`,
+        link: `#me`,
+        type: `anchor`,
       },
       {
         name: `Work`,
