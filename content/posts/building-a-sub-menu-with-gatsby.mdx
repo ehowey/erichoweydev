@@ -9,7 +9,7 @@ featuredImage: ../post-assets/featured-sub-menu.jpg
 
 You have a great Gatsby site! You followed all the tutorials and it is _blazing_ fast. But wait, you need a sub-menu (or dropdown menu) in your navigation?
 
-It is not as easy as it sounds if you want to keep a modern component architecture and things like the javascript .map method.
+It is not as easy as it sounds if you want to keep a modern component architecture and use things like the javascript .map method.
 
 This is a real world coding problem I ran into when working on [Catalyst themes](https://github.com/ehowey/gatsby-theme-catalyst) and thought others may benefit from what I learned. Related documentation can be found in the [schema customization API](https://www.gatsbyjs.org/docs/schema-customization/).
 
@@ -59,7 +59,7 @@ module.exports = {
 
 The core challenge in building a sub-menu with Gatsby is rooted in schema inference.
 
-By default Gatsby tries to infer the GraphQL schema for your project, and it does a really great job of this in most cases. However once you start dealing with more complicated data structures and larger sites it is best practice to define the GraphQL schema for Gatsby. The pattern I have noticed working with Gatsby is that if a field is _sometimes_ present this poses problems with the schema inference.
+By default Gatsby tries to infer the GraphQL schema for your project, and it does a really great job in most cases. However, once you start dealing with more complicated data structures and larger sites it is best practice to define the GraphQL schema for Gatsby. The pattern I have noticed working with Gatsby is that if a field is _sometimes_ present this poses problems with the schema inference.
 
 In this example the `subMenu` array is sometimes present and sometimes not. Therein lies problem.
 
