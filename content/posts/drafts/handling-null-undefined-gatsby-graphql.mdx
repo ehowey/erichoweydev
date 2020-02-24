@@ -1,0 +1,35 @@
+---
+title: Handling null results in Gatsby GraphQL queries
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+tags: [Gatsby]
+date: 2020-02-20
+featuredImage: ../post-assets/featured-null-undefined-graphql.jpg
+draft: true
+---
+
+Have you ever seen something like this when working on a Gatsby site?
+
+```sh
+ERROR #85925  GRAPHQL
+
+There was an error in your GraphQL query:
+
+Cannot return null for non-nullable field timeToRead.
+```
+
+This just happened to me, but what happened and why? Let's break it down.
+
+- `timeToRead` is a GraphQL field I use for my blog posts, it is created automatically by the [reading time plugin](https://www.gatsbyjs.org/packages/gatsby-remark-reading-time/). It counts the number of words in a post and calculates a reading time based on that.
+- In my GraphQL schema I defined this field as 'non-nullable'; a bit like this `timeToRead: Int!`. This tells Gatsby two things about this field. That it will be a number value(`Int`). That it is non-nullable (`!`). In other words it _has_ to have a number value.
+- When I saved the draft post with only frontmatter there was no markdown content for the reading time plugin to measure, so it returned null. Which isn't technically wrong.
+- When Gatsby was generating the GraphQL fields it saw that `timeToRead` was null and threw the above error, saying 'Hey! You! Didn't you tell me this couldn't be null!? Ahhh! Error!'
+
+So how do we fix this?
+
+The quick answer is to just put a bit of text in the blog post, and boom our error goes away because it is no longer null. A better fix, so this never happens again, is to remove the exclamation point, `timeToRead: Int`. Now the field can be null, but is still required to be a number value.
+
+Here is what an example `gatsby-node.js` file might look like:
+
+```js
+```
