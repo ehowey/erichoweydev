@@ -177,18 +177,121 @@ Now when the `menuLinks` array is queried with GraphQL we get the following data
 
 We have created a dependable data structure that we can trust! That is a big deal!
 
-Now you are free to use common javascript, React and CSS patterns to create your menu component. You can check an arrays length and skip empty arrays, conditionally mapping over the actual sub menus. There is a good [article on CSS tricks](https://css-tricks.com/solved-with-css-dropdown-menus/) that covers the CSS portion of what you would need to properly style this menu.
+Now you are free to use common javascript, React and CSS patterns to create the navigation menu component, including sub-menus. Don't forget `:focus-within`, `aria-haspopup=true` and `aria-label="submenu"` when building your menu for accessibility. You can use [conditional rendering](https://reactjs.org/docs/conditional-rendering.html) to implement proper aria and map over the sub-menus. There is a good [article on CSS tricks](https://css-tricks.com/solved-with-css-dropdown-menus/) that covers properly styling a basic menu.
+
+Here is a minimal implementation of a menu and sub-menu with no styling so you you can see the element structure. In this example `menuLinks` is the variable which points to the queried menu data (see above).
 
 ```jsx
 <ul>
   {menuLinks.map(link => (
     <li key={link.name}>
-      <a href={link.link}>{link.name}</a>
+      <a
+        href={link.link}
+        aria-haspopup={link.subMenu && link.subMenu.length > 0 ? true : false}
+      >
+        {link.name}
+      </a>
       {link.subMenu && link.subMenu.length > 0 ? (
-        <ul>
+        <ul aria-label="submenu">
           {link.subMenu.map(subLink => (
             <li key={subLink.name}>
               <a href={subLink.link}>{subLink.name}</a>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </li>
+  ))}
+</ul>
+```
+
+Here is a full implementation of a menu and sub-menu with basic styling using [Theme-UI](https://theme-ui.com/) and the `sx` prop. Again, in this example `menuLinks` is the variable which points to the queried menu data (see above).
+
+```jsx
+<ul
+  sx={{
+    listStyle: "none",
+    background: "darkorange",
+    margin: 0,
+    padding: 0,
+  }}
+>
+  {menuLinks.map(link => (
+    <li
+      sx={{
+        color: "white",
+        backgroundColor: "darkorange",
+        display: "block",
+        float: "left",
+        padding: "1rem",
+        position: "relative",
+        transitionDuration: "0.5s",
+        ":hover": {
+          backgroundColor: "red",
+          cursor: "pointer",
+        },
+        ":hover > ul, :focus-within > ul ": {
+          visibility: "visible",
+          opacity: "1",
+          display: "block",
+        },
+      }}
+      key={link.name}
+    >
+      <a
+        sx={{
+          color: "white",
+          textDecoration: "none",
+        }}
+        href={link.link}
+        aria-haspopup={link.subMenu && link.subMenu.length > 0 ? true : false}
+      >
+        {link.name}
+      </a>
+      {link.subMenu && link.subMenu.length > 0 ? (
+        <ul
+          sx={{
+            listStyle: "none",
+            m: 0,
+            p: 0,
+            backgroundColor: "darkorange",
+            visibility: "hidden",
+            opacity: "0",
+            display: "none",
+            minWidth: "8rem",
+            position: "absolute",
+            transition: "all 0.5s ease",
+            marginTop: "1rem",
+            left: "0",
+            ":hover": {
+              visibility: "visible",
+              opacity: "1",
+              display: "block",
+            },
+          }}
+          aria-label="submenu"
+        >
+          {link.subMenu.map(subLink => (
+            <li
+              sx={{
+                clear: "both",
+                width: "100%",
+                padding: "1rem",
+                ":hover": {
+                  backgroundColor: "red",
+                },
+              }}
+              key={subLink.name}
+            >
+              <a
+                sx={{
+                  color: "white",
+                  textDecoration: "none",
+                }}
+                href={subLink.link}
+              >
+                {subLink.name}
+              </a>
             </li>
           ))}
         </ul>
