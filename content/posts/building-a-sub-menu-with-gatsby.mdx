@@ -65,7 +65,7 @@ In this example the `subMenu` array is sometimes present and sometimes not. Ther
 
 ## Defining the fields
 
-Instead of allowing Gatsby to infer the fields we need to define them using the [create types](https://www.gatsbyjs.org/docs/actions/#createTypes) API in `gatsby-node.js` to tell Gatsby exactly what the data structure will be. If you are defining the fields from a CMS it would be similar to this.
+Instead of allowing Gatsby to infer the fields we need to define them using the [create types](https://www.gatsbyjs.org/docs/actions/#createTypes) API in `gatsby-node.js` to tell Gatsby exactly what the data structure will be. This `gatsby-node.js` file needs to be in your final site (and not a theme), otherwise you will get build errors when you try to deploy. If you are defining the fields from a CMS it would be similar to this.
 
 ```js
 exports.createSchemaCustomization = ({ actions }) => {
