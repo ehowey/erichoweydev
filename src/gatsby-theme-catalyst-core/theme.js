@@ -150,6 +150,8 @@ export default {
     blockquote: {
       bg: "muted",
       p: 3,
+      my: 4,
+      mx: [1, 2, 4, null, null],
       borderLeft: "5px solid",
       borderColor: "primary",
     },
