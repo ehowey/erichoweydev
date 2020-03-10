@@ -1,0 +1,105 @@
+---
+title: 10 Reasons To Start Using Theme-UI
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+tags: [Gatsby, Themes, Theme-UI]
+date: 2020-03-15
+featuredImage: ../post-assets/featured-theme-ui.jpg
+draft: true
+---
+
+[Theme-UI](https://theme-ui.com/) has been a huge productivity win for me; design tokens, quick mobile styles, a robust component library and more. I build every new project using Theme-UI and have deeply integrated it into [Catalyst themes for Gatsby](https://github.com/ehowey/gatsby-theme-catalyst). Here are 10 of my favourite features of Theme-UI after using it regularly since it was publicly released.
+
+## Design tokens
+
+Design tokens enable you to quickly swap colors, fonts, spacing, etc. for a website. This feature is becoming common in modern development architecture and is now possible in vanilla CSS with CSS variables. In Theme-UI there is a central "theme" file which has key-value pairs in JSON for design tokens. Swapping colors across large parts of a site is one change versus any number of changes.
+
+Example Theme:
+
+```js
+export default {
+  colors: {
+    primary: "blue",
+    secondary: "green",
+    },
+```
+
+Example Component:
+
+```jsx
+/** @jsx jsx */
+import { jsx } from "theme-ui"
+
+const ChangeColors = () => {
+  return (
+    <div
+      sx={{
+        height: "300px",
+        width: "300px",
+        backgroundColor: "primary",
+        padding: "2rem",
+      }}
+    >
+      <p
+        sx={{
+          color: "secondary",
+        }}
+      >
+        Some Text
+      </p>
+    </div>
+  )
+}
+
+export default ChangeColors
+```
+
+## Consistent design system
+
+One of the main benefits of design tokens is consistency in your design system. Theme-UI helps you maintain that consistency by having specifications in the theme file for
+
+## Array syntax for breakpoints
+
+## Styled component
+
+## Variants
+
+## Presets as a base theme
+
+## Component library
+
+## Color mode support
+
+## Code highlighting
+
+## CSS-in-JS
+
+Writing traditional media queries was always a bit of a time consuming task. Do you put them all together at the end of the `style.css` file? Do you write them inline with the styles as you go? I have done both of these ways, and both had their upsides and downsides for me. Theme-UI solves this brilliantly with simple inline notation to define your media queries with ease. It took me a while to get used to this but now that I have I am not sure I could go back.
+
+**Define your media queries in the theme file:**
+
+```
+breakpoints: ["580px", "768px", "1200px", "1440px"],
+```
+
+**Write your components using the array notation:**
+
+```
+<div sx={{
+  height: "300px"
+  width: "300px"
+  backgroundColor: ["green", "yellow", "red", "blue", "orange"]
+}}>
+<p>Hello World</p>
+</div>
+```
+
+The first item in the array, in this case "green" corresponds to the first breakpoint, any screen sup to 580px wide. The second item corresponds to the next breakpoint, screens between 580px and 768px, and so on.
+
+You often have only a few modifications to make and I find it helpful to include `null` in my array to make it easier to visualize where this changes are taking effect. Something like this:
+
+```
+backgroundColor: ["green", null, null, "blue", null]
+```
+
+In this case the background color will be green from 0px to 1200px and then change to blue from 1200px and larger. The last `null` is not technically necessary howevery I do find this helps to visualize the flow of the changes.
