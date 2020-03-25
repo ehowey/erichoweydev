@@ -1,5 +1,5 @@
 ---
-title: 10 Reasons To Use Theme-UI In Your Next Gatsby Site
+title: 10 reasons to use Theme-UI in your next Gatsby project
 author: Eric Howey
 authorLink: https://twitter.com/erchwy
 tags: [Gatsby, Themes, Theme-UI]
@@ -8,7 +8,7 @@ featuredImage: ../post-assets/featured-theme-ui.jpg
 draft: true
 ---
 
-[Theme-UI](https://theme-ui.com/) has been a huge productivity win for me; design tokens, inline mobile styles, a robust component library and more. I build every new project using Theme-UI and have deeply integrated it into [Catalyst themes for Gatsby](https://github.com/ehowey/gatsby-theme-catalyst). Here are 10 of my favourite features of Theme-UI after using it regularly since it was publicly released.
+[Theme-UI](https://theme-ui.com/) has been a huge productivity win for me; design tokens, quick mobile styles, a robust component library and more. I build every new project using Theme-UI and have deeply integrated it into [Catalyst themes for Gatsby](https://github.com/ehowey/gatsby-theme-catalyst). Here are 10 of my favourite features of Theme-UI after using it regularly for the last 6 months.
 
 ## Consistent design system
 
@@ -83,6 +83,10 @@ const ChangeColors = () => {
 
 export default ChangeColors
 ```
+
+## Great documentation
+
+One of the things that has most impressed me since I first started using Theme-UI is how much effort has been dedicated to having excellent documentation. [TO DO]
 
 ## Array syntax for media queries
 
@@ -211,36 +215,19 @@ export default {
 
 ## Component library
 
-## Code highlighting
+The authors of Theme-UI are building a [custom component library](https://theme-ui.com/components) that is preconfigured to connect with Theme-UI design tokens and variants. At the time of writing they have 25 components covering many common use cases. My favourite component is `<Grid />` which provides a quick way to implement a grid layout on your page with an intuitive API.
 
-## CSS-in-JS
+Here is an example of a simple grid layout using Theme-UI components:
 
-Writing traditional media queries was always a bit of a time consuming task. Do you put them all together at the end of the `style.css` file? Do you write them inline with the styles as you go? I have done both of these ways, and both had their upsides and downsides for me. Theme-UI solves this brilliantly with simple inline notation to define your media queries with ease. It took me a while to get used to this but now that I have I am not sure I could go back.
-
-**Define your media queries in the theme file:**
-
-```
-breakpoints: ["580px", "768px", "1200px", "1440px"],
+```jsx
 ```
 
-**Write your components using the array notation:**
+## Syntax highlighting
 
-```
-<div sx={{
-  height: "300px"
-  width: "300px"
-  backgroundColor: ["green", "yellow", "red", "blue", "orange"]
-}}>
-<p>Hello World</p>
-</div>
-```
+Theme-UI makes implementing syntax (or code) highlighting on your site via [Prism](https://prismjs.com/) possible and as always they provide good [documentation about implementing syntax highlighting](https://theme-ui.com/guides/syntax-highlighting/). There are a number of different presets available including one that will match your syntax highlighting with colors from your theme.
 
-The first item in the array, in this case "green" corresponds to the first breakpoint, any screen sup to 580px wide. The second item corresponds to the next breakpoint, screens between 580px and 768px, and so on.
+No need for an example here - you have been looking at examples of syntax highlighting all throughout this post!
 
-You often have only a few modifications to make and I find it helpful to include `null` in my array to make it easier to visualize where this changes are taking effect. Something like this:
+## Wrapping up
 
-```
-backgroundColor: ["green", null, null, "blue", null]
-```
-
-In this case the background color will be green from 0px to 1200px and then change to blue from 1200px and larger. The last `null` is not technically necessary howevery I do find this helps to visualize the flow of the changes.
+Whatever your next Gatsby project - I hope this gives you some inspiration to try out Theme-UI.
