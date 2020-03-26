@@ -5,6 +5,7 @@ import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import { triangles, darkTriangles } from "./patterns"
 import { Button } from "@theme-ui/components"
+import { truncate } from "lodash"
 
 const RecentWriting = () => {
   const data = useStaticQuery(graphql`
@@ -14,18 +15,16 @@ const RecentWriting = () => {
         sort: { fields: date, order: DESC }
         filter: { draft: { eq: false } }
       ) {
-        edges {
-          node {
-            id
-            title
-            slug
-            excerpt
-          }
+        nodes {
+          id
+          title
+          slug
+          excerpt
         }
       }
     }
   `)
-  const posts = data.allCatalystPost.edges
+  const posts = data.allCatalystPost.nodes
 
   return (
     <SectionWrapper
@@ -48,19 +47,21 @@ const RecentWriting = () => {
             listStyleType: "none",
           }}
         >
-          {posts.map(({ node }) => (
+          {posts.map(post => (
             <li
-              key={node.id}
+              key={post.id}
               sx={{
                 mb: 4,
               }}
             >
               <Styled.h3>
-                <Styled.a to={node.slug} as={Link}>
-                  {node.title}
+                <Styled.a to={post.slug} as={Link}>
+                  {post.title}
                 </Styled.a>
               </Styled.h3>
-              <Styled.p>{node.excerpt.substr(0, 140)}</Styled.p>
+              <Styled.p>
+                {truncate(post.excerpt, { length: 140, separator: " " })}
+              </Styled.p>
             </li>
           ))}
         </ul>
