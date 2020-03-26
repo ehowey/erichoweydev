@@ -3,54 +3,35 @@ title: 10 reasons to use Theme-UI in your next Gatsby project
 author: Eric Howey
 authorLink: https://twitter.com/erchwy
 tags: [Gatsby, Themes, Theme-UI]
-date: 2020-03-15
+date: 2020-03-25
 featuredImage: ../post-assets/featured-theme-ui.jpg
-draft: true
 ---
 
-[Theme-UI](https://theme-ui.com/) has been a huge productivity win for me; design tokens, quick mobile styles, a robust component library and more. I build every new project using Theme-UI and have deeply integrated it into [Catalyst themes for Gatsby](https://github.com/ehowey/gatsby-theme-catalyst). Here are 10 of my favourite features of Theme-UI after using it regularly for the last 6 months.
+Combining [Theme-UI](https://theme-ui.com/) with [Gatsby](https://www.gatsbyjs.org) has been a huge productivity win for me; design tokens, quick mobile styles, a robust component library and more. I am building every new project using Theme-UI and here are 10 reasons I think you should consider it too.
 
 ## Consistent design system
 
-At the heart of Theme-UI is a [theme specification file](https://theme-ui.com/theme-spec) which includes key-value pairs for CSS properties line-height, fonts, colors, etc. Where this theme specification really shines is in higher level design specifications like `space` which automatically apply to any CSS property which defines a space such as padding, margin, grid-gap, etc. Space is defined as an array of values such as `space: [0rem, 0.25rem, 0.5rem, 1rem, 2rem, 4rem]`. You can then reference these values by their array index; `margin: 0, padding: 3` is equivalent to `margin: 0rem; padding: 1rem`.
+At the heart of Theme-UI is a [theme specification file](https://theme-ui.com/theme-spec) which includes key-value pairs for CSS properties like line-height, font-family, color, etc. Where the theme specification really shines however is in higher level design abstractions like `space` which apply to any CSS property which defines a space such as padding, margin, grid-gap, etc. Space is defined as an array of values such as `space: [0rem, 0.25rem, 0.5rem, 1rem, 2rem, 4rem]`. You can then reference these values by their array index: `margin: 0, padding: 3` is equivalent to `margin: 0rem; padding: 1rem`. This makes it easy to keep your design consistent, no more elements with one-off margins and paddings!
 
-Here is a simple example:
+## Great documentation
 
-```jsx
-/** @jsx jsx */
-import { jsx } from "theme-ui"
+Theme-UI has [excellent documentation](https://theme-ui.com/getting-started). The getting started guide is clear. The organization is logical. The code examples are concise. Complex ideas are broken down into small bite-sized chunks. When you get stuck you can find the answers.
 
-const Spacing = () => {
-  return (
-    <div
-      sx={{
-        margin-bottom: 3,
-      }}
-    >
-      <div
-      sx={{
-        padding: 2,
-      }}>
-        <p>Consistency in your design is great!</p>
-      </div>
-    </div>
-  )
-}
-
-export default Spacing
-```
+This is one of those _small-but-big_ things that tells you how committed and purposeful the developers have been in the Theme-UI project.
 
 ## Design tokens
 
-Design tokens enable you to quickly swap colors, fonts, spacing, etc. for a website. This feature is becoming common in modern development architecture and is now possible in vanilla CSS with CSS variables. In Theme-UI there is a central "theme" file which has key-value pairs in JSON for design tokens. Swapping colors across large parts of a site is one change versus any number of changes.
+Design tokens enable you to quickly swap colors, fonts, spacing and more across an entire website. This feature is becoming increasingly common in modern web development architecture and is deeply supported in Theme-UI. In Theme-UI design tokens are managed in a central theme specification file and altering design is one change in one file versus many changes in many files.
+
+Here is an example with colors.
 
 Theme specification file:
 
 ```js
 export default {
   colors: {
-    primary: "blue",
-    secondary: "green",
+    primary: "blue", // Change me to "yellow"
+    secondary: "green", // Change me to "pink"
     },
 ```
 
@@ -67,7 +48,7 @@ const ChangeColors = () => {
         height: "300px",
         width: "300px",
         backgroundColor: "primary",
-        padding: "2rem",
+        padding: 4,
       }}
     >
       <p
@@ -75,7 +56,7 @@ const ChangeColors = () => {
           color: "secondary",
         }}
       >
-        Some Text
+        Go ahead and change those colors!
       </p>
     </div>
   )
@@ -84,15 +65,11 @@ const ChangeColors = () => {
 export default ChangeColors
 ```
 
-## Great documentation
-
-One of the things that has most impressed me since I first started using Theme-UI is how much effort has been dedicated to having excellent documentation. [TO DO]
-
 ## Array syntax for media queries
 
-Writing media queries in CSS has always been a bit painful and longwinded for complex designs. Theme-UI offers an elegant and effective solution to this; most importantly a fast solution. You define a set of breakpoints in your theme specification file, such as `breakpoints: ["480px", "768px", "1024px"]. Then you can use an array syntax directly in your component to define the styles between each breakpoint.
+Writing media queries in CSS has always been a bit awkward and longwinded for complex designs. Theme-UI offers an [elegant and effective solution](https://theme-ui.com/theme-spec/#breakpoints) to this problem for most use cases and fallback support for traditional queries if you need it. Media queries the Theme-UI way you define a set of breakpoints in your theme specification file, such as `breakpoints: ["480px", "768px", "1024px"]. Then you use an array syntax directly in your component to define the styles between each breakpoint.
 
-Here is an example:
+Here is an example with changing colors at different breakpoints:
 
 ```jsx
 /** @jsx jsx */
@@ -119,16 +96,16 @@ export default Breakpoints
 
 ## Styled component
 
-Theme-UI just works with MD and MDX files - the styles defined in the theme specification are automatically applied. However you often need to access styles outside of markdown in your components; enter the [Styled component](https://theme-ui.com/styled). This provides a way to "hook" into your Theme-UI styles from anywhere in your application. The syntax is fairly easy to remember which is a bonus - `<Styled.p>` or `<Styled.h3>` or `<Styled.ul>`.
+Theme-UI works automagically with MD and MDX files - the styles defined in the theme specification are applied without any further setup needed. However you will likely need to access your styles outside of markdown in a component; enter the [Styled component](https://theme-ui.com/styled) from Theme-UI. This provides a way to "hook" into your Theme-UI styles from anywhere in your application. The syntax is also easy to remember which is a bonus - for example `<Styled.p>` or `<Styled.h3>` or `<Styled.ul>`.
 
-Here is an example:
+Here is an example applying it to a header:
 
 ```jsx
 /** @jsx jsx */
 import { jsx, Styled } from "theme-ui"
 
 const StyledFun = () => {
-  return <Styled.h1>Got My Theme-UI Styles!</Styled.h1>
+  return <Styled.h1>Got my theme styles!</Styled.h1>
 }
 
 export default StyledFun
@@ -136,9 +113,9 @@ export default StyledFun
 
 ## Variants
 
-Variants provide a quick way to change element styles without having to shadow or replace an entire component. Say you wanted to give your site title a new color - variants could allow you to do this without altering the original component. This gives your more freedom when building themes to enable a pathway for users to make simple changes to components without rewriting the whole file.
+[Variants](https://theme-ui.com/guides/variants/) provide a quick way to change element styles without having to shadow or replace an entire component. Imagine you want to change the color of your site title - variants allow you to do this without altering the original component. This enables a pathway for users to make simple design changes to without rewriting whole files.
 
-Original component:
+Original component with a variant:
 
 ```jsx
 /** @jsx jsx */
@@ -148,10 +125,11 @@ const SiteTitle = () => {
   return (
     <Styled.h1
       sx={{
+        color: "red",
         variant: "variants.siteTitle",
       }}
     >
-      Got My Theme-UI Styles!
+      My Awesome Site
     </Styled.h1>
   )
 }
@@ -166,16 +144,16 @@ export default {
   // Other styles would be in this file as well
   variants: {
     siteTitle: {
-      color: "green",
+      color: "green", // Now it is green, not red
     },
   }
 ```
 
-## Color mode support
+## Dark mode API
 
-Theme-UI makes creating a dark mode on your website straightforward and includes excellent [documentation on color modes.](https://theme-ui.com/color-modes/). In short you define a dark color scheme in your theme using the `modes` object and then access the `useColorMode` hook from Theme-UI to change state and automatically toggle between light and dark modes on your site. You can set it to respect user preferences for dark mode and you can also define a name for the initial color mode - both of which are thoughtful additions to the color mode API.
+Theme-UI makes creating a dark mode on your website straightforward and yet again includes excellent [documentation on color modes.](https://theme-ui.com/color-modes/) In short you define a dark color scheme in your theme file using the `modes` object and then access the `useColorMode` hook from Theme-UI to change state and toggle between light and dark modes on your site. You can set it to respect user preferences for dark mode and you can also define a name for the initial color mode - both of which are useful additions to the API.
 
-Here is a simple example of a dark mode and light mode color scheme:
+Here is a simple example of a dark and light mode color scheme:
 
 ```js
 export default {
@@ -194,9 +172,9 @@ export default {
 }
 ```
 
-## Presets as a base theme
+## Theme presets
 
-Theme-UI provides a number of theme presets which can be used as a base theme and customized to meet your own needs. For example if you like working with Tailwind there is a [Tailwind preset](https://theme-ui.com/presets/tailwind).
+Theme-UI provides a number of theme presets which can be used as a base theme and customized to meet your design. For example if you like working with Tailwind there is a [Tailwind preset](https://theme-ui.com/presets/tailwind) you can use. These presets give you a starting point that you can leverage, versus creating something entirely custome from scratch.
 
 Here is an example of importing a theme preset:
 
@@ -206,7 +184,7 @@ import { tailwind } from "@theme-ui/preset-tailwind"
 export default {
   ...tailwind, // Gives you the entire preset
   colors: {
-    ...tailwind.colors, // Gives you the specific color presets
+    ...tailwind.colors, // Gives you the tailwind color presets
     background: "teal", // Overrides the default background
     primary: "blue", // Overrides the default primary color
   },
@@ -215,19 +193,27 @@ export default {
 
 ## Component library
 
-The authors of Theme-UI are building a [custom component library](https://theme-ui.com/components) that is preconfigured to connect with Theme-UI design tokens and variants. At the time of writing they have 25 components covering many common use cases. My favourite component is `<Grid />` which provides a quick way to implement a grid layout on your page with an intuitive API.
+The authors of Theme-UI are building a [custom component library](https://theme-ui.com/components) that is preconfigured to accept Theme-UI design tokens and variants. At the time of writing they have 25 components and growing covering most common use cases. My favourite component is `<Grid />` which provides a quick way to implement a grid layout with an intuitive API.
 
-Here is an example of a simple grid layout using Theme-UI components:
+Here is an example of a grid layout using Theme-UI components:
 
 ```jsx
+<Grid gap={2} columns={[2, null, 4]}>
+  <Box bg="primary">Theme</Box>
+  <Box bg="secondary">UI</Box>
+  <Box bg="primary">Is</Box>
+  <Box bg="secondary">Awesome!</Box>
+</Grid>
 ```
 
 ## Syntax highlighting
 
-Theme-UI makes implementing syntax (or code) highlighting on your site via [Prism](https://prismjs.com/) possible and as always they provide good [documentation about implementing syntax highlighting](https://theme-ui.com/guides/syntax-highlighting/). There are a number of different presets available including one that will match your syntax highlighting with colors from your theme.
+Theme-UI makes implementing syntax (or code) highlighting on your site possible and as always they provide good [documentation about implementing syntax highlighting](https://theme-ui.com/guides/syntax-highlighting/). Similar to themes there are a number of different presets available including one that will match your syntax highlighting colors with colors from your theme!
 
-No need for an example here - you have been looking at examples of syntax highlighting all throughout this post!
+No need for an example here - you have been looking at examples of while reading this post!
 
 ## Wrapping up
 
-Whatever your next Gatsby project - I hope this gives you some inspiration to try out Theme-UI.
+Whatever your next Gatsby project - I hope this gives you some inspiration to try out Theme-UI in it. It has been a tool I am consistently impressed by with a great developer experience. I would love to hear about what you build and what you like best about Theme-UI!
+
+Happy coding!
