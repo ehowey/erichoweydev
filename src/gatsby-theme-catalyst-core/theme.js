@@ -111,7 +111,7 @@ export default {
       lineHeight: "heading",
       m: 0,
       mb: 1,
-      fontSize: 4,
+      fontSize: 5,
       mt: 4,
     },
     h3: {
@@ -120,7 +120,7 @@ export default {
       lineHeight: "heading",
       m: 0,
       mb: 1,
-      fontSize: 3,
+      fontSize: 4,
       mt: 3,
     },
     h4: {
@@ -129,7 +129,7 @@ export default {
       lineHeight: "heading",
       m: 0,
       mb: 1,
-      fontSize: 2,
+      fontSize: 3,
     },
     h5: {
       fontFamily: "heading",

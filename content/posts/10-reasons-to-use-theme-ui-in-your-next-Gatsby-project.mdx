@@ -13,6 +13,8 @@ Combining [Theme-UI](https://theme-ui.com/) with [Gatsby](https://www.gatsbyjs.o
 
 At the heart of Theme-UI is a [theme specification file](https://theme-ui.com/theme-spec) which includes key-value pairs for CSS properties like line-height, font-family, color, etc. Where the theme specification really shines however is in higher level design abstractions like `space` which apply to any CSS property which defines a space such as padding, margin, grid-gap, etc. Space is defined as an array of values such as `space: [0rem, 0.25rem, 0.5rem, 1rem, 2rem, 4rem]`. You can then reference these values by their array index: `margin: 0, padding: 3` is equivalent to `margin: 0rem; padding: 1rem`. This makes it easy to keep your design consistent, no more elements with one-off margins and paddings!
 
+You can check out the [theme specification file for this site](https://github.com/ehowey/erichoweydev/blob/master/src/gatsby-theme-catalyst-core/theme.js) on GitHub to see an example of a what a complete file looks like.
+
 ## Great documentation
 
 Theme-UI has [excellent documentation](https://theme-ui.com/getting-started). The getting started guide is clear. The organization is logical. The code examples are concise. Complex ideas are broken down into small bite-sized chunks. When you get stuck you can find the answers.
@@ -174,7 +176,7 @@ export default {
 
 ## Theme presets
 
-Theme-UI provides a number of theme presets which can be used as a base theme and customized to meet your design. For example if you like working with Tailwind there is a [Tailwind preset](https://theme-ui.com/presets/tailwind) you can use. These presets give you a starting point that you can leverage, versus creating something entirely custome from scratch.
+Theme-UI provides a number of theme presets which can be used as a base theme and customized to meet your design. For example if you like working with Tailwind there is a [Tailwind preset](https://theme-ui.com/presets/tailwind) you can use. These presets give you a starting point that you can leverage, versus creating something custom from scratch.
 
 Here is an example of importing a theme preset:
 
@@ -214,6 +216,12 @@ No need for an example here - you have been looking at examples of while reading
 
 ## Wrapping up
 
-Whatever your next Gatsby project - I hope this gives you some inspiration to try out Theme-UI in it. It has been a tool I am consistently impressed by with a great developer experience. I would love to hear about what you build and what you like best about Theme-UI!
+Whatever your next Gatsby project - I hope this gives you some inspiration to try out Theme-UI in it. It is a tool I am consistently impressed with and a great developer experience. I would love to hear about what you build and what you like best about Theme-UI!
+
+If you want to read a bit more about Theme-UI and Gatsby here are a few other helpful resources:
+
+- [How I used Theme UI to build my Gatsby Themes library](https://www.lekoarts.de/en/blog/how-i-used-theme-ui-to-build-my-gatsby-themes-library)
+- [Composing and styling Gatsby Themes (video)](https://www.youtube.com/watch?v=6Z4p-qjnKCQ)
+- [Theme-UI - GatsbyJS Official Docs](https://www.gatsbyjs.org/docs/theme-ui/)
 
 Happy coding!
