@@ -5,6 +5,7 @@ import prism from "@theme-ui/prism/presets/oceanic-next"
 import "typeface-raleway"
 
 export default {
+  initialColorModeName: "light",
   useColorSchemeMediaQuery: true,
   ...tailwind,
   breakpoints: ["580px", "768px", "1200px", "1440px"],
@@ -95,6 +96,13 @@ export default {
       fontWeight: "body",
       lineHeight: "body",
       fontSize: 2,
+    },
+    a: {
+      color: "primary",
+      textDecoration: "none",
+      ":hover": {
+        textDecoration: "underline",
+      },
     },
     h1: {
       fontFamily: "heading",
