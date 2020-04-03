@@ -5,20 +5,20 @@
   "version": "1.0.0",
   "author": "Eric Howey <ehowey@gmail.com>",
   "dependencies": {
-    "gatsby": "^2.19.35",
-    "gatsby-theme-catalyst-blog": "^0.8.3",
-    "gatsby-theme-catalyst-core": "^0.25.2",
-    "gatsby-theme-catalyst-header-top": "^0.4.2",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
+    "gatsby": "^2.20.11",
+    "gatsby-theme-catalyst-blog": "^1.0.0-alpha.0",
+    "gatsby-theme-catalyst-core": "^1.0.0-alpha.0",
+    "gatsby-theme-catalyst-header-top": "^1.0.0-alpha.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "typeface-raleway": "^0.0.75"
   },
   "devDependencies": {
-    "@testing-library/cypress": "^5.2.1",
-    "cypress": "^3.8.3",
-    "gatsby-cypress": "^0.2.22",
-    "prettier": "^1.19.1",
-    "start-server-and-test": "^1.10.8"
+    "@testing-library/cypress": "^6.0.0",
+    "cypress": "^4.3.0",
+    "gatsby-cypress": "^0.3.1",
+    "prettier": "^2.0.2",
+    "start-server-and-test": "^1.10.11"
   },
   "keywords": [
     "gatsby",
