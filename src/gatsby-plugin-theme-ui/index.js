@@ -230,7 +230,7 @@ export default {
     },
   },
   variants: {
-    contentContainer: {
+    main: {
       my: 0,
     },
     postListContainer: {

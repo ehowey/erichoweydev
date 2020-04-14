@@ -6,9 +6,9 @@
   "author": "Eric Howey <ehowey@gmail.com>",
   "dependencies": {
     "gatsby": "^2.20.11",
-    "gatsby-theme-catalyst-blog": "^1.0.0-alpha.0",
-    "gatsby-theme-catalyst-core": "^1.0.0-alpha.0",
-    "gatsby-theme-catalyst-header-top": "^1.0.0-alpha.0",
+    "gatsby-theme-catalyst-blog": "^1.0.0-alpha.1",
+    "gatsby-theme-catalyst-core": "^1.0.0-alpha.5",
+    "gatsby-theme-catalyst-header-top": "^1.0.0-alpha.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "typeface-raleway": "^0.0.75"

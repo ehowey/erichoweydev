@@ -1,29 +1,42 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui"
-import { SocialFooter } from "gatsby-theme-catalyst-core"
-import { useSiteMetadata } from "gatsby-theme-catalyst-core"
+import { jsx, useThemeUI } from "theme-ui"
+import {
+  useSiteMetadata,
+  useCatalystConfig,
+  SocialFooter,
+} from "gatsby-theme-catalyst-core"
+import { IconContext } from "react-icons"
 
 const SiteFooter = () => {
   const { title } = useSiteMetadata()
+  const { footerContentLocation } = useCatalystConfig()
+  const { theme } = useThemeUI()
+  const isLeft = footerContentLocation === "left"
+  const isRight = footerContentLocation === "right"
+  const isCenter = footerContentLocation === "center"
+
   return (
     <footer
       sx={{
         color: "footer.text",
         backgroundColor: "footer.background",
+        textAlign:
+          (isLeft && "left") || (isRight && "right") || (isCenter && "center"),
         px: 3,
         py: 3,
-
+        gridArea: "footer",
         a: {
           color: "footer.links",
         },
-
-        "a:hover": {
-          color: "primary",
-        },
+        variant: "variants.footer",
       }}
     >
       <div
         sx={{
+          display: "grid",
+          alignContent: "center",
+          justifyContent:
+            (isLeft && "start") || (isRight && "end") || (isCenter && "center"),
           width: "100%",
           maxWidth: "maxPageWidth",
           mx: "auto",
@@ -44,7 +57,9 @@ const SiteFooter = () => {
             },
           }}
         >
-          <SocialFooter />
+          <IconContext.Provider value={{ size: theme.sizes.iconsFooter }}>
+            <SocialFooter />
+          </IconContext.Provider>
         </div>
         <p
           sx={{
