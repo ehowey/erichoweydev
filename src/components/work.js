@@ -69,7 +69,7 @@ const SiteSection = () => {
         }}
       >
         <WorkCard
-          link="https://github.com/ehowey/gatsby-theme-catalyst"
+          link="https://www.gatsbycatalyst.com"
           image={data.projectImage1.childImageSharp.fluid}
           title="Gatsby Theme Catalyst"
           description="A set of opinionated themes and starters I built to accelerate my
