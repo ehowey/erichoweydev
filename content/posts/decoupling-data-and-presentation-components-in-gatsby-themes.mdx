@@ -1,0 +1,79 @@
+---
+title: Decoupling data and presentation components in Gatsby themes
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+tags: [Catalyst, Gatsby, Themes]
+date: 2020-04-27
+featuredImage: ../post-assets/featured-decoupled.jpg
+---
+
+When building a Gatsby theme it is best practice to separate data queries from presentation components. This separation of concerns enables a happy path for component shadowing in the finished production site.
+
+Keep in mind that to do this you also need to [control the page creation process](https://www.gatsbyjs.org/tutorial/part-seven/) in `gatsby-node`. The following example is theoretical - sorry no copy and paste code here! How page components are structured depends too much on a unique set of data sources and other components in a theme. There is however a link to a working example at the end of the post to help further demonstrate this concept in action.
+
+Here is the file structure:
+
+```text
+└── src
+    ├── components
+    │   ├── queries
+    │   │   ├── page-query.js
+    │   │
+    │   ├── templates
+    │   │   ├── page-template.js
+```
+
+The data fetching component could look like this:
+
+```jsx
+// page-query.js
+import React from "react"
+import { graphql } from "gatsby"
+import Page from "../templates/page-template"
+
+export default ({ data }) => {
+  return <Page data={{ ...data }} />
+}
+
+export const query = graphql`
+  query PageQuery($id: String!) {
+    sitePage(id: { eq: $id }) {
+      id
+      title
+      body
+    }
+  }
+`
+```
+
+Notice that data is passed down to the presentation component as a prop. So, as long as you give the presentation component the same data structure the component will continue to work. It doesn't care _where_ the data comes from, it cares _how_ it is structured. This means you can switch a data source (e.g. markdown to a headless CMS) by shadowing a data component and passing the same data structure down to the presentation component.
+
+The presentational page component could then look like this, all this component needs is a title and a body - from _any_ source:
+
+```jsx
+// page-template.js
+/** @jsx jsx */
+import { jsx, Styled } from "theme-ui"
+import { SEO, Layout } from "gatsby-theme-catalyst-core"
+
+const PageTemplate = ({ data }) => {
+  const page = data.sitePage
+  return (
+    <Layout>
+      <SEO title={page.title} />
+      <Styled.h1>{page.title}</Styled.h1>
+      <div dangerouslySetInnerHTML={{ page.body }} />
+    </Layout>
+  )
+}
+
+export default PageTemplate
+```
+
+Congratulations you have now decoupled the data and presentational components in your theme. This gives you the power to modify one - or both - without worrying about breaking your site!
+
+You can see a great example of this principal in action by exploring how [gatsby-theme-blog-core](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-theme-blog-core) and [gatsby-theme-blog](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-theme-blog) are structured together. `gatsby-theme-blog-core` provides decoupled data and presentation components which are then shadowed in `gatsby-theme-blog` to enable a full working blog without having to touch the data source!
+
+As a closing note you should also be considering using a [hook for accessing site metadata](https://www.gatsbyjs.org/docs/use-static-query/#composing-custom-usestaticquery-hooks) within a theme. This follows the same principal of separating data queries from other components.
+
+Happy coding!
