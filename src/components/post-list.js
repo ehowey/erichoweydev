@@ -14,7 +14,7 @@ const PostsList = ({ posts }) => {
   return (
     <Layout>
       <PostListContainer>
-        <SEO title="Blog" />
+        <SEO title="Writing" />
         {posts.map((post) => {
           const title = post.title || post.slug
           return (
