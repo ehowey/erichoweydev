@@ -51,7 +51,7 @@ const Hero = () => {
               display: "inline",
             }}
           >
-            Hello and Welcome!
+            Hello and welcome!
           </Styled.h1>{" "}
           <Styled.p
             sx={{
