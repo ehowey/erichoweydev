@@ -5,6 +5,7 @@ authorLink: https://twitter.com/erchwy
 tags: [Gatsby, GraphQL]
 date: 2020-02-24
 featuredImage: ../post-assets/featured-sub-menu.jpg
+socialImage: ../post-assets/featured-sub-menu.jpg
 ---
 
 You have a great Gatsby site! You followed all the tutorials and it is _blazing_ fast. But wait, you need a sub-menu (or dropdown menu) in your navigation?
@@ -183,7 +184,7 @@ Here is a minimal implementation of a menu and sub-menu with no styling so you y
 
 ```jsx
 <ul>
-  {menuLinks.map(link => (
+  {menuLinks.map((link) => (
     <li key={link.name}>
       <a
         href={link.link}
@@ -193,7 +194,7 @@ Here is a minimal implementation of a menu and sub-menu with no styling so you y
       </a>
       {link.subMenu && link.subMenu.length > 0 ? (
         <ul aria-label="submenu">
-          {link.subMenu.map(subLink => (
+          {link.subMenu.map((subLink) => (
             <li key={subLink.name}>
               <a href={subLink.link}>{subLink.name}</a>
             </li>
@@ -216,7 +217,7 @@ Here is a full implementation of a menu and sub-menu with basic styling using [T
     padding: 0,
   }}
 >
-  {menuLinks.map(link => (
+  {menuLinks.map((link) => (
     <li
       sx={{
         color: "white",
@@ -271,7 +272,7 @@ Here is a full implementation of a menu and sub-menu with basic styling using [T
           }}
           aria-label="submenu"
         >
-          {link.subMenu.map(subLink => (
+          {link.subMenu.map((subLink) => (
             <li
               sx={{
                 clear: "both",

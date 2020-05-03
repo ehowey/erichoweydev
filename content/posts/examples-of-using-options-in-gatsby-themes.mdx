@@ -5,6 +5,7 @@ authorLink: https://twitter.com/erchwy
 tags: [Gatsby, Catalyst, Themes]
 date: 2020-02-01
 featuredImage: ../post-assets/featured-theme-options.jpg
+socialImage: ../post-assets/featured-theme-options.jpg
 ---
 
 The ability to define options for Gatsby themes unlocks a powerful set of development opportunities. You may have already used an option like `contentPath` before but there is so much more you can do!
@@ -114,7 +115,7 @@ The last example of using a theme option is passing information to gatsby-config
 
 ```js
 // Note the change to a function instead of just module.exports = {}
-module.exports = options => {
+module.exports = (options) => {
   return {
     siteMetadata: {
       title: `Placeholder title`,

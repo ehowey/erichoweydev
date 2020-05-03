@@ -6948,10 +6948,10 @@ gatsby-telemetry@^1.2.5:
     stack-utils "1.0.2"
     uuid "3.4.0"
 
-gatsby-theme-catalyst-blog@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-blog/-/gatsby-theme-catalyst-blog-1.0.0.tgz#3ddcd448496205c87f01db9dda50da040b56dbb6"
-  integrity sha512-U5z6lTSBm7v+SyVi0Tz/yAlOwBZtblyPxAhULYNYbM4aKzn+12kF7IQY10k90+eVoHvUKDl16KnNyNQO1Trhcw==
+gatsby-theme-catalyst-blog@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-blog/-/gatsby-theme-catalyst-blog-2.0.0.tgz#7a75c8aba72bd2a1bd5b49011f18e5f57764e42c"
+  integrity sha512-znjfLugrURrWETOwHcm1C4d3mKSBT/D+keeuHLsOXMXqi9qAfRSTlUopvbcRkDi6FTeUufm8uax1+HTn+JEaRQ==
 
 gatsby-theme-catalyst-core@^1.1.0:
   version "1.1.0"
