@@ -14,7 +14,10 @@ const PostsList = ({ posts }) => {
   return (
     <Layout>
       <PostListContainer>
-        <SEO title="writing" />
+        <SEO
+          title="writing"
+          description="Eric Howey's writings focusing on JAMStack, Gatsby,and Theme-UI. Posts are updated over time as necessary. Enjoy!"
+        />
         {posts.map((post) => {
           const title = post.title || post.slug
           return (
