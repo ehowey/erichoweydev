@@ -56,6 +56,7 @@ const Hero = () => {
           <Styled.p
             sx={{
               fontSize: [4, null, null, 5, null],
+              fontFamily: "heading",
               m: 0,
               display: "inline",
             }}

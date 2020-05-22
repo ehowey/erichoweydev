@@ -5,10 +5,10 @@
   "version": "1.0.0",
   "author": "Eric Howey <ehowey@gmail.com>",
   "dependencies": {
-    "gatsby": "^2.21.22",
+    "gatsby": "^2.22.4",
     "gatsby-theme-catalyst-blog": "^2.1.0",
-    "gatsby-theme-catalyst-core": "^1.2.1",
-    "gatsby-theme-catalyst-header-top": "^1.1.0",
+    "gatsby-theme-catalyst-core": "^1.2.2",
+    "gatsby-theme-catalyst-header-top": "^1.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "typeface-raleway": "^0.0.75"

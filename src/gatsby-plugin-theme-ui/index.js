@@ -11,7 +11,7 @@ export default {
   breakpoints: ["580px", "768px", "1200px", "1440px"],
   fonts: {
     ...tailwind.fonts,
-    body: "Raleway, sans-serif",
+    heading: "Raleway, sans-serif",
     siteTitle: "inherit", // Font for main site title
     navLinks: "inherit", // Font for the nav menu links
     alt: "inherit", //An alternate font style if needed.
@@ -237,6 +237,7 @@ export default {
       my: 5,
     },
     navLink: {
+      fontFamily: "heading",
       "::after": {
         position: "absolute",
         top: "100%",
