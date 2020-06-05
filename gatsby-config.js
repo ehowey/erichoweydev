@@ -78,7 +78,6 @@ module.exports = {
         invertSiteLogo: true,
         useStickyHeader: true,
         assetPath: `content/site-assets`,
-        rssTitle: `erichowey.dev RSS Feed`,
       },
     },
     `gatsby-theme-catalyst-header-top`,
@@ -88,6 +87,7 @@ module.exports = {
         basePath: "/writing",
         excerptLength: 300,
         assetPath: `content/post-assets`,
+        rssTitle: `erichowey.dev RSS Feed`,
       },
     },
     {
