@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 
-const PostContainer = props => {
+const PostContainer = (props) => {
   return (
     <div
       sx={{
         variant: "variants.postContainer",
         display: "grid",
         gridTemplateRows: [
-          "auto",
+          "150px auto",
           "250px auto",
           "150px 250px auto",
           null,

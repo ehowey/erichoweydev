@@ -24,7 +24,7 @@ const Post = ({ data: { post }, previous, next }) => (
       <div
         sx={{
           gridColumn: "2 / 3",
-          gridRow: ["1 / -1", "2 / -1", null, null, null],
+          gridRow: "2 / -1",
           zIndex: 20,
           bg: "background",
           p: [3, null, 4, null, null],
