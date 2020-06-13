@@ -230,6 +230,9 @@ export default {
     },
   },
   variants: {
+    // header: {
+    //   boxShadow: "0 4px 4px -4px rgba(0,0,0,.2)",
+    // },
     main: {
       my: 0,
     },

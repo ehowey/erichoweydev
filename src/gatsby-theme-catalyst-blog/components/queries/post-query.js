@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Post from "../../../components/post"
+import Post from "../../../components/blog/post"
 
 export default ({ data }) => {
   const { catalystPost, previous, next } = data
