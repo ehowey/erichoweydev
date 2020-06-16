@@ -18,7 +18,7 @@ const Hero = () => {
   `)
 
   return (
-    <SectionWrapper bg="accent">
+    <SectionWrapper bg="secondary">
       <div
         sx={{
           display: "grid",

@@ -55,7 +55,12 @@ const SiteSection = () => {
     }
   `)
   return (
-    <SectionWrapper id="work" bg="accent" pattern={rain} darkPattern={darkRain}>
+    <SectionWrapper
+      id="work"
+      bg="secondary"
+      pattern={rain}
+      darkPattern={darkRain}
+    >
       <SectionHeader>Selected Work</SectionHeader>
       <div
         sx={{
