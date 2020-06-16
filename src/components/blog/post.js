@@ -112,14 +112,14 @@ const Post = ({ data: { post }, previous, next }) => (
         </Styled.h1>
         <Styled.p
           sx={{
-            color: "darkgrey",
+            color: "textGray",
             fontSize: 1,
             textTransform: "uppercase",
             letterSpacing: "wider",
             textAlign: "center",
             m: 0,
             a: {
-              color: "darkgrey",
+              color: "textGray",
               textDecoration: "none",
               ":hover": {
                 textDecoration: "underline",

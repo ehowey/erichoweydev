@@ -21,9 +21,10 @@ export default {
     primary: baseColors.orange[7],
     primaryHover: baseColors.orange[8],
     secondary: "#9ce5f4",
-    accent: "#ffffff",
+    accent: "#dcf6fb",
     textBlack: baseColors.gray[8],
     textWhite: baseColors.gray[1],
+    textGray: "#6e6e6e",
     codeBg: baseColors.gray[9],
     header: {
       background: "#9ce5f4",
@@ -48,6 +49,7 @@ export default {
         secondary: "#00616f",
         accent: baseColors.gray[8],
         gray: baseColors.gray[5],
+        textGray: "#9f9f9f",
         muted: baseColors.gray[8],
         codeBg: baseColors.gray[8],
         header: {
