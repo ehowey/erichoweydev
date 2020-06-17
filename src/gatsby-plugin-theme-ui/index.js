@@ -114,6 +114,15 @@ export default {
       mb: 1,
       fontSize: 6,
       mt: 4,
+      "::after": {
+        display: "block",
+        content: '""',
+        width: "80px",
+        pt: 2,
+        borderBottomStyle: "solid",
+        borderBottomWidth: "4px",
+        borderBottomColor: "primary",
+      },
     },
     h2: {
       fontFamily: "heading",
@@ -232,14 +241,8 @@ export default {
     },
   },
   variants: {
-    // header: {
-    //   boxShadow: "0 4px 4px -4px rgba(0,0,0,.2)",
-    // },
     main: {
       my: 0,
-    },
-    postListContainer: {
-      my: 5,
     },
     navLink: {
       fontFamily: "heading",

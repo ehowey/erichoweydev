@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Styled } from "theme-ui"
 
-const SectionHeader = props => {
+const SectionHeader = (props) => {
   return (
     <Styled.h2
       sx={{
@@ -15,6 +15,7 @@ const SectionHeader = props => {
           borderBottomStyle: "solid",
           borderBottomWidth: "4px",
           borderBottomColor: "primary",
+          pt: 2,
         },
       }}
     >

@@ -49,6 +49,9 @@ const Hero = () => {
             sx={{
               fontSize: [4, null, null, 5, null],
               display: "inline",
+              ":after": {
+                content: "none",
+              },
             }}
           >
             Hello and welcome!

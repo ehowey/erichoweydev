@@ -17,7 +17,7 @@ const PostsList = ({ posts }) => {
           width: "100vw",
           position: "relative",
           left: "calc(-50vw + 50%)",
-          my: 5,
+          mb: 5,
           variant: "variants.postListContainer",
         }}
       >
@@ -44,6 +44,7 @@ const PostsList = ({ posts }) => {
               justifyContent: "center",
             }}
           >
+            <Styled.h1>Writing</Styled.h1>
             {posts.map((post) => {
               const title = post.title || post.slug
               return (
@@ -70,7 +71,7 @@ const PostsList = ({ posts }) => {
                     ":nth-of-type(1)": {
                       gridColumn: ["1 / -1", null, "1 / span 2", null, null],
                       h2: {
-                        fontSize: 5,
+                        fontSize: [3, null, 5, null, null],
                       },
                       ".featuredImage": {
                         height: ["250px", null, "350px", null, null],

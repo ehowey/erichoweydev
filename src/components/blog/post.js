@@ -6,6 +6,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import Img from "gatsby-image"
 import PostFooter from "./post-footer"
 import kebabCase from "lodash/kebabCase"
+import { FaRegClock } from "react-icons/fa"
 
 const Post = ({ data: { post }, previous, next }) => (
   <Layout>
@@ -98,7 +99,7 @@ const Post = ({ data: { post }, previous, next }) => (
             "::after": {
               display: "block",
               content: '""',
-              width: ["25%", "20%", "15%", null, "10%"],
+              width: "80px",
               pt: 3,
               borderBottomStyle: "solid",
               borderBottomWidth: "4px",
@@ -128,10 +129,14 @@ const Post = ({ data: { post }, previous, next }) => (
             variant: "variants.postMeta",
           }}
         >
-          <a href={post.authorLink} target="_blank" rel="noopener noreferrer">
-            {post.author}
-          </a>{" "}
-          &bull; {post.date}
+          {post.date} &bull;{" "}
+          <FaRegClock
+            sx={{
+              position: "relative",
+              top: "0.125em",
+            }}
+          />{" "}
+          {post.timeToRead} Min
         </Styled.p>
         <MDXRenderer>{post.body}</MDXRenderer>
         <PostFooter {...{ previous, next }} />
