@@ -49,6 +49,7 @@ const Hero = () => {
             sx={{
               fontSize: [4, null, null, 5, null],
               display: "inline",
+              textTransform: "none",
               ":after": {
                 content: "none",
               },

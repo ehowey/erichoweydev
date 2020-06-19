@@ -9,7 +9,7 @@ const PostsList = ({ posts }) => {
   return (
     <Layout>
       <SEO
-        title="writing"
+        title="Writing"
         description="Writing, blog posts and digital musings by Eric Howey. My work focuses on the JAMStack, Gatsby, and Theme UI. There is an occasional sprinkling of mental health in here as well. Posts are updated over time as a kind of digital garden. Enjoy!"
       />
       <div
