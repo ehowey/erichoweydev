@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui"
-import { graphql, useStaticQuery } from "gatsby"
+import { jsx, Button, Styled } from "theme-ui"
+import { graphql, useStaticQuery, Link } from "gatsby"
 import Img from "gatsby-image"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
@@ -55,7 +55,12 @@ const SiteSection = () => {
     }
   `)
   return (
-    <SectionWrapper id="work" bg="accent" pattern={rain} darkPattern={darkRain}>
+    <SectionWrapper
+      id="work"
+      bg="secondary"
+      pattern={rain}
+      darkPattern={darkRain}
+    >
       <SectionHeader>Selected Work</SectionHeader>
       <div
         sx={{
@@ -94,11 +99,39 @@ const SiteSection = () => {
       </div>
       <div
         sx={{
+          mt: 4,
+          display: "grid",
+          placeItems: "center",
+        }}
+      >
+        {" "}
+        <Styled.h3
+          sx={{
+            mt: 0,
+          }}
+        >
+          Curious?
+        </Styled.h3>
+        <Styled.p
+          sx={{
+            mt: 0,
+            mb: 4,
+          }}
+        >
+          Follow the journey from hello to finished product.
+        </Styled.p>
+        <Button variant="primary" as={Link} to="/work-process">
+          It all starts with hello
+        </Button>
+      </div>
+      <div
+        sx={{
           display: "flex",
           justifyContent: "space-between",
           width: ["300px", null, "400px", null, null],
-          margin: "0 auto",
-          pt: 5,
+          mx: "auto",
+          mt: 4,
+          mb: 0,
         }}
       >
         <Img

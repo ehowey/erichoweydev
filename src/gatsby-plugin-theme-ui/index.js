@@ -20,10 +20,11 @@ export default {
     ...tailwind.colors,
     primary: baseColors.orange[7],
     primaryHover: baseColors.orange[8],
-    secondary: baseColors.orange[6],
-    accent: "#9ce5f4",
+    secondary: "#9ce5f4",
+    accent: "#dcf6fb",
     textBlack: baseColors.gray[8],
     textWhite: baseColors.gray[1],
+    textGray: "#6e6e6e",
     codeBg: baseColors.gray[9],
     header: {
       background: "#9ce5f4",
@@ -45,13 +46,14 @@ export default {
         text: baseColors.gray[1],
         background: baseColors.gray[9],
         primary: "#da6327",
-        secondary: baseColors.orange[6],
-        accent: "#00616f",
+        secondary: "#004751",
+        accent: baseColors.gray[8],
         gray: baseColors.gray[5],
+        textGray: "#9f9f9f",
         muted: baseColors.gray[8],
         codeBg: baseColors.gray[8],
         header: {
-          background: "#00616f",
+          background: "#004751",
           backgroundOpen: "#324b50",
           text: baseColors.gray[1],
           textOpen: baseColors.gray[1],
@@ -60,7 +62,7 @@ export default {
           iconsOpen: baseColors.gray[5],
         },
         footer: {
-          background: "#00616f",
+          background: "#004751",
           text: baseColors.gray[1],
           links: baseColors.gray[1],
           icons: baseColors.gray[1],
@@ -112,6 +114,15 @@ export default {
       mb: 1,
       fontSize: 6,
       mt: 4,
+      "::after": {
+        display: "block",
+        content: '""',
+        width: "80px",
+        pt: 2,
+        borderBottomStyle: "solid",
+        borderBottomWidth: "4px",
+        borderBottomColor: "primary",
+      },
     },
     h2: {
       fontFamily: "heading",
@@ -232,9 +243,6 @@ export default {
   variants: {
     main: {
       my: 0,
-    },
-    postListContainer: {
-      my: 5,
     },
     navLink: {
       fontFamily: "heading",

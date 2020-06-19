@@ -9,8 +9,8 @@ const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
 
 module.exports = {
   siteMetadata: {
-    title: `eric howey`,
-    description: `Frontend web developer and designer, based in Calgary, Alberta. Specializing in Javascript, React, and Gatsby. Let's build something amazing!`,
+    title: `Eric Howey`,
+    description: `Frontend web developer and designer, based in Calgary, Alberta. Specializing in Javascript, React, and Gatsby. Say hello and let's build something amazing together!`,
     keywords: [
       `web developer`,
       `Cochrane`,

@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import PostList from "../../../components/post-list"
+import PostList from "../../../components/blog/post-list"
 
 export default ({ data }) => {
   const { allCatalystPost } = data
@@ -23,6 +23,7 @@ export const query = graphql`
         authorLink
         date(formatString: "MMMM DD, YYYY")
         tags
+        categories
         timeToRead
         featuredImage {
           childImageSharp {

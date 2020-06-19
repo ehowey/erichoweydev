@@ -1,28 +1,27 @@
 /** @jsx jsx */
 import { jsx, Styled } from "theme-ui"
 
-const PostTitle = props => {
+const SectionHeader = (props) => {
   return (
-    <Styled.h1
+    <Styled.h2
       sx={{
         textAlign: "center",
-        fontSize: [5, 6, null, null, null],
+        textTransform: "uppercase",
         "::after": {
           display: "block",
           content: '""',
-          width: ["25%", "20%", "15%", null, "10%"],
-          pt: 2,
+          width: "80px",
+          margin: "0 auto",
           borderBottomStyle: "solid",
           borderBottomWidth: "4px",
           borderBottomColor: "primary",
-          margin: "0 auto",
+          pt: 2,
         },
-        variant: "variants.postTitle",
       }}
     >
       {props.children}
-    </Styled.h1>
+    </Styled.h2>
   )
 }
 
-export default PostTitle
+export default SectionHeader

@@ -18,7 +18,7 @@ const Hero = () => {
   `)
 
   return (
-    <SectionWrapper bg="accent">
+    <SectionWrapper bg="secondary">
       <div
         sx={{
           display: "grid",
@@ -49,6 +49,10 @@ const Hero = () => {
             sx={{
               fontSize: [4, null, null, 5, null],
               display: "inline",
+              textTransform: "none",
+              ":after": {
+                content: "none",
+              },
             }}
           >
             Hello and welcome!
