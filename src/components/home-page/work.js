@@ -121,7 +121,7 @@ const SiteSection = () => {
           Follow the journey from hello to finished product.
         </Styled.p>
         <Button variant="primary" as={Link} to="/work-process">
-          It all starts with hello
+          It starts with hello
         </Button>
       </div>
       <div
