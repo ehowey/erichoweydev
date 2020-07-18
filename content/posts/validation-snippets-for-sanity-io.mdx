@@ -8,7 +8,7 @@ featuredImage: ../post-assets/featured-sanity-validation.jpg
 socialImage: ../post-assets/social-sanity-validation.jpg
 ---
 
-A great feature of SANITY.io is the ability to add [custom field validation](https://www.sanity.io/docs/validation) to schema types. This can ensure data conforms to specific patterns, e.g. a ZIP code is actually a valid ZIP code or an email field is a valid email.
+A great feature of SANITY.io is the ability to add [field validation](https://www.sanity.io/docs/validation) to schema types. This can ensure data conforms to specific patterns, e.g. a ZIP code is actually a valid ZIP code or an email field is a valid email. This brief article covers just a few of the ways you can validate a field, I will add more snippets over time as I find useful ones.
 
 ## Required field
 
@@ -25,7 +25,27 @@ The simplest type of validation - make a field required without any other custom
 
 ## RegEx Validation
 
-This validation tests against a regex pattern. This is useful for fields like email, postal codes, and more. In this example the field can be empty BUT if the field is completed then it must meet the regex pattern. To make the field both required and match a regex pattern you can remove the first if statement that checks whether the field is undefined.
+Some field types, like string, allow you to test against a specified regex pattern to ensure the data matches a certain pattern. This is really handy for things like postal codes, email addresses and more.
+
+```js
+{
+  name: "email",
+  title: "Email",
+  type: "string",
+  validation: (Rule) =>
+    Rule.regex(
+      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,
+      {
+        name: "email", // Error message is "Does not match email-pattern"
+        invert: false, // Boolean to allow any value that does NOT match pattern
+      }
+    ),
+},
+```
+
+## Custom RegEx Validation
+
+Sanity also provides a custom validation type which can be used on any field and allows for more complex validation patterns and even testing against other fields. In this example the field can be empty BUT if the field is completed then it must meet the regex pattern. To make the field both required and match a regex pattern you can remove the first if statement that checks whether the field is undefined.
 
 ```js
 {
