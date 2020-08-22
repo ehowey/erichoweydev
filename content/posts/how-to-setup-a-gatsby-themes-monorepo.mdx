@@ -1,0 +1,158 @@
+---
+title: How to setup a Gatsby themes monorepo
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+categories: [Gatsby]
+date: 2020-08-25
+featuredImage: ../post-assets/featured-themes-monorepo.png
+socialImage: ../post-assets/featured-theme-ui.jpg
+draft: true
+---
+
+I manage a Gatsby themes monorepo that currently has 11 themes and 8 starters with over 1500 commits - lots going on and lots of moving parts to keep organized. Here are the tools I am using and what we will be covering in this post:
+
+- Yarn workspaces for package management
+- Lerna for automated publishing to NPM
+- Dependabot for automated dependency updates
+- Cypress.io for testing
+- GitHub actions for CI
+- Netlify for CD
+
+In this post I assume you have some basic familiarity with Gatsby, Gatsby themes and GitHub but I am going to walk you all the way from git clone to deployment.
+
+This is a long one so get a fresh cup of coffee! Let's go!
+
+## Make a new GitHub repository for your project
+
+Step number one is to make a new GitHub repo for your project. Name it whatever you want. For this tutorial I will be calling it `gatsby-theme-monorepo-tutorial`.
+
+## Clone the tutorial repo
+
+Due to the number of files and complexity involved I have made a very minimal [demonstration repo](https://github.com/ehowey/gatsby-theme-monorepo-tutorial) with all the necessary files and structures we will be covering here.
+
+```bash
+## Clone the repo
+git clone https://github.com/ehowey/gatsby-theme-monorepo-tutorial.git
+## Initialize a fresh git repo and make a first commit
+git init
+git add .
+git branch -m master main
+git commit -m "Initial commit"
+## Add your remote tracking branch and push your changes
+git remote add origin https://github.com/your-name/your-repo.git
+git push -u origin main
+## Go to GitHub and set your default branch to main
+```
+
+## Explore the repo and files
+
+In a Gatsby themes monorepo there are two main folders one for your themes and one for your sites or starters that consume the themes. You can name these whatever you want but I have opted for `themes` and `starters` in this example. There is also a `.github` and `cypress` folders which contains your GitHub actions and Cypress tests respectively. The repo also includes a few other boilerplate files like a README.md and .gitignore to get you started.
+
+Here is what the root layout structure should look like:
+
+```text
+|-- .github
+|-- cypress
+|-- starters
+|-- themes
+- cypress.json
+- lerna.json
+- package.json
+- README.md
+```
+
+## An initial test run
+
+Before we go any further let's just make sure the theme and starter are working properly as is. Run the following commands in your terminal. You should see a super basic hello world in your browser if successful.
+
+```bash
+## Install Yarn if you need to
+npm install -g yarn
+## Run yarn install
+yarn install
+## Develop the starter
+yarn develop:tutorial
+## Check localhost:8000
+```
+
+## Yarn workspaces
+
+Yarn workspaces abstracts all of the complicated package management necessary for local theme development. In practical terms this means you can seamlessly work on both your theme and your site at the same time and only push changes to NPM when you are ready.
+
+Yarn workspaces are configured through the root package.json file with a special `workspaces` field which tells Yarn where to look for additional dependencies and related packages.
+
+Here is an example package.json, note the use of custom scripts to shorten the workspaces syntax and that private is set to true.
+
+```json
+{
+  "private": true,
+  "workspaces": ["starters/*", "themes/*"],
+  "name": "gatsby-theme-monorepo",
+  "devDependencies": {
+    "@testing-library/cypress": "^6.0.0",
+    "cypress": "^5.0.0",
+    "gatsby-cypress": "^0.4.10",
+    "lerna": "^3.22.1",
+    "start-server-and-test": "^1.11.3"
+  },
+  "scripts": {
+    "develop:tutorial": "yarn workspace gatsby-starter-monorepo-tutorial develop",
+    "build:tutorial": "yarn workspace gatsby-starter-monorepo-tutorial build",
+    "serve:tutorial": "yarn workspace gatsby-starter-monorepo-tutorial serve",
+    "clean:tutorial": "yarn workspace gatsby-starter-monorepo-tutorial clean",
+    "test:tutorial": "start-server-and-test develop:tutorial http://localhost:8000 cy:open",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
+  }
+}
+```
+
+### Update package.json files for theme and starter
+
+Navigate to `themes/gatsby-theme-monorepo-tutorial/package.json` and `starters/gatsby-starter-monorepo-tutorial/package.json` and update the name, author, description and reset the version to 0.0.1.
+
+You will have to reflect these package name changes in a few places:
+
+- Update the dependencies array in `starters/your-starter/package.json`
+- Update the plugins array in `gatsby-config.js`.
+- Update the scripts in the root `/package.json` file, make sure you are targeting the starter workspace
+
+You should run `yarn install` again to update the workspace references and also run `yarn develop:my-theme` to make sure it is building successfully. Even a small typo in the previous steps can cause problems.
+
+If you are having any issues you can run `yarn workspaces info` and you should see something like this if it is properly configured:
+
+```bash
+yarn workspaces v1.22.4
+{
+  "gatsby-starter-monorepo-tutorial": {
+    "location": "starters/gatsby-starter-monorepo-tutorial",
+    "workspaceDependencies": [
+      ## The starter is properly depending on the theme
+      "gatsby-theme-monorepo-tutorial"
+    ],
+    "mismatchedWorkspaceDependencies": []
+  },
+  "gatsby-theme-monorepo-tutorial": {
+    "location": "themes/gatsby-theme-monorepo-tutorial",
+    "workspaceDependencies": [],
+    "mismatchedWorkspaceDependencies": []
+  }
+}
+```
+
+## Setup Lerna
+
+Lerna is going to handle all of our NPM publishing for us. For this next step to complete you need to have an npm account and be logged in via the CLI. If you complete this next step it **WILL** publish to NPM - so just make sure you are okay with that before running all the commands.
+
+The lerna config is located in the root `lerna.json` file and looks like this:
+
+```json
+{
+  "packages": ["starters/*", "themes/*"],
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "version": "independent"
+}
+```
+
+In the terminal run `lerna init`. This sets Lerna up to monitor all of the specified packages.
