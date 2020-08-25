@@ -4,78 +4,50 @@ author: Eric Howey
 authorLink: https://twitter.com/erchwy
 categories: [Gatsby]
 date: 2020-08-25
-featuredImage: ../post-assets/featured-themes-monorepo.png
-socialImage: ../post-assets/featured-theme-ui.jpg
-draft: true
+featuredImage: ../post-assets/featured-monorepo.png
+socialImage: ../post-assets/featured-monorepo-social.jpg
 ---
 
-I manage a Gatsby themes monorepo that currently has 11 themes and 8 starters with over 1500 commits - lots going on and lots of moving parts to keep organized. Here are the tools I am using and what we will be covering in this post:
+I manage a Gatsby themes monorepo that currently has 11 themes and 8 starters with over 1500 commits - lots of moving parts to keep organized. At the end of this tutorial you will have a Gatsby themes monorepo setup with automated testing, automated dependency management, automated publishing, continuous integration, and continuous deployment!
 
-- Yarn workspaces for package management
-- Lerna for automated publishing to NPM
-- Dependabot for automated dependency updates
-- Cypress.io for testing
-- GitHub actions for CI
-- Netlify for CD
+Here are the tools (all free) we will be reviewing in this post:
 
-In this post I assume you have some basic familiarity with Gatsby, Gatsby themes and GitHub but I am going to walk you all the way from git clone to deployment.
+- [Yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces/) for package management
+- [Lerna](https://github.com/lerna/lerna) for automated publishing to NPM
+- [Cypress.io](https://www.cypress.io/) for testing
+- [GitHub actions](https://github.com/features/actions) for CI
+- [Netlify](https://www.netlify.com/) for CD
+- [Dependabot](https://docs.github.com/en/github/administering-a-repository/keeping-your-dependencies-updated-automatically) for automated dependency updates
 
-This is a long one so get a fresh cup of coffee! Let's go!
+This post assumes you have some basic familiarity with Gatsby, Gatsby themes, NPM and GitHub.
 
-## Make a new GitHub repository for your project
+This is a long one so get a fresh cup of coffee and let's go!
 
-Step number one is to make a new GitHub repo for your project. Name it whatever you want. For this tutorial I will be calling it `gatsby-theme-monorepo-tutorial`.
+## Use a template
 
-## Clone the tutorial repo
+[Gatsby Theme Empty](https://github.com/ehowey/gatsby-theme-empty) is a GitHub template repository that is preconfigured with the tools mentioned above so you can quickly get started with your own project and avoid lots of copy/paste. I intentionally kept this repository as "empty" as possible, it is only a hello world, and instead focuses on the tooling for the monorepo itself.
 
-Due to the number of files and complexity involved I have made a very minimal [demonstration repo](https://github.com/ehowey/gatsby-theme-monorepo-tutorial) with all the necessary files and structures we will be covering here.
+1. Click the `Use This Template` button on GitHub which will prompt you to clone the template into a new repo under your own username.
 
-```bash
-## Clone the repo
-git clone https://github.com/ehowey/gatsby-theme-monorepo-tutorial.git
-## Initialize a fresh git repo and make a first commit
-git init
-git add .
-git branch -m master main
-git commit -m "Initial commit"
-## Add your remote tracking branch and push your changes
-git remote add origin https://github.com/your-name/your-repo.git
-git push -u origin main
-## Go to GitHub and set your default branch to main
-```
+1. Clone your new repo locally and open it in your code editor of choice.
 
-## Explore the repo and files
+Explore the files and folder structures. Themes and starters are located in their respective folder. There are also folders for Cypress.io and GitHub. You will notice some configuration files for the tools and that is about it. My hope with this template is that there is little, if anything, you need to delete before you can start working.
 
-In a Gatsby themes monorepo there are two main folders one for your themes and one for your sites or starters that consume the themes. You can name these whatever you want but I have opted for `themes` and `starters` in this example. There is also a `.github` and `cypress` folders which contains your GitHub actions and Cypress tests respectively. The repo also includes a few other boilerplate files like a README.md and .gitignore to get you started.
+## Find and replace magic
 
-Here is what the root layout structure should look like:
+Update naming across your files and folders using find and replace.
 
-```text
-|-- .github
-|-- cypress
-|-- starters
-|-- themes
-- cypress.json
-- lerna.json
-- package.json
-- README.md
-```
+1. Do a find and replace for `empty` -> `your-theme-name`. Click replace all. So for example if your theme was going to be named `gatsby-theme-kickoff` you would find and replace `empty` -> `kickoff`.
 
-## An initial test run
+1. Update the folder names to properly reflect your new theme and starter. You should have folders that look like `themes/gatsby-theme-your-theme-name` and `starters/gatsby-starter-your-theme-name`.
 
-Before we go any further let's just make sure the theme and starter are working properly as is. Run the following commands in your terminal. You should see a super basic hello world in your browser if successful.
+## Update package.json files
 
-```bash
-## Install Yarn if you need to
-npm install -g yarn
-## Run yarn install
-yarn install
-## Develop the starter
-yarn develop:tutorial
-## Check localhost:8000
-```
+Browse to `themes/gatsby-theme-monorepo-tutorial/package.json` and `starters/gatsby-starter-monorepo-tutorial/package.json` and update any fields you need to like the author, description and repo links. The name field should already be correct if you followed the above steps correctly. Note that the starter's package.json has a `private: true` field set on it so it is not published to NPM. Typically people only publish the theme to NPM.
 
-## Yarn workspaces
+## Setup Yarn workspaces
+
+Run `yarn install` in your terminal to start installing all of the packages and creating a lock file.
 
 Yarn workspaces abstracts all of the complicated package management necessary for local theme development. In practical terms this means you can seamlessly work on both your theme and your site at the same time and only push changes to NPM when you are ready.
 
@@ -107,22 +79,9 @@ Here is an example package.json, note the use of custom scripts to shorten the w
 }
 ```
 
-### Update package.json files for theme and starter
-
-Navigate to `themes/gatsby-theme-monorepo-tutorial/package.json` and `starters/gatsby-starter-monorepo-tutorial/package.json` and update the name, author, description and reset the version to 0.0.1.
-
-You will have to reflect these package name changes in a few places:
-
-- Update the dependencies array in `starters/your-starter/package.json`
-- Update the plugins array in `gatsby-config.js`.
-- Update the scripts in the root `/package.json` file, make sure you are targeting the starter workspace
-
-You should run `yarn install` again to update the workspace references and also run `yarn develop:my-theme` to make sure it is building successfully. Even a small typo in the previous steps can cause problems.
-
 If you are having any issues you can run `yarn workspaces info` and you should see something like this if it is properly configured:
 
 ```bash
-yarn workspaces v1.22.4
 {
   "gatsby-starter-monorepo-tutorial": {
     "location": "starters/gatsby-starter-monorepo-tutorial",
@@ -140,11 +99,25 @@ yarn workspaces v1.22.4
 }
 ```
 
+## Commit to GitHub
+
+At this point you have a minimal working setup of a Gatsby themes monorepo. Now would be a good time to make a commit and push to GitHub.
+
+## Develop for the first time
+
+Run `yarn develop:your-theme-name` to make sure that the starter is building successfully. So for example if your theme was named `gatsby-theme-kickoff` your command would be `yarn develop:kickoff`; this script shortens the longer workspaces syntax. You should see a _very_ simple hello world page if it builds correctly.
+
+Congratulations you now have a working Gatsby themes monorepo! But wait there is more!
+
 ## Setup Lerna
 
-Lerna is going to handle all of our NPM publishing for us. For this next step to complete you need to have an npm account and be logged in via the CLI. If you complete this next step it **WILL** publish to NPM - so just make sure you are okay with that before running all the commands.
+Run `lerna init` to set Lerna up to monitor your packages for changes. You can use the command `lerna publish` to publish packages to NPM (you need an account). Before you deploy to a host provider the theme will need to be published.
 
-The lerna config is located in the root `lerna.json` file and looks like this:
+Lerna watches your packages in the background and tracks whether a particular package needs to be published again or not based on changes. It also automatically manages updating versions for all your packages during the publish process. For a smaller repo you could manage this manually yourself however as my monorepo got larger and more inter-connected Lerna has been a huge productivity win.
+
+Note that any packages with `private: true`, like your starter, will not publish. Also the publish command will give you a final check before actually publishing anything, so don't worry you can run `lerna publish` and then decide not to publish.
+
+The lerna config is located in the `lerna.json` file and looks like this:
 
 ```json
 {
@@ -155,4 +128,103 @@ The lerna config is located in the root `lerna.json` file and looks like this:
 }
 ```
 
-In the terminal run `lerna init`. This sets Lerna up to monitor all of the specified packages.
+## Cypress.io and GitHub actions
+
+Run `yarn test:your-theme-name` to start Cypress.io. So for example if your theme was named `gatsby-theme-kickoff` your command would be `yarn test:kickoff`.
+
+Cypress.io is provides excellent, and well documented, end-to-end integration testing for web development. They also maintain a [GitHub Action for Cypress.io](https://github.com/cypress-io/github-action) which allows you to run tests automatically against every PR and Push on the main branch. This CI testing has been tremendously helpful for me in catching errors and preventing merges that contain breaking changes.
+
+The template repository includes a basic smoke test - which simply test whether your site built successfully or not. This smoke test is setup to run against every PR and Push to the main branch of your repo.
+
+There is also a set of tests for accessibilty (a11y) that use [cypress-axe](https://github.com/avanslaars/cypress-axe) to perform a basic accessibility audit of your website. This test needs to be manually run and is not run on every PR and Push although you could configure it to do this.
+
+Here is what a basic Cypress test looks like:
+
+```js
+describe("Smoke Test", () => {
+  it("Site loads", () => {
+    cy.visit(`/`).assertRoute(`/`)
+  })
+})
+```
+
+Here is what the GitHub action looks like:
+
+```yml
+name: Test Themes
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "starters/**"
+      - "themes/**"
+      - ".github/**"
+      - "cypress/**"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "starters/**"
+      - "themes/**"
+      - ".github/**"
+      - "cypress/**"
+jobs:
+  test_theme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run Tests
+        uses: cypress-io/github-action@v1
+        with:
+          build: yarn build:empty
+          start: yarn serve:empty
+          config-file: cypress/cypress-github-actions.json
+          spec: cypress/e2e/smoke.test.js
+```
+
+## Deploy to Netlify
+
+> You don't have to choose Netlify, you could use any hosting provider. Your theme also needs to be published on NPM for this to work.
+
+Login to Netlify and create a new site with default settings pointed at your new GitHub repo - it will _just work_ which is pretty amazing!
+
+The template monorepo is preconfigured for Netlify using `netlify.toml` to build and deploy the starter in your starters folder. Netlify will watch the repo and re-deploy when any changes are pushed to the default branch.
+
+## Dependency management with Dependabot
+
+> Note that this is referring to Dependabot v2.0 which is an internal GitHub process and not the older version which was accessed via dependabot.com
+
+Dependabot is setup and preconfigured via `.github/dependabot.yml` which automatically activates dependabot for your repo. No sign up, sign in or configuration necessary. Dependabot automates dependency management for your monorepo and will make regular PRs against your default branch with updates.
+
+Here is what the included dependabot config looks like:
+
+```yml
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    versioning-strategy: increase
+    open-pull-requests-limit: 25
+    labels:
+      - "dependencies"
+    ignore:
+      - dependency-name: "gatsby"
+```
+
+The included config is set to check for daily updates against your root package.json folder, which because of workspaces will also target all of your sub-folders and dependencies. I have found it helpful to manually manage updates to Gatsby itself so that dependency is being ignored. There is [good documentation](https://docs.github.com/en/github/administering-a-repository/keeping-your-dependencies-updated-automatically) for these options and other available settings on the GitHub website.
+
+Dependency management is something that in a smaller, and less complicated repo you could probably manage yourself and however on more complicated projects having the dependencies managed automatically is a great feature to have. The other big bonus is that your Cypress.io tests will run against every single PR and allow you to confidently merge updated dependencies after your tests have passed!
+
+## End result and next steps
+
+You now have a Gatsby themes monorepo setup with automated testing, automated dependency management, automated publishing, continuous integration, and continuous deployment! Amazing!
+
+One final integration you may want to consider, depending on how you will be using Gatsby themes, is adding a GitHub action to publish your starters to their own repo. Check out [actions-push-subdirectory](https://github.com/johno/actions-push-subdirectories) for instructions on how to do this. This is necessary for starters to work properly with the `gatsby new` command as they need to be in an indepedent repo at the root level.
+
+If you want to see a more advanced version of this monorepo setup you can checkout [Gatsby Theme Catalyst](https://github.com/ehowey/gatsby-theme-catalyst) which uses these same tools across a repository with over 10 interlinked themes.
+
+Happy coding!

@@ -18,6 +18,7 @@ const RecentWriting = () => {
         nodes {
           id
           title
+          date(formatString: "MMMM DD, YYYY")
           slug
           excerpt
         }
@@ -47,18 +48,21 @@ const RecentWriting = () => {
             listStyleType: "none",
           }}
         >
-          {posts.map(post => (
+          {posts.map((post) => (
             <li
               key={post.id}
               sx={{
                 mb: 4,
               }}
             >
-              <Styled.h3>
+              <Styled.h3 sx={{ mb: 0 }}>
                 <Styled.a to={post.slug} as={Link}>
                   {post.title}
                 </Styled.a>
               </Styled.h3>
+              <Styled.p sx={{ color: "textGray", mt: 0, fontSize: 1 }}>
+                {post.date}
+              </Styled.p>
               <Styled.p>
                 {truncate(post.excerpt, { length: 140, separator: " " })}
               </Styled.p>
