@@ -5,16 +5,16 @@
   "version": "1.0.0",
   "author": "Eric Howey <ehowey@gmail.com>",
   "dependencies": {
-    "gatsby": "2.24.49",
-    "gatsby-theme-catalyst-blog": "^2.5.0",
-    "gatsby-theme-catalyst-core": "^2.0.3",
-    "gatsby-theme-catalyst-header-top": "^1.1.9",
+    "gatsby": "2.24.58",
+    "gatsby-theme-catalyst-blog": "^2.6.1",
+    "gatsby-theme-catalyst-core": "^2.2.0",
+    "gatsby-theme-catalyst-header-top": "^1.3.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "typeface-raleway": "^0.0.75"
   },
   "devDependencies": {
-    "prettier": "^2.0.5"
+    "prettier": "^2.1.1"
   },
   "keywords": [
     "gatsby",
