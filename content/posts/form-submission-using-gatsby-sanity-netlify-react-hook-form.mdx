@@ -40,9 +40,9 @@ sanity init
 sanity start
 ```
 
-In order for deploys to Netlify to work you will need to navigate with SANITY studio to `Site settings -> Metadata` and complete all of the required fields, otherwise the deploys to Netlify will fail. If you are just planning to play around locally you can skip this step.
+In order for deploys to Netlify to work you will need to navigate within SANITY studio to `Site settings -> Metadata` and complete all of the required fields, otherwise the deploys to Netlify will fail. If you are just planning to play around locally you can skip this step.
 
-Now we need to update the Sanity project id in `gatsby-config.js`. You can find this at the top of the `sanity.json` file, it is usually a random string of letters and numbers. Copy and paste this value into the `sanityProjectId` field within the plugin options for `gatsby-theme-catalyst-sanity`.
+Now we need to update the SANITY project id in `gatsby-config.js`. You can find this at the top of the `/sanity-studio/sanity.json` file, it is usually a random string of letters and numbers. Copy and paste this value into the `sanityProjectId` field within the plugin options for `gatsby-theme-catalyst-sanity`.
 
 ```js
 //...rest of gatsby-config.js above
@@ -67,7 +67,7 @@ Now we need to update the Sanity project id in `gatsby-config.js`. You can find 
     // sanityCreateProjectsList: true
     // sanityPostPath: "/posts"
     // sanityProjectPath: "/projects"
-    // useSanityTheme: false // Experimental right now
+    // useSANITYTheme: false // Experimental right now
     sanityProjectId: "abcd1234",
   },
 },
@@ -108,7 +108,7 @@ Don't forget you will also need to import and export this file within `sanity-st
 //...other imports above
 import contact from "./contact"
 
-// Then we give our schema to the builder and provide the result to Sanity
+// Then we give our schema to the builder and provide the result to SANITY
 export default createSchema({
   // We name our schema
   name: "default",
@@ -123,7 +123,7 @@ export default createSchema({
 })
 ```
 
-Last of all we need to deploy a GraphQL API from SANITY. Making sure you are inside of the `sanity-studio` folder run the following command:
+Last of all we need to deploy a GraphQL API from SANITY. Making sure you are still inside of the `sanity-studio` folder run the following command:
 
 ```
 sanity graphql deploy
@@ -136,24 +136,24 @@ We need to create an index page for the project at `src/pages/index.js` and a su
 ```js
 import React from "react"
 
-const Home = () => {
+const Page = () => {
   return (
     <div>
-      <h1>Hello World</h1>
+      <h1>Index or Success page</h1>
     </div>
   )
 }
 
-export default Home
+export default Page
 ```
 
 Run `gatsby develop` for the first time and marvel at your beautiful hello world!
 
-At this point you should initialize a new GitHub repo for the project and make an initial commit to the repository. You will need this in future steps when using Netlify for deployments.
+At this point you should pause to initialize a new GitHub repository for the project and make an initial commit to the repo. You will need this in future steps when using Netlify for deployments.
 
 ## Part 2: Creating our form
 
-We will be using React Hook Form to create our form. You will need to install it as a dependency in your project. I prefer React Hook Form beacuse it has great documentation and an intuitive API but you could probably adapt these steps for other form libraries.
+Time to build a form! We will be using React Hook Form for this part. I prefer React Hook Form beacuse it has great documentation and an intuitive API but you could probably adapt these steps for other form libraries. You will need to install it as a dependency in your project.
 
 ```shell
 ## install react hook form
@@ -240,7 +240,7 @@ There is lots happening here so let's break it down into chunks.
 
 To begin with you import the `useForm` hook and then use this hook to access the React Hook Form APIs. In this example we are using `handleSubmit`, `errors`, `register` and `reset`. Handle submit is a callback function that gets executed once the form is submitted. Errors is an object that provides form validation based on the field name, and specified regex patterns. In this example the name and email field are required, the email field also has a regex pattern to match a valid email addresses. The message field is optional. Register is a required function that handles input state and values and is called using the ref prop on each form field. Reset is not in use now, but is a function we will call later to reset the form after submission.
 
-Next there is a `handlePost` function which eventually will handle our form submission but for now is just console logging our data.
+Next there is a `handlePost` function which eventually will handle our form submission but for now it is just console logging our data.
 
 Now there is the form itself. There are few important things happening just in the opening form tag that are worth noting. The form `handleSubmit` function gets called on form submission which allows React Hook Form to handle the form validation before submission. The form is given a name, and a POST method is specified. Finally there are two special Netlify attributes, `data-netlify="true"` and `netlify-honeypot="got-ya"` which enable Netlify forms, and a honeypot field for some basic spam prevention.
 
@@ -254,11 +254,11 @@ Submit the form and check your console to make sure your are seeing the form sub
 
 Whew! Good work! You are doing great! Half way there!
 
-Now that we have a working form, we need to do something more than just log the results. We are going to update our `handlePost` function to manage submitting the form to the Netlify.
+Now that we have a working form, we need to do something more than just log the results. We are going to update our `handlePost` function to manage submitting the form to Netlify.
 
 You are going to need the site deployed on Netlify from this point forward. The easiest way to do this is by running the [Netlify CLI](https://github.com/netlify/cli) command `netlify init`. Your repository needs to be connected to GitHub for this step to work.
 
-Once your site is setup with Netlify you can run use the command `netlify dev` to run the Netlify development environment locally on your computer, this allows us to test serverless functions locally as we work on submissionsto SANITY in the next part.
+Once your site is setup with Netlify you can run use the command `netlify dev` to run the Netlify development environment locally on your computer, this allows us to test serverless functions locally as we work on submissions to SANITY in the next part.
 
 Here is our new `handlePost` function and a companion encoding function that puts the form data into the correct format for Netlify to handle on their backend. We also use the `navigate` function from Gatsby to redirect after a successful form submission.
 
@@ -319,7 +319,7 @@ To begin with you need to tell Netlify where to look for your functions, convent
   functions = "functions/"
 ```
 
-Now we need a file for our serverless function, create `/functions/submission-created.js`. The name of this file cannot be changed. Netlify automatically runs this servless function when any form is submitted via Netlify forms. This is both a limitation and a benefit, and ultimately it is why a few steps earlier we specified a `formId` for our form in a hidden field so we could conditionally handle multiple forms inside of the single serverless function.
+Now we need a file for our serverless function, create `/functions/submission-created.js`. The name of this file cannot be changed. Netlify automatically runs this servless function when any form is submitted via Netlify forms. This is both a limitation and a benefit, and ultimately it is why a few steps earlier we specified a `formId` for our form in a hidden field so we could conditionally handle multiple form submissions inside of the single serverless function.
 
 ```js
 exports.handler = async function (event, context, callback) {
@@ -342,7 +342,7 @@ Almost there!
 
 So now we have the form submitting to Netlify serverless function and the last step is to take that form submission and pass it on to SANITY. We are going to do this using the [SANITY javascript client](https://www.sanity.io/docs/js-client). There are a few gotchas along the way in this part so make sure you don't forget a step.
 
-The first thing we need to do is setup some environment variables for Netlify to use in the serverless function. Create a `.env` file that looks something like this. Dont worry about the empty token, we are going to fill that in just a moment.
+The first thing we need to do is setup some environment variables for Netlify to use in the serverless function. Create a `.env` file that looks something like this. Dont worry about the empty token value, we are going to add that in just a moment.
 
 ```env
 GATSBY_SANITY_PROJECT_ID = abcd1234
@@ -350,9 +350,9 @@ GATSBY_SANITY_PROJECT_DATASET = production
 GATSBY_SANITY_TOKEN =
 ```
 
-We need to create a new access token and set a new CORS origin to our SANITY project. The easiest way to do this is via the SANITY.io website. Login and view your project, you can find both of these options under the settings tab. Add `localhost:8888` as a CORS origin, make sure you also toggle "allow Credentials". Now create a token with write access and add it to your env file. When you launch your site don't forget to go back and add another CORS origin with the proper domain.
+We need to create a new access token and set a new CORS origin to our SANITY project. The easiest way to do this is via the SANITY website. Login and view your project, you can find both of these options under the settings tab. Add `localhost:8888` as a CORS origin, make sure you also toggle "allow Credentials". Now create a token with write access and add it to your env file. Don't forget to go back and add another CORS origin with the proper domain before you launch your site.
 
-Run the command `netlify env:import .env` to quickly import these environment variables to your Netlify site.
+Run the command `netlify env:import .env` to quickly import these new environment variables to your Netlify site.
 
 Now the fun part, updating our serverless function to send the data to SANITY. Here is what the final serverless function should look like.
 
@@ -393,11 +393,11 @@ exports.handler = async function (event, context, callback) {
 
 Let's walk through what is happening here.
 
-The very first thing that happens is we import the SANITY client and initialize it with a projectId, dataset, and token. These are provided by your environment variables to Netlify at deployment. Next we have our actual serverless function itself. We destructure the payload data from the body of the post request. Then we check if the submitted form was our contact form - this step isn't necessary if you only have one form but does allow you to conditionally manage multiple forms inside one serverless function. Finally within this conditional we build a JSON object of the contact submitted form and then use SANITY client to create a new document in the database. Note that the `_type` field _must_ match the document type in your SANITY schema.
+The very first thing that happens is we import the SANITY client and initialize it with a projectId, dataset, and token. These are provided by your environment variables to Netlify at deployment. Next we have our actual serverless function itself. We destructure the payload data from the body of the post request. Then we check if the submitted form was our contact form - this step isn't necessary but does allow you to conditionally manage multiple forms inside one serverless function. Finally within this conditional we build a JSON object of the contact form and then use SANITY client to create a new document in the database. Note that the `_type` field _must_ match the document type in your SANITY schema.
 
-To tie this all together you can run `netlify dev` and `sanity start` simultaneously giving you local access to both the Gatsby frontend (localhost:8888) and SANITY backend (localhost:3333). Test out your form and you should see submissions appear almost instantly inside SANITY! Awesome sauce!
+To tie this all together you can simultaneously run `netlify dev` and `sanity start` giving you local access to both the Gatsby frontend (localhost:8888) and SANITY backend (localhost:3333). Test out your form and you should see submissions appear almost instantly inside SANITY! Awesome sauce!
 
-Last, but not least, because we are using Netlify forms you can also optionally have any form submissions be automatically forwarded to an email address as well. This is a nice bonus feature as it serves as both a notification alert and also provides a second record of the submitted data, just in case there was any issue in the submit process to SANITY. To set this up you will need to login to Netlify and navigate to your site settings, and then to the "Forms" tab. You should see an option for "Forms Notification" that will allow you to add an email notification. Note that these emails only trigger when submissions come in from the live site, they will not send when you are submitting from your local development environment.
+Last, but not least, because we are using Netlify forms you can also optionally have any form submissions be automatically forwarded to an email address as well. This is a nice bonus feature as it serves as a notification alert and also provides a second record of the submitted data. To set this up you will need to login to Netlify and navigate to your site settings, and then to the "Forms" tab. You should see an option for "Forms Notification" that will allow you to add an email notification. Note that these emails only trigger when submissions come in from the live site, they will not send when you are submitting from your local development environment.
 
 Congratulations! Thanks for hanging in there with me and I hope you found this guide useful.
 
