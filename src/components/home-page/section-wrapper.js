@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, useColorMode } from "theme-ui"
 
-const SectionWrapper = props => {
+const SectionWrapper = ({ children, ...props }) => {
   const [mode] = useColorMode()
   const isDark = mode === "dark"
 
@@ -19,8 +19,9 @@ const SectionWrapper = props => {
         left: "calc(-50vw + 50%)",
       }}
       id={props.id}
+      {...props}
     >
-      {props.children}
+      {children}
     </section>
   )
 }

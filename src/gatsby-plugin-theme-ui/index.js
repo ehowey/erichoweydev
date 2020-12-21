@@ -101,9 +101,10 @@ export default {
     },
     a: {
       color: "primary",
-      textDecoration: "none",
+      textDecoration: "underline",
+      transition: "all 0.2s ease",
       ":hover": {
-        textDecoration: "underline",
+        color: "primaryHover",
       },
     },
     h1: {
@@ -197,8 +198,8 @@ export default {
     primary: {
       bg: "#bb5420",
       color: "textWhite",
-      borderRadius: "default",
-      transition: "all 0.3s ease 0s",
+      borderRadius: "4px",
+      transition: "all 0.3s ease",
       "::after": {
         content: '"\\00A0 \\2192"',
       },
@@ -235,6 +236,7 @@ export default {
       },
       ":hover": {
         textDecoration: "underline",
+        color: "primaryHover",
         bg: "transparent",
         border: "none",
       },
@@ -242,7 +244,8 @@ export default {
   },
   variants: {
     main: {
-      my: 0,
+      mt: 0,
+      mb: 5,
     },
     navLink: {
       fontFamily: "heading",

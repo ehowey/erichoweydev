@@ -84,7 +84,16 @@ const Post = ({ data: { post }, previous, next }) => (
                 },
               }}
             >
-              <Styled.a as={Link} to={`/categories/${kebabCase(category)}/`}>
+              <Styled.a
+                as={Link}
+                to={`/categories/${kebabCase(category)}/`}
+                sx={{
+                  textDecoration: "none",
+                  ":hover": {
+                    textDecoration: "underline",
+                  },
+                }}
+              >
                 {category}
               </Styled.a>
             </Styled.li>

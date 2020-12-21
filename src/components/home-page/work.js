@@ -17,7 +17,7 @@ const SiteSection = () => {
           }
         }
       }
-      projectImage2: file(relativePath: { eq: "work-lwb.png" }) {
+      projectImage2: file(relativePath: { eq: "mmbc-1.png" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
             ...GatsbyImageSharpFluid_withWebp
@@ -74,6 +74,12 @@ const SiteSection = () => {
         }}
       >
         <WorkCard
+          link="https://www.mindmapbc.ca/"
+          image={data.projectImage2.childImageSharp.fluid}
+          title="www.mindmapbc.ca"
+          description="A custom made database of mental health resources. Includes geolocation, mapping, and advanced search functionality. Built using Gatsby and SANITY."
+        />
+        <WorkCard
           link="https://www.gatsbycatalyst.com"
           image={data.projectImage1.childImageSharp.fluid}
           title="Gatsby Theme Catalyst"
@@ -86,15 +92,7 @@ const SiteSection = () => {
           image={data.projectImage3.childImageSharp.fluid}
           title="www.briannasharpe.com"
           description="A portfolio website to showcase Brianna's freelance
-              writing and brand. Built using GatsbyJS and Catalyst Themes."
-        />
-        <WorkCard
-          link="https://www.lifewithbenjamin.com/"
-          image={data.projectImage2.childImageSharp.fluid}
-          title="www.lifewithbenjamin.com"
-          description="A  small business website for a creative
-              professional who specializes in content creation, photography and
-              videography. Built using Wordpress and WPRig."
+              writing and personal brand. Built using Gatsby and SANITY."
         />
       </div>
       <div
@@ -120,7 +118,7 @@ const SiteSection = () => {
         >
           Follow the journey from hello to finished product.
         </Styled.p>
-        <Button variant="primary" as={Link} to="/work-process">
+        <Button variant="primary" as={Link} to="/it-starts-with-hello/">
           It starts with hello
         </Button>
       </div>

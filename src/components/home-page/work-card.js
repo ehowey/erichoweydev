@@ -2,7 +2,7 @@
 import { jsx, Styled } from "theme-ui"
 import Img from "gatsby-image"
 
-const Card = props => {
+const Card = (props) => {
   return (
     <a
       sx={{
@@ -15,7 +15,7 @@ const Card = props => {
         color: "inherit",
         backgroundColor: "background",
         margin: "0 auto",
-
+        borderRadius: "4px",
         ":hover": {
           boxShadow: "0 2px 30px rgba(0,0,0,.15)",
           transform: "translateY(-3px)",
@@ -23,8 +23,6 @@ const Card = props => {
         },
       }}
       href={props.link}
-      target="_blank"
-      rel="noopener noreferrer"
     >
       <Img
         sx={{
@@ -37,7 +35,8 @@ const Card = props => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          padding: 2,
+          py: 2,
+          px: 4,
           height: ["auto", null, null, "350px", null],
         }}
       >

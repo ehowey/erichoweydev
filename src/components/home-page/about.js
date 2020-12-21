@@ -59,9 +59,8 @@ const SiteSection = () => {
           <Styled.p>It sucked.</Styled.p>
           <Styled.p>
             A lot has changed since then. I develop kickass websites that don’t
-            suck using the latest technologies and performance architecture. I
-            can grow facial hair and have two super awesome kids. It{" "}
-            <i>really</i> has changed.
+            suck using modern web technologies. I can also grow facial hair and
+            have two super awesome kids. It <i>really</i> has changed.
           </Styled.p>
         </div>
         <Img
@@ -118,10 +117,10 @@ const SiteSection = () => {
           <Styled.h3>Slow is smooth, smooth is fast</Styled.h3>
           <Styled.p>I don’t do rushed.</Styled.p>
           <Styled.p>
-            Building a fast and easy to use, website is a slow process. It
-            requires focus, collaboration and creativity. I only work on a few
-            projects per year and appreciate the craftsmanship of a well made
-            product.
+            Building an engaging, fast and user friendly website is a slow
+            process. It requires problem solving and creativity. I only work on
+            a few projects per year and appreciate the artisanship of a well
+            crafted product.
           </Styled.p>
         </div>
         <Img

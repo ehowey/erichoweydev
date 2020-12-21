@@ -23,8 +23,13 @@ const SiteSection = () => {
   const isDark = mode === "dark"
 
   return (
-    <SectionWrapper id="contact" pattern={plus} darkPattern={darkPlus}>
-      <SectionHeader>Let's Talk</SectionHeader>
+    <SectionWrapper
+      id="contact"
+      pattern={plus}
+      darkPattern={darkPlus}
+      sx={{ mb: -5 }}
+    >
+      <SectionHeader>I'm ready to listen</SectionHeader>
       <div
         sx={{
           display: "grid",
@@ -42,21 +47,18 @@ const SiteSection = () => {
             zIndex: 5,
           }}
         >
-          <Styled.h3>
-            I'm ready to listen! Inspired idea? New direction? Creating
-            something amazing?
-          </Styled.h3>
+          <Styled.h3>Inspired idea? Creating something special?</Styled.h3>
 
           <Styled.p>
-            Let me help you succeed with a fast, secure and robust web presence
-            that achieves your business goals and promotes your brand.
+            Let me help you succeed with a welcoming, fast, and modern web
+            presence that achieves your business goals and promotes your brand.
           </Styled.p>
 
           <Styled.p>
             The best way to begin the conversation is via{" "}
-            <Styled.a href="mailto:eric@erichowey.dev">email</Styled.a>. We will
-            meet in person (if geography allows it) or over the phone to discuss
-            your ideas in more detail. I am excited to get going!
+            <Styled.a href="mailto:eric@erichowey.dev">email</Styled.a>. We can
+            then talk in person or over the phone to discuss your vision in more
+            detail. I am excited to chat!
           </Styled.p>
           <Button variant="primary" as="a" href="mailto:eric@erichowey.dev">
             Email Me
