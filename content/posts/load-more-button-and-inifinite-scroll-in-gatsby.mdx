@@ -1,0 +1,231 @@
+---
+title: Load more button and infinite scroll in Gatsby
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+categories: [Gatsby]
+date: 2020-12-21
+featuredImage: ../post-assets/featured-load-more.jpg
+socialImage: ../post-assets/social-load-more.jpg
+---
+
+Load more buttons and infinite scrolling are common UI patterns on websites with large amounts of content. It improves page load performance and allows users to dynamically view more content as needed.
+
+From a web development perspective this data is often refreshed via an API call and on very large websites with thousands of data points this is absolutely how it should be done to protect performance. However in Gatsby, and with more moderate amounts of data, you are likely rendering an array of JSON from statically generated GraphQL data.
+
+Maybe something like this looks familiar to you.
+
+```js
+<div>
+  {posts.map((post) => (
+    <Post key={post.id} post={post} />
+  ))}
+</div>
+```
+
+If your site has 10 posts, 20 posts, or even 50 posts, this is not a problem worth solving. But eventually you will start running into performance problems as the DOM render size and complexity increases. I began noticing this at around 100 "posts" in a project I was working on. One way to solve this is by implementing a load more button or infinite scroll (there are other solutions you could consider as well like [paginating](https://www.gatsbyjs.com/docs/adding-pagination/) or [react-window](https://github.com/bvaughn/react-window)).
+
+In this post we will build a news feed for an imaginary news organization, with some placeholder JSON data as a stand in for a CMS. We will first create a load more button and then extend that code to allow for infinite scrolling. A word of caution about infinite scroll however, [user testing](https://www.smashingmagazine.com/2016/03/pagination-infinite-scrolling-load-more-buttons/) has found that load more buttons or pagination is usually a better choice than infinite scrolling.
+
+You can [view the final code on GitHub](https://github.com/ehowey/loadmore-demo) and [test a live demo](https://load-more-infinite-scroll.netlify.app/) out as well.
+
+Let's get going!
+
+## Load more button
+
+Here is the working code for the load more button version of our news feed.
+
+```js
+import React, { useState, useEffect } from "react"
+import { useStaticQuery, graphql } from "gatsby"
+import Article from "../components/article"
+
+const Page = () => {
+  const data = useStaticQuery(graphql`
+    {
+      allNewsJson {
+        nodes {
+          id
+          title
+          date
+          author
+          summary
+        }
+      }
+    }
+  `)
+  // Array of all news articles
+  const allNews = data.allNewsJson.nodes
+
+  // State for the list
+  const [list, setList] = useState([...allNews.slice(0, 10)])
+
+  // State to trigger oad more
+  const [loadMore, setLoadMore] = useState(false)
+
+  // State of whether there is more to load
+  const [hasMore, setHasMore] = useState(allNews.length > 10)
+
+  // Load more button click
+  const handleLoadMore = () => {
+    setLoadMore(true)
+  }
+
+  // Handle loading more articles
+  useEffect(() => {
+    if (loadMore && hasMore) {
+      const currentLength = list.length
+      const isMore = currentLength < allNews.length
+      const nextResults = isMore
+        ? allNews.slice(currentLength, currentLength + 10)
+        : []
+      setList([...list, ...nextResults])
+      setLoadMore(false)
+    }
+  }, [loadMore, hasMore]) //eslint-disable-line
+
+  //Check if there is more
+  useEffect(() => {
+    const isMore = list.length < allNews.length
+    setHasMore(isMore)
+  }, [list]) //eslint-disable-line
+
+  return (
+    <div>
+      <h1>Load more demo</h1>
+      <div>
+        {list.map((article) => (
+          <Article key={article.id} article={article} />
+        ))}
+      </div>
+      {hasMore ? (
+        <button onClick={handleLoadMore}>Load More</button>
+      ) : (
+        <p>No more results</p>
+      )}
+    </div>
+  )
+}
+
+export default Page
+```
+
+Let's walk through what is happening here. To begin with the data is being sourced from GraphQL and then assigned to the `allNews` variable. This is an array of all the news articles, and typically in Gatsby you would stop here and just map over this array to display your data.
+
+What comes next is the load more implementation.
+
+There are three useState hooks to manage state - `list`, `loadMore` and `hasMore`. The list is an array of articles that are being rendered to the DOM. loadMore is a boolean flag to trigger loading more news articles into our list. hasMore is a boolean flag to track whether there are any more articles to load.
+
+Next there is a simple `handleLoadMore` function which sets the `loadMore` boolean to true when the button is clicked.
+
+There are two useEffect hooks. Our first hook runs when the loadMore boolean changes. It adds 10 more news articles to our displayed list. The second hook runs every time the displayed list changes and checks to see whether there are any more articles to display. Working together these two hooks control the core logic of this load more button.
+
+Finally the `useMore` boolean is used as a ternary operator in the JSX to conditionally show either the load more button or an alert to the user that there are no more articles.
+
+## Infinite scroll
+
+We can expand on this code to create an infinite scrolling version of our news feed. Here is the working code for this, with an explanation below of what has changed.
+
+```js
+import React, { useState, useEffect, useRef } from "react"
+import { useStaticQuery, graphql } from "gatsby"
+import Article from "../components/article"
+
+const Page = () => {
+  const data = useStaticQuery(graphql`
+    {
+      allNewsJson {
+        nodes {
+          id
+          title
+          date
+          author
+          summary
+        }
+      }
+    }
+  `)
+  // Array of all news articles
+  const allNews = data.allNewsJson.nodes
+
+  // State for the list
+  const [list, setList] = useState([...allNews.slice(0, 10)])
+
+  // State to trigger oad more
+  const [loadMore, setLoadMore] = useState(false)
+
+  // State of whether there is more to load
+  const [hasMore, setHasMore] = useState(allNews.length > 10)
+
+  //Set a ref for the loading div
+  const loadRef = useRef()
+
+  // Handle intersection with load more div
+  const handleObserver = (entities) => {
+    const target = entities[0]
+    if (target.isIntersecting) {
+      setLoadMore(true)
+    }
+  }
+
+  //Initialize the intersection observer API
+  useEffect(() => {
+    var options = {
+      root: null,
+      rootMargin: "20px",
+      threshold: 1.0,
+    }
+    const observer = new IntersectionObserver(handleObserver, options)
+    if (loadRef.current) {
+      observer.observe(loadRef.current)
+    }
+  }, [])
+
+  // Handle loading more articles
+  useEffect(() => {
+    if (loadMore && hasMore) {
+      const currentLength = list.length
+      const isMore = currentLength < allNews.length
+      const nextResults = isMore
+        ? allNews.slice(currentLength, currentLength + 10)
+        : []
+      setList([...list, ...nextResults])
+      setLoadMore(false)
+    }
+  }, [loadMore, hasMore]) //eslint-disable-line
+
+  //Check if there is more
+  useEffect(() => {
+    const isMore = list.length < allNews.length
+    setHasMore(isMore)
+  }, [list]) //eslint-disable-line
+
+  return (
+    <div>
+      <h1>Load more demo</h1>
+      <div>
+        {list.map((article) => (
+          <Article key={article.id} article={article} />
+        ))}
+      </div>
+      <div ref={loadRef}>
+        {hasMore ? <p>Loading...</p> : <p>No more results</p>}
+      </div>
+    </div>
+  )
+}
+
+export default Page
+```
+
+Our code is very similar to the load more button with a few key differences. We have replaced the button with a `<div>` that has a ref assigned to it. The [intersection observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) is initialized in a useEffect hook and used to track whether the scroll position is intersecting with this ref on the page. When an intersection happens it triggers the `loadMore` state to true, setting off the same cascade of effects as our load more button from before.
+
+There you have it. Simple and effective load more button and infinite scrolling implementations for your Gatsby site.
+
+Credit where credit is due; to develop this I adapted code
+from the following two articles: [React infinite scroll in a few
+lines](https://dev.to/hunterjsbit/react-infinite-scroll-in-few-lines-588f) and
+[Adding Infinite Scroll For Both Desktop and Mobile in Your Gatsby Project
+with React
+Hooks](https://www.wesleylhandy.net/blog/infinite-scroll-mobile-desktop-gatsby.html).
+
+Happy coding!

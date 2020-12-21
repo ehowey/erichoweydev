@@ -40,7 +40,11 @@ const Card = (props) => {
           height: ["auto", null, null, "350px", null],
         }}
       >
-        <Styled.h4 sx={{ flex: "0", mt: 3 }}>{props.title}</Styled.h4>
+        <Styled.h3
+          sx={{ flex: "0", mt: 3, fontSize: [2, 3, null, null, null] }}
+        >
+          {props.title}
+        </Styled.h3>
         <Styled.p sx={{ flex: ["0", null, null, "1", null] }}>
           {props.description}
         </Styled.p>

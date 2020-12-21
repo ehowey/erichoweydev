@@ -1,0 +1,46 @@
+---
+title: Gatsby Theme Catalyst in 2021
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+categories: [React]
+date: 2020-12-30
+featuredImage: ../post-assets/featured-geocoding.jpg
+socialImage: ../post-assets/social-geocoding.jpg
+draft: true
+---
+
+2020. What a year. In so many ways that are more important than what I am about to discuss, but I felt that I owed everyone an update on the state of [Gatsby Theme Catalyst](https://www.gatsbycatalyst.com/) and what the future holds for this set of themes and starters.
+
+The first thing you should know is that the future is _bright_ for `gatsby-theme-catalyst`. I am actively using it in production on a number of websites over the last year and am gradually making improvements to the themes over time as I run into issues or problems. I am excited to say that my central philosophy of having a core theme that is then extended with child and sibling themes is working really well.
+
+One of the biggest successes for me, as a freelancer using these themes, is that I can very quickly bootstrap myself into working prototypes and then component shadowing allows me to gradually custom elements to a website as it becomes more refined over time.
+
+Here are a few things I have planned for `gatsby-theme-catalyst` in 2021.
+
+## Moving to unified versioning
+
+Currently I am using indepedent versioning with these packages, so one package might be at v3.0.0 while another package is at v5.0.0. This gets confusing and makes it appear that different parts of the themes and starters do not work together when actually they do. With this in mind I am going to move to unified versioning early in 2021 which should help make it more clear that the packages will all work together.
+
+## Continued use of semantic versioning
+
+One of the challenges I have run into with this project is that the layers of complexity with interwoven themes make it hard to limit breaking changes. I have not had to make any significant breaking changes, but there have been a number of minor breaking changes that have needed to be made in order to move the project forward. I will do my best to limit breaking changes, but always document [how to migrate](https://www.gatsbycatalyst.com/docs/migrating) in the docs. On the other hand I am committed to making these themes as great as possible and if making a breaking change is required then I will do that.
+
+## E-commerce theme and starter
+
+My goal for 2021 is to add an e-commerce theme and starter, partially because I need this for upcoming projects, but also because I feel it is an important gap to fill in the set of themes. I have been debating back and forth between using Shopify or something like Snipcart and SANITY together. I am imagining that similar to `gatsby-theme-catalyst-sanity` this will be a "data" theme, so very plain in appearance and intended as a blank canvas on top of which a custom e-commerce store can be built.
+
+## Continued integration with SANITY.io
+
+I was excited to see that Wes Bos picked exactly the same tech stack I did for [his latest course](https://mastergatsby.com/); Gatsby, SANITY and Netlify. I have now built a few projects using this stack and can't see myself changing anytime soon. I am hoping to integrate with [sanity.io/create](https://create.sanity.io/), create a better default dashboard experience for the themes, and possibly implement some previews into the content studios.
+
+## Continued refinement of existing themes
+
+As it stands I am really happy with where most of the themes are, but also recognize there are still lots of areas for improvement. For example the dropdown menus for `header-bigtop` and `header-sidebar` are very basic and not as refined as what is in `header-top`. I will also be continuing to make accessibility improvements to the core layout themes so that Gatsby Theme Catalyst based websites are as accessible as possible.
+
+## Prepping for Gatsby v3.0.0
+
+I don't have any inside information, but my guess is that we will see v3.0.0 of Gatsby sometime in the next year. I have noticed they are gradually releasing some simplified APIs for things like [file system based routing](https://www.gatsbyjs.com/docs/reference/routing/file-system-route-api/) and [support for remote images](https://github.com/gatsbyjs/gatsby/pull/28647). My hope is to start looking at where I can include these new APIs in `gatsby-theme-catalyst` both to make it easier for other developers and prepare for future Gatsby versions.
+
+## Improved landing page and docs
+
+I threw together [www.gatsbycatalyst.com](https://www.gatsbycatalyst.com/) very quickly - which in some ways was a good thing. My first priority is to make refinements to the docs navigation, and also integrate the ability to search the docs. If time allows, I would love to also improve the landing page, giving users some more information about what the project.

@@ -1,0 +1,33 @@
+---
+title: Dynamic filtering of visible map markers in react-leaflet
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+categories: [React]
+date: 2020-12-30
+featuredImage: ../post-assets/featured-geocoding.jpg
+socialImage: ../post-assets/social-geocoding.jpg
+draft: true
+---
+
+Imagine you have a mapping centric application; maybe for real estate, restaurants, or some other consumer service. A common UI pattern is allowing the user to dynamically update a list of results based on what markers are visible in the map pane. So if the user pans or zooms then the results update accordingly. A second common UI pattern is to cluster nearby results together when zoomed out, and seperate the results as the zoom level changes.
+
+We are going to build a map implementing these two UI patterns using react-leaflet.
+
+This post assumes you have some basic familiarity with state management in React.
+
+I built a demo using Gatsby, but the code should be transferable to any React based application.
+
+Part 1: Our basic map and data setup
+
+This part will cover setting up the map, and creating some imaginary placeholder GeoJson data. You would probably be sourcing your data from some kind of database, but for the purposes of this post it doesn't really matter where the data comes from.
+
+Feel free to skip this step if you have worked with react-leaflet before.
+
+- gatsby-plugin-react-leaflet, react-leaflet, leaflet
+- react-leaflet-markercluster
+
+Part 2: Clustering
+
+Part 3: Setting up to manage state
+
+Part 4: A function for visible markers
