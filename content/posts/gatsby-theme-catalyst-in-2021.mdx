@@ -2,28 +2,36 @@
 title: Gatsby Theme Catalyst in 2021
 author: Eric Howey
 authorLink: https://twitter.com/erchwy
-categories: [React]
+categories: [Gatsby]
 date: 2020-12-30
 featuredImage: ../post-assets/featured-geocoding.jpg
 socialImage: ../post-assets/social-geocoding.jpg
 draft: true
 ---
 
-2020. What a year. In so many ways that are more important than what I am about to discuss, but I felt that I owed everyone an update on the state of [Gatsby Theme Catalyst](https://www.gatsbycatalyst.com/) and what the future holds for this set of themes and starters.
+> 2020 - what a year. I want to begin by acknowledging that this post is about a bunch of insignificant computer code when cast against the pain and suffering that has unfolded across the globe this past year (and every year) whether from Black Lives Matter to COVID to individual life circumstances. I hope you are safe and healthy with your loved ones.
 
-The first thing you should know is that the future is _bright_ for `gatsby-theme-catalyst`. I am actively using it in production on a number of websites over the last year and am gradually making improvements to the themes over time as I run into issues or problems. I am excited to say that my central philosophy of having a core theme that is then extended with child and sibling themes is working really well.
+I want to provide an update on the state of [Gatsby Theme Catalyst](https://www.gatsbycatalyst.com/) and what the future holds for this set of themes and starters.
 
-One of the biggest successes for me, as a freelancer using these themes, is that I can very quickly bootstrap myself into working prototypes and then component shadowing allows me to gradually custom elements to a website as it becomes more refined over time.
+The first thing you should know is that the future is _bright_ for `gatsby-theme-catalyst`.
+
+I am actively using it in production on a number of websites and am gradually making improvements to the themes as I run into issues or problems. I am excited to say that my central philosophy of having a core theme that is then extended with child and sibling themes is working really well.
+
+One of the biggest successes for me, as a freelance developer, is that I can very quickly bootstrap myself into working prototypes and then component shadowing allows me to gradually customize a project over time as it becomes more refined.
 
 Here are a few things I have planned for `gatsby-theme-catalyst` in 2021.
 
 ## Moving to unified versioning
 
-Currently I am using indepedent versioning with these packages, so one package might be at v3.0.0 while another package is at v5.0.0. This gets confusing and makes it appear that different parts of the themes and starters do not work together when actually they do. With this in mind I am going to move to unified versioning early in 2021 which should help make it more clear that the packages will all work together.
+Currently I am using indepedent versioning with these packages, so one package might be at v3.0.0 while another package is at v5.0.0. This gets confusing and makes it appear that different parts of the themes and starters do not work together when actually they do. With this in mind I am going to move to unified versioning early in 2021 which should help make it more clear that the packages will all work together. The tradeoff is that there could be more frequent version changes as the packages will all be linked together on a common version.
 
 ## Continued use of semantic versioning
 
-One of the challenges I have run into with this project is that the layers of complexity with interwoven themes make it hard to limit breaking changes. I have not had to make any significant breaking changes, but there have been a number of minor breaking changes that have needed to be made in order to move the project forward. I will do my best to limit breaking changes, but always document [how to migrate](https://www.gatsbycatalyst.com/docs/migrating) in the docs. On the other hand I am committed to making these themes as great as possible and if making a breaking change is required then I will do that.
+One of the challenges I have run into with this project is that the layers of complexity with interwoven themes make it hard to limit breaking changes. I worked hard to not make significant breaking changes, but there have been a number of breaking changes that have needed to be made in order to move the project forward. I will do my best to limit breaking changes, but always document [how to migrate](https://www.gatsbycatalyst.com/docs/migrating) in the docs. On the other hand I am committed to making these themes as great as possible and if means making a breaking change then I will do that.
+
+## Transition to Typescript
+
+I am hopeful that I can transition this project to typescript gradually over the coming year, likely starting with the core theme and layout themes as these are the most complicated themes. This will be a learning process for me, as I have not yet written typescript.
 
 ## E-commerce theme and starter
 
