@@ -17,7 +17,7 @@ const SiteSection = () => {
           }
         }
       }
-      projectImage2: file(relativePath: { eq: "mmbc-1.png" }) {
+      projectImage2: file(relativePath: { eq: "work-mmbc.png" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
             ...GatsbyImageSharpFluid_withWebp

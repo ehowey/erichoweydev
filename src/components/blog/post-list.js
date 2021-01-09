@@ -4,13 +4,14 @@ import { Link } from "gatsby"
 import Img from "gatsby-image"
 import { Layout, SEO } from "gatsby-theme-catalyst-core"
 import { FaRegClock } from "react-icons/fa"
+import { darken } from "@theme-ui/color"
 
 const PostsList = ({ posts }) => {
   return (
     <Layout>
       <SEO
         title="Writing"
-        description="Writing, blog posts and digital musings by Eric Howey. My work focuses on the JAMStack, Gatsby, and Theme UI. There is an occasional sprinkling of mental health in here as well. Posts are updated over time as a kind of digital garden. Enjoy!"
+        description="Writing, blog posts and digital musings by Eric Howey. My work focuses on the JAMStack, Gatsby, SANITY and Theme UI. There is an occasional sprinkling of mental health in here as well. Posts are updated over time as a kind of digital garden. Enjoy!"
       />
       <div
         sx={{
@@ -25,7 +26,7 @@ const PostsList = ({ posts }) => {
           sx={{
             mx: "auto",
             width: "100%",
-            maxWidth: "maxPageWidth",
+            maxWidth: "1920px",
           }}
         >
           <div
@@ -39,7 +40,6 @@ const PostsList = ({ posts }) => {
                 "1fr 1fr 1fr",
                 "1fr 1fr 1fr 1fr",
               ],
-              gridTemplateRows: "auto",
               gridGap: 4,
               justifyContent: "center",
             }}
@@ -53,13 +53,10 @@ const PostsList = ({ posts }) => {
                     backgroundColor: "accent",
                     textDecoration: "none",
                     color: "text",
-                    boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-                    display: "flex",
-                    flexDirection: "column",
-                    minHeight: "100%",
                     position: "relative",
                     top: "0",
-                    transition: "all .1s ease-in",
+                    boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+                    transition: "all .2s ease",
                     a: {
                       color: "text",
                       textDecoration: "none",
@@ -67,6 +64,7 @@ const PostsList = ({ posts }) => {
                     ":hover": {
                       top: "-4px",
                       boxShadow: "0 4px 5px rgba(0,0,0,0.2)",
+                      bg: darken("accent", 0.05),
                     },
                     ":nth-of-type(1)": {
                       gridColumn: ["1 / -1", null, "1 / span 2", null, null],

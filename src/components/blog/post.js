@@ -40,8 +40,6 @@ const Post = ({ data: { post }, previous, next }) => (
           gridRow: ["1 / 2", null, "1 / 3", null, null],
           zIndex: 10,
           width: "100%",
-          maxWidth: "maxPageWidth",
-          mx: "auto",
           variant: "variants.postImage",
         }}
         fluid={post.featuredImage.childImageSharp.fluid}
@@ -54,6 +52,8 @@ const Post = ({ data: { post }, previous, next }) => (
           zIndex: 20,
           bg: "background",
           p: [3, null, 4, null, null],
+          borderTopLeftRadius: "4px",
+          borderTopRightRadius: "4px",
         }}
       >
         <Styled.ul

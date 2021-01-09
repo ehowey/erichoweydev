@@ -27,7 +27,7 @@ const HelloImage1 = () => {
       <Img
         sx={{
           maxHeight: "400px",
-          borderRadius: "4px",
+          borderRadius: ["none", null, null, "4px", null],
           width: ["100vw", null, null, "85vw", "80vw"],
           position: "relative",
           left: "50%",

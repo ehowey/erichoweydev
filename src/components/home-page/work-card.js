@@ -26,7 +26,9 @@ const Card = (props) => {
     >
       <Img
         sx={{
-          height: "200px",
+          height: "300px",
+          borderTopLeftRadius: "4px",
+          borderTopRightRadius: "4px",
         }}
         fluid={props.image}
         alt="Gatsby Theme Catalyst"

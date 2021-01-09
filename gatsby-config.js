@@ -26,15 +26,14 @@ module.exports = {
       `GatsbyJS`,
       `Sanity`,
       `Sanity.io`,
+      `developer`,
+      `blog`,
+      `tutorials`,
+      `gatsby themes`,
     ],
     author: `Eric Howey`,
     siteUrl,
     menuLinks: [
-      {
-        name: `Writing`,
-        link: `/writing`,
-        type: `internal`,
-      },
       {
         name: `Me`,
         link: `#me`,
@@ -49,6 +48,16 @@ module.exports = {
         name: `Contact`,
         link: `#contact`,
         type: `anchor`,
+      },
+      {
+        name: `Process`,
+        link: `/it-starts-with-hello/`,
+        type: `internal`,
+      },
+      {
+        name: `Writing`,
+        link: `/writing/`,
+        type: `internal`,
       },
     ],
     socialLinks: [

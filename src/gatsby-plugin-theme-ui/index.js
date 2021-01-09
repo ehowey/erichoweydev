@@ -72,7 +72,7 @@ export default {
   },
   sizes: {
     ...tailwind.sizes,
-    maxPageWidth: "1440px", // Sets the max width of elements like the header/footer on really large screens
+    maxPageWidth: "100%", // Sets the max width of elements like the header/footer on really large screens
     maxContentWidth: "720px", // Sets the container size on larger screens, e.g. tablets and laptops
     contentWidth: "90vw", // Sets the container width on smaller screens, results in a 5vw margin on the left and right
     headerHeight: "auto", // Provides fallback setting to control header height
