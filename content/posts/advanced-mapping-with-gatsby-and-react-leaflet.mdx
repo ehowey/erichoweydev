@@ -1,0 +1,399 @@
+---
+title: Advanced mapping with Gatsby and React Leaflet
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+categories: [Gatsby]
+date: 2020-12-30
+featuredImage: ../post-assets/featured-geocoding.jpg
+socialImage: ../post-assets/social-geocoding.jpg
+draft: true
+---
+
+Hang on to your hat - this is another big one! In this post I will walk you through setting up a complete mapping project with Gatsby and React Leaflet. We are going to build an imaginary real estate mapping application.
+
+You can checkout the finished code on GitHub and also a live demo of what we will be building. If you want to see a production version of this code you can checkout [www.mindmapbc.ca/map](https://www.mindmapbc.ca/map/).
+
+This post assumes you have some basic familiarity with Gatsby and intermediate knowledge of React hooks. If you are familiar with react-leaflet you can probably skip straight to part 2 where we cover more advanced mapping topics.
+
+## Part 1: Initial setup
+
+## Step 1: Installation and dependencies
+
+We are going to setup a quick starter project using [Gatsby Theme Catalyst](https://www.gatsbycatalyst.com/) (you can use any starter you want), add our dependencies, and add some imaginary data. In real life your data would most likely be coming from a backend of some kind, but that is beyond the scope of this post.
+
+```shell
+## Bootstrap a quick starter
+gatsby new advanced-mapping https://github.com/ehowey/gatsby-starter-catalyst
+cd advanced-mapping
+## Add our dependencies
+yarn add gatsby-plugin-react-leaflet react-leaflet leaflet
+```
+
+Next you need to add `gatsby-plugin-react-leaflet` to your Gatsby plugins array.
+
+```js
+// gatsby-config.js
+plugins: [
+  // other plugins are also here
+  `gatsby-plugin-react-leaflet`,
+]
+```
+
+Now let's give ourselves a little bit of placeholder data to work with. My experience with mapping has been that the [GeoJson format](https://geojson.org/) is really nice to work with and is a becoming standardized across different mapping contexts making it easier to move your data around if you need to. It generally follows the format below where he geometry object stores information about location and the properties object store metadata about the location.
+
+```json
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [125.6, 10.1]
+  },
+  "properties": {
+    "name": "Cottage home",
+    "price": 249999,
+    "bedrooms": 2,
+    "bathrooms": 1
+  }
+}
+```
+
+Copy and paste this [placeholder data](linktogithub) into your Gatsby app in `src/data/geojson.json`.
+
+## Step 2: Adding our map
+
+Now let's add our map to the project. Create a new page for our at `src/pages/map.js` and import the following code.
+
+```js
+//src/pages/map.js
+import React from "react"
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
+import { useHasMounted } from "gatsby-theme-catalyst-core"
+
+const Map = () => {
+  return (
+    <div>
+      {useHasMounted && (
+        <MapContainer
+          center={[51.505, -0.09]}
+          zoom={13}
+          style={{ height: "400px" }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={[51.505, -0.09]}>
+            <Popup>
+              A pretty CSS3 popup. <br /> Easily customizable.
+            </Popup>
+          </Marker>
+        </MapContainer>
+      )}
+    </div>
+  )
+}
+
+export default Map
+```
+
+Save and refresh and you should be looking at a simple map on your page!
+
+There are two gotchas here that are worth noting. The first is that because Gatsby is statically rendered at build time you need to check that the component has mounted before rendering the map to the DOM. The second gotcha is that the map needs to have a height, if you are missing the height it will appear as if the page is blank.
+
+## Step 3: Adding our GeoJson data to the map
+
+To add our imaginary real estate data to the map we will use the `GeoJson` component from `react-leaflet`. Here is what your `map.js` file should look like now.
+
+```js
+import React from "react"
+import { MapContainer, TileLayer, GeoJSON } from "react-leaflet"
+import { useHasMounted } from "gatsby-theme-catalyst-core"
+import geojson from "../data/geojson.json"
+
+const Map = () => {
+  return (
+    <div>
+      {useHasMounted && (
+        <MapContainer
+          center={[51.072806, -114.11918]}
+          zoom={10}
+          style={{ height: "400px" }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <GeoJSON data={geojson} />
+        </MapContainer>
+      )}
+    </div>
+  )
+}
+
+export default Map
+```
+
+The GeoJson component automatically creates markers for us - now we are getting somewhere!
+
+There are two gotchas worth noting here with GeoJson data and the react-leaflet API. The standard coordinate format in GeoJson and react-leaflet is different; for GeoJson coordinates are stored as `[lng, lat]` whereas react-leaflet uses coordinates in the `[lat, lng]` format. This has tripped me up more than a few times! The second gotcha we will cover below.
+
+Now onto the more advanced mapping topics.
+
+## Part 2: The advanced topics
+
+Lorem ipsum
+
+### Step X: Adding custom popups to your markers
+
+There are ways to easily add simple popups to your map markers but we often need to customize these markers to meet brand standards and overall design aesthetics. Here is how you can do that.
+
+First we need to import Leaflet and create a popup function to define a custom popup for each marker.
+
+```js
+// src/pages/map.js
+// Import Leaflet itself
+import L from "leaflet"
+
+// Creating popups for the map
+const createPopups = (feature = {}, layer) => {
+  const { properties = {} } = feature
+  const { address, price, bedrooms, bathrooms } = properties
+  const popup = L.popup()
+  const html = `
+    <div class="popup-container">
+    <h3 class="popup-header">${address.street}</h3>
+    <ul>
+    <li><strong>Price:</strong> ${price.toString()}</li>
+    <li><strong>Bedrooms:</strong> ${bedrooms.toString()}</li>
+    <li><strong>Bathrooms:</strong>${bathrooms.toString()}</li>
+    </div>
+    `
+  popup.setContent(html)
+  layer.bindPopup(popup)
+}
+```
+
+Next we need to set the `createPopups` function to the `onEachFeature` prop for GeoJson.
+
+```js
+// Run the popup function on each GeoJson feature
+<GeoJSON
+  data={displayedMarkers}
+  key={geoJsonKey}
+  onEachFeature={createPopups}
+/>
+```
+
+Now you should have some plain popups appearing for each marker. You can further style and customize these popups with css and html, and at this point the sky is the limit.
+
+```css
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background-color: rgb(135, 140, 146);
+}
+
+.popup-container {
+  font-size: 14px;
+  font-family: "Helvetica", sans-serif;
+  background-color: rgb(135, 140, 146);
+}
+
+.popup-header {
+  font-size: 1.2em;
+  margin-bottom: 0.4em;
+}
+
+.popup-container ul {
+  padding: 0;
+  list-style: none;
+  margin: 0;
+}
+
+.popup-container li {
+  margin-bottom: 0.4em;
+}
+
+.popup-container li:last-child {
+  margin-bottom: 0;
+}
+```
+
+## Step 5: Dyanmic updates to the displayed map data
+
+Most mapping applications involve dynamic data - data that changes in real time due to user input (e.g. searching or filtering). In our imaginary real estate app the user might want to filter the results to show homes within a specific price range, or homes only with a certain number of bedrooms.
+
+Traditionally in React you would update the application state and the appropriate components would rerender with the new data. However LeafletJS manages its own DOM and some components are immutable by default meaning we need to do a little bit of magic behind the scenes to force LeafletJS to rerender with the new data.
+
+Here is how this can be done.
+
+```js
+// Track which markers are being actively displayed on the map
+const [displayedMarkers, setDisplayedMarkers] = useState(geojson)
+
+// GeoJson Key to handle updating geojson inside react-leaflet
+const [geoJsonKey, setGeoJsonKey] = useState("initialKey123abc")
+
+// Generate a new key to force an update to GeoJson Layer
+useEffect(() => {
+  const newKey = makeKey(10)
+  setGeoJsonKey(newKey)
+}, [displayedMarkers])
+
+// Updated GeoJson component
+<GeoJSON data={displayedMarkers} key={geoJsonKey} />
+
+```
+
+Here we use state to hold onto the set of displayed geojson markers. Next we have state to hold onto a random string value which is used as the key for the GeoJson component, a change to this key forces a rerender of the map with our new data. Note that the GeoJson component needs to be updated so the data prop is now being provided by state and the key prop was added to it.
+
+Voila dynamically updating map as the geojson data changes! Try commenting out the useEffect function to see what happens without it!
+
+## Step 4: Dynamically updating the map viewport
+
+As your data changes you want the map to dynamically adjust the viewport (zoom and center) of the map to include the newly filtered data. This saves your user the trouble of having to pan or scroll the window. We are going to handle this in a seperate logic component. We need to do this in a seperate component to access the map context from the MapContainer component.
+
+Here is what this looks like.
+
+```js
+// src/components/logic.js
+import React, { useEffect } from "react"
+import { useMap } from "react-leaflet"
+
+const Logic = ({ geoJsonKey, groupRef, displayedMarkers, children }) => {
+  // Access the map context with the useMap hook
+  const map = useMap()
+
+  // Reset the bounds of the map based on the displayed markers
+  const updateMapPosition = () => {
+    if (displayedMarkers.length > 0 && map && groupRef.current) {
+      const layer = groupRef.current
+      if (layer) {
+        map.fitBounds(layer.getBounds().pad(0.5))
+      }
+    }
+  }
+
+  // useEffect Hook to reset viewport when geoJson changes
+  useEffect(() => {
+    updateMapPosition()
+  }, [geoJsonKey]) //eslint-disable-line
+
+  return <>{children}</>
+}
+
+export default Logic
+```
+
+Here is what the component tree should now look like inside of `map.js`.
+
+```js
+// src/pages.map.js
+
+// Initiate feature group ref
+  const groupRef = useRef()
+//...
+//  Here is what our component tree looks like
+<Logic
+  geoJsonKey={geoJsonKey}
+  groupRef={groupRef}
+  displayedMarkers={displayedMarkers}
+>
+  <FeatureGroup ref={groupRef} name="Homes">
+    <GeoJSON data={displayedMarkers} key={geoJsonKey} />
+  </FeatureGroup>
+</Logic>
+//...
+```
+
+### Step X: Clustering your map markers
+
+As a mapping application gets more complex and has more data points a common need is to cluster your map markers. So that if you have multiple markers in close proximity those get visually grouped for the user to make for a better user experience.
+
+The first thing we need to do is install [react-leaflet-markercluster](https://github.com/yuzhva/react-leaflet-markercluster/issues/123). We are working with v3 of react-leaflet so you need to make sure that you install at least v3 of marker cluster.
+
+```shell
+## You may be able to remove the @next tag
+## Make sure you have at least v3.0
+yarn add leaflet-markercluster react-leaflet-markercluster@next
+```
+
+Now we just need to update our map page to import the marker cluster package, add a ref (which we need later) and wrap it around our GeoJson component. Here is what that looks like.
+
+```js
+// src/pages/map.js
+import MarkerClusterGroup from "react-leaflet-markercluster"
+import "react-leaflet-markercluster/dist/styles.min.css"
+
+//...
+const clusterRef = useRef()
+
+//...
+
+<MarkerClusterGroup ref={clusterRef}>
+  <GeoJSON data={displayedMarkers} key={geoJsonKey} />
+</MarkerClusterGroup>
+```
+
+Now you should see your markers cluster together and those clusters dynamically update in size as you zoom the map in and out.
+
+### Step X: Tracking the visible markers
+
+Most mapping applications have a way of also displaying a list of results beside or below the map. It is common to have these results dynamically update as the user pans or zooms the map. To accomplish this we need to add some more state to our imaginary real estate application and then update that state as the map moves or zooms. We will handle this in our Logic component again, so we need to pass the setter function down to that component.
+
+```js
+//Track which markers are visible on the map
+const [visibleMarkers, setVisibleMarkers] = useState(geojson)
+
+//...component continues above
+<Logic
+  geoJsonKey={geoJsonKey}
+  groupRef={groupRef}
+  clusterRef={clusterRef}
+  displayedMarkers={displayedMarkers}
+  setVisibleMarkers={setVisibleMarkers}
+>
+  <FeatureGroup ref={groupRef} name="Homes">
+    <MarkerClusterGroup ref={clusterRef}>
+      <GeoJSON
+        data={displayedMarkers}
+        key={geoJsonKey}
+        onEachFeature={createPopups}
+      />
+    </MarkerClusterGroup>
+  </FeatureGroup>
+</Logic>
+///...component continues below
+```
+
+Then inside of our Logic component we need a function to handle updating the visible markers based on what is visible in the map pane. Here is what that looks like.
+
+```js
+// Import useMapEvents from react-leaflet
+import { useMap, useMapEvents } from "react-leaflet"
+
+// Hook to access map events from Leaflet API
+useMapEvents({
+  zoomend: () => getVisibleMarkers(),
+  moveend: () => getVisibleMarkers(),
+})
+
+// Get visible markers on the map
+const getVisibleMarkers = () => {
+  if (map && groupRef.current && clusterRef.current) {
+    const cluster = clusterRef.current
+    let features = []
+    cluster.eachLayer(function (layer) {
+      if (layer instanceof L.Marker) {
+        if (map.getBounds().contains(layer.getLatLng())) {
+          features.push(layer.feature)
+        }
+      }
+    })
+    setVisibleMarkers(features)
+  }
+}
+
+//...component continues below
+```
+
+### Step X: Adding a locate button

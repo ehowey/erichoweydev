@@ -16,7 +16,7 @@
     "typeface-raleway": "^0.0.75"
   },
   "devDependencies": {
-    "prettier": "^2.1.1"
+    "prettier": "^2.2.1"
   },
   "keywords": [
     "gatsby",
