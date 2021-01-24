@@ -4,22 +4,26 @@ author: Eric Howey
 authorLink: https://twitter.com/erchwy
 categories: [Gatsby]
 date: 2020-12-30
-featuredImage: ../post-assets/featured-geocoding.jpg
-socialImage: ../post-assets/social-geocoding.jpg
+featuredImage: ../post-assets/featured-advanced-mapping.jpg
+socialImage: ../post-assets/social-advanced-mapping.jpg
 draft: true
 ---
 
-Hang on to your hat - this is another big one! In this post I will walk you through setting up a complete mapping project with Gatsby and React Leaflet. We are going to build an imaginary real estate mapping application.
+Hang on to your hats - this is a blustery one! In this post we walk through setting up an imaginary real estate mapping app using Gatsby and [React Leaflet](https://react-leaflet.js.org/).
 
-You can checkout the finished code on GitHub and also a live demo of what we will be building. If you want to see a production version of this code you can checkout [www.mindmapbc.ca/map](https://www.mindmapbc.ca/map/).
+> We are using v3.0 of react-leaflet which was recently released at the end of 2020 - this code won't work for v2.x.x but I have done these same tasks for v2 of react-leaflet so feel free to ask me questions.
 
-This post assumes you have some basic familiarity with Gatsby and intermediate knowledge of React hooks. If you are familiar with react-leaflet you can probably skip straight to part 2 where we cover more advanced mapping topics.
+You can checkout the [finished code on GitHub](https://github.com/ehowey/gatsby-advanced-mapping) and a [live demo](https://gatsby-advanced-mapping.netlify.app/) of what we will be building. If you want to see a production version of this code you can poke around [www.mindmapbc.ca/map](https://www.mindmapbc.ca/map/).
 
-## Part 1: Initial setup
+A few notes before we get going. I assume you have a basic familiarity with Gatsby and React hooks - but do my best to walk you through things step by step. You should also know that I am focusing entirely on the javascript in this post so what we build ain't pretty! Finally if you are already familiar with react-leaflet you can probably skip straight to part 2 where we begin covering the more advanced mapping topics.
 
-## Step 1: Installation and dependencies
+## Part 1: Initial map setup
 
-We are going to setup a quick starter project using [Gatsby Theme Catalyst](https://www.gatsbycatalyst.com/) (you can use any starter you want), add our dependencies, and add some imaginary data. In real life your data would most likely be coming from a backend of some kind, but that is beyond the scope of this post.
+We are going to setup a quick starter project, add our dependencies, display a basic map and then add some imaginary data. In a real application your data would most likely be coming from an API of some kind, but that is beyond the scope of this post.
+
+### Step 1: Installation and dependencies
+
+Here we are using [Gatsby Theme Catalyst](https://www.gatsbycatalyst.com/) (but you can use any starter you want) to quickly bootstrap a working project.
 
 ```shell
 ## Bootstrap a quick starter
@@ -34,37 +38,17 @@ Next you need to add `gatsby-plugin-react-leaflet` to your Gatsby plugins array.
 ```js
 // gatsby-config.js
 plugins: [
-  // other plugins are also here
+  // other plugins...
   `gatsby-plugin-react-leaflet`,
 ]
 ```
 
-Now let's give ourselves a little bit of placeholder data to work with. My experience with mapping has been that the [GeoJson format](https://geojson.org/) is really nice to work with and is a becoming standardized across different mapping contexts making it easier to move your data around if you need to. It generally follows the format below where he geometry object stores information about location and the properties object store metadata about the location.
+### Step 2: Adding our map
 
-```json
-{
-  "type": "Feature",
-  "geometry": {
-    "type": "Point",
-    "coordinates": [125.6, 10.1]
-  },
-  "properties": {
-    "name": "Cottage home",
-    "price": 249999,
-    "bedrooms": 2,
-    "bathrooms": 1
-  }
-}
-```
-
-Copy and paste this [placeholder data](linktogithub) into your Gatsby app in `src/data/geojson.json`.
-
-## Step 2: Adding our map
-
-Now let's add our map to the project. Create a new page for our at `src/pages/map.js` and import the following code.
+Now let's add a very basic map to our project. Create a new page at `src/pages/map.js` and copy paste the following code.
 
 ```js
-//src/pages/map.js
+// src/pages/map.js
 import React from "react"
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 import { useHasMounted } from "gatsby-theme-catalyst-core"
@@ -98,11 +82,33 @@ export default Map
 
 Save and refresh and you should be looking at a simple map on your page!
 
-There are two gotchas here that are worth noting. The first is that because Gatsby is statically rendered at build time you need to check that the component has mounted before rendering the map to the DOM. The second gotcha is that the map needs to have a height, if you are missing the height it will appear as if the page is blank.
+There are two gotchas here that are worth noting. The first is that because Gatsby is statically rendered at build time you need to check that the component has mounted before rendering the map to the DOM. This is what our [useHasMounted hook](https://www.joshwcomeau.com/snippets/react-hooks/use-has-mounted/) does for us. The second gotcha is that the map needs to have a height, if you are miss the height for some reason you will be staring at a blank screen.
 
-## Step 3: Adding our GeoJson data to the map
+### Step 3: Create some placeholder data
 
-To add our imaginary real estate data to the map we will use the `GeoJson` component from `react-leaflet`. Here is what your `map.js` file should look like now.
+Now let's give ourselves a little bit of placeholder data to work with. My experience with mapping has been that the [GeoJson format](https://geojson.org/) is really nice to work with and is a becoming standardized across different mapping contexts making it easier to move your data around if you need to. It generally follows the format below where he geometry object stores information about location and the properties object store metadata about the location.
+
+```json
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Point",
+    "coordinates": [125.6, 10.1]
+  },
+  "properties": {
+    "name": "Cottage home",
+    "price": 249999,
+    "bedrooms": 2,
+    "bathrooms": 1
+  }
+}
+```
+
+Copy and paste this [placeholder data](https://github.com/ehowey/gatsby-advanced-mapping/blob/main/src/data/geojson.json) into your Gatsby app at `src/data/geojson.json`.
+
+### Step 4: Adding GeoJson data to the map
+
+To add our imaginary real estate data to the map we will use the GeoJson component from react-leaflet which we will import and use to replace the Marker and Popup components. Here is what your `map.js` file should look like now.
 
 ```js
 import React from "react"
