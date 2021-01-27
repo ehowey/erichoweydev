@@ -521,7 +521,6 @@ Now we need to add this component to our main map page and initiate the state fo
 
 ```jsx
 // src/pages/map.js
-
 // Import it
 import GetVisibleMarkers from "../lib/get-visible-markers"
 
@@ -596,7 +595,7 @@ Most mapping applications have some kind of geolocation functionality built in -
 First we need to install leaflet-locatecontrol.
 
 ```shell
-yarn install leaflet.locatecontrol
+yarn add leaflet.locatecontrol
 ```
 
 Next we need to add the necessary Font Awesome css to our html head element. FYI, this is the recommended installation process, but is _not_ performant. You can override the css to include your own custom icons negating the need for the Font Awesome library.
