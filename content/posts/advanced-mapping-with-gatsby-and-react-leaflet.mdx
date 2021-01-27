@@ -155,6 +155,10 @@ There are two gotchas worth noting here with GeoJson in react-leaflet. The stand
 
 Now that we have a basic map we can start building the more advanced functionality our real estate app needs.
 
+### Map tiles
+
+Just a quick word about map tiles. In the demo code you will notice that I am using OpenStreetMap tiles. This is fine for testing or playing around but in production you will need to use, and pay, for map tiles. I reviewed a few different options and ended up going with [MapBox](https://www.mapbox.com/) but there are lots of different options to choose from.
+
 ## Part 2: Advanced mapping patterns
 
 The core purpose of mapping applications is to visualize geographical data that would otherwise be too difficult to understand. Mapping applications have become ubiquitous in our lives whether it is for driving directions, restaurant reviews, or booking a hotel room. In order to help users find what they are looking for most mapping applications implement a robust searching and filtering UI. This is where the code complexity starts to ramp up.
