@@ -26,7 +26,7 @@ const SiteSection = () => {
     <SectionWrapper
       id="contact"
       pattern={plus}
-      darkPattern={darkPlus}
+      darkpattern={darkPlus}
       sx={{ mb: -5 }}
     >
       <SectionHeader>I'm ready to listen</SectionHeader>

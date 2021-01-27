@@ -10,7 +10,7 @@ const SectionWrapper = ({ children, ...props }) => {
       sx={{
         backgroundColor: props.bg || "inherit",
         backgroundImage: isDark
-          ? props.darkPattern || "none"
+          ? props.darkpattern || "none"
           : props.pattern || "none",
         px: 3,
         py: 5,

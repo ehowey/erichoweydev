@@ -59,7 +59,7 @@ const SiteSection = () => {
       id="work"
       bg="secondary"
       pattern={rain}
-      darkPattern={darkRain}
+      darkpattern={darkRain}
     >
       <SectionHeader>Selected Work</SectionHeader>
       <div

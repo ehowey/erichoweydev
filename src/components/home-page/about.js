@@ -36,7 +36,7 @@ const SiteSection = () => {
   const isDark = mode === "dark"
 
   return (
-    <SectionWrapper id="me" pattern={contours} darkPattern={darkContours}>
+    <SectionWrapper id="me" pattern={contours} darkpattern={darkContours}>
       <SectionHeader>About Me</SectionHeader>
       <div
         sx={{

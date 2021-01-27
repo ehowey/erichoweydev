@@ -31,7 +31,7 @@ const RecentWriting = () => {
     <SectionWrapper
       id="writing"
       pattern={triangles}
-      darkPattern={darkTriangles}
+      darkpattern={darkTriangles}
     >
       <SectionHeader>Recent Writing</SectionHeader>
       <div
