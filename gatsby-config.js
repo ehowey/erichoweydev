@@ -111,6 +111,13 @@ module.exports = {
         icon: `content/site-assets/catalyst-site-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `@raae/gatsby-plugin-fathom`,
+      options: {
+        site: "FNHMMBXM",
+        loadType: "defer",
+      },
+    },
     `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-netlify`,

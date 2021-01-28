@@ -1683,6 +1683,11 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
+"@raae/gatsby-plugin-fathom@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@raae/gatsby-plugin-fathom/-/gatsby-plugin-fathom-0.0.1.tgz#48ae6a99115272f5e5f67176cb1902bebfe25ade"
+  integrity sha512-suOf4n2iYuH3VAW4oZ3xwIJjMdFsE+0ZsVVrPUB7qQCmmHDzhDc4e/tyY0Lj5joU2KsQTXxBtQTbcTahmNLHUA==
+
 "@reach/router@^1.3.4":
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.3.4.tgz#d2574b19370a70c80480ed91f3da840136d10f8c"

@@ -5,6 +5,7 @@
   "version": "1.0.0",
   "author": "Eric Howey <ehowey@gmail.com>",
   "dependencies": {
+    "@raae/gatsby-plugin-fathom": "^0.0.1",
     "gatsby": "2.29.1",
     "gatsby-plugin-netlify": "^2.8.0",
     "gatsby-plugin-offline": "^3.7.0",
