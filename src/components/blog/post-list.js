@@ -105,6 +105,7 @@ const PostsList = ({ posts }) => {
                       >
                         {post.categories.map((category) => (
                           <Styled.li
+                            key={category}
                             sx={{
                               textTransform: "uppercase",
                               letterSpacing: "wide",
