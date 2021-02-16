@@ -16,7 +16,7 @@ const Post = ({ data: { post }, previous, next }) => (
       image={post.socialImage.childImageSharp.seo}
       keywords={post.keywords}
     />
-    <div
+    <article
       sx={{
         variant: "variants.postContainer",
         display: "grid",
@@ -151,7 +151,7 @@ const Post = ({ data: { post }, previous, next }) => (
         <MDXRenderer>{post.body}</MDXRenderer>
         <PostFooter {...{ previous, next }} />
       </div>
-    </div>
+    </article>
   </Layout>
 )
 
