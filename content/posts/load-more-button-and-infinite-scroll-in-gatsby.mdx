@@ -14,7 +14,7 @@ From a web development perspective this data is often refreshed via an API call 
 
 Maybe something like this looks familiar to you.
 
-```js
+```jsx
 <div>
   {posts.map((post) => (
     <Post key={post.id} post={post} />
@@ -34,7 +34,7 @@ Let's get going!
 
 Here is the working code for the load more button version of our news feed.
 
-```js
+```jsx
 import React, { useState, useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Article from "../components/article"
@@ -125,7 +125,7 @@ Finally the `useMore` boolean is used as a ternary operator in the JSX to condit
 
 We can expand on this code to create an infinite scrolling version of our news feed. Here is the working code for this, with an explanation below of what has changed.
 
-```js
+```jsx
 import React, { useState, useEffect, useRef } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Article from "../components/article"
