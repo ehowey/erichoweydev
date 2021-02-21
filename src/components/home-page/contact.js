@@ -6,8 +6,13 @@ import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import { plus, darkPlus } from "./patterns"
 import { useForm } from "react-hook-form"
+import { useState, useEffect } from "react"
+import { FiAlertCircle } from "react-icons/fi"
+import { motion, AnimatePresence } from "framer-motion"
 
 const SiteSection = () => {
+  // Initiate forms
+  const { register, handleSubmit, errors, reset, formState } = useForm()
   const data = useStaticQuery(graphql`
     query {
       contactImage1: file(relativePath: { eq: "absurd-fish-talking.png" }) {
@@ -22,6 +27,9 @@ const SiteSection = () => {
   const [mode] = useColorMode()
   const isDark = mode === "dark"
 
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
   // Transforms the form data from the React Hook Form output to a format Netlify can read
   const encode = (data) => {
     return Object.keys(data)
@@ -30,9 +38,6 @@ const SiteSection = () => {
       )
       .join("&")
   }
-
-  // Initiate forms
-  const { register, handleSubmit, errors, reset } = useForm()
 
   const handlePost = (formData, event) => {
     event.preventDefault()
@@ -43,15 +48,22 @@ const SiteSection = () => {
       body: encode({ "form-name": "contact-form", ...formData }),
     })
       .then((response) => {
+        setIsSubmitted(true)
         reset()
-        console.log(response)
       })
       .catch((error) => {
         console.log(error)
       })
   }
 
-  console.log(errors)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsSubmitted(false)
+    }, 1500)
+    return () => clearTimeout(timer)
+  }, [isSubmitted])
+
+  console.log(isSubmitted)
 
   return (
     <SectionWrapper
@@ -81,7 +93,7 @@ const SiteSection = () => {
           <Styled.h3>Inspired idea? Creating something special?</Styled.h3>
           <Styled.p>
             Hire me to create a bespoke online presence that drives success,
-            promotes your brand and connects with your customers.
+            promotes your brand and connects with your audience.
           </Styled.p>
           <form
             onSubmit={handleSubmit(handlePost)}
@@ -94,20 +106,22 @@ const SiteSection = () => {
             <label htmlFor="name">
               <Styled.p
                 sx={{
+                  display: "flex",
+                  alignItems: "center",
                   textTransform: "uppercase",
-                  color: "textGray",
+                  color: formState.errors.name ? "#ff0000" : "textGray",
                   fontSize: 0,
                   mb: 0,
                 }}
               >
-                Name
+                {formState.errors.name && <FiAlertCircle sx={{ mr: 1 }} />}
+                Name {formState.errors.name && "- required"}
               </Styled.p>
-              {errors.name && <span>Error message</span>}
               <input
                 name="name"
                 ref={register({ required: true })}
                 sx={{
-                  borderColor: "#aaa",
+                  borderColor: "textGray",
                   borderRadius: "4px",
                   borderStyle: "solid",
                   borderWidth: "1px",
@@ -118,15 +132,19 @@ const SiteSection = () => {
             <label htmlFor="email">
               <Styled.p
                 sx={{
+                  display: "flex",
+                  alignItems: "center",
                   textTransform: "uppercase",
-                  color: "textGray",
+                  color: formState.errors.email ? "#ff0000" : "textGray",
                   fontSize: 0,
                   mb: 0,
                 }}
               >
+                {formState.errors.email && <FiAlertCircle sx={{ mr: 1 }} />}
                 Email
+                {formState.errors.email &&
+                  " - required, please format correctly"}
               </Styled.p>
-              {errors.email && <span>Please format email correctly</span>}
               <input
                 name="email"
                 ref={register({
@@ -134,7 +152,7 @@ const SiteSection = () => {
                   pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
                 })}
                 sx={{
-                  borderColor: "#aaa",
+                  borderColor: "textGray",
                   borderRadius: "4px",
                   borderStyle: "solid",
                   borderWidth: "1px",
@@ -145,20 +163,24 @@ const SiteSection = () => {
             <label htmlFor="message">
               <Styled.p
                 sx={{
+                  display: "flex",
+                  alignItems: "center",
                   textTransform: "uppercase",
-                  color: "textGray",
+                  color: formState.errors.message ? "#ff0000" : "textGray",
                   fontSize: 0,
                   mb: 0,
                 }}
               >
-                Awesome ideas go here
+                {formState.errors.message && <FiAlertCircle sx={{ mr: 1 }} />}
+                Inspiration goes here
+                {formState.errors.message && " - You gotta tell me something!"}
               </Styled.p>
               <textarea
                 rows="8"
                 name="message"
                 ref={register({ required: true })}
                 sx={{
-                  borderColor: "text",
+                  borderColor: "textGray",
                   borderRadius: "4px",
                   borderStyle: "solid",
                   borderWidth: "1px",
@@ -184,7 +206,48 @@ const SiteSection = () => {
               Don’t fill this out if you're human:
               <input tabIndex="-1" name="got-ya" ref={register()} />
             </label>
-            <div>
+            <div sx={{ position: "relative" }}>
+              <AnimatePresence>
+                {isSubmitted && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    sx={{
+                      bg: "#00ebc7",
+                      position: "absolute",
+                      top: "-36px",
+                      left: "-46px",
+                      borderRadius: "4px",
+                      py: 2,
+                      px: 3,
+                    }}
+                  >
+                    <div
+                      sx={{
+                        position: "absolute",
+                        top: "45px",
+                        left: "50%",
+                        width: 0,
+                        height: 0,
+                        borderStyle: "solid",
+                        borderWidth: "15px 12.5px 0 12.5px",
+                        borderTopColor: "#00ebc7",
+                        borderRightColor: "transparent",
+                        borderLeftColor: "transparent",
+                        borderBottomColor: "transparent",
+                        zIndex: "10000",
+                      }}
+                    />
+                    <Styled.p sx={{ p: 0, m: 0 }}>
+                      <span sx={{ mr: 2 }} role="img" aria-label="Party popper">
+                        🎉
+                      </span>
+                      Success! Message received!
+                    </Styled.p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
               <Button
                 variant="primary"
                 type="submit"

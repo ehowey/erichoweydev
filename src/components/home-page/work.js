@@ -133,7 +133,10 @@ const SiteSection = () => {
           Follow the journey from hello to finished product.
         </Styled.p>
         <Button variant="primary" as={Link} to="/it-starts-with-hello/">
-          👋&nbsp; It starts with hello
+          It starts with hello
+          <span role="img" aria-label="Waving hand" sx={{ ml: 2 }}>
+            👋
+          </span>
         </Button>
       </div>
       <div
