@@ -52,6 +52,20 @@ const SiteSection = () => {
           }
         }
       }
+      logo4: file(relativePath: { eq: "sanity-logo.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 200) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+      logo5: file(relativePath: { eq: "netlify-logo.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 200) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
     }
   `)
   return (
@@ -119,7 +133,7 @@ const SiteSection = () => {
           Follow the journey from hello to finished product.
         </Styled.p>
         <Button variant="primary" as={Link} to="/it-starts-with-hello/">
-          It starts with hello
+          👋&nbsp; It starts with hello
         </Button>
       </div>
       <div
@@ -128,30 +142,37 @@ const SiteSection = () => {
           justifyContent: "space-between",
           width: ["300px", null, "400px", null, null],
           mx: "auto",
-          mt: 4,
+          mt: 5,
           mb: 0,
         }}
       >
         <Img
           sx={{
-            width: ["60px", null, "80px", null, null],
-          }}
-          fluid={data.logo1.childImageSharp.fluid}
-          alt="Gatsby Theme Catalyst"
-        />
-        <Img
-          sx={{
-            width: ["60px", null, "80px", null, null],
+            width: ["40px", null, "48px", null, null],
           }}
           fluid={data.logo2.childImageSharp.fluid}
-          alt="Gatsby Theme Catalyst"
+          alt="React"
         />
         <Img
           sx={{
-            width: ["60px", null, "80px", null, null],
+            width: ["40px", null, "48px", null, null],
           }}
-          fluid={data.logo3.childImageSharp.fluid}
-          alt="Gatsby Theme Catalyst"
+          fluid={data.logo1.childImageSharp.fluid}
+          alt="GatsbyJS"
+        />
+        <Img
+          sx={{
+            width: ["40px", null, "48px", null, null],
+          }}
+          fluid={data.logo4.childImageSharp.fluid}
+          alt="Sanity"
+        />
+        <Img
+          sx={{
+            width: ["40px", null, "48px", null, null],
+          }}
+          fluid={data.logo5.childImageSharp.fluid}
+          alt="Netlify"
         />
       </div>
     </SectionWrapper>

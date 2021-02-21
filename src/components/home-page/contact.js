@@ -1,11 +1,11 @@
 /** @jsx jsx */
-import { jsx, Styled, useColorMode } from "theme-ui"
+import { jsx, Styled, useColorMode, Button } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import { plus, darkPlus } from "./patterns"
-import { Button } from "@theme-ui/components"
+import { useForm } from "react-hook-form"
 
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
@@ -22,9 +22,40 @@ const SiteSection = () => {
   const [mode] = useColorMode()
   const isDark = mode === "dark"
 
+  // Transforms the form data from the React Hook Form output to a format Netlify can read
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      )
+      .join("&")
+  }
+
+  // Initiate forms
+  const { register, handleSubmit, errors, reset } = useForm()
+
+  const handlePost = (formData, event) => {
+    event.preventDefault()
+
+    fetch(`/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact-form", ...formData }),
+    })
+      .then((response) => {
+        reset()
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  console.log(errors)
+
   return (
     <SectionWrapper
-      id="contact"
+      id="hire-me"
       pattern={plus}
       darkpattern={darkPlus}
       sx={{ mb: -5 }}
@@ -48,21 +79,121 @@ const SiteSection = () => {
           }}
         >
           <Styled.h3>Inspired idea? Creating something special?</Styled.h3>
-
           <Styled.p>
-            Let me help you succeed with a welcoming, fast, and modern web
-            presence that achieves your business goals and promotes your brand.
+            Hire me to create a bespoke online presence that drives success,
+            promotes your brand and connects with your customers.
           </Styled.p>
-
-          <Styled.p>
-            The best way to begin the conversation is via{" "}
-            <Styled.a href="mailto:eric@erichowey.dev">email</Styled.a>. We can
-            then talk in person or over the phone to discuss your vision in more
-            detail. I am excited to chat!
-          </Styled.p>
-          <Button variant="primary" as="a" href="mailto:eric@erichowey.dev">
-            Email Me
-          </Button>
+          <form
+            onSubmit={handleSubmit(handlePost)}
+            name="contact-form"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="got-ya"
+          >
+            <input type="hidden" name="form-name" value="contact-form" />
+            <label htmlFor="name">
+              <Styled.p
+                sx={{
+                  textTransform: "uppercase",
+                  color: "textGray",
+                  fontSize: 0,
+                  mb: 0,
+                }}
+              >
+                Name
+              </Styled.p>
+              {errors.name && <span>Error message</span>}
+              <input
+                name="name"
+                ref={register({ required: true })}
+                sx={{
+                  borderColor: "#aaa",
+                  borderRadius: "4px",
+                  borderStyle: "solid",
+                  borderWidth: "1px",
+                  width: "300px",
+                }}
+              />
+            </label>
+            <label htmlFor="email">
+              <Styled.p
+                sx={{
+                  textTransform: "uppercase",
+                  color: "textGray",
+                  fontSize: 0,
+                  mb: 0,
+                }}
+              >
+                Email
+              </Styled.p>
+              {errors.email && <span>Please format email correctly</span>}
+              <input
+                name="email"
+                ref={register({
+                  required: true,
+                  pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+                })}
+                sx={{
+                  borderColor: "#aaa",
+                  borderRadius: "4px",
+                  borderStyle: "solid",
+                  borderWidth: "1px",
+                  width: "300px",
+                }}
+              />
+            </label>
+            <label htmlFor="message">
+              <Styled.p
+                sx={{
+                  textTransform: "uppercase",
+                  color: "textGray",
+                  fontSize: 0,
+                  mb: 0,
+                }}
+              >
+                Awesome ideas go here
+              </Styled.p>
+              <textarea
+                rows="8"
+                name="message"
+                ref={register({ required: true })}
+                sx={{
+                  borderColor: "text",
+                  borderRadius: "4px",
+                  borderStyle: "solid",
+                  borderWidth: "1px",
+                  maxWidth: "600px",
+                  width: "100%",
+                  resize: "none",
+                }}
+              />
+            </label>
+            <label
+              htmlFor="got-ya"
+              sx={{
+                position: "absolute",
+                overflow: "hidden",
+                clip: "rect(0 0 0 0)",
+                height: "1px",
+                width: "1px",
+                margin: "-1px",
+                padding: "0",
+                border: "0",
+              }}
+            >
+              Don’t fill this out if you're human:
+              <input tabIndex="-1" name="got-ya" ref={register()} />
+            </label>
+            <div>
+              <Button
+                variant="primary"
+                type="submit"
+                sx={{ py: 1, px: 3, mt: 3 }}
+              >
+                Start the conversation
+              </Button>
+            </div>
+          </form>
         </div>
         <Img
           sx={{

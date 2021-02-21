@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui"
+import { jsx, Styled, Button } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import SectionWrapper from "./section-wrapper"
@@ -68,6 +68,26 @@ const Hero = () => {
             My name is Eric Howey. I am a web developer and mental health
             therapist. I listen and care.
           </Styled.p>
+          <div sx={{ mt: 4 }}>
+            <Button
+              variant="primary"
+              as="a"
+              href="#hire-me"
+              sx={{
+                fontSize: 3,
+                px: 4,
+                "::after": {
+                  content: '"\\00A0 \\2192"',
+                },
+                ":hover::after, :active::after, :focus::after": {
+                  transition: "all 0.2s ease-in-out",
+                  pl: 2,
+                },
+              }}
+            >
+              Hire me
+            </Button>
+          </div>
         </div>
       </div>
     </SectionWrapper>

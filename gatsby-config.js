@@ -45,8 +45,8 @@ module.exports = {
         type: `anchor`,
       },
       {
-        name: `Contact`,
-        link: `#contact`,
+        name: `Hire me`,
+        link: `#hire-me`,
         type: `anchor`,
       },
       {

@@ -7040,15 +7040,15 @@ gatsby-telemetry@^1.10.0:
     node-fetch "^2.6.1"
     uuid "3.4.0"
 
-gatsby-theme-catalyst-blog@^2.6.4:
-  version "2.6.4"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-blog/-/gatsby-theme-catalyst-blog-2.6.4.tgz#44d29c048052e57868b088b682d9b04960665bcf"
-  integrity sha512-QbWM1Wc6vjG5WaPDakzkDwY0ji7MWBLZU0D4xvc7t9Pq1HLQnwJLWZ/ZaSfYw9dA1f9G4urd2QxeUaV0GLOIbw==
+gatsby-theme-catalyst-blog@^2.6.6:
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-blog/-/gatsby-theme-catalyst-blog-2.6.6.tgz#a51f352ec5aee4792d1ea391b63a821a13cad97f"
+  integrity sha512-k7g4JODYRUZ4WnKvdfFlQ44C1iChVVE+EpePr4LkAui8tghkSu/ebu579/54/MFVqZ116dT/+tjIsdGCKxHvhg==
 
-gatsby-theme-catalyst-core@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-core/-/gatsby-theme-catalyst-core-3.1.2.tgz#891fd0375d63733677a18811bf3049898e213ef4"
-  integrity sha512-cm1kyYMlxzTlR35hxmWYTHOk1MheTiDu7Dt58Vlg2FGRImbLss7EXf3oa1WooBJYElnM/5hjkVF8/tg7xG4+Vw==
+gatsby-theme-catalyst-core@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-core/-/gatsby-theme-catalyst-core-3.1.4.tgz#95d52ca5007213d8a14587edf7dbe6af1e91a352"
+  integrity sha512-3ow8dLHxUpoQacUiTYYXIaL6AXFUuSkRWJ1DWku/roqdAR+05oG6Npka2ehyPYVjIS4X5wFSgNHcSr14NXTIXA==
   dependencies:
     "@mdx-js/mdx" "^1.6.21"
     "@mdx-js/react" "^1.6.21"
@@ -7093,10 +7093,10 @@ gatsby-theme-catalyst-core@^3.1.2:
     remark-slug "^6.0.0"
     theme-ui "^0.3.5"
 
-gatsby-theme-catalyst-header-top@^1.5.7:
-  version "1.5.7"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-header-top/-/gatsby-theme-catalyst-header-top-1.5.7.tgz#7bc879d8296ca29ffb1d788f83753ae88434ad46"
-  integrity sha512-ENvFH9N6GOeC+tSh8tPqhKWnpQ5BLAI8sHdiy3hmTLeZmQz8Zh5rp/gnffxiOoQpNQIFjYbaSmcZ3rQSzUYHdg==
+gatsby-theme-catalyst-header-top@^1.5.9:
+  version "1.5.9"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-header-top/-/gatsby-theme-catalyst-header-top-1.5.9.tgz#02e9a8e85271989a20eeabadc19bb4df011975bb"
+  integrity sha512-ElSS/wu8lxg42OOm1eXg/nl7ECSqr6Np3ozHcph6U3a8DGfp2dMM4icHrUHINMeb02/YAMhXaczUMjxHZCY9DA==
 
 gatsby-transformer-json@^2.9.0:
   version "2.11.0"
@@ -12201,6 +12201,11 @@ react-helmet@^6.1.0:
     prop-types "^15.7.2"
     react-fast-compare "^3.1.1"
     react-side-effect "^2.1.0"
+
+react-hook-form@^6.15.2:
+  version "6.15.2"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.15.2.tgz#3dd4eecfb6ebc261d4372df57d166c6bf893d246"
+  integrity sha512-2yAn+vjYaM1jDqhsZdL9964wyNUZhVWC+epEYh4f3sUKaDYxmewp1fqQyF1kaIjuaQWG3OMoM81RkXeHCsQvig==
 
 react-hot-loader@^4.12.21:
   version "4.13.0"

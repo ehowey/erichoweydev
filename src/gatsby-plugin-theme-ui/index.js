@@ -28,7 +28,7 @@ export default {
     codeBg: baseColors.gray[9],
     header: {
       background: "#9ce5f4",
-      backgroundOpen: "#2e7da4",
+      backgroundOpen: "#12303f",
       text: baseColors.gray[8],
       textOpen: baseColors.gray[1],
       icons: baseColors.gray[6],
@@ -200,26 +200,9 @@ export default {
       color: "textWhite",
       borderRadius: "4px",
       transition: "all 0.3s ease",
-      "::after": {
-        content: '"\\00A0 \\2192"',
-      },
-      ":hover": {
+      cursor: "pointer",
+      ":hover, :active, :focus": {
         bg: "primaryHover",
-      },
-    },
-    secondary: {
-      bg: "transparent",
-      color: "primary",
-      borderColor: "primary",
-      borderStyle: "solid",
-      borderWidth: "2px",
-      borderRadius: "default",
-      transition: "all 0.3s ease 0s",
-      "::after": {
-        content: '"\\00A0 \\2192"',
-      },
-      ":hover": {
-        bg: baseColors.gray[1],
       },
     },
     alt: {
@@ -234,7 +217,11 @@ export default {
       "::after": {
         content: '"\\00A0 \\2192"',
       },
-      ":hover": {
+      // ":hover::after, :active::after, :focus::after": {
+      //   transition: "all 0.2s ease-in-out",
+      //   pl: 2,
+      // },
+      ":hover, :active, :focus": {
         textDecoration: "underline",
         color: "primaryHover",
         bg: "transparent",
