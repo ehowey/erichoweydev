@@ -10,13 +10,18 @@ const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
 module.exports = {
   siteMetadata: {
     title: `Eric Howey`,
-    description: `Frontend web developer and designer, based in Calgary, Alberta. Specializing in Javascript, React, and Gatsby. Say hello and let's build something amazing together!`,
+    description: `Frontend web developer and designer, based in Calgary, Alberta. Specializing in Javascript, React, Gatsby, NextJS and SANITY. Say hello and let's build something amazing together!`,
     keywords: [
       `web developer`,
       `Cochrane`,
       `web design`,
       `Calgary`,
       `Gatsby`,
+      `SANITY`,
+      `Gatsbyjs`,
+      `SANITY.io`,
+      `sanity`,
+      `NextJS`,
       `websites`,
       `react`,
       `javascript`,
