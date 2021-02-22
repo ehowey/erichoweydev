@@ -58,9 +58,9 @@ const SiteSection = () => {
           <Styled.h3 sx={{ mt: 0 }}>I built my first website in 1998</Styled.h3>
           <Styled.p>It sucked.</Styled.p>
           <Styled.p>
-            A lot has changed since then. I develop kickass websites that don’t
-            suck using modern web technologies. I can also grow facial hair and
-            have two super awesome kids. It <i>really</i> has changed.
+            A lot has changed since then. I develop kickass websites using
+            modern web technologies. I can grow facial hair and I have two super
+            awesome kids. It <i>really</i> has changed.
           </Styled.p>
         </div>
         <Img
@@ -117,10 +117,10 @@ const SiteSection = () => {
           <Styled.h3>Slow is smooth, smooth is fast</Styled.h3>
           <Styled.p>I don’t do rushed.</Styled.p>
           <Styled.p>
-            Building an engaging, fast and user friendly website is a slow
-            process. It requires problem solving and creativity. I only work on
-            a few projects per year and appreciate the artisanship of a well
-            crafted product.
+            Building an engaging, performant and accessible website is an
+            intentional process. It requires problem solving and creativity. I
+            only work on one project at a time and appreciate the artisanship of
+            the finished product.
           </Styled.p>
         </div>
         <Img

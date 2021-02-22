@@ -5,9 +5,11 @@ import Img from "gatsby-image"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import { plus, darkPlus } from "./patterns"
-import { Button } from "@theme-ui/components"
+import ContactForm from "../contact-form"
 
 const SiteSection = () => {
+  // Initiate forms
+  // const { register, handleSubmit, errors, reset, formState } = useForm()
   const data = useStaticQuery(graphql`
     query {
       contactImage1: file(relativePath: { eq: "absurd-fish-talking.png" }) {
@@ -22,9 +24,46 @@ const SiteSection = () => {
   const [mode] = useColorMode()
   const isDark = mode === "dark"
 
+  // const [isSubmitted, setIsSubmitted] = useState(false)
+
+  // // Transforms the form data from the React Hook Form output to a format Netlify can read
+  // const encode = (data) => {
+  //   return Object.keys(data)
+  //     .map(
+  //       (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+  //     )
+  //     .join("&")
+  // }
+
+  // const handlePost = (formData, event) => {
+  //   event.preventDefault()
+
+  //   fetch(`/`, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  //     body: encode({ "form-name": "contact-form", ...formData }),
+  //   })
+  //     .then((response) => {
+  //       setIsSubmitted(true)
+  //       reset()
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  // }
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsSubmitted(false)
+  //   }, 2000)
+  //   return () => clearTimeout(timer)
+  // }, [isSubmitted])
+
+  // console.log(isSubmitted)
+
   return (
     <SectionWrapper
-      id="contact"
+      id="hire-me"
       pattern={plus}
       darkpattern={darkPlus}
       sx={{ mb: -5 }}
@@ -48,21 +87,11 @@ const SiteSection = () => {
           }}
         >
           <Styled.h3>Inspired idea? Creating something special?</Styled.h3>
-
           <Styled.p>
-            Let me help you succeed with a welcoming, fast, and modern web
-            presence that achieves your business goals and promotes your brand.
+            Hire me to create a bespoke online presence that drives success,
+            promotes your brand and connects with your audience.
           </Styled.p>
-
-          <Styled.p>
-            The best way to begin the conversation is via{" "}
-            <Styled.a href="mailto:eric@erichowey.dev">email</Styled.a>. We can
-            then talk in person or over the phone to discuss your vision in more
-            detail. I am excited to chat!
-          </Styled.p>
-          <Button variant="primary" as="a" href="mailto:eric@erichowey.dev">
-            Email Me
-          </Button>
+          <ContactForm />
         </div>
         <Img
           sx={{
