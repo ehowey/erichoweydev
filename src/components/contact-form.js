@@ -164,22 +164,22 @@ const ContactForm = () => {
               sx={{
                 bg: "alertGreen",
                 position: "absolute",
-                top: "-36px",
-                left: "-46px",
+                top: "-56px",
+                left: ["0px", null, "-36px", null, null],
                 borderRadius: "4px",
-                py: 2,
+                py: 3,
                 px: 3,
               }}
             >
               <div
                 sx={{
                   position: "absolute",
-                  top: "45px",
+                  top: "60px",
                   left: "50%",
                   width: 0,
                   height: 0,
                   borderStyle: "solid",
-                  borderWidth: "15px 12.5px 0 12.5px",
+                  borderWidth: "20px 16px 0 16px",
                   borderTopColor: "alertGreen",
                   borderRightColor: "transparent",
                   borderLeftColor: "transparent",

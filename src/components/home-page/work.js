@@ -6,6 +6,7 @@ import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import WorkCard from "./work-card"
 import { rain, darkRain } from "./patterns"
+import { motion } from "framer-motion"
 
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
@@ -68,6 +69,17 @@ const SiteSection = () => {
       }
     }
   `)
+  const handMotion = {
+    rest: { rotate: 0 },
+    hover: {
+      rotate: [35, -15, 15, -5, 0],
+      transition: {
+        duration: 1.2,
+        // type: "spring",
+        // ease: "easeIn",
+      },
+    },
+  }
   return (
     <SectionWrapper
       id="work"
@@ -116,7 +128,6 @@ const SiteSection = () => {
           placeItems: "center",
         }}
       >
-        {" "}
         <Styled.h3
           sx={{
             mt: 0,
@@ -132,12 +143,26 @@ const SiteSection = () => {
         >
           Follow the journey from hello to finished product.
         </Styled.p>
-        <Button variant="primary" as={Link} to="/it-starts-with-hello/">
-          It starts with hello
-          <span role="img" aria-label="Waving hand" sx={{ ml: 2 }}>
-            👋
-          </span>
-        </Button>
+        <motion.div
+          initial="rest"
+          whileHover="hover"
+          animate="rest"
+          sx={{ position: "relative" }}
+        >
+          <Button
+            variant="primary"
+            as={Link}
+            to="/it-starts-with-hello/"
+            sx={{ display: "flex" }}
+          >
+            It starts with hello
+            <motion.div sx={{ ml: 2 }} variants={handMotion}>
+              <span role="img" aria-label="Waving hand">
+                👋
+              </span>
+            </motion.div>
+          </Button>
+        </motion.div>
       </div>
       <div
         sx={{

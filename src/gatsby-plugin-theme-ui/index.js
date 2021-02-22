@@ -205,6 +205,7 @@ export default {
       borderRadius: "4px",
       transition: "all 0.3s ease",
       cursor: "pointer",
+      boxShadow: "default",
       ":hover, :active, :focus": {
         bg: "primaryHover",
       },
