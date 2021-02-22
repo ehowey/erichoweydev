@@ -5,6 +5,9 @@ import Img from "gatsby-image"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import { contours, darkContours } from "./patterns"
+import { motion, useAnimation } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+import { useEffect } from "react"
 
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
@@ -35,6 +38,34 @@ const SiteSection = () => {
   const [mode] = useColorMode()
   const isDark = mode === "dark"
 
+  const textVariants = {
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: { type: "tween", duration: 0.3 },
+    },
+  }
+
+  const para1Control = useAnimation()
+  const para2Control = useAnimation()
+  const para3Control = useAnimation()
+
+  const [para1Ref, para1InView] = useInView()
+  const [para2Ref, para2InView] = useInView()
+  const [para3Ref, para3InView] = useInView()
+
+  useEffect(() => {
+    if (para1InView) {
+      para1Control.start("visible")
+    }
+    if (para2InView) {
+      para2Control.start("visible")
+    }
+    if (para3InView) {
+      para3Control.start("visible")
+    }
+  }, [para1InView, para2InView, para3InView])
+
   return (
     <SectionWrapper id="me" pattern={contours} darkpattern={darkContours}>
       <SectionHeader>About Me</SectionHeader>
@@ -49,7 +80,11 @@ const SiteSection = () => {
           pt: 5,
         }}
       >
-        <div
+        <motion.div
+          initial={{ x: -100, opacity: 0 }}
+          animate={para1Control}
+          variants={textVariants}
+          ref={para1Ref}
           sx={{
             gridColumn: ["1 / -1", null, "1 / 3", null, null],
             gridRow: ["2 / 3", null, "1 / 2", null, null],
@@ -62,7 +97,7 @@ const SiteSection = () => {
             modern web technologies. I can grow facial hair and I have two super
             awesome kids. It <i>really</i> has changed.
           </Styled.p>
-        </div>
+        </motion.div>
         <Img
           sx={{
             width: ["250px", "300px", "100%", null, null],
@@ -76,8 +111,11 @@ const SiteSection = () => {
           alt="A fun face"
           imgStyle={{ objectFit: "contain" }}
         />
-
-        <div
+        <motion.div
+          initial={{ x: 100, opacity: 0 }}
+          animate={para2Control}
+          variants={textVariants}
+          ref={para2Ref}
           sx={{
             gridColumn: ["1 / -1", null, "2 / -1", null, null],
             gridRow: ["4 / 5", null, "3 / 4", null, null],
@@ -93,7 +131,7 @@ const SiteSection = () => {
             reassuringly certain when contrasted with the nuance of human
             experience.
           </Styled.p>
-        </div>
+        </motion.div>
         <Img
           sx={{
             width: ["250px", "300px", "100%", null, null],
@@ -107,8 +145,11 @@ const SiteSection = () => {
           alt="A picture of a grad cap"
           imgStyle={{ objectFit: "contain" }}
         />
-
-        <div
+        <motion.div
+          initial={{ x: -100, opacity: 0 }}
+          animate={para3Control}
+          variants={textVariants}
+          ref={para3Ref}
           sx={{
             gridColumn: ["1 / -1", null, "1 / 3", null, null],
             gridRow: ["6 / 7", null, "4 / 5", null, null],
@@ -122,7 +163,7 @@ const SiteSection = () => {
             only work on one project at a time and appreciate the artisanship of
             the finished product.
           </Styled.p>
-        </div>
+        </motion.div>
         <Img
           sx={{
             width: ["250px", "300px", "100%", null, null],

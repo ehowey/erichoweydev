@@ -178,6 +178,7 @@ const SiteSection = () => {
           }}
           fluid={data.logo2.childImageSharp.fluid}
           alt="React"
+          imgStyle={{ objectFit: "contain" }}
         />
         <Img
           sx={{
@@ -185,10 +186,11 @@ const SiteSection = () => {
           }}
           fluid={data.logo1.childImageSharp.fluid}
           alt="GatsbyJS"
+          imgStyle={{ objectFit: "contain" }}
         />
         <Img
           sx={{
-            width: ["36px", null, "50px", null, null],
+            width: ["42px", null, "65px", null, null],
           }}
           fluid={data.logo3.childImageSharp.fluid}
           alt="NextJs"
@@ -199,6 +201,7 @@ const SiteSection = () => {
           }}
           fluid={data.logo4.childImageSharp.fluid}
           alt="Sanity"
+          imgStyle={{ objectFit: "contain" }}
         />
         <Img
           sx={{
@@ -206,6 +209,7 @@ const SiteSection = () => {
           }}
           fluid={data.logo5.childImageSharp.fluid}
           alt="Netlify"
+          imgStyle={{ objectFit: "contain" }}
         />
       </div>
     </SectionWrapper>
