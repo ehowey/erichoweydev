@@ -6,6 +6,7 @@ import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import WorkCard from "./work-card"
 import { rain, darkRain } from "./patterns"
+import { motion } from "framer-motion"
 
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
@@ -45,7 +46,21 @@ const SiteSection = () => {
           }
         }
       }
-      logo3: file(relativePath: { eq: "js-logo.png" }) {
+      logo3: file(relativePath: { eq: "next-logo.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 200) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+      logo4: file(relativePath: { eq: "sanity-logo.png" }) {
+        childImageSharp {
+          fluid(maxWidth: 200) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+      logo5: file(relativePath: { eq: "netlify-logo.png" }) {
         childImageSharp {
           fluid(maxWidth: 200) {
             ...GatsbyImageSharpFluid_withWebp
@@ -54,6 +69,15 @@ const SiteSection = () => {
       }
     }
   `)
+  const handMotion = {
+    rest: { rotate: 0 },
+    hover: {
+      rotate: [35, -15, 15, -5, 0],
+      transition: {
+        duration: 1.2,
+      },
+    },
+  }
   return (
     <SectionWrapper
       id="work"
@@ -102,7 +126,6 @@ const SiteSection = () => {
           placeItems: "center",
         }}
       >
-        {" "}
         <Styled.h3
           sx={{
             mt: 0,
@@ -118,40 +141,71 @@ const SiteSection = () => {
         >
           Follow the journey from hello to finished product.
         </Styled.p>
-        <Button variant="primary" as={Link} to="/it-starts-with-hello/">
-          It starts with hello
-        </Button>
+        <motion.div
+          initial="rest"
+          whileHover="hover"
+          animate="rest"
+          sx={{ position: "relative" }}
+        >
+          <Button
+            variant="primary"
+            as={Link}
+            to="/it-starts-with-hello/"
+            sx={{ display: "flex" }}
+          >
+            It starts with hello
+            <motion.div sx={{ ml: 2 }} variants={handMotion}>
+              <span role="img" aria-label="Waving hand">
+                👋
+              </span>
+            </motion.div>
+          </Button>
+        </motion.div>
       </div>
       <div
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          width: ["300px", null, "400px", null, null],
+          width: ["320px", null, "500px", null, null],
           mx: "auto",
-          mt: 4,
+          mt: 5,
           mb: 0,
         }}
       >
         <Img
           sx={{
-            width: ["60px", null, "80px", null, null],
-          }}
-          fluid={data.logo1.childImageSharp.fluid}
-          alt="Gatsby Theme Catalyst"
-        />
-        <Img
-          sx={{
-            width: ["60px", null, "80px", null, null],
+            width: ["36px", null, "50px", null, null],
           }}
           fluid={data.logo2.childImageSharp.fluid}
-          alt="Gatsby Theme Catalyst"
+          alt="React"
         />
         <Img
           sx={{
-            width: ["60px", null, "80px", null, null],
+            width: ["36px", null, "50px", null, null],
+          }}
+          fluid={data.logo1.childImageSharp.fluid}
+          alt="GatsbyJS"
+        />
+        <Img
+          sx={{
+            width: ["36px", null, "50px", null, null],
           }}
           fluid={data.logo3.childImageSharp.fluid}
-          alt="Gatsby Theme Catalyst"
+          alt="NextJs"
+        />
+        <Img
+          sx={{
+            width: ["36px", null, "50px", null, null],
+          }}
+          fluid={data.logo4.childImageSharp.fluid}
+          alt="Sanity"
+        />
+        <Img
+          sx={{
+            width: ["36px", null, "50px", null, null],
+          }}
+          fluid={data.logo5.childImageSharp.fluid}
+          alt="Netlify"
         />
       </div>
     </SectionWrapper>

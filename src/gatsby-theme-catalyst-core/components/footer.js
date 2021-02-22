@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, useThemeUI } from "theme-ui"
+import { jsx, useThemeUI, Styled } from "theme-ui"
 import {
   useSiteMetadata,
   useCatalystConfig,
@@ -61,20 +61,16 @@ const SiteFooter = () => {
             <SocialFooter />
           </IconContext.Provider>
         </div>
-        <p
+        <Styled.p
           sx={{
             my: 0,
           }}
         >
           Illustrations by{" "}
           <a href="https://twitter.com/diana_valeanu">Diana Valeanu</a>
-          <br />
-          Design inspired by{" "}
-          <a href="https://www.gatsbyjs.org/starters/ajayns/gatsby-absurd/">
-            Gatsby-Absurd
-          </a>
-          <br />© {new Date().getFullYear()} {title}
-        </p>
+          <br />© {new Date().getFullYear()} {title} -{" "}
+          <a href="mailto:eric@erichowey.dev">eric@erichowey.dev</a>
+        </Styled.p>
       </div>
     </footer>
   )

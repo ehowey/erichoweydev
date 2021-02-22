@@ -38,10 +38,13 @@ const PostsList = ({ posts }) => {
                 null,
                 "1fr 1fr",
                 "1fr 1fr 1fr",
-                "1fr 1fr 1fr 1fr",
+                null,
               ],
               gridGap: 4,
               justifyContent: "center",
+              "@media screen and (min-width: 120em)": {
+                gridTemplateColumns: "1fr 1fr 1fr 1fr",
+              },
             }}
           >
             <Styled.h1>Writing</Styled.h1>
@@ -50,6 +53,7 @@ const PostsList = ({ posts }) => {
               return (
                 <article
                   sx={{
+                    borderRadius: "4px",
                     backgroundColor: "accent",
                     textDecoration: "none",
                     color: "text",
@@ -83,6 +87,8 @@ const PostsList = ({ posts }) => {
                     <Img
                       className="featuredImage"
                       sx={{
+                        borderTopLeftRadius: "4px",
+                        borderTopRightRadius: "4px",
                         height: "250px",
                         mb: 3,
                         variant: "variants.postListImage",
@@ -109,7 +115,7 @@ const PostsList = ({ posts }) => {
                             sx={{
                               textTransform: "uppercase",
                               letterSpacing: "wide",
-                              color: "primary",
+                              color: "textGray",
                               fontSize: 1,
                               fontWeight: "bold",
                               "::after": {
@@ -131,6 +137,7 @@ const PostsList = ({ posts }) => {
                         sx={{
                           mt: 1,
                           fontSize: 3,
+                          color: "primary",
                           variant: "variants.postListTitle",
                         }}
                       >

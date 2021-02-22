@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Post from "../../../components/blog/post"
 
-export default ({ data }) => {
+const EricPostQuery = ({ data }) => {
   const { catalystPost, previous, next } = data
   return (
     <Post
@@ -61,3 +61,5 @@ export const query = graphql`
     }
   }
 `
+
+export default EricPostQuery
