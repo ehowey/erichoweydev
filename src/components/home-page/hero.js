@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import SectionWrapper from "./section-wrapper"
 import { darken, lighten } from "@theme-ui/color"
-import { hero } from "./patterns"
+import { heroCircles } from "./patterns"
 import { motion } from "framer-motion"
 
 const Hero = () => {
@@ -70,34 +70,6 @@ const Hero = () => {
               borderRadius: "50%",
             }}
           />
-          <motion.div
-            initial={{ x: 20, y: -20, opacity: 0 }}
-            animate={{ x: 0, y: 0, opacity: 1 }}
-            transition={{ delay: 0.7, type: "tween" }}
-            sx={{
-              backgroundImage: hero,
-              position: "absolute",
-              width: "100px",
-              height: "50px",
-              left: "-20px",
-              bottom: "20px",
-              borderRadius: "15%",
-            }}
-          />
-          <motion.div
-            initial={{ x: -20, y: 20, opacity: 0 }}
-            animate={{ x: 0, y: 0, opacity: 1 }}
-            transition={{ delay: 0.8, type: "tween" }}
-            sx={{
-              backgroundImage: hero,
-              position: "absolute",
-              width: "140px",
-              height: "140px",
-              right: "0px",
-              top: "-30px",
-              borderRadius: "15%",
-            }}
-          />
           <Img
             sx={{
               width: ["200px", null, null, "220px", null],
@@ -107,7 +79,6 @@ const Hero = () => {
             }}
             fluid={data.welcomeImage.childImageSharp.fluid}
             alt="Eric Howey"
-            // imgStyle={{ objectFit: "contain" }}
           />
         </div>
         <div>
@@ -131,7 +102,7 @@ const Hero = () => {
               display: "inline",
             }}
           >
-            My name is Eric Howey. I am a web developer and mental health
+            My name is Eric Howey. I'm a web developer and mental health
             therapist. I listen and care.
           </Styled.p>
           <div sx={{ mt: 4 }}>
