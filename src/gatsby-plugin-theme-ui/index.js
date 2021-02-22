@@ -25,6 +25,8 @@ export default {
     textBlack: baseColors.gray[8],
     textWhite: baseColors.gray[1],
     textGray: "#6e6e6e",
+    alertRed: "#e90000",
+    alertGreen: "#00ffa2",
     codeBg: baseColors.gray[9],
     header: {
       background: "#9ce5f4",
@@ -52,6 +54,8 @@ export default {
         textGray: "#9f9f9f",
         muted: baseColors.gray[8],
         codeBg: baseColors.gray[8],
+        alertRed: "#ff0000",
+        alertGreen: "#0a8745",
         header: {
           background: "#004751",
           backgroundOpen: "#324b50",
@@ -217,10 +221,6 @@ export default {
       "::after": {
         content: '"\\00A0 \\2192"',
       },
-      // ":hover::after, :active::after, :focus::after": {
-      //   transition: "all 0.2s ease-in-out",
-      //   pl: 2,
-      // },
       ":hover, :active, :focus": {
         textDecoration: "underline",
         color: "primaryHover",
