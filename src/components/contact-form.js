@@ -120,7 +120,7 @@ const ContactForm = () => {
           }}
         >
           {formState.errors.message && <FiAlertCircle sx={{ mr: 1 }} />}
-          Inspiration goes here
+          Tell me about your great ideas
           {formState.errors.message && " - You gotta tell me something!"}
         </Styled.p>
         <textarea

@@ -46,7 +46,7 @@ const SiteSection = () => {
           }
         }
       }
-      logo3: file(relativePath: { eq: "js-logo.png" }) {
+      logo3: file(relativePath: { eq: "next-logo.png" }) {
         childImageSharp {
           fluid(maxWidth: 200) {
             ...GatsbyImageSharpFluid_withWebp
@@ -75,8 +75,6 @@ const SiteSection = () => {
       rotate: [35, -15, 15, -5, 0],
       transition: {
         duration: 1.2,
-        // type: "spring",
-        // ease: "easeIn",
       },
     },
   }
@@ -168,7 +166,7 @@ const SiteSection = () => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          width: ["300px", null, "400px", null, null],
+          width: ["320px", null, "500px", null, null],
           mx: "auto",
           mt: 5,
           mb: 0,
@@ -176,28 +174,35 @@ const SiteSection = () => {
       >
         <Img
           sx={{
-            width: ["40px", null, "48px", null, null],
+            width: ["36px", null, "50px", null, null],
           }}
           fluid={data.logo2.childImageSharp.fluid}
           alt="React"
         />
         <Img
           sx={{
-            width: ["40px", null, "48px", null, null],
+            width: ["36px", null, "50px", null, null],
           }}
           fluid={data.logo1.childImageSharp.fluid}
           alt="GatsbyJS"
         />
         <Img
           sx={{
-            width: ["40px", null, "48px", null, null],
+            width: ["36px", null, "50px", null, null],
+          }}
+          fluid={data.logo3.childImageSharp.fluid}
+          alt="NextJs"
+        />
+        <Img
+          sx={{
+            width: ["36px", null, "50px", null, null],
           }}
           fluid={data.logo4.childImageSharp.fluid}
           alt="Sanity"
         />
         <Img
           sx={{
-            width: ["40px", null, "48px", null, null],
+            width: ["36px", null, "50px", null, null],
           }}
           fluid={data.logo5.childImageSharp.fluid}
           alt="Netlify"

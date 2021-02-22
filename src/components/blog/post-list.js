@@ -42,6 +42,9 @@ const PostsList = ({ posts }) => {
               ],
               gridGap: 4,
               justifyContent: "center",
+              "@media screen and (min-width: 120em)": {
+                gridTemplateColumns: "1fr 1fr 1fr 1fr",
+              },
             }}
           >
             <Styled.h1>Writing</Styled.h1>
