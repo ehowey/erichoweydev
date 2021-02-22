@@ -1,13 +1,16 @@
 /** @jsx jsx */
-import { jsx, Styled, Button } from "theme-ui"
+import { jsx, Styled, Button, useColorMode } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import SectionWrapper from "./section-wrapper"
+import { darken, lighten } from "@theme-ui/color"
+import { hero } from "./patterns"
+import { motion } from "framer-motion"
 
 const Hero = () => {
   const data = useStaticQuery(graphql`
     query {
-      welcomeImage: file(relativePath: { eq: "absurd-eh-face.png" }) {
+      welcomeImage: file(relativePath: { eq: "eric-howey-sq.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 1024) {
             ...GatsbyImageSharpFluid_withWebp
@@ -17,16 +20,19 @@ const Hero = () => {
     }
   `)
 
+  const [mode] = useColorMode()
+  const isDark = mode === "dark"
+
   return (
     <SectionWrapper bg="secondary">
       <div
         sx={{
           display: "grid",
           gridTemplateColumns: [
-            "1fr",
-            "180px minmax(auto, 400px)",
-            "200px minmax(400px, 600px)",
-            "220px 720px",
+            "minmax(0, 1fr)",
+            null,
+            "auto minmax(400px, 600px)",
+            "auto 720px",
             null,
           ],
           gridGap: 4,
@@ -35,15 +41,75 @@ const Hero = () => {
           justifyContent: "center",
         }}
       >
-        <Img
-          sx={{
-            width: ["200px", "100%", null, null, null],
-            height: ["200px", "100%", null, null, null],
-          }}
-          fluid={data.welcomeImage.childImageSharp.fluid}
-          alt="Eric Howey"
-          imgStyle={{ objectFit: "contain" }}
-        />
+        <div sx={{ position: "relative" }}>
+          <motion.div
+            initial={{ x: 20, y: 20, opacity: 0 }}
+            animate={{ x: 0, y: 0, opacity: 1 }}
+            transition={{ delay: 0.4, type: "tween" }}
+            sx={{
+              position: "absolute",
+              bg: isDark ? lighten("accent", 0.2) : darken("accent", 0.3),
+              width: "210px",
+              height: "210px",
+              left: "-16px",
+              top: "-10px",
+              borderRadius: "50%",
+            }}
+          />
+          <motion.div
+            initial={{ x: -20, y: -20, opacity: 0 }}
+            animate={{ x: 0, y: 0, opacity: 1 }}
+            transition={{ delay: 0.6, type: "tween" }}
+            sx={{
+              position: "absolute",
+              bg: isDark ? lighten("accent", 0.1) : darken("accent", 0.5),
+              width: "160px",
+              height: "160px",
+              right: "-8px",
+              bottom: "-10px",
+              borderRadius: "50%",
+            }}
+          />
+          <motion.div
+            initial={{ x: 20, y: -20, opacity: 0 }}
+            animate={{ x: 0, y: 0, opacity: 1 }}
+            transition={{ delay: 0.7, type: "tween" }}
+            sx={{
+              backgroundImage: hero,
+              position: "absolute",
+              width: "100px",
+              height: "50px",
+              left: "-20px",
+              bottom: "20px",
+              borderRadius: "15%",
+            }}
+          />
+          <motion.div
+            initial={{ x: -20, y: 20, opacity: 0 }}
+            animate={{ x: 0, y: 0, opacity: 1 }}
+            transition={{ delay: 0.8, type: "tween" }}
+            sx={{
+              backgroundImage: hero,
+              position: "absolute",
+              width: "140px",
+              height: "140px",
+              right: "0px",
+              top: "-30px",
+              borderRadius: "15%",
+            }}
+          />
+          <Img
+            sx={{
+              width: ["200px", null, null, "220px", null],
+              height: ["200px", null, null, "220px", null],
+              borderRadius: "50%",
+              boxShadow: "lg",
+            }}
+            fluid={data.welcomeImage.childImageSharp.fluid}
+            alt="Eric Howey"
+            // imgStyle={{ objectFit: "contain" }}
+          />
+        </div>
         <div>
           <Styled.h1
             sx={{
