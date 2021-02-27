@@ -119,7 +119,7 @@ Next there is a simple `handleLoadMore` function which sets the `loadMore` boole
 
 There are two useEffect hooks. Our first hook runs when the loadMore boolean changes. It adds 10 more news articles to our displayed list. The second hook runs every time the displayed list changes and checks to see whether there are any more articles to display. Working together these two hooks control the core logic of this load more button.
 
-Finally the `useMore` boolean is used as a ternary operator in the JSX to conditionally show either the load more button or an alert to the user that there are no more articles.
+Finally the `hasMore` boolean is used as a ternary operator in the JSX to conditionally show either the load more button or an alert to the user that there are no more articles.
 
 ## Infinite scroll
 
