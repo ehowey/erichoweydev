@@ -217,7 +217,7 @@ const Page = () => {
 export default Page
 ```
 
-Our code is very similar to the load more button with a few key differences. We have replaced the button with a `<div>` that has a ref assigned to it. The [intersection observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) is initialized in a useEffect hook and used to track whether the scroll position is intersecting with this ref on the page. When an intersection happens it triggers the `loadMore` state to true, setting off the same cascade of effects as our load more button from before.
+Our code is very similar to the load more button with a few key differences. We have replaced the button with a `<div>` that has a ref assigned to it. The [intersection observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) is initialized in a useEffect hook and used to track whether the scroll position is intersecting with this ref on the page. When an intersection happens it triggers the `hasMore` state to true, setting off the same cascade of effects as our load more button from before.
 
 There you have it. Simple and effective load more button and infinite scrolling implementations for your Gatsby site.
 
