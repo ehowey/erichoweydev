@@ -178,6 +178,7 @@ export default {
       mx: [1, 2, 4, null, null],
       borderLeft: "5px solid",
       borderColor: "primary",
+      borderRadius: "4px",
     },
     inlineCode: {
       ...prism,
