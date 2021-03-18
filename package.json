@@ -8,7 +8,7 @@
     "@emotion/react": "^11.1.5",
     "@raae/gatsby-plugin-fathom": "^0.0.4",
     "framer-motion": "^3.6.2",
-    "gatsby": "^3.0.3",
+    "gatsby": "^3.1.0",
     "gatsby-plugin-netlify": "^3.0.0",
     "gatsby-plugin-offline": "^4.0.0",
     "gatsby-theme-catalyst-blog": "^3.0.0-alpha.0",

@@ -1,14 +1,15 @@
 /** @jsx jsx */
-import { jsx, Button, Styled } from "theme-ui"
-import { graphql, useStaticQuery, Link } from "gatsby"
-import Img from "gatsby-image"
+import { jsx } from "theme-ui"
+import { graphql, useStaticQuery } from "gatsby"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import WorkCard from "./work-card"
+import WorkTechnologies from "./work-technologies"
+import WorkCTA from "./work-cta"
+import WorkTestimonial from "./work-testimonial"
 import { rain, darkRain } from "./patterns"
-import { motion } from "framer-motion"
 
-const SiteSection = () => {
+const WorkSection = () => {
   const data = useStaticQuery(graphql`
     query {
       projectImage1: file(relativePath: { eq: "work-catalyst.png" }) {
@@ -32,52 +33,15 @@ const SiteSection = () => {
           }
         }
       }
-      logo1: file(relativePath: { eq: "gatsby-logo.png" }) {
+      testimonialImage: file(relativePath: { eq: "travis-salway.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 200) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-      logo2: file(relativePath: { eq: "react-logo.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 200) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-      logo3: file(relativePath: { eq: "next-logo.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 200) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-      logo4: file(relativePath: { eq: "sanity-logo.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 200) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-      logo5: file(relativePath: { eq: "netlify-logo.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 200) {
+          fluid(maxWidth: 600) {
             ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
     }
   `)
-  const handMotion = {
-    rest: { rotate: 0 },
-    hover: {
-      rotate: [35, -15, 15, -5, 0],
-      transition: {
-        duration: 1.2,
-      },
-    },
-  }
   return (
     <SectionWrapper
       id="work"
@@ -119,100 +83,19 @@ const SiteSection = () => {
               writing and personal brand. Built using Gatsby and SANITY."
         />
       </div>
-      <div
-        sx={{
-          mt: 4,
-          display: "grid",
-          placeItems: "center",
-        }}
-      >
-        <Styled.h3
-          sx={{
-            mt: 0,
-          }}
-        >
-          Curious?
-        </Styled.h3>
-        <Styled.p
-          sx={{
-            mt: 0,
-            mb: 4,
-          }}
-        >
-          Follow the journey from hello to finished product.
-        </Styled.p>
-        <motion.div
-          initial="rest"
-          whileHover="hover"
-          animate="rest"
-          sx={{ position: "relative" }}
-        >
-          <Button
-            variant="primary"
-            as={Link}
-            to="/it-starts-with-hello/"
-            sx={{ display: "flex" }}
-          >
-            It starts with hello
-            <motion.div sx={{ ml: 2 }} variants={handMotion}>
-              <span role="img" aria-label="Waving hand">
-                👋
-              </span>
-            </motion.div>
-          </Button>
-        </motion.div>
-      </div>
-      <div
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: ["320px", null, "500px", null, null],
-          mx: "auto",
-          mt: 5,
-          mb: 0,
-        }}
-      >
-        <Img
-          sx={{
-            width: ["36px", null, "50px", null, null],
-          }}
-          fluid={data.logo2.childImageSharp.fluid}
-          alt="React"
-          imgStyle={{ objectFit: "contain" }}
-        />
-        <Img
-          sx={{
-            width: ["36px", null, "50px", null, null],
-          }}
-          fluid={data.logo1.childImageSharp.fluid}
-          alt="GatsbyJS"
-          imgStyle={{ objectFit: "contain" }}
-        />
-        <Img
-          sx={{
-            width: ["42px", null, "65px", null, null],
-          }}
-          fluid={data.logo3.childImageSharp.fluid}
-          alt="NextJs"
-        />
-        <Img
-          sx={{
-            width: ["36px", null, "50px", null, null],
-          }}
-          fluid={data.logo4.childImageSharp.fluid}
-          alt="Sanity"
-          imgStyle={{ objectFit: "contain" }}
-        />
-        <Img
-          sx={{
-            width: ["36px", null, "50px", null, null],
-          }}
-          fluid={data.logo5.childImageSharp.fluid}
-          alt="Netlify"
-          imgStyle={{ objectFit: "contain" }}
+      <div sx={{ display: "grid", placeItems: "center", my: 4 }}>
+        <WorkTestimonial
+          image={data.testimonialImage.childImageSharp.fluid}
+          name="Travis Salway"
+          role="Assistant Professor, Simon Fraser University"
+          text="Nulla luctus id libero ac finibus. Pellentesque porttitor, ipsum iaculis
+      molestie ultricies, justo mi tempus massa, sit amet gravida metus metus id
+      metus."
         />
       </div>
+      <WorkCTA />
+      <WorkTechnologies />
     </SectionWrapper>
   )
 }
-export default SiteSection
+export default WorkSection

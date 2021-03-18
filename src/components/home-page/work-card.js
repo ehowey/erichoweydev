@@ -31,7 +31,7 @@ const Card = (props) => {
           borderTopRightRadius: "4px",
         }}
         fluid={props.image}
-        alt="Gatsby Theme Catalyst"
+        alt={props.title}
       />
       <div
         sx={{
