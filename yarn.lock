@@ -6866,15 +6866,15 @@ gatsby-telemetry@^2.1.0:
     node-fetch "^2.6.1"
     uuid "3.4.0"
 
-gatsby-theme-catalyst-blog@^6.0.0-alpha.4:
-  version "6.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-blog/-/gatsby-theme-catalyst-blog-6.0.0-alpha.4.tgz#33e4a917e2518f69e2d31f54ffad4402e2ec80db"
-  integrity sha512-rjvq8lMKZlcJmiY5zcmv+cEFdEhnYTdgY0SRTmsARfMiP78EX7W7r/KKBvhhBC/dqptnC1NVkt4od5y2Vyf48w==
+gatsby-theme-catalyst-blog@^6.0.0-alpha.5:
+  version "6.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-blog/-/gatsby-theme-catalyst-blog-6.0.0-alpha.5.tgz#40e37c48b9d793a3baaf3d29d6547a99be7f66ad"
+  integrity sha512-8XG0bVKYtKJ1TbBO0VCCyRf8q8rl8HFXQU2HiaItr97n6XAMSJ3mpjB6j8VT3aGhPwuktQ+U1bcGG0q+ZD/9NQ==
 
-gatsby-theme-catalyst-core@^6.0.0-alpha.4:
-  version "6.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-core/-/gatsby-theme-catalyst-core-6.0.0-alpha.4.tgz#fc56203b5f3f7cf66889c5aa4c7121e689bd9962"
-  integrity sha512-MLjpSenl1dGa5ciyb+XrhTgJGzG2ZnoECghRwgRjQdkYt7QsWl7cKr4yS4JUd15lyjy5OJZIiR9rsAxXJQULBg==
+gatsby-theme-catalyst-core@^6.0.0-alpha.5:
+  version "6.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-core/-/gatsby-theme-catalyst-core-6.0.0-alpha.5.tgz#a76e955a7599c01890947be5f07d48688ee86998"
+  integrity sha512-BdiOOpZrmHecLlNhkgUBVnrLh9Vj+eaVUzUh2jiLduG7kUWHfK5XZ2CvZLU61S84n6SL7PK2Gw8JYZOyr4oD5A==
   dependencies:
     "@mdx-js/mdx" "^1.6.22"
     "@mdx-js/react" "^1.6.22"
@@ -6919,10 +6919,10 @@ gatsby-theme-catalyst-core@^6.0.0-alpha.4:
     remark-slug "^6.0.0"
     theme-ui "^0.6.0-alpha.8"
 
-gatsby-theme-catalyst-header-top@^6.0.0-alpha.4:
-  version "6.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-header-top/-/gatsby-theme-catalyst-header-top-6.0.0-alpha.4.tgz#457ee12d1176f0b537a2d05ebf957f48721b0387"
-  integrity sha512-GtyW2lrcw0pR/ixbMnkAxI2DjnE64G+seXBCt993WNB+aySHr+Gi57Ncl64xLSDtLqzxEJolcvXMis4i5DIzcQ==
+gatsby-theme-catalyst-header-top@^6.0.0-alpha.5:
+  version "6.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-catalyst-header-top/-/gatsby-theme-catalyst-header-top-6.0.0-alpha.5.tgz#e8c80296750982d88cbe1514e740290088f4f0f7"
+  integrity sha512-MDjruJNCEi1mOCJX6194tI9nuyoK845bzXRMDEr6XKru5F3mlZgNS4s1/fDVR/f+6bnBXKP/OjXm+1LR9yKjJQ==
 
 gatsby-transformer-json@^3.1.0:
   version "3.1.0"
