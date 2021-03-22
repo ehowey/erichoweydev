@@ -5,8 +5,6 @@ import prism from "@theme-ui/prism/presets/oceanic-next"
 import "typeface-raleway"
 
 export default {
-  initialColorModeName: "light",
-  useColorSchemeMediaQuery: true,
   ...tailwind,
   breakpoints: ["580px", "768px", "1200px", "1440px"],
   fonts: {
