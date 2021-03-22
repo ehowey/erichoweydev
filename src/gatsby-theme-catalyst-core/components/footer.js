@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, useThemeUI, Styled } from "theme-ui"
+import { jsx, useThemeUI, Themed } from "theme-ui"
 import {
   useSiteMetadata,
   useCatalystConfig,
@@ -61,7 +61,7 @@ const SiteFooter = () => {
             <SocialFooter />
           </IconContext.Provider>
         </div>
-        <Styled.p
+        <Themed.p
           sx={{
             my: 0,
           }}
@@ -70,7 +70,7 @@ const SiteFooter = () => {
           <a href="https://twitter.com/diana_valeanu">Diana Valeanu</a>
           <br />© {new Date().getFullYear()} {title} -{" "}
           <a href="mailto:eric@erichowey.dev">eric@erichowey.dev</a>
-        </Styled.p>
+        </Themed.p>
       </div>
     </footer>
   )

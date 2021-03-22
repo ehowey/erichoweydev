@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { jsx, Styled, useColorMode } from "theme-ui"
+import { jsx, Themed, useColorMode } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import { plus, darkPlus } from "./patterns"
@@ -11,12 +11,10 @@ const SiteSection = () => {
   // Initiate forms
   // const { register, handleSubmit, errors, reset, formState } = useForm()
   const data = useStaticQuery(graphql`
-    query {
+    {
       contactImage1: file(relativePath: { eq: "absurd-fish-talking.png" }) {
         childImageSharp {
-          fluid(maxWidth: 1024) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
     }
@@ -86,14 +84,15 @@ const SiteSection = () => {
             zIndex: 5,
           }}
         >
-          <Styled.h3>Inspired idea? Creating something special?</Styled.h3>
-          <Styled.p>
+          <Themed.h3>Inspired idea? Creating something special?</Themed.h3>
+          <Themed.p>
             Hire me to create a bespoke online presence that drives success,
             promotes your brand and connects with your audience.
-          </Styled.p>
+          </Themed.p>
           <ContactForm />
         </div>
-        <Img
+        <GatsbyImage
+          image={data.contactImage1.childImageSharp.gatsbyImageData}
           sx={{
             transform: "scaleX(-1)",
             gridColumn: ["1 / -1", "1 / 3", null, null, null],
@@ -101,7 +100,6 @@ const SiteSection = () => {
             opacity: ["0.05", "1", null, null, null],
             filter: isDark ? "invert(1)" : "none",
           }}
-          fluid={data.contactImage1.childImageSharp.fluid}
           alt="Talking Fish"
           imgStyle={{ objectFit: "contain" }}
         />

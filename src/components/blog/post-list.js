@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui"
+import { jsx, Themed } from "theme-ui"
 import { Link } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { Layout, SEO } from "gatsby-theme-catalyst-core"
 import { FaRegClock } from "react-icons/fa"
 import { darken } from "@theme-ui/color"
@@ -47,7 +47,7 @@ const PostsList = ({ posts }) => {
               },
             }}
           >
-            <Styled.h1>Writing</Styled.h1>
+            <Themed.h1>Writing</Themed.h1>
             {posts.map((post) => {
               const title = post.title || post.slug
               return (
@@ -84,7 +84,8 @@ const PostsList = ({ posts }) => {
                   key={post.slug}
                 >
                   <Link to={post.slug}>
-                    <Img
+                    <GatsbyImage
+                      image={post.featuredImage.childImageSharp.gatsbyImageData}
                       className="featuredImage"
                       sx={{
                         borderTopLeftRadius: "4px",
@@ -93,7 +94,6 @@ const PostsList = ({ posts }) => {
                         mb: 3,
                         variant: "variants.postListImage",
                       }}
-                      fluid={post.featuredImage.childImageSharp.fluid}
                       alt={post.title}
                     />
                     <div
@@ -101,7 +101,7 @@ const PostsList = ({ posts }) => {
                         p: 3,
                       }}
                     >
-                      <Styled.ul
+                      <Themed.ul
                         sx={{
                           display: "flex",
                           listStyle: "none",
@@ -110,7 +110,7 @@ const PostsList = ({ posts }) => {
                         }}
                       >
                         {post.categories.map((category) => (
-                          <Styled.li
+                          <Themed.li
                             key={category}
                             sx={{
                               textTransform: "uppercase",
@@ -130,10 +130,10 @@ const PostsList = ({ posts }) => {
                             }}
                           >
                             {category}
-                          </Styled.li>
+                          </Themed.li>
                         ))}
-                      </Styled.ul>
-                      <Styled.h2
+                      </Themed.ul>
+                      <Themed.h2
                         sx={{
                           mt: 1,
                           fontSize: 3,
@@ -142,8 +142,8 @@ const PostsList = ({ posts }) => {
                         }}
                       >
                         {title}
-                      </Styled.h2>
-                      <Styled.p
+                      </Themed.h2>
+                      <Themed.p
                         sx={{
                           color: "textGray",
                           fontSize: 1,
@@ -168,14 +168,14 @@ const PostsList = ({ posts }) => {
                           }}
                         />{" "}
                         {post.timeToRead} Min
-                      </Styled.p>
-                      <Styled.p
+                      </Themed.p>
+                      <Themed.p
                         sx={{
                           variant: "variants.postListExcerpt",
                         }}
                       >
                         {post.excerpt}
-                      </Styled.p>
+                      </Themed.p>
                     </div>
                   </Link>
                 </article>
