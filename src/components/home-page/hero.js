@@ -12,7 +12,7 @@ const Hero = () => {
     {
       welcomeImage: file(relativePath: { eq: "eric-howey-sq.jpg" }) {
         childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH)
+          gatsbyImageData(width: 200, placeholder: BLURRED, layout: CONSTRAINED)
         }
       }
     }

@@ -14,7 +14,11 @@ const SiteSection = () => {
     {
       contactImage1: file(relativePath: { eq: "absurd-fish-talking.png" }) {
         childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH)
+          gatsbyImageData(
+            width: 500
+            placeholder: TRACED_SVG
+            layout: CONSTRAINED
+          )
         }
       }
     }
