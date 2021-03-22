@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { jsx, Styled, Button, useColorMode } from "theme-ui"
+import { jsx, Themed, Button, useColorMode } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import SectionWrapper from "./section-wrapper"
 import { darken, lighten } from "@theme-ui/color"
 import { heroCircles } from "./patterns"
@@ -9,12 +9,10 @@ import { motion } from "framer-motion"
 
 const Hero = () => {
   const data = useStaticQuery(graphql`
-    query {
+    {
       welcomeImage: file(relativePath: { eq: "eric-howey-sq.jpg" }) {
         childImageSharp {
-          fluid(maxWidth: 1024) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
+          gatsbyImageData(width: 200, placeholder: BLURRED, layout: CONSTRAINED)
         }
       }
     }
@@ -70,19 +68,19 @@ const Hero = () => {
               borderRadius: "50%",
             }}
           />
-          <Img
+          <GatsbyImage
+            image={data.welcomeImage.childImageSharp.gatsbyImageData}
             sx={{
               width: ["200px", null, null, "220px", null],
               height: ["200px", null, null, "220px", null],
               borderRadius: "50%",
               boxShadow: "lg",
             }}
-            fluid={data.welcomeImage.childImageSharp.fluid}
             alt="Eric Howey"
           />
         </div>
         <div>
-          <Styled.h1
+          <Themed.h1
             sx={{
               fontSize: [4, null, null, 5, null],
               display: "inline",
@@ -93,8 +91,8 @@ const Hero = () => {
             }}
           >
             Hello and welcome!
-          </Styled.h1>{" "}
-          <Styled.p
+          </Themed.h1>{" "}
+          <Themed.p
             sx={{
               fontSize: [4, null, null, 5, null],
               fontFamily: "heading",
@@ -104,7 +102,7 @@ const Hero = () => {
           >
             My name is Eric Howey. I'm a web developer and mental health
             therapist. I listen and care.
-          </Styled.p>
+          </Themed.p>
           <div sx={{ mt: 4 }}>
             <Button
               variant="primary"

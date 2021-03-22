@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui"
+import { jsx, Themed } from "theme-ui"
 
 const SectionHeader = (props) => {
   return (
-    <Styled.h2
+    <Themed.h2
       sx={{
         textAlign: "center",
         textTransform: "uppercase",
@@ -20,7 +20,7 @@ const SectionHeader = (props) => {
       }}
     >
       {props.children}
-    </Styled.h2>
+    </Themed.h2>
   )
 }
 

@@ -41,28 +41,23 @@ module.exports = {
     menuLinks: [
       {
         name: `Me`,
-        link: `#me`,
-        type: `anchor`,
+        link: `/#me`,
       },
       {
         name: `Work`,
-        link: `#work`,
-        type: `anchor`,
+        link: `/#work`,
       },
       {
         name: `Hire`,
-        link: `#hire-me`,
-        type: `anchor`,
+        link: `/#hire-me`,
       },
       {
         name: `Process`,
         link: `/it-starts-with-hello/`,
-        type: `internal`,
       },
       {
         name: `Writing`,
         link: `/writing/`,
-        type: `internal`,
       },
     ],
     socialLinks: [
@@ -87,14 +82,15 @@ module.exports = {
     {
       resolve: `gatsby-theme-catalyst-core`,
       options: {
-        displaySiteTitle: false,
-        displaySiteTitleMobile: false,
-        invertSiteLogo: true,
-        useStickyHeader: true,
         assetPath: `content/site-assets`,
       },
     },
-    `gatsby-theme-catalyst-header-top`,
+    {
+      resolve: `gatsby-theme-catalyst-header-top`,
+      options: {
+        useStickyHeader: true,
+      },
+    },
     {
       resolve: `gatsby-theme-catalyst-blog`,
       options: {
