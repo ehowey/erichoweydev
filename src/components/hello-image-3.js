@@ -1,22 +1,19 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const HelloImage3 = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      image: file(relativePath: { eq: "documentation-example.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 1440) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
+  const data = useStaticQuery(graphql`{
+  image: file(relativePath: {eq: "documentation-example.jpg"}) {
+    childImageSharp {
+      gatsbyImageData(layout: FULL_WIDTH)
     }
-  `)
+  }
+}
+`)
 
-  const image = data.image.childImageSharp.fluid
+  const image = data.image.childImageSharp.gatsbyImageData
 
   return (
     <figure
@@ -24,7 +21,8 @@ const HelloImage3 = () => {
         mx: 0,
       }}
     >
-      <Img
+      <GatsbyImage
+        image={image}
         sx={{
           maxHeight: "400px",
           borderRadius: ["none", null, null, "4px", null],
@@ -35,9 +33,7 @@ const HelloImage3 = () => {
           marginLeft: ["-50vw", null, null, "-42.5vw", "-40vw"],
           marginRight: ["-50vw", null, null, "-42.5vw", "-40vw"],
         }}
-        fluid={image}
-        alt="Documentation example for lifewithbenjamin.com"
-      />
+        alt="Documentation example for lifewithbenjamin.com" />
       <figcaption
         sx={{
           color: "grey",
@@ -49,7 +45,7 @@ const HelloImage3 = () => {
         Documentation example for lifewithbenjamin.com
       </figcaption>
     </figure>
-  )
+  );
 }
 
 export default HelloImage3

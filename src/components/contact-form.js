@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled, Button } from "theme-ui"
+import { jsx, Themed, Button } from "theme-ui"
 import { useForm } from "react-hook-form"
 import { useState, useEffect } from "react"
 import { FiAlertCircle } from "react-icons/fi"
@@ -53,7 +53,7 @@ const ContactForm = () => {
     >
       <input type="hidden" name="form-name" value="contact-form" />
       <label htmlFor="name">
-        <Styled.p
+        <Themed.p
           sx={{
             display: "flex",
             alignItems: "center",
@@ -65,7 +65,7 @@ const ContactForm = () => {
         >
           {formState.errors.name && <FiAlertCircle sx={{ mr: 1 }} />}
           Name {formState.errors.name && "- required"}
-        </Styled.p>
+        </Themed.p>
         <input
           name="name"
           ref={register({ required: true })}
@@ -79,7 +79,7 @@ const ContactForm = () => {
         />
       </label>
       <label htmlFor="email">
-        <Styled.p
+        <Themed.p
           sx={{
             display: "flex",
             alignItems: "center",
@@ -92,7 +92,7 @@ const ContactForm = () => {
           {formState.errors.email && <FiAlertCircle sx={{ mr: 1 }} />}
           Email
           {formState.errors.email && " - required, please format correctly"}
-        </Styled.p>
+        </Themed.p>
         <input
           name="email"
           ref={register({
@@ -109,7 +109,7 @@ const ContactForm = () => {
         />
       </label>
       <label htmlFor="message">
-        <Styled.p
+        <Themed.p
           sx={{
             display: "flex",
             alignItems: "center",
@@ -122,7 +122,7 @@ const ContactForm = () => {
           {formState.errors.message && <FiAlertCircle sx={{ mr: 1 }} />}
           Tell me about your great ideas
           {formState.errors.message && " - You gotta tell me something!"}
-        </Styled.p>
+        </Themed.p>
         <textarea
           rows="8"
           name="message"
@@ -187,12 +187,12 @@ const ContactForm = () => {
                   zIndex: "10000",
                 }}
               />
-              <Styled.p sx={{ p: 0, m: 0 }}>
+              <Themed.p sx={{ p: 0, m: 0 }}>
                 <span sx={{ mr: 2 }} role="img" aria-label="Party popper">
                   🎉
                 </span>
                 Success! Message received!
-              </Styled.p>
+              </Themed.p>
             </motion.div>
           )}
         </AnimatePresence>

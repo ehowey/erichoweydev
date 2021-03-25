@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui"
+import { jsx, Themed } from "theme-ui"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
@@ -55,25 +55,25 @@ const RecentWriting = () => {
                 mb: 4,
               }}
             >
-              <Styled.h3 sx={{ mb: 0 }}>
-                <Styled.a to={post.slug} as={Link}>
+              <Themed.h3 sx={{ mb: 0 }}>
+                <Themed.a to={post.slug} as={Link}>
                   {post.title}
-                </Styled.a>
-              </Styled.h3>
-              <Styled.p sx={{ color: "textGray", mt: 0, fontSize: 1 }}>
+                </Themed.a>
+              </Themed.h3>
+              <Themed.p sx={{ color: "textGray", mt: 0, fontSize: 1 }}>
                 {post.date}
-              </Styled.p>
-              <Styled.p>
+              </Themed.p>
+              <Themed.p>
                 {truncate(post.excerpt, { length: 140, separator: " " })}
-              </Styled.p>
+              </Themed.p>
             </li>
           ))}
         </ul>
-        <Styled.p>
+        <Themed.p>
           <Button variant="alt" as={Link} to="/writing">
             More Writing
           </Button>
-        </Styled.p>
+        </Themed.p>
       </div>
     </SectionWrapper>
   )

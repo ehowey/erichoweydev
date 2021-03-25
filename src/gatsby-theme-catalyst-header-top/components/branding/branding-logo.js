@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, useColorMode } from "theme-ui"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import { Link } from "gatsby"
 import { useContext } from "react"
 import {
@@ -64,7 +64,8 @@ const SiteLogo = () => {
         tabIndex="0"
         aria-label="Scroll to top"
       >
-        <Img
+        <GatsbyImage
+          image={logo}
           sx={{
             height: [
               (theme) => theme.sizes.logoHeightXS,
@@ -84,12 +85,10 @@ const SiteLogo = () => {
             filter: isDark ? "invert(1)" : isNavOpen ? invertLogo : "none",
             variant: "variants.siteLogo",
           }}
-          fluid={logo}
           alt={title}
-          imgStyle={{ objectFit: "contain" }}
-        />
+          imgStyle={{ objectFit: "contain" }} />
       </div>
-    )
+    );
   } else {
     return (
       <Link
@@ -97,7 +96,8 @@ const SiteLogo = () => {
         onClick={() => setIsNavOpen(false)}
         sx={{ textDecoration: "none" }}
       >
-        <Img
+        <GatsbyImage
+          image={logo}
           sx={{
             display: [displayPhone, null, displayLaptop, null, null],
             height: [
@@ -118,12 +118,10 @@ const SiteLogo = () => {
             filter: isDark ? "invert(1)" : isNavOpen ? invertLogo : "none",
             variant: "variants.siteLogo",
           }}
-          fluid={logo}
           alt={title}
-          imgStyle={{ objectFit: "contain" }}
-        />
+          imgStyle={{ objectFit: "contain" }} />
       </Link>
-    )
+    );
   }
 }
 

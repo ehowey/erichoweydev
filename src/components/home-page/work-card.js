@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui"
-import Img from "gatsby-image"
+import { jsx, Themed } from "theme-ui"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 const Card = (props) => {
   return (
@@ -24,7 +24,8 @@ const Card = (props) => {
       }}
       href={props.link}
     >
-      <Img
+      <GatsbyImage
+        image={props.image}
         sx={{
           height: "300px",
           borderTopLeftRadius: "4px",
@@ -42,15 +43,15 @@ const Card = (props) => {
           height: ["auto", null, null, "350px", null],
         }}
       >
-        <Styled.h3
+        <Themed.h3
           sx={{ flex: "0", mt: 3, fontSize: [2, 3, null, null, null] }}
         >
           {props.title}
-        </Styled.h3>
-        <Styled.p sx={{ flex: ["0", null, null, "1", null] }}>
+        </Themed.h3>
+        <Themed.p sx={{ flex: ["0", null, null, "1", null] }}>
           {props.description}
-        </Styled.p>
-        <Styled.p
+        </Themed.p>
+        <Themed.p
           sx={{
             fontWeight: "bold",
             flex: "0",
@@ -60,7 +61,7 @@ const Card = (props) => {
           }}
         >
           Check it out
-        </Styled.p>
+        </Themed.p>
       </div>
     </a>
   )
