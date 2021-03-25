@@ -44,6 +44,8 @@ const SiteSection = () => {
   const [mode] = useColorMode()
   const isDark = mode === "dark"
 
+  console.log(mode)
+
   const textVariants = {
     visible: {
       x: 0,
