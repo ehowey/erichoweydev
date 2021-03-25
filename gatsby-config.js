@@ -89,7 +89,7 @@ module.exports = {
       resolve: `gatsby-theme-catalyst-header-top`,
       options: {
         useStickyHeader: true,
-        // useColorMode: false,
+        useColorMode: false,
       },
     },
     {
