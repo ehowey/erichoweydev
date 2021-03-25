@@ -43,7 +43,7 @@ const Hero = () => {
           <motion.div
             initial={{ x: 20, y: 20, opacity: 0 }}
             animate={{ x: 0, y: 0, opacity: 1 }}
-            transition={{ delay: 0.4, type: "tween" }}
+            transition={{ delay: 0.4, type: "tween", duration: 0.8 }}
             sx={{
               position: "absolute",
               bg: isDark ? lighten("accent", 0.2) : darken("accent", 0.3),
@@ -57,7 +57,7 @@ const Hero = () => {
           <motion.div
             initial={{ x: -20, y: -20, opacity: 0 }}
             animate={{ x: 0, y: 0, opacity: 1 }}
-            transition={{ delay: 0.6, type: "tween" }}
+            transition={{ delay: 0.6, type: "tween", duration: 0.8 }}
             sx={{
               position: "absolute",
               bg: isDark ? lighten("accent", 0.1) : darken("accent", 0.5),

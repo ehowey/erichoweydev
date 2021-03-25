@@ -48,7 +48,7 @@ const SiteSection = () => {
     visible: {
       x: 0,
       opacity: 1,
-      transition: { type: "tween", duration: 0.3 },
+      transition: { type: "tween", duration: 0.4 },
     },
   }
 

@@ -6454,6 +6454,20 @@ gatsby-page-utils@^1.1.0:
     lodash "^4.17.21"
     micromatch "^4.0.2"
 
+gatsby-page-utils@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/gatsby-page-utils/-/gatsby-page-utils-1.1.0.tgz#44bbc38a5baf96b97c70ec5be607c594fe12b054"
+  integrity sha512-hNjEuWYtU95t6ypXn82eC+7OoArH4i/PnlhHt9DS8xdpf7Ad95Bk+wAhpIlF8iv9f/uf/e5DdbQeSXj1E1TeRw==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    bluebird "^3.7.2"
+    chokidar "^3.5.1"
+    fs-exists-cached "^1.0.0"
+    gatsby-core-utils "^2.1.0"
+    glob "^7.1.6"
+    lodash "^4.17.21"
+    micromatch "^4.0.2"
+
 gatsby-plugin-catch-links@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-catch-links/-/gatsby-plugin-catch-links-3.0.0.tgz#ed7ea5b1cdc19e994222da8ed30387593c0ae02c"

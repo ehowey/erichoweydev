@@ -16,7 +16,7 @@ const Card = (props) => {
         backgroundColor: "background",
         margin: "0 auto",
         borderRadius: "4px",
-        ":hover": {
+        ":hover, :focus, :active": {
           boxShadow: "0 2px 30px rgba(0,0,0,.15)",
           transform: "translateY(-3px)",
           backgroundColor: "muted",
@@ -31,7 +31,8 @@ const Card = (props) => {
           borderTopLeftRadius: "4px",
           borderTopRightRadius: "4px",
         }}
-        alt="Gatsby Theme Catalyst"
+        fluid={props.image}
+        alt={props.title}
       />
       <div
         sx={{
