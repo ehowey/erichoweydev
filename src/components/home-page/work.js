@@ -1,7 +1,6 @@
 /** @jsx jsx */
-import { jsx, Button, Themed } from "theme-ui"
-import { graphql, useStaticQuery, Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { jsx } from "theme-ui"
+import { graphql, useStaticQuery } from "gatsby"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import WorkCard from "./work-card"
@@ -26,37 +25,6 @@ const WorkSection = () => {
       projectImage3: file(relativePath: { eq: "work-bsharpe.png" }) {
         childImageSharp {
           gatsbyImageData(width: 900, layout: CONSTRAINED)
-        }
-      }
-      testimonialImage: file(relativePath: { eq: "travis-salway.jpg" }) {
-        childImageSharp {
-<<<<<<< HEAD
-          fluid(maxWidth: 600) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-=======
-          gatsbyImageData(width: 200, layout: CONSTRAINED)
-        }
-      }
-      logo2: file(relativePath: { eq: "react-logo.png" }) {
-        childImageSharp {
-          gatsbyImageData(width: 200, layout: CONSTRAINED)
-        }
-      }
-      logo3: file(relativePath: { eq: "next-logo.png" }) {
-        childImageSharp {
-          gatsbyImageData(width: 200, layout: CONSTRAINED)
-        }
-      }
-      logo4: file(relativePath: { eq: "sanity-logo.png" }) {
-        childImageSharp {
-          gatsbyImageData(width: 200, layout: CONSTRAINED)
-        }
-      }
-      logo5: file(relativePath: { eq: "netlify-logo.png" }) {
-        childImageSharp {
-          gatsbyImageData(width: 200, layout: CONSTRAINED)
->>>>>>> master
         }
       }
     }
@@ -103,14 +71,7 @@ const WorkSection = () => {
         />
       </div>
       <div sx={{ display: "grid", placeItems: "center", my: 4 }}>
-        <WorkTestimonial
-          image={data.testimonialImage.childImageSharp.fluid}
-          name="Travis Salway"
-          role="Assistant Professor, Simon Fraser University"
-          text="Nulla luctus id libero ac finibus. Pellentesque porttitor, ipsum iaculis
-      molestie ultricies, justo mi tempus massa, sit amet gravida metus metus id
-      metus."
-        />
+        <WorkTestimonial />
       </div>
       <WorkCTA />
       <WorkTechnologies />

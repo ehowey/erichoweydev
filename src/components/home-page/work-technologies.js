@@ -1,48 +1,37 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const WorkTechnologies = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      logo1: file(relativePath: { eq: "gatsby-logo.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 200) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-      logo2: file(relativePath: { eq: "react-logo.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 200) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-      logo3: file(relativePath: { eq: "next-logo.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 200) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-      logo4: file(relativePath: { eq: "sanity-logo.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 200) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
-      logo5: file(relativePath: { eq: "netlify-logo.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 200) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
-      }
+  const data = useStaticQuery(graphql`{
+  logo1: file(relativePath: {eq: "gatsby-logo.png"}) {
+    childImageSharp {
+      gatsbyImageData(width: 200, layout: CONSTRAINED)
     }
-  `)
+  }
+  logo2: file(relativePath: {eq: "react-logo.png"}) {
+    childImageSharp {
+      gatsbyImageData(width: 200, layout: CONSTRAINED)
+    }
+  }
+  logo3: file(relativePath: {eq: "next-logo.png"}) {
+    childImageSharp {
+      gatsbyImageData(width: 200, layout: CONSTRAINED)
+    }
+  }
+  logo4: file(relativePath: {eq: "sanity-logo.png"}) {
+    childImageSharp {
+      gatsbyImageData(width: 200, layout: CONSTRAINED)
+    }
+  }
+  logo5: file(relativePath: {eq: "netlify-logo.png"}) {
+    childImageSharp {
+      gatsbyImageData(width: 200, layout: CONSTRAINED)
+    }
+  }
+}
+`)
 
   return (
     <div
@@ -55,46 +44,41 @@ const WorkTechnologies = () => {
         mb: 0,
       }}
     >
-      <Img
+      <GatsbyImage
+        image={data.logo2.childImageSharp.gatsbyImageData}
         sx={{
           width: ["36px", null, "50px", null, null],
         }}
-        fluid={data.logo2.childImageSharp.fluid}
         alt="React"
-        imgStyle={{ objectFit: "contain" }}
-      />
-      <Img
+        imgStyle={{ objectFit: "contain" }} />
+      <GatsbyImage
+        image={data.logo1.childImageSharp.gatsbyImageData}
         sx={{
           width: ["36px", null, "50px", null, null],
         }}
-        fluid={data.logo1.childImageSharp.fluid}
         alt="GatsbyJS"
-        imgStyle={{ objectFit: "contain" }}
-      />
-      <Img
+        imgStyle={{ objectFit: "contain" }} />
+      <GatsbyImage
+        image={data.logo3.childImageSharp.gatsbyImageData}
         sx={{
           width: ["42px", null, "65px", null, null],
         }}
-        fluid={data.logo3.childImageSharp.fluid}
-        alt="NextJs"
-      />
-      <Img
+        alt="NextJs" />
+      <GatsbyImage
+        image={data.logo4.childImageSharp.gatsbyImageData}
         sx={{
           width: ["36px", null, "50px", null, null],
         }}
-        fluid={data.logo4.childImageSharp.fluid}
         alt="Sanity"
-        imgStyle={{ objectFit: "contain" }}
-      />
-      <Img
+        imgStyle={{ objectFit: "contain" }} />
+      <GatsbyImage
+        image={data.logo5.childImageSharp.gatsbyImageData}
         sx={{
           width: ["36px", null, "50px", null, null],
         }}
-        fluid={data.logo5.childImageSharp.fluid}
         alt="Netlify"
-        imgStyle={{ objectFit: "contain" }}
-      />
+        imgStyle={{ objectFit: "contain" }} />
     </div>
-  )
+  );
 }
 export default WorkTechnologies

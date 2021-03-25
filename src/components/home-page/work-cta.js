@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Button, Styled } from "theme-ui"
+import { jsx, Button, Themed } from "theme-ui"
 import { Link } from "gatsby"
 import { motion } from "framer-motion"
 
@@ -21,21 +21,21 @@ const WorkCTA = () => {
         placeItems: "center",
       }}
     >
-      <Styled.h3
+      <Themed.h3
         sx={{
           mt: 0,
         }}
       >
         Curious?
-      </Styled.h3>
-      <Styled.p
+      </Themed.h3>
+      <Themed.p
         sx={{
           mt: 0,
           mb: 4,
         }}
       >
         Follow the journey from hello to finished product.
-      </Styled.p>
+      </Themed.p>
       <motion.div
         initial="rest"
         whileHover="hover"
