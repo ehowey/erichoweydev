@@ -10,7 +10,7 @@ const SiteBranding = () => {
   const [isNavOpen, setIsNavOpen] = useContext(NavContext)
   const { title, logo } = useSiteMetadata()
   const [mode] = useColorMode()
-  const isDark = mode === "dark"
+  const isDark = false
   return (
     <div
       sx={{

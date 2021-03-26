@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, useColorMode } from "theme-ui"
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 import { useContext } from "react"
 import {
@@ -21,7 +21,7 @@ const SiteLogo = () => {
     displaySiteLogoMobile,
   } = useCatalystConfig()
   const [mode] = useColorMode()
-  const isDark = mode === "dark"
+  const isDark = false
   const invertLogo = () => {
     if (invertSiteLogo) {
       return "invert(1)"
@@ -86,9 +86,10 @@ const SiteLogo = () => {
             variant: "variants.siteLogo",
           }}
           alt={title}
-          imgStyle={{ objectFit: "contain" }} />
+          imgStyle={{ objectFit: "contain" }}
+        />
       </div>
-    );
+    )
   } else {
     return (
       <Link
@@ -119,9 +120,10 @@ const SiteLogo = () => {
             variant: "variants.siteLogo",
           }}
           alt={title}
-          imgStyle={{ objectFit: "contain" }} />
+          imgStyle={{ objectFit: "contain" }}
+        />
       </Link>
-    );
+    )
   }
 }
 

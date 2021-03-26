@@ -19,7 +19,7 @@ const Hero = () => {
   `)
 
   const [mode] = useColorMode()
-  const isDark = mode === "dark"
+  const isDark = false
 
   return (
     <SectionWrapper bg="secondary">

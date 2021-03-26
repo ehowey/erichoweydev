@@ -24,7 +24,7 @@ const SiteSection = () => {
     }
   `)
   const [mode] = useColorMode()
-  const isDark = mode === "dark"
+  const isDark = false
 
   // const [isSubmitted, setIsSubmitted] = useState(false)
 
