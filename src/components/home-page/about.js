@@ -7,7 +7,7 @@ import SectionHeader from "./section-header"
 import { contours, darkContours } from "./patterns"
 import { motion, useAnimation } from "framer-motion"
 import { useInView } from "react-intersection-observer"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 const SiteSection = () => {
   const data = useStaticQuery(graphql`
@@ -42,9 +42,19 @@ const SiteSection = () => {
     }
   `)
   const [mode] = useColorMode()
-  const isDark = mode === "dark"
+  const [isDark, setIsDark] = useState(mode === "dark")
 
-  console.log(mode)
+  // const isDark = mode === "dark"
+
+  useEffect(() => {
+    if (mode === "dark") {
+      setIsDark(true)
+    } else {
+      setIsDark(false)
+    }
+  }, [mode])
+
+  console.log(isDark)
 
   const textVariants = {
     visible: {
