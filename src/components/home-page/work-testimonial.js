@@ -36,7 +36,7 @@ const WorkTestimonial = () => {
       }}
     >
       <motion.div
-        initial={{ y: 100, scale: 0.5, opacity: 0 }}
+        initial={{ y: 100, scale: 0.7, opacity: 0 }}
         animate={textControl}
         variants={textVariants}
         ref={textRef}
