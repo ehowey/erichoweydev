@@ -4,7 +4,6 @@ import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import SectionWrapper from "./section-wrapper"
 import { darken, lighten } from "@theme-ui/color"
-import { heroCircles } from "./patterns"
 import { motion } from "framer-motion"
 
 const Hero = () => {
@@ -73,9 +72,10 @@ const Hero = () => {
             sx={{
               width: ["200px", null, null, "220px", null],
               height: ["200px", null, null, "220px", null],
-              borderRadius: "50%",
               boxShadow: "lg",
+              borderRadius: "50%",
             }}
+            imgStyle={{ borderRadius: "50%" }}
             alt="Eric Howey"
           />
         </div>
