@@ -13,50 +13,51 @@ const EricPostQuery = ({ data }) => {
   )
 }
 
-export const query = graphql`query ($id: String!, $previousId: String, $nextId: String) {
-  catalystPost(id: {eq: $id}) {
-    id
-    excerpt
-    body
-    slug
-    title
-    author
-    authorLink
-    tags
-    categories
-    keywords
-    timeToRead
-    date(formatString: "MMMM DD, YYYY")
-    featuredImage {
-      childImageSharp {
-        gatsbyImageData(layout: FULL_WIDTH)
+export const query = graphql`
+  query($id: String!, $previousId: String, $nextId: String) {
+    catalystPost(id: { eq: $id }) {
+      id
+      excerpt
+      body
+      slug
+      title
+      author
+      authorLink
+      tags
+      categories
+      keywords
+      timeToRead
+      date(formatString: "MMMM DD, YYYY")
+      featuredImage {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
+        }
       }
-    }
-    socialImage {
-      childImageSharp {
-        seo: resize(width: 1024) {
-          src
-          width
-          height
+      socialImage {
+        childImageSharp {
+          Seo: resize(width: 1024) {
+            src
+            width
+            height
+          }
         }
       }
     }
+    previous: catalystPost(id: { eq: $previousId }) {
+      id
+      excerpt
+      slug
+      title
+      date(formatString: "MMMM DD, YYYY")
+    }
+    next: catalystPost(id: { eq: $nextId }) {
+      id
+      excerpt
+      slug
+      title
+      date(formatString: "MMMM DD, YYYY")
+    }
   }
-  previous: catalystPost(id: {eq: $previousId}) {
-    id
-    excerpt
-    slug
-    title
-    date(formatString: "MMMM DD, YYYY")
-  }
-  next: catalystPost(id: {eq: $nextId}) {
-    id
-    excerpt
-    slug
-    title
-    date(formatString: "MMMM DD, YYYY")
-  }
-}
 `
 
 export default EricPostQuery
