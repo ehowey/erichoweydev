@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Themed, useColorMode } from "theme-ui"
+import { jsx, Themed } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import SectionWrapper from "./section-wrapper"
@@ -41,14 +41,14 @@ const SiteSection = () => {
       }
     }
   `)
-  const [mode] = useColorMode()
+  // const [mode] = useColorMode()
   const isDark = false
 
   const textVariants = {
     visible: {
-      x: 0,
+      y: 0,
       opacity: 1,
-      transition: { type: "tween", duration: 0.4 },
+      transition: { type: "tween", duration: 0.3 },
     },
   }
 
@@ -56,9 +56,9 @@ const SiteSection = () => {
   const para2Control = useAnimation()
   const para3Control = useAnimation()
 
-  const [para1Ref, para1InView] = useInView()
-  const [para2Ref, para2InView] = useInView()
-  const [para3Ref, para3InView] = useInView()
+  const [para1Ref, para1InView] = useInView({ threshold: 0.3 })
+  const [para2Ref, para2InView] = useInView({ threshold: 0.3 })
+  const [para3Ref, para3InView] = useInView({ threshold: 0.3 })
 
   useEffect(() => {
     if (para1InView) {
@@ -87,7 +87,7 @@ const SiteSection = () => {
         }}
       >
         <motion.div
-          initial={{ x: -100, opacity: 0 }}
+          initial={{ y: 50, opacity: 0 }}
           animate={para1Control}
           variants={textVariants}
           ref={para1Ref}
@@ -118,7 +118,7 @@ const SiteSection = () => {
           imgStyle={{ objectFit: "contain" }}
         />
         <motion.div
-          initial={{ x: 100, opacity: 0 }}
+          initial={{ y: 50, opacity: 0 }}
           animate={para2Control}
           variants={textVariants}
           ref={para2Ref}
@@ -151,7 +151,7 @@ const SiteSection = () => {
           imgStyle={{ objectFit: "contain" }}
         />
         <motion.div
-          initial={{ x: -100, opacity: 0 }}
+          initial={{ y: 50, opacity: 0 }}
           animate={para3Control}
           variants={textVariants}
           ref={para3Ref}

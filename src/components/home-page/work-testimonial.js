@@ -16,7 +16,7 @@ const WorkTestimonial = () => {
 
   const textControl = useAnimation()
 
-  const [textRef, textInView] = useInView()
+  const [textRef, textInView] = useInView({ threshold: 0.3 })
 
   useEffect(() => {
     if (textInView) {

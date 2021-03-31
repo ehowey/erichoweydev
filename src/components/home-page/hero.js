@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Themed, Button, useColorMode } from "theme-ui"
+import { jsx, Themed, Button } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import SectionWrapper from "./section-wrapper"
@@ -17,7 +17,7 @@ const Hero = () => {
     }
   `)
 
-  const [mode] = useColorMode()
+  // const [mode] = useColorMode()
   const isDark = false
 
   return (

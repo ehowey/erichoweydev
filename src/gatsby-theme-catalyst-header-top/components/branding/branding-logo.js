@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, useColorMode } from "theme-ui"
+import { jsx } from "theme-ui"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 import { useContext } from "react"
@@ -20,7 +20,7 @@ const SiteLogo = () => {
     displaySiteLogo,
     displaySiteLogoMobile,
   } = useCatalystConfig()
-  const [mode] = useColorMode()
+  // const [mode] = useColorMode()
   const isDark = false
   const invertLogo = () => {
     if (invertSiteLogo) {

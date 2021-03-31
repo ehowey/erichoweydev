@@ -1,8 +1,8 @@
 /** @jsx jsx */
-import { jsx, useColorMode } from "theme-ui"
+import { jsx } from "theme-ui"
 
 const SectionWrapper = ({ children, ...props }) => {
-  const [mode] = useColorMode()
+  // const [mode] = useColorMode()
   const isDark = false
 
   return (

@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const ContactForm = () => {
   // Initiate forms
-  const { register, handleSubmit, errors, reset, formState } = useForm()
+  const { register, handleSubmit, reset, formState } = useForm()
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   // Transforms the form data from the React Hook Form output to a format Netlify can read

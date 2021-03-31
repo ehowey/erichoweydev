@@ -4,7 +4,7 @@ import { tailwind, baseColors } from "@theme-ui/preset-tailwind"
 import prism from "@theme-ui/prism/presets/oceanic-next"
 import "typeface-raleway"
 
-export default {
+const theme = {
   ...tailwind,
   breakpoints: ["580px", "768px", "1200px", "1440px"],
   fonts: {
@@ -279,3 +279,5 @@ export default {
     },
   },
 }
+
+export default theme

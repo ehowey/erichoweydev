@@ -123,7 +123,7 @@ module.exports = {
         loadType: "defer",
       },
     },
-    `gatsby-plugin-offline`,
+    `gatsby-plugin-remove-serviceworker`,
     {
       resolve: `gatsby-plugin-netlify`,
       options: {

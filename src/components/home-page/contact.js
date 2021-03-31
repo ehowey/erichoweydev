@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Themed, useColorMode } from "theme-ui"
+import { jsx, Themed } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import SectionWrapper from "./section-wrapper"
@@ -23,7 +23,7 @@ const SiteSection = () => {
       }
     }
   `)
-  const [mode] = useColorMode()
+  // const [mode] = useColorMode()
   const isDark = false
 
   // const [isSubmitted, setIsSubmitted] = useState(false)
