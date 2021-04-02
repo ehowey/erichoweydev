@@ -10,13 +10,13 @@ const WorkTestimonial = () => {
       y: 0,
       opacity: 1,
       scale: 1,
-      // transition: { type: "tween", duration: 0.4 },
+      transition: { duration: 0.3 },
     },
   }
 
   const textControl = useAnimation()
 
-  const [textRef, textInView] = useInView({ threshold: 0.3 })
+  const [textRef, textInView] = useInView({ threshold: 0.25 })
 
   useEffect(() => {
     if (textInView) {
