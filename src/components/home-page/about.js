@@ -97,7 +97,9 @@ const SiteSection = () => {
             gridRow: ["2 / 3", null, "1 / 2", null, null],
           }}
         >
-          <Themed.h3 sx={{ mt: 0 }}>I built my first website in 1998</Themed.h3>
+          <Themed.h3 sx={{ fontSize: [3, 4, null, null, null] }}>
+            I built my first website in 1998
+          </Themed.h3>
           <Themed.p>It sucked.</Themed.p>
           <Themed.p>
             A lot has changed since then. I develop kickass websites using
@@ -128,7 +130,9 @@ const SiteSection = () => {
             gridRow: ["4 / 5", null, "3 / 4", null, null],
           }}
         >
-          <Themed.h3>By passion a frontend web developer</Themed.h3>
+          <Themed.h3 sx={{ fontSize: [3, 4, null, null, null] }}>
+            By passion a frontend web developer
+          </Themed.h3>
           <Themed.p>
             I have degrees in philosophy and social work, not computer science.
           </Themed.p>
@@ -161,7 +165,9 @@ const SiteSection = () => {
             gridRow: ["6 / 7", null, "4 / 5", null, null],
           }}
         >
-          <Themed.h3>Slow is smooth, smooth is fast</Themed.h3>
+          <Themed.h3 sx={{ fontSize: [3, 4, null, null, null] }}>
+            Slow is smooth, smooth is fast
+          </Themed.h3>
           <Themed.p>I don’t do rushed.</Themed.p>
           <Themed.p>
             Building an engaging, performant and accessible website is an

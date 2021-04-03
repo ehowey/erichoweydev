@@ -3,24 +3,227 @@ title: How to setup a staging website with SANITY
 author: Eric Howey
 authorLink: https://twitter.com/erchwy
 categories: [SANITY.io]
-date: 2021-03-20
-featuredImage: ../post-assets/featured-variants.jpg
-socialImage: ../post-assets/featured-variants-social.jpg
+date: 2021-04-03
+featuredImage: ../post-assets/featured-staging.jpg
+socialImage: ../post-assets/social-staging.jpg
 draft: true
 ---
 
 > Heads up! This guide uses an experimental feature of SANITY.
 
-Did you know that you can give your client a staging environment with SANITY.io? Even on their free plan?
+Did you know that you can easily give your client a staging environment with SANITY? Even on their developer plan?
 
-Staging environments empower content editors to test major content revisions without fear of breaking the main production website. A virtual content "sandbox" to play in.
+Staging environments empower content editors and developers to test major content and code revisions without fear of breaking the main production website. A virtual "sandbox" to play in.
 
-To set this up we will be using the [Spaces API](https://www.sanity.io/docs/spaces) inside of SANITY studio, a subdomain, and a staging branch of your website. I have done this with SANITY, Gatsby and Netlify however the core ideas presented here should translate to most major hosting and framework combinations.
+To set this up we will be using the [spaces API](https://www.sanity.io/docs/spaces) inside of SANITY studio, a staging branch of your website and a subdomain. I have done this with SANITY, Gatsby and Netlify however the core ideas presented here translate to most major hosting and framework combinations.
+
+This guide assumes you are already familiar with the basics of using SANITY.
+
+## Setup a staging dataset
+
+You likely already have a dataset named `production`, lets create a new one named `staging` and import the data from your production database to your staging database.
+
+```shell
+# Inside your SANITY studio folder
+# Follow prompts to create a new dataset
+sanity dataset create
+# Export your production database
+sanity dataset export
+# Import your dataset into the staging environment
+sanity dataset import production.tar.gz staging
+```
+
+Great! You now have a point-in-time copy of your production database (more on this later).
+
+## Setup the spaces API
+
+Setting up the [spaces API](https://www.sanity.io/docs/spaces) is pretty straightforward. Here is an example of the code you would need to add to your `sanity.json` config file to activate the spaces feature.
+
+```json
+// In your sanity.json file add
+"__experimental_spaces": [
+  {
+    "name": "production",
+    "title": "Production",
+    "default": true,
+    "api": {
+      "projectId": "abc123", // replace with your projectId
+      "dataset": "production"
+    }
+  },
+  {
+    "name": "staging",
+    "title": "Staging",
+    "api": {
+      "projectId": "l7gdp8yz", // replace with your projectId
+      "dataset": "staging"
+    }
+  }
+],
+```
+
+Restart your SANITY studio and you should now see a dropdown menu to switch between datasets in the top menu bar.
 
 ## Create a staging branch
 
-## Setup Space API
+Now that we have two datasets configured in SANITY it is time to create a staging branch of project that we can use to deploy on a subdomain.
 
-## Setup subdomain
+Commit any changes you have already made to setup the Spaces API and use git make a new `staging` branch of your project.
 
-## ...
+```shell
+git checkout -b staging
+```
+
+Push that branch to your version control, e.g. GitHub.
+
+```shell
+git push origin staging
+```
+
+Next we need to make sure the staging branch is sourcing data from the staging dataset. This might mean you have to update an environment variable, or in the case of Gatsby, update the options of `gatsby-source-sanity` to specify the staging dataset. However you do it, you need to make sure that on your staging branch your data is being sourced from the staging dataset.
+
+Test out that you have everything setup by making changes to your staging dataset and checking that those changes are reflected on your staging site in development mode. If you are seeing the changes then you are good to go!
+
+## Setup a subdomain
+
+Next we need to setup a subdomain and branch deploy. This step is going to be a bit different depending on which hosting provider you use but most major Jamstack hosts allow you the option to deploy from a specific branch and set up subdomains from those branches.
+
+Here is how you can do this with Netlify.
+
+For these instructions to work you need a top level domain, like `www.mygreatsite.com` which allows you to set a subdomain like `staging.mygreatsite.com`. Alternatively (and more simply) you can just make a fresh deploy of your website and select the "staging" branch instead of the "main" branch for the deployment.
+
+1. Login to the Netlify and goto the site settings page.
+
+1. Click on "Build and Deploy", then scroll to "Deploy contexts" and select edit settings.
+
+1. Select "Add individual branches" and type in "staging", save your changes.
+
+1. Add a [webhook to SANITY](https://www.sanity.io/docs/webhooks) so that changes from the staging dataset trigger a build of the staging branch on Netlify.
+
+1. Now goto "Domain management", then scroll to "Branch subdomains" and add a subdomain for your branch deploy, something like staging.mygreatsite.com.
+
+Test everything out - you should now be able to both make changes in the production dataset or main branch and see those changes build on the main website while also making changes to the staging branch or dataset and see those changes build on the staging website.
+
+## Benefits and drawbacks
+
+This gives you a staging website that is totally disconnected from your production code and production dataset. There are benefits and drawbacks to this. The main drawback is that you need to keep the code in your staging branch up to date with code in your production branch. I have also found that every once and a while I will completely overwrite the staging dataset with the production dataset so that the staging dataset stays somewhat current with the production dataset. I am hopeful that in the future there will workflows inside of SANITY that allow you to automatically sync content between datasets, but we aren't there yet!
+
+The benefit is you have a sandboxed copy of your production website to experiment with new features and content. This gives editors the chance to test different layouts and in my experience helps people gain confidence in the SANITY platform overall. As a developer you have a carbon copy of your production environment to test a complex feature on so that when you do deploy to production you can be sure it will work.
+
+> Gotcha! Look out for accidentally overwriting the dataset source when you merge code between branches. Always double check that your staging/production branches are sourcing from the right dataset.
+
+## Bonus: Styling the staging dataset differently
+
+From a visual perspective I find it _very_ hard to tell what dataset you are using, there is only the small text in the dropdown box in the nav bar. What I have done is make some small (but noticeable) styling changes to the staging studio so that there is a visual cue for which dataset you are using.
+
+There would be lots of ways you could accomplish this through [custom plugins and components in the studio](https://www.sanity.io/docs/styling), but here is a quick example of adding a red background to the site title in your studio.
+
+The logo component; note the boolean flag for whether we are in the staging or production dataset and then dynamically adding a classname to the `<h1>` tag.
+
+```jsx
+// components/logo.js
+import React from "react"
+import client from "part:@sanity/base/client"
+import styles from "./logo.css"
+
+const myLogo = () => {
+  const { dataset } = client.config()
+  const isStaging = dataset === "staging"
+  return (
+    <div className={styles.root}>
+      <div>
+        <h1
+          className={`${styles.projectName} ${
+            isStaging ? styles.staging : null
+          }`}
+        >
+          Dataset Switching
+        </h1>
+      </div>
+    </div>
+  )
+}
+
+export default myLogo
+```
+
+The css, most of this I copy and pasted from the base css that SANITY is already using. Note the staging class at the bottom.
+
+```css
+/* components/logo.css */
+@import "part:@sanity/base/theme/variables-style";
+
+.root {
+  text-decoration: none;
+  color: inherit;
+  padding: var(--small-padding);
+  box-sizing: border-box;
+  position: relative;
+  border-radius: var(--border-radius-medium);
+  padding: 0 0 0 0;
+
+  @media (--screen-medium) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.projectName {
+  display: block;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  line-height: calc(17 / 16);
+  font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+
+  @media (--screen-medium) {
+    width: unset;
+    max-width: 12em;
+  }
+}
+
+.brandLogoContainer {
+  display: block;
+  cursor: pointer;
+  color: inherit;
+
+  @nest & svg {
+    display: block;
+    fill: currentColor;
+    height: 1em;
+    width: auto;
+  }
+}
+
+.staging {
+  background-color: tomato;
+  color: #222222;
+  border-radius: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+```
+
+Finally in your sanity.json file you need to add the logo component as a custom component or part.
+
+```json
+// sanity.json
+"parts": [
+  {
+    "implements": "part:@sanity/base/brand-logo",
+    "path": "components/logo.js"
+  }
+]
+```
+
+Voila! You should see a red site title when you are on the staging dataset and a normal site title when you are on the production dataset.
+
+I hope this helps with your next SANITY project and gives you some ideas for extending the SANITY database in other unique ways.
+
+Happy coding!
