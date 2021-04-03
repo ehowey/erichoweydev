@@ -6,7 +6,6 @@ categories: [SANITY.io]
 date: 2021-04-03
 featuredImage: ../post-assets/featured-staging.jpg
 socialImage: ../post-assets/social-staging.jpg
-draft: true
 ---
 
 > Heads up! This guide uses an experimental feature of SANITY.
@@ -128,10 +127,11 @@ import styles from "./logo.css"
 
 const myLogo = () => {
   const { dataset } = client.config()
-  const isStaging = dataset === "staging"
+  const isStaging = dataset === "staging" // highlight-line
   return (
     <div className={styles.root}>
       <div>
+        // highlight-start
         <h1
           className={`${styles.projectName} ${
             isStaging ? styles.staging : null
@@ -139,6 +139,7 @@ const myLogo = () => {
         >
           Dataset Switching
         </h1>
+        // highlight-end
       </div>
     </div>
   )
@@ -201,6 +202,7 @@ The css, most of this I copy and pasted from the base css that SANITY is already
   }
 }
 
+// highlight-start
 .staging {
   background-color: tomato;
   color: #222222;
@@ -208,6 +210,7 @@ The css, most of this I copy and pasted from the base css that SANITY is already
   padding-left: 4px;
   padding-right: 4px;
 }
+// highlight-end
 ```
 
 Finally in your sanity.json file you need to add the logo component as a custom component or part.
