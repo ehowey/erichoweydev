@@ -55,18 +55,17 @@ Here is an example of how to set that up:
 ```jsx
 import { FatalErrorBoundary } from "@redwoodjs/web"
 import { RedwoodApolloProvider } from "@redwoodjs/web/apollo"
-import { ThemeProvider } from "theme-ui" // highlight-line
-import theme from "./theme"
 import FatalErrorPage from "src/pages/FatalErrorPage"
 import Routes from "src/Routes"
 import "./index.css"
+
+import { ThemeProvider } from "theme-ui" // highlight-line
+import theme from "./theme" // highlight-line
 
 const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>
     <RedwoodApolloProvider>
       <ThemeProvider theme={theme}>
-        {" "}
-        // highlight-line
         <Routes />
       </ThemeProvider>
     </RedwoodApolloProvider>
