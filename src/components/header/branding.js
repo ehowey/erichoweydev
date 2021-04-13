@@ -2,15 +2,15 @@
 import { jsx } from "theme-ui"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
-import { useContext } from "react"
-import { NavContext } from "gatsby-theme-catalyst-core"
+// import { useContext } from "react"
+// import { NavContext } from "gatsby-theme-catalyst-core"
 import { useSiteMetadata } from "gatsby-theme-catalyst-core"
 
 const SiteBranding = () => {
-  const [isNavOpen, setIsNavOpen] = useContext(NavContext)
+  // const [isNavOpen, setIsNavOpen] = useContext(NavContext)
   const { title, logo } = useSiteMetadata()
   // const [mode] = useColorMode()
-  const isDark = false
+  // const isDark = false
   return (
     <div
       sx={{
@@ -31,7 +31,7 @@ const SiteBranding = () => {
           sx={{
             height: ["40px", "50px", null, "60px", null],
             width: ["61px", "76px", null, "96px", null],
-            filter: isDark ? "invert(1)" : isNavOpen ? "invert(1)" : "none",
+            // filter: isDark ? "invert(1)" : isNavOpen ? "invert(1)" : "none",
             variant: "variants.siteLogo",
           }}
           alt={title}
