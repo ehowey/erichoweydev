@@ -2,12 +2,12 @@
 import { jsx } from "theme-ui"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
-// import { useContext } from "react"
-// import { NavContext } from "gatsby-theme-catalyst-core"
+import { useContext } from "react"
+import { NavContext } from "gatsby-theme-catalyst-core"
 import { useSiteMetadata } from "gatsby-theme-catalyst-core"
 
 const SiteBranding = () => {
-  // const [isNavOpen, setIsNavOpen] = useContext(NavContext)
+  const [isNavOpen, setIsNavOpen] = useContext(NavContext) //eslint-disable-line
   const { title, logo } = useSiteMetadata()
   // const [mode] = useColorMode()
   // const isDark = false
