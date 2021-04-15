@@ -7,7 +7,7 @@ import { NavContext } from "gatsby-theme-catalyst-core"
 import { useSiteMetadata } from "gatsby-theme-catalyst-core"
 
 const SiteBranding = () => {
-  const [isNavOpen, setIsNavOpen] = useContext(NavContext) //eslint-disable-line
+  const [isNavOpen, setIsNavOpen] = useContext(NavContext)
   const { title, logo } = useSiteMetadata()
   // const [mode] = useColorMode()
   // const isDark = false
@@ -31,7 +31,7 @@ const SiteBranding = () => {
           sx={{
             height: ["40px", "50px", null, "60px", null],
             width: ["61px", "76px", null, "96px", null],
-            // filter: isDark ? "invert(1)" : isNavOpen ? "invert(1)" : "none",
+            filter: isNavOpen ? "invert(1)" : "none",
             variant: "variants.siteLogo",
           }}
           alt={title}
