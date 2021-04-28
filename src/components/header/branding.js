@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { StaticImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 import { useContext } from "react"
 import { NavContext } from "gatsby-theme-catalyst-core"
@@ -8,7 +8,7 @@ import { useSiteMetadata } from "gatsby-theme-catalyst-core"
 
 const SiteBranding = () => {
   const [isNavOpen, setIsNavOpen] = useContext(NavContext)
-  const { title, logo } = useSiteMetadata()
+  const { title } = useSiteMetadata()
   // const [mode] = useColorMode()
   // const isDark = false
   return (
@@ -26,8 +26,9 @@ const SiteBranding = () => {
         onClick={() => setIsNavOpen(false)}
         sx={{ textDecoration: "none" }}
       >
-        <GatsbyImage
-          image={logo}
+        <StaticImage
+          src="./eh-logo.png"
+          placeholder="blurred"
           sx={{
             height: ["40px", "50px", null, "60px", null],
             width: ["61px", "76px", null, "96px", null],
