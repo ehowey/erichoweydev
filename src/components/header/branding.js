@@ -37,7 +37,7 @@ const SiteBranding = () => {
           }}
           alt={title}
           // objectFit="contain"
-          loading="eager"
+          // loading="eager"
           imgStyle={{ objectFit: "contain" }}
         />
       </Link>
