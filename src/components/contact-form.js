@@ -155,11 +155,7 @@ const ContactForm = () => {
         }}
       >
         Don’t fill this out if you're human:
-        <input
-          tabIndex="-1"
-          name="got-ya"
-          {...register("got-ya", { required: true })}
-        />
+        <input tabIndex="-1" name="got-ya" {...register("got-ya")} />
       </label>
       <div sx={{ position: "relative" }}>
         <AnimatePresence>
