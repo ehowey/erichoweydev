@@ -39,9 +39,9 @@ const ContactForm = () => {
     const timer = setTimeout(() => {
       reset()
       setIsSubmitted(false)
-    }, 3000)
+    }, 2200)
     return () => clearTimeout(timer)
-  }, [isSubmitted])
+  }, [isSubmitted]) //eslint-disable-line
 
   return (
     <form
