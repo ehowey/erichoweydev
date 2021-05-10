@@ -29,7 +29,6 @@ const ContactForm = () => {
     })
       .then((response) => {
         setIsSubmitted(true)
-        reset()
       })
       .catch((error) => {
         console.log(error)
@@ -38,8 +37,9 @@ const ContactForm = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
+      reset()
       setIsSubmitted(false)
-    }, 2000)
+    }, 3000)
     return () => clearTimeout(timer)
   }, [isSubmitted])
 
