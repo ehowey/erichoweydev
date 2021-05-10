@@ -68,8 +68,9 @@ const ContactForm = () => {
         </Themed.p>
         <input
           name="name"
-          ref={register({ required: true })}
+          {...register("name", { required: true })}
           sx={{
+            p: 1,
             borderColor: "textGray",
             borderRadius: "4px",
             borderStyle: "solid",
@@ -95,11 +96,12 @@ const ContactForm = () => {
         </Themed.p>
         <input
           name="email"
-          ref={register({
+          {...register("email", {
             required: true,
             pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
           })}
           sx={{
+            p: 1,
             borderColor: "textGray",
             borderRadius: "4px",
             borderStyle: "solid",
@@ -126,8 +128,9 @@ const ContactForm = () => {
         <textarea
           rows="8"
           name="message"
-          ref={register({ required: true })}
+          {...register("message", { required: true })}
           sx={{
+            p: 1,
             borderColor: "textGray",
             borderRadius: "4px",
             borderStyle: "solid",
@@ -152,7 +155,11 @@ const ContactForm = () => {
         }}
       >
         Don’t fill this out if you're human:
-        <input tabIndex="-1" name="got-ya" ref={register()} />
+        <input
+          tabIndex="-1"
+          name="got-ya"
+          {...register("got-ya", { required: true })}
+        />
       </label>
       <div sx={{ position: "relative" }}>
         <AnimatePresence>
@@ -196,7 +203,11 @@ const ContactForm = () => {
             </motion.div>
           )}
         </AnimatePresence>
-        <Button variant="primary" type="submit" sx={{ py: 1, px: 3, mt: 3 }}>
+        <Button
+          variant="primary"
+          type="submit"
+          sx={{ py: 1, px: 3, mt: 3, fontSize: 2 }}
+        >
           Start the conversation
         </Button>
       </div>
