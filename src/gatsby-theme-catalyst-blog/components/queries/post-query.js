@@ -33,6 +33,7 @@ export const query = graphql`
           gatsbyImageData(layout: FULL_WIDTH)
         }
       }
+      featuredImageCaption
       socialImage {
         childImageSharp {
           Seo: resize(width: 1024) {

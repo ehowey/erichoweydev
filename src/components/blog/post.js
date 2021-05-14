@@ -51,105 +51,116 @@ const Post = ({ data: { post }, previous, next }) => (
           gridRow: "2 / -1",
           zIndex: 20,
           bg: "background",
-          p: [3, null, 4, null, null],
           borderTopLeftRadius: "4px",
           borderTopRightRadius: "4px",
         }}
       >
-        <Themed.ul
-          aria-label="Categories"
+        <span
           sx={{
-            display: "flex",
-            listStyle: "none",
-            justifyContent: "center",
-            p: 0,
-            m: 0,
+            color: "textGray",
+            fontSize: 0,
+            fontStyle: "italic",
+            ml: [3, null, 4, null, null],
           }}
         >
-          {post.categories.map((category) => (
-            <Themed.li
-              key={category}
-              sx={{
-                textTransform: "uppercase",
-                fontWeight: "bold",
-                letterSpacing: "wide",
-                color: "primary",
-                "::after": {
-                  content: `"\\2022"`,
-                  px: 2,
-                },
-                ":last-of-type": {
-                  "::after": {
-                    content: "none",
-                  },
-                },
-              }}
-            >
-              <Themed.a
-                as={Link}
-                to={`/categories/${kebabCase(category)}/`}
+          {post.featuredImageCaption}
+        </span>
+        <div sx={{ p: [3, null, 4, null, null] }}>
+          <Themed.ul
+            aria-label="Categories"
+            sx={{
+              display: "flex",
+              listStyle: "none",
+              justifyContent: "center",
+              p: 0,
+              m: 0,
+            }}
+          >
+            {post.categories.map((category) => (
+              <Themed.li
+                key={category}
                 sx={{
-                  textDecoration: "none",
-                  ":hover": {
-                    textDecoration: "underline",
+                  textTransform: "uppercase",
+                  fontWeight: "bold",
+                  letterSpacing: "wide",
+                  color: "primary",
+                  "::after": {
+                    content: `"\\2022"`,
+                    px: 2,
+                  },
+                  ":last-of-type": {
+                    "::after": {
+                      content: "none",
+                    },
                   },
                 }}
               >
-                {category}
-              </Themed.a>
-            </Themed.li>
-          ))}
-        </Themed.ul>
-        <Themed.h1
-          sx={{
-            textAlign: "center",
-            fontSize: [5, 6, null, null, null],
-            mt: 3,
-            mb: 3,
-            "::after": {
-              display: "block",
-              content: '""',
-              width: "80px",
-              pt: 3,
-              borderBottomStyle: "solid",
-              borderBottomWidth: "4px",
-              borderBottomColor: "primary",
-              margin: "0 auto",
-            },
-            variant: "variants.postTitle",
-          }}
-        >
-          {post.title}
-        </Themed.h1>
-        <Themed.p
-          sx={{
-            color: "textGray",
-            fontSize: 1,
-            textTransform: "uppercase",
-            letterSpacing: "wider",
-            textAlign: "center",
-            m: 0,
-            a: {
-              color: "textGray",
-              textDecoration: "none",
-              ":hover": {
-                textDecoration: "underline",
-              },
-            },
-            variant: "variants.postMeta",
-          }}
-        >
-          {post.date} &bull;{" "}
-          <FaRegClock
+                <Themed.a
+                  as={Link}
+                  to={`/categories/${kebabCase(category)}/`}
+                  sx={{
+                    textDecoration: "none",
+                    ":hover": {
+                      textDecoration: "underline",
+                    },
+                  }}
+                >
+                  {category}
+                </Themed.a>
+              </Themed.li>
+            ))}
+          </Themed.ul>
+          <Themed.h1
             sx={{
-              position: "relative",
-              top: "0.125em",
+              textAlign: "center",
+              fontSize: [5, 6, null, null, null],
+              mt: 3,
+              mb: 3,
+              "::after": {
+                display: "block",
+                content: '""',
+                width: "80px",
+                pt: 3,
+                borderBottomStyle: "solid",
+                borderBottomWidth: "4px",
+                borderBottomColor: "primary",
+                margin: "0 auto",
+              },
+              variant: "variants.postTitle",
             }}
-          />{" "}
-          {post.timeToRead} Min
-        </Themed.p>
-        <MDXRenderer>{post.body}</MDXRenderer>
-        <PostFooter {...{ previous, next }} />
+          >
+            {post.title}
+          </Themed.h1>
+          <Themed.p
+            sx={{
+              color: "textGray",
+              fontSize: 1,
+              textTransform: "uppercase",
+              letterSpacing: "wider",
+              textAlign: "center",
+              m: 0,
+              a: {
+                color: "textGray",
+                textDecoration: "none",
+                ":hover": {
+                  textDecoration: "underline",
+                },
+              },
+              variant: "variants.postMeta",
+            }}
+          >
+            {post.date} &bull;{" "}
+            <FaRegClock
+              sx={{
+                position: "relative",
+                top: "0.125em",
+              }}
+            />{" "}
+            {post.timeToRead} Min
+          </Themed.p>
+          <MDXRenderer>{post.body}</MDXRenderer>
+          <PostFooter {...{ previous, next }} />
+        </div>
       </div>
     </article>
   </Layout>

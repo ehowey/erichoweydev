@@ -1,0 +1,36 @@
+---
+title: Reflections on RedwoodJS
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+categories: [Gatsby]
+date: 2020-05-20
+featuredImage: ./featured-sub-menu.jpg
+socialImage: ./featured-sub-menu.jpg
+draft: true
+---
+
+I spent a fair amount of time in March and April digging into RedwoodJS after having toyed around with it a bit last year when it was earlier in its development cycle. I wanted to chart some of my reflections about Redwood for future me and maybe this is useful for you if you are considering adopting Redwood for a project.
+
+You should know that I _did not_ take an app into production with Redwood but did complete both tutorials, hacked around integrating Supabase and Redwood, integrated Theme-UI and Chakra-UI, built out a few layouts, and started green fielding an idea for an app. I stopped working on Redwood only because I got hired onto a contract that took my attention (and limited time).
+
+You should also know that my frame of reference for Redwood is Gatsby - Gatsby/React is where I have done most of my professional work the last 2-3 years and is the lens through which I am understanding Redwood.
+
+## Comparing Gatsby, NextJS and Redwood
+
+At the end of the day all three of these meta-frameworks are built on top of React. This means that there are more similarities than differences - core ideas like components, props, hooks, and state are all translate well between the frameworks. You can also easily use your favourite React based npm package in any of the frameworks. Where things start to diverge is in the level of opinion and abstraction layered on top of React by each framework.
+
+NextJS - very few opinions and abstractions. Gatsby - some opinions and some abstractions. Redwood - many opinions and many abstractions.
+
+NextJS has had an amazing couple of years and has become, in my view, the standard for building React apps and frontends in 2021. NextJS strength is that it adds very few opinions on top of basic React and leaves all of these decisions up to you as a developer. This makes NextJS flexibile, powerful, and universally useful. NextJS offers just enough to make React development smoother - but gives you lots of freedom in how you want to structure and build your app. The main drawback to this approach is that it can feel a bit more intimadating getting started out with NextJS as there is a bit more mental overhead in terms of decisions you need to make when first setting up your project.
+
+Gatsby brings more opinions and abstractions to the table. For example if you are working with Gatsby then you are also choosing to work with GraphQL on some level. Gatsby also has a robust plugin ecosystem, similar to Wordpress, that allows functionality to be packaged and abstracted away. In my view this makes Gatsby a bit easier to get started with, you can be up and running with a pretty slick Gatsby site in a matter of minutes or hours. The friction with Gatsby comes when you need to start heavily customizing the data layer or build process which can get quite complex quickly.
+
+Redwood, for better or worse, comes with _very_ strong opinions about how you should build and structure your React app. As they say in their docs, you can opt out of these development decisions but they have done a lot of work to create a 'happy path' that you should follow for a full stack React app. I got a lot of the same feelings using Redwood that I had when first using Gatsby - moments of amazement and excitement. The obvious drawback here is that if you want to opt out or change too many of the 'happy path' decisions that Redwood has made for you, then you really negate the benefit of choosing the framework in the first place.
+
+## Progressive exposure to the backend
+
+One of the things I enjoyed most about Gatsby is the way it progressively exposes you to React and GraphQL. I started using Gatsby with some basic React knowledge, but no knowledge of GraphQL. It was a bit intimidating but Gatsby did a great job of progressively advancing my React, GraphQL, and frontend skills over time. Coming to Gatsby felt like a really natural stepping stone for me from the Wordpress world.
+
+I have the same feeling with Redwood, but for backend skills. Using Redwood means that you are strongly encouraged to use Prisma, postgres, and serverless functions. I have experience with serverless functions but backend database setup and management is new to me. Redwood feels like it gives you...
+
+## Excited for the future

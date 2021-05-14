@@ -1,0 +1,65 @@
+---
+title: Using Theme UI with SANITY.io
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+categories: [Theme UI, SANITY.io]
+date: 2020-02-08
+featuredImage: ./featured-gatsby-sanity-theme-ui.jpg
+socialImage: ./social-gatsby-sanity-theme-ui.jpg
+published: true
+---
+
+Gatsby, SANITY.io and Theme UI are quickly becoming my go-to stack of development tools. [Gatsby](https://www.gatsbyjs.org/) on the frontend. [SANITY](https://www.sanity.io/) on the backend. [Theme UI](https://theme-ui.com/) as the design system interface. Combining these three tools has been fairly smooth, but it took me a while to realize I could link Theme UI design tokens directly with SANITY block content using a serializer. Then things really took off!
+
+## Understanding data and serializers in SANITY
+
+You can skip this next bit if you are already familiar with SANITY.
+
+SANITY stores your content as raw structured data, what they call [block content or portable text](https://www.sanity.io/docs/presenting-block-text), agnostic of how it is going to be ultimately presented. It is not stored as HTML, Javascript, or Markdown like in other CMSs. This raw data has to be translated into a presentational format that can be displayed to the end user.
+
+There are many upsides to this approach to content however the downside is that you need to tell SANITY how to translate your content using what is called a ‘serializer’ and the official [block-content-to-react](https://github.com/sanity-io/block-content-to-react) component. A serializer is a computer science term to describe programmatically changing data from one format to another.
+
+## How it works and why it matters
+
+Using the [<Styled\> component](https://theme-ui.com/styled) from Theme UI you are able to link Theme UI design tokens with the block content output from SANITY. Your styles and designs are unified in one place, style it once, use it everywhere! The `<Styled/>` component from Theme UI is useful in lots of other ways, it is worth a read if you aren't familiar with it.
+
+## Example serializer with Theme UI
+
+```jsx
+/** @jsx jsx */
+import { jsx, Styled } from "theme-ui"
+
+const serializers = {
+  types: {
+    block(props) {
+      switch (props.node.style) {
+        case "h1":
+          return <Styled.h1>{props.children}</Styled.h1>
+        case "h2":
+          return <Styled.h2>{props.children}</Styled.h2>
+        case "h3":
+          return <Styled.h3>{props.children}</Styled.h3>
+        case "h4":
+          return <Styled.h4>{props.children}</Styled.h4>
+        case "h5":
+          return <Styled.h5>{props.children}</Styled.h5>
+        case "h6":
+          return <Styled.h6>{props.children}</Styled.h6>
+        case "blockquote":
+          return <Styled.blockquote>{props.children}</Styled.blockquote>
+        default:
+          return <Styled.p>{props.children}</Styled.p>
+      }
+    },
+  },
+  marks: {
+    link: ({ children, mark }) => (
+      <Styled.a href={mark.href}>{children}</Styled.a>
+    ),
+  },
+}
+
+export default serializers
+```
+
+Happy coding! If this helps you I would love to hear about it!

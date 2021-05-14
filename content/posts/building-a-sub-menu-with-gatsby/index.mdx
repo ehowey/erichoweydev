@@ -1,0 +1,306 @@
+---
+title: Building a sub-menu with Gatsby
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+categories: [Gatsby]
+date: 2020-02-24
+featuredImage: ./featured-sub-menu.jpg
+socialImage: ./featured-sub-menu.jpg
+published: true
+---
+
+You have a great Gatsby site! You followed all the tutorials and it is _blazing_ fast. But wait, you need a sub-menu (or dropdown menu) in your navigation?
+
+It is not as easy as it sounds if you want to keep a modern component architecture and use things like the javascript .map method.
+
+This is a real world coding problem I ran into when working on [Catalyst themes](https://github.com/ehowey/gatsby-theme-catalyst) and thought others may benefit from what I learned. Related documentation can be found in the [schema customization API](https://www.gatsbyjs.org/docs/schema-customization/).
+
+## The other way
+
+It is worth mentioning that you _could_ hardcode a navigation menu, including sub-menus, for your site. It would work really well in fact. What I am going to review in this post is aimed at theme authors or developers working with larger sites where you manage the navigation menu from the `gatsby-config.js` file or a CMS.
+
+## Example siteMetadata
+
+Here is the `gatsby-config.js` data structure we will be using in this example. This should look familiar for most readers, note the `subMenu` array.
+
+```js
+module.exports = {
+  siteMetadata: {
+    title: `Scheming Schemas!`,
+    description: `Planning to take over the world!`,
+    author: `Eric Howey`,
+    menuLinks: [
+      {
+        name: `Page 1`,
+        link: `/page-1`,
+      },
+      {
+        name: `Page 2`,
+        link: `/page-2`,
+        subMenu: [
+          {
+            name: `Sub 1`,
+            link: `/sub-1`,
+          },
+          {
+            name: `Sub 2`,
+            link: `/sub-2`,
+          },
+        ],
+      },
+      {
+        name: `Page 3`,
+        link: `/page-3`,
+      },
+    ],
+  },
+}
+```
+
+## Schema Inference
+
+The core challenge in building a sub-menu with Gatsby is rooted in schema inference.
+
+By default Gatsby tries to infer the GraphQL schema for your project, and it does a really great job in most cases. However, once you start dealing with more complicated data structures and larger sites it is best practice to define the GraphQL schema for Gatsby. The pattern I have noticed working with Gatsby is that if a field is _sometimes_ present this poses problems with the schema inference.
+
+In this example the `subMenu` array is sometimes present and sometimes not. Therein lies problem.
+
+## Defining the fields
+
+Instead of allowing Gatsby to infer the fields we need to define them using the [create types](https://www.gatsbyjs.org/docs/actions/#createTypes) API in `gatsby-node.js` to tell Gatsby exactly what the data structure will be. This `gatsby-node.js` file needs to be in your final site (and not a theme), otherwise you will get build errors when you try to deploy. If you are defining the fields from a CMS it would be similar to this.
+
+```js
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type Site implements Node {
+      siteMetadata: SiteMetadata
+    }
+    type SiteMetadata {
+      menuLinks: [MenuLinks]!
+    }
+    type MenuLinks {
+      name: String!
+      link: String!
+      subMenu: [SubMenu]
+    }
+    type SubMenu {
+      name: String
+      link: String
+    }
+  `
+  createTypes(typeDefs)
+}
+```
+
+When using this API capitalization matters, and also note that I did not include `@dontInfer` to [opt out of type inference](https://www.gatsbyjs.org/docs/schema-customization/#opting-out-of-type-inference). I am letting Gatsby handle inferring all of the other fields in `siteMetadata` but I am explicitly telling it to about the `menuLinks` and `subMenu` fields.
+
+## Handling null fields and creating default values
+
+Did you see the exclamation points beside some of the fields above? Remember that this tells Gatsby whether the field can be null or not. An exclamation point means the field is non-nullable. It has to have a value. If you don't want a field to be null, but instead want to have a default or placeholder value for the field you can do this with the [create field extension](https://www.gatsbyjs.org/docs/actions/#createFieldExtension) API. Let's add in a default value for our subMenu so instead of null it is an empty array. This will become critical later when we want to map the array.
+
+```js
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createFieldExtension, createTypes } = actions
+  createFieldExtension({
+    name: `defaultArray`,
+    extend() {
+      return {
+        resolve(source, args, context, info) {
+          if (source[info.fieldName] == null) {
+            return []
+          }
+          return source[info.fieldName]
+        },
+      }
+    },
+  })
+  const typeDefs = `
+    type Site implements Node {
+      siteMetadata: SiteMetadata
+    }
+    type SiteMetadata {
+      menuLinks: [MenuLinks]!
+    }
+    type MenuLinks {
+      name: String!
+      link: String!
+      subMenu: [SubMenu] @defaultArray
+    }
+    type SubMenu {
+      name: String
+      link: String
+    }
+  `
+  createTypes(typeDefs)
+}
+```
+
+## Query Results
+
+Now when the `menuLinks` array is queried with GraphQL we get the following data structure in return, notice the empty `subMenu` array on the page-1 and the page-3 link.
+
+```json
+"data": {
+  "site": {
+    "siteMetadata": {
+      "menuLinks": [
+        {
+          "link": "/page-1",
+          "name": "Page 1",
+          "subMenu": []
+        },
+        {
+          "link": "/page-2",
+          "name": "Page 2",
+          "subMenu": [
+            {
+              "link": "/sub-1",
+              "name": "Sub 1"
+            },
+            {
+              "link": "/sub-2",
+              "name": "Sub 2"
+            }
+          ]
+        },
+        {
+          "link": "/page-3",
+          "name": "Page 3",
+          "subMenu": []
+        }
+      ]
+    }
+  }
+}
+```
+
+## Build the menu component
+
+We have created a dependable data structure that we can trust! That is a big deal!
+
+Now you are free to use common javascript, React and CSS patterns to create the navigation menu component, including sub-menus. Don't forget `:focus-within`, `aria-haspopup="true"` and `aria-label="submenu"` when building your menu for accessibility. You can use [conditional rendering](https://reactjs.org/docs/conditional-rendering.html) to implement proper aria and map over the sub-menus. There is a good [article on CSS tricks](https://css-tricks.com/solved-with-css-dropdown-menus/) that covers properly styling a basic menu.
+
+Here is a minimal implementation of a menu and sub-menu with no styling so you you can see the element structure. In this example `menuLinks` is the variable which points to the queried menu data (see above).
+
+```jsx
+<ul>
+  {menuLinks.map((link) => (
+    <li key={link.name}>
+      <a
+        href={link.link}
+        aria-haspopup={link.subMenu && link.subMenu.length > 0 ? true : false}
+      >
+        {link.name}
+      </a>
+      {link.subMenu && link.subMenu.length > 0 ? (
+        <ul aria-label="submenu">
+          {link.subMenu.map((subLink) => (
+            <li key={subLink.name}>
+              <a href={subLink.link}>{subLink.name}</a>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </li>
+  ))}
+</ul>
+```
+
+Here is a full implementation of a menu and sub-menu with basic styling using [Theme UI](https://theme-ui.com/) and the `sx` prop. Again, in this example `menuLinks` is the variable which points to the queried menu data (see above).
+
+```jsx
+<ul
+  sx={{
+    listStyle: "none",
+    background: "darkorange",
+    margin: 0,
+    padding: 0,
+  }}
+>
+  {menuLinks.map((link) => (
+    <li
+      sx={{
+        color: "white",
+        backgroundColor: "darkorange",
+        display: "block",
+        float: "left",
+        padding: "1rem",
+        position: "relative",
+        transitionDuration: "0.5s",
+        ":hover": {
+          backgroundColor: "red",
+          cursor: "pointer",
+        },
+        ":hover > ul, :focus-within > ul ": {
+          visibility: "visible",
+          opacity: "1",
+          display: "block",
+        },
+      }}
+      key={link.name}
+    >
+      <a
+        sx={{
+          color: "white",
+          textDecoration: "none",
+        }}
+        href={link.link}
+        aria-haspopup={link.subMenu && link.subMenu.length > 0 ? true : false}
+      >
+        {link.name}
+      </a>
+      {link.subMenu && link.subMenu.length > 0 ? (
+        <ul
+          sx={{
+            listStyle: "none",
+            m: 0,
+            p: 0,
+            backgroundColor: "darkorange",
+            visibility: "hidden",
+            opacity: "0",
+            display: "none",
+            minWidth: "8rem",
+            position: "absolute",
+            transition: "all 0.5s ease",
+            marginTop: "1rem",
+            left: "0",
+            ":hover": {
+              visibility: "visible",
+              opacity: "1",
+              display: "block",
+            },
+          }}
+          aria-label="submenu"
+        >
+          {link.subMenu.map((subLink) => (
+            <li
+              sx={{
+                clear: "both",
+                width: "100%",
+                padding: "1rem",
+                ":hover": {
+                  backgroundColor: "red",
+                },
+              }}
+              key={subLink.name}
+            >
+              <a
+                sx={{
+                  color: "white",
+                  textDecoration: "none",
+                }}
+                href={subLink.link}
+              >
+                {subLink.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </li>
+  ))}
+</ul>
+```
+
+Happy coding!

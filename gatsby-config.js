@@ -100,7 +100,7 @@ module.exports = {
       options: {
         basePath: "/writing",
         excerptLength: 300,
-        assetPath: `content/post-assets`,
+        assetPath: `content/site-assets`,
         rssTitle: `erichowey.dev RSS Feed`,
       },
     },
