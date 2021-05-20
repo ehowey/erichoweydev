@@ -7,31 +7,32 @@ date: 2021-05-20
 featuredImage: ./featured-reflections-redwood.jpg
 featuredImageCaption: Photo by Courtney Smith on Unsplash
 socialImage: ./social-reflections-redwood.jpg
+published: true
 ---
 
-I spent a fair amount of time in March and April digging into [RedwoodJS](https://redwoodjs.com/) after having toyed around with it a briefly last year when it was first introduced. I wanted to capture some of my reflections for future me; and maybe this is useful to someone else who is considering adopting Redwood for a project.
+I spent a fair amount of time in March and April digging into [RedwoodJS](https://redwoodjs.com/) after having toyed around with it briefly last year when it was first introduced. I wanted to capture some of my reflections for future me; and maybe this is useful to someone else who is considering adopting Redwood for a project.
 
-You should know that I _did not_ take an app into production with Redwood but did complete both tutorials, hacked around integrating [Supabase](https://supabase.io/) and Redwood, [integrated my preferred css-in-js styling](https://www.erichowey.dev/writing/using-theme-ui-with-redwoodjs/), built out a few layouts, and started green fielding an idea for an app. I stopped working on Redwood only because I got hired onto a contract that has taken my time and attention.
+You should know that I _did not_ take an app into production with Redwood but did complete both tutorials, hacked around integrating [Supabase](https://supabase.io/) and Redwood, [integrated my preferred css-in-js library](https://www.erichowey.dev/writing/using-theme-ui-with-redwoodjs/), built out a few layouts, and started green fielding an idea for an app. I stopped working on Redwood only because I got hired onto a contract that has taken my time and attention.
 
-You should also know that the lens through which I am evaluating Redwood is Gatsby - Gatsby is what I have used for most professional work over the last few years.
+You should also know that the lens through which I am evaluating Redwood is Gatsby -- Gatsby is what I have used for most professional work over the last few years.
 
 ## Comparing Gatsby, NextJS and Redwood
 
-All three of these meta-frameworks are built on top of React. In many ways there are more similarities than differences - core ideas like components, props, hooks, and state are all shared between the frameworks because it is really just React. Where the frameworks diverge is the level of opinion and abstraction they offer on top of React.
+All three of these meta-frameworks are built on top of React. In many ways there are more similarities than differences; core ideas like components, props, hooks, and state are all shared between the frameworks because it is really just React underneath. Where the frameworks diverge is the level of opinion and abstraction they offer on top of React.
 
 Here is the TLDR. NextJS - very few opinions and abstractions. Gatsby - some opinions and some abstractions. Redwood - many opinions and many abstractions.
 
-NextJS has had an amazing couple of years and appears to have become the standard way of building React apps and frontends in 2021. NextJS's greatest strength is that it adds _just enough_ APIs on top of React including a rock solid router and the flexibility to statically render pages _or_ server side render pages as needed. NextJS leaves many technical decisions about how to structure the project up to you. This makes NextJS highly extendable and universally useful. Admittedly I am less experienced with NextJS, but the only real drawback I have experienced with NextJS is that it feels like a bit more mental overhead when first setting up a fresh project.
+NextJS has had an amazing couple of years and appears to have become the standard way of building React apps and frontends in 2021. NextJS's greatest strength is that it adds _just enough_ APIs on top of React including a rock solid router and the flexibility to statically render pages _or_ server side render pages as needed. NextJS leaves most technical decisions about how to structure the project up to you. This makes NextJS highly extendable and universally useful. Admittedly I am less experienced with NextJS, but the only real drawback I have experienced with NextJS is that it feels like a bit more mental overhead when first setting up a fresh project.
 
-Gatsby brings more opinions and abstractions to the table than NextJS. Perhaps the most significant being Gatsby's concept of a "content mesh" whereby all content is accessible via GraphQL at compile time. Also with Gatsby all pages are statically rendered, which means that dynamic content is sprinkled in with serverless functions or client side React. Gatsby has a robust plugin ecosystem, similar to Wordpress, that allows functionality to be packaged up and abstracted away. In my view Gatsby is the easiest of all 3 to get started with, you can be up and running with a pretty slick Gatsby site in a matter of minutes. But the friction comes when you start heavily customizing the GraphQL data layer, dealing with massive sites, or tweaking build steps which can all get complex quickly.
+Gatsby brings more opinions and abstractions to the table. Perhaps the most significant being Gatsby's concept of a "content mesh" whereby all content is meshed together via GraphQL at compile time. With Gatsby all pages are statically rendered, which means that dynamic content is sprinkled in using serverless functions or client side React. Gatsby boasts a robust plugin ecosystem, similar to Wordpress, that allows functionality to be packaged up and abstracted away. In my view Gatsby is the easiest of all three frameworks to get started with, you can be up and running with a pretty slick Gatsby site in a matter of minutes. But the friction comes when you start heavily customizing the GraphQL data layer, dealing with massive sites, or tweaking build steps all of which can get complex quickly.
 
-Redwood, for better or worse, comes with _very_ strong opinions about how you should build and structure your React project. You can opt out of these decisions but really smart people have done a lot of work to create a 'happy path' for you to follow. As a result Redwood can do some pretty amazing things, one CLI command and boom you have a fully functioning CRUD API and minimal UI! The baked in integration with unit tests, auth providers, react-hook-form, and Storybook are all more big pluses. The obvious drawback here is that if you want to opt out or change too many of these 'happy path' decisions that Redwood has made for you, then you really negate the benefits of choosing the framework in the first place.
+Redwood, for better or worse, comes with _very_ strong opinions about how you should build and structure your React project. You can opt out of these decisions, but hey some really smart people have done a lot of work to create a 'happy path' for you to follow. You should probably follow it. As a result of these strong opinions Redwood can do some pretty mind blowing things, one CLI command and boom you have a fully functioning CRUD API and minimal UI too! The baked in integration with unit tests, auth providers, react-hook-form, and Storybook are all big pluses as well. The obvious drawback here is that if you want to opt out or change too many of these 'happy path' decisions that Redwood makes for you, then you negate the benefits of choosing the framework in the first place.
 
 ## Progressive exposure to the backend
 
-One of the things I have enjoyed most about Gatsby is the way it progressively exposes you to modern frontend technologies like React, GraphQL and serverless functions. As I encountered technical hurdles with Gatsby I advanced my knowledge to overcome the hurdles, gradually gaining some advanced (and marketable) frontend skills.
+One of the things I have enjoyed most about Gatsby is the way it progressively exposes you to modern frontend technologies like React, GraphQL and serverless functions. As I encountered technical hurdles with Gatsby I deepened my knowledge to find solutions and in the process gained some advanced (and marketable) frontend skills.
 
-I have the same feeling of excitement with Redwood, but for modern backend skills this time. I have never used Prisma or setup a Postgres database but Redwood gently introduces you to these core backend technologies in a very approachable way. My sense is that if I continue using Redwood longterm I will gradually gain equally advanced (and marketable) backend skills.
+I have the same feeling of excitement with Redwood, but for modern backend skills this time. I have never used Prisma or setup a Postgres database but Redwood gently introduces you to these core backend technologies in a very approachable way. My guess is that if I continue using Redwood longterm I will gradually gain equally advanced (and marketable) backend skills.
 
 ## Redwood router
 
@@ -68,7 +69,7 @@ But where this gets really amazing is when you start to put together multiple ro
 </Set>
 ```
 
-Kaboom! 🚀 Amazing right - I really enjoy the Redwood router and think it brings a lot of power to the table for fullstack apps with real world complexity where you need multiple layouts for different areas of a site.
+Kaboom! 🚀 Amazing right!? I really enjoy the Redwood router and think it brings a lot of power to the table for fullstack apps with real world complexity where you need multiple layouts across different areas of a web app.
 
 ## CLI magic
 
@@ -78,18 +79,18 @@ yarn redwood generate scaffold post
 
 That one command spins up a whole CRUD interface and backend!!! 🤯🤯
 
-A big part of what makes Redwood so powerful is the CLI - and boy does it do a lot! What I found as I used Redwood more and more was that the [CLI commands](https://redwoodjs.com/docs/cli-commands) went from being obtuse and confusing to second nature. This is where you start to really understand the reason for such a tightly knit project structure. One CLI command can add in auth across your entire app - but that ability depends on maintaining a specific folder structure and file layout.
+A big part of what makes Redwood so powerful is the [CLI](https://redwoodjs.com/docs/cli-commands) - and boy does it do a lot! At first the CLI felt complicated and I had to reference the docs frequently but gradually the commands began to feel like second nature and I was using `yarn rw g` all over the place. This is where you start to really appreciate the tightly knit project structure. One CLI command can add in auth across your entire app -- but that ability depends on maintaining a specific folder structure and file layout.
 
 ## Pain points
 
-There were some minor pain points with Redwood - honestly things that I think will all be sorted out by the time it hits v1.0. But the major 'pain point' was probably the mental complexity pulling off fullstack for the Jamstack and this means there is _a lot_ going on in your app from the very first commit. Hello world is actually hello backend database, hello graphql resolvers, hello html/css, hello unit testing, hello forms, hello storybook, hello auth providers, and more. Honestly it feels a bit intimidating and is a lot to mentally track at first.
+There were some minor pain points with Redwood; honestly things that I think will all be sorted out by the time it hits v1.0. But the major 'pain point' was probably the mental complexity pulling off fullstack for the Jamstack and this means there is _a lot_ going on in your app from the very first commit. Hello world is actually hello backend database, hello graphql resolvers, hello html/css, hello unit testing, hello forms, hello storybook, hello auth providers, and more. Honestly it felt a bit intimidating and is a lot to mentally track at first.
 
-But...I felt this complexity gradually easing as I got more comfortable with Redwood and with the CLI commands in particular but it is _a lot_ to absorb at first. Kudos to the Redwood team - they created an amazing tutorial and do their best to ease you into the framework.
+But...I felt this complexity easing as I got more comfortable with Redwood and with the CLI commands in particular but it is _a lot_ to absorb at first. A big kudos to the Redwood team - they created an amazing tutorial and do their best to ease you into the framework.
 
-Ultimately I think Redwood is a framework that is really going to shine at the enterprise, startup, or agency level where you have a team of people responsible for different areas of a project and can divide responsibilities accordingly. It is probably not the ideal choice for a simple marketing site or personal blog.
+Ultimately I think Redwood is a framework that is really going to shine at the enterprise, startup, or agency level where you have a team of people responsible for different areas of a project and can divide responsibilities (and mental complexity) accordingly. There are probably more straightforward choices for a simple marketing site or personal blog.
 
 ## Excited for the future
 
-Redwood still hasn't hit v1.0 but it feels like they are getting close...maybe? My overall impression is that today, if I was green fielding a web application/SaaS I would give Redwood a long hard look, its only serious competition in the React space being NextJS at this point. My experience is also that other projects eventually get just as complex as Redwood but that complexity is added piecemeal overtime whereas in Redwood the full stack architecture is dropped in your lap on day one. I believe the upfront cost to understand Redwood is actually a massive time and frustration saver in the long run as the project architecture is so purposefully unified.
+Redwood still hasn't hit v1.0 but it feels like they are getting close...maybe? My overall impression is that today, if I was green fielding a web application/SaaS I would give Redwood a long hard look. My experience is that other projects eventually get just as complex as Redwood but that complexity is added piecemeal overtime whereas in Redwood the full stack architecture is dropped in your lap on day one. I believe the upfront cost to understand Redwood will turn into significant time and frustration saver in the long run.
 
-I am excited for the future and for v1.0 to drop in the coming year!
+I am excited for the future and for v1.0 to drop! Happy coding!
