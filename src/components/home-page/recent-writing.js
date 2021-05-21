@@ -13,7 +13,7 @@ const RecentWriting = () => {
       allCatalystPost(
         limit: 3
         sort: { fields: date, order: DESC }
-        filter: { draft: { eq: false } }
+        filter: { draft: { ne: true }, published: { eq: true } }
       ) {
         nodes {
           id
