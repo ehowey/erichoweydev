@@ -1,0 +1,18 @@
+---
+title: "Ch-ch-changesets: turn and face the changelog"
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+categories: [Monorepos]
+date: 2021-06-20
+featuredImage: ./featured-reflections-redwood.jpg
+featuredImageCaption: Photo by Courtney Smith on Unsplash
+socialImage: ./social-reflections-redwood.jpg
+---
+
+Monorepos are _hard_.
+
+Sure the basics can be pretty straightforward. [Yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces/)) gets you most of the way there many cases. But as the monorepos grow in size efficiently managing the interlinked packages gets more and more important. I spent a lot of time trying to sort out how to automate changelogs and versioning and looked at a few different solutions. I eventually landed on using [changesets](https://github.com/atlassian/changesets) and have been really happy with the resulting workflow.
+
+For a long time I was manually updating a root changelog. This was tedious and I didn't always keep up with every minor change or package bump. Package versioning and publishing was being handled by [Lerna](https://github.com/lerna/lerna). Lerna was a great tool, and I tried to make it work for also handling changelogs (which is possible to do) but was having problems with the workflow working the way I wanted.
+
+I knew of changesets but was worried about adding yet another tool the monorepo and the complexity this could add. Eventually I relented and gave it a shot. The first iteration involved using changesets _just_ for the changelogs. This worked but meant that I was using yarn workspaces, Lerna, changesets, and GitHub actions. It felt complicated and heavy.
