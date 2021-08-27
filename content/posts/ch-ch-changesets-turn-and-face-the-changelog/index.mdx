@@ -12,13 +12,13 @@ published: true
 
 Monorepos, arggg, it's _complicated_.
 
-The basics can be straightforward; [Yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces/) gets you most of the way there in many cases. But as monorepos grow in size and complexity managing the linked packages gets more and more finicky. I've spent a lot of time trying to sort out better workflows and tooling to automate changelogs, publishing to npm and package versioning. After some trial and error, I eventually settled on using [Changesets](https://github.com/atlassian/changesets) in combination with GitHub actions and I'm really happy with the results.
+As monorepos grow in size and complexity managing the linked packages gets more and more finicky. I've spent a lot of time trying to sort out better workflows and tooling to automate changelogs, versioning and publishing. After some trial and error, I eventually settled on using [Changesets](https://github.com/atlassian/changesets) in combination with GitHub actions and I'm really happy with the results.
 
 Here are some key takeaways and instructions to get Changesets setup and automated in your monorepo.
 
 ## Backstory
 
-A quick bit of background, my original process and tools were a combination of [Lerna](https://github.com/lerna/lerna) and Yarn workspaces. This worked _okay_, but I had to manually update the changelogs which became more and more cumbersome over time. I investigated alternate solutions for automating changelogs, including using Lerna itself to do this, and wasn't happy with the results. After reading [Chris Biscardi's blog post on Changesets](https://www.christopherbiscardi.com/post/shipping-multipackage-repos-with-github-actions-changesets-and-lerna) I decided to give this method a try with a few of my own tweaks.
+A quick bit of background, my original process and tools were a combination of [Lerna](https://github.com/lerna/lerna) and [Yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces/). This worked _okay_, but I had to manually update the changelogs which became more and more cumbersome over time. I investigated alternate solutions for automating changelogs, including using Lerna itself to do this, and wasn't happy with the results. After reading [Chris Biscardi's blog post on Changesets](https://www.christopherbiscardi.com/post/shipping-multipackage-repos-with-github-actions-changesets-and-lerna) I decided to give this method a try with a few of my own tweaks.
 
 ## Setting up Changesets
 
