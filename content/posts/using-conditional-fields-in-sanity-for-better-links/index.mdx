@@ -16,13 +16,13 @@ You can now conditionally hide and show fields in the editor based on content in
 
 > Heyo! This post assumes you are already a bit familiar with SANITY and their concept of schemas. If you are brand new to SANITY you might want to take a [spin through their crash course](https://www.sanity.io/docs/getting-started) and come back here.
 
-Dealing more explicitly with problem of internal (relative) and external (url) links immediately came to mind for me as an ideal use case for conditional fields.
+Dealing more explicitly with the problem of internal (relative) and external (url) links immediately came to mind for me as an ideal use case for learning conditional fields.
 
 Previously it was possible to allow relative links in SANITY's [url schema type](https://www.sanity.io/docs/url-type) which works great if you have a savvy developer inputting data, but leaves a lot of room for error if the user is less familiar with urls and how they work. But now with conditional fields you can explicitly ask the user what kind of link they need and show them different inputs based on their selection.
 
-![example of conditional links in sanity](./conditionalLinks.gif)
+![example of conditional links in sanity](./conditionalLinks-looped.gif)
 
-Check it out! Here is what the link schema can look like. Note the `hidden` fields below which control when they inputs are hidden. Imagine these like boolean if statements, `hidden: true` and `hidden: false` with the true and false values being determined based on the results of the inline function call.
+Check it out! Here is what the link schema I came up with looks like. Note the `hidden` fields which control when inputs are hidden or visible. Imagine these like boolean if statements, `hidden: true` and `hidden: false` with the true and false values being determined based on the results of the inline function call.
 
 ```js
 export default {
