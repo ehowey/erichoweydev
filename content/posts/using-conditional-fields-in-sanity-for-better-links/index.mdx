@@ -7,7 +7,7 @@ date: 2021-09-01
 featuredImage: ./featured.jpg
 featuredImageCaption: Photo by William Felker on Unsplash
 socialImage: ./social.jpg
-published: false
+published: true
 ---
 
 SANITY.io has just released [conditional fields](https://www.sanity.io/docs/conditional-fields) for their content studio which enables developer superpowers to fine tune the editing experience in ways that just weren't possible before.
@@ -19,6 +19,8 @@ You can now conditionally hide and show fields in the editor based on content in
 Dealing more explicitly with problem of internal (relative) and external (url) links immediately came to mind for me as an ideal use case for conditional fields.
 
 Previously it was possible to allow relative links in SANITY's [url schema type](https://www.sanity.io/docs/url-type) which works great if you have a savvy developer inputting data, but leaves a lot of room for error if the user is less familiar with urls and how they work. But now with conditional fields you can explicitly ask the user what kind of link they need and show them different inputs based on their selection.
+
+![example of conditional links in sanity](./conditionalLinks.gif)
 
 Check it out! Here is what the link schema can look like. Note the `hidden` fields below which control when they inputs are hidden. Imagine these like boolean if statements, `hidden: true` and `hidden: false` with the true and false values being determined based on the results of the inline function call.
 
