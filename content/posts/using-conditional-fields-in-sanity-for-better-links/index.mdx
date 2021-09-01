@@ -77,7 +77,7 @@ export default {
 }
 ```
 
-When entering a link the content editor is first presented with a choice; internal or external. And then based on that selection it either shows them a url entry field or a reference entry field. The url field is pretty standard fair - enter any valid web address. The internalLink field is where it gets funky; the content editor selects a reference to an actual page in the database to be the link. This prevents there from ever being dead links or typos! And remember that SANITY won't let you delete pages that have a reference to them - no accidentally deleting pages and breaking links either!
+When entering a link the content editor is first presented with a choice; internal or external. And then based on that selection it either shows them a url entry field or a reference entry field. The url field is pretty standard fair - enter any valid web address. The internalLink field is where it gets cool; the content editor selects a reference to an actual page in the database to be the link. This prevents there from ever being dead links or typos! And remember that SANITY won't let you delete pages that have a reference to them - no accidentally deleting pages and breaking links either!
 
 So this is great - but now we need to render that content correctly from the backend into our frontend. This next bit is biased towards React, however likely applies to other popular frontend frameworks with some tweaks.
 
@@ -97,9 +97,9 @@ With the schema above you will get back data that looks like this.
 }
 ```
 
-You can then build a simple link component that takes in this data and conditionally renders either a Link component for client side routing or a standard anchor tag for external links.
+You can then build a custom component that takes in this data and conditionally renders either a Link component for client side routing or a standard anchor tag for external links.
 
-Here is an basic example from Gatsby.
+Here is an example from Gatsby.
 
 ```jsx
 import React from "react"
