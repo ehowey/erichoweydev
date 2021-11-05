@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { jsx, Themed } from "theme-ui"
 import { Link } from "gatsby"
-import { Seo, Layout } from "gatsby-theme-catalyst-core"
+import Seo from "../../utils/seo"
+import Layout from "../layout/layout"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { GatsbyImage } from "gatsby-plugin-image"
 import PostFooter from "./post-footer"

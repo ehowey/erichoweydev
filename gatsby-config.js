@@ -6,6 +6,7 @@ const {
 } = process.env
 const isNetlifyProduction = NETLIFY_ENV === "production"
 const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
+const remarkSlug = require("remark-slug")
 
 module.exports = {
   siteMetadata: {
@@ -78,33 +79,117 @@ module.exports = {
       },
     ],
   },
-  flags: {
-    DEV_SSR: true,
-    FAST_DEV: true,
-  },
   plugins: [
     {
-      resolve: `gatsby-theme-catalyst-core`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        assetPath: `content/site-assets`,
+        name: `pages`,
+        path: `content/pages`,
       },
     },
     {
-      resolve: `gatsby-theme-catalyst-header-top`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        useStickyHeader: true,
-        useColorMode: false,
+        name: `posts`,
+        path: `content/posts`,
       },
     },
     {
-      resolve: `gatsby-theme-catalyst-blog`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        basePath: "/writing",
-        excerptLength: 300,
-        assetPath: `content/site-assets`,
-        rssTitle: `erichowey.dev RSS Feed`,
+        name: `images`,
+        path: `content/site-assets`,
       },
     },
+    {
+      resolve: `gatsby-plugin-page-creator`,
+      options: {
+        path: `content/pages`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.md`, `.mdx`],
+        defaultLayouts: {
+          default: require.resolve("./src/components/layout/layout.js"),
+        },
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-relative-images`,
+            options: {},
+          },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1920,
+              linkImagesToOriginal: false,
+              withWebp: true,
+              backgroundColor: `transparent`,
+              quality: 50,
+            },
+          },
+          {
+            resolve: `gatsby-remark-copy-linked-files`,
+            options: {
+              destinationDir: `content/assets`,
+            },
+          },
+
+          { resolve: `gatsby-remark-smartypants` },
+          { resolve: `gatsby-remark-reading-time` },
+          { resolve: `gatsby-remark-responsive-iframe` },
+          { resolve: `gatsby-remark-external-links` },
+        ],
+        remarkPlugins: [remarkSlug],
+        rehypePlugins: [],
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1920,
+              linkImagesToOriginal: false,
+              withWebp: true,
+              backgroundColor: `transparent`,
+              quality: 1920,
+            },
+          },
+        ],
+      },
+    },
+    `gatsby-plugin-mdx-embed`,
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-transformer-sharp`,
+    `gatsby-transformer-yaml`,
+    `gatsby-transformer-json`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-catch-links`,
+    `gatsby-plugin-theme-ui`,
+    `gatsby-plugin-image`,
+    // {
+    //   resolve: `gatsby-theme-catalyst-core`,
+    //   options: {
+    //     assetPath: `content/site-assets`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-theme-catalyst-header-top`,
+    //   options: {
+    //     useStickyHeader: true,
+    //     useColorMode: false,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-theme-catalyst-blog`,
+    //   options: {
+    //     basePath: "/writing",
+    //     excerptLength: 300,
+    //     assetPath: `content/site-assets`,
+    //     rssTitle: `erichowey.dev RSS Feed`,
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

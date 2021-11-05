@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, useThemeUI, Themed } from "theme-ui"
-import { useSiteMetadata, SocialFooter } from "gatsby-theme-catalyst-core"
+import { useSiteMetadata } from "../../utils/use-site-metadata"
+import { SocialFooter } from "../../utils/social-links"
 import { IconContext } from "react-icons"
 
 const SiteFooter = () => {

@@ -2,7 +2,8 @@
 import { jsx, Themed } from "theme-ui"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { Layout, Seo } from "gatsby-theme-catalyst-core"
+import Seo from "../../utils/seo"
+import Layout from "../layout/layout"
 import { FaRegClock } from "react-icons/fa"
 import { darken } from "@theme-ui/color"
 

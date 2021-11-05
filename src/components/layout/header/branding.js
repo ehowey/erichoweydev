@@ -3,8 +3,8 @@ import { jsx } from "theme-ui"
 import { StaticImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 import { useContext } from "react"
-import { NavContext } from "gatsby-theme-catalyst-core"
-import { useSiteMetadata } from "gatsby-theme-catalyst-core"
+import { NavContext } from "../../../utils/nav-context"
+import { useSiteMetadata } from "../../../utils/use-site-metadata"
 
 const SiteBranding = () => {
   const [isNavOpen, setIsNavOpen] = useContext(NavContext)
