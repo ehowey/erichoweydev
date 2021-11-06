@@ -51,7 +51,6 @@ const PostsList = ({ data }) => {
           >
             <Themed.h1>Writing</Themed.h1>
             {posts.map((post) => {
-              const title = post.title || post.slug
               return (
                 <article
                   sx={{
@@ -85,7 +84,7 @@ const PostsList = ({ data }) => {
                   }}
                   key={post.slug}
                 >
-                  <Link to={post.slug}>
+                  <Link to={`/writing/${post.slug}/`}>
                     <GatsbyImage
                       image={post.featuredImage.childImageSharp.gatsbyImageData}
                       className="featuredImage"
@@ -143,7 +142,7 @@ const PostsList = ({ data }) => {
                           variant: "variants.postListTitle",
                         }}
                       >
-                        {title}
+                        {post.title}
                       </Themed.h2>
                       <Themed.p
                         sx={{

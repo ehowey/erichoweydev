@@ -2,10 +2,11 @@
 // Try changing some of the colors below to see what happens.
 import { tailwind, baseColors } from "@theme-ui/preset-tailwind"
 import prism from "@theme-ui/prism/presets/oceanic-next"
-import "@fontsource/raleway/400.css";
-import "@fontsource/raleway/400-italic.css";
-import "@fontsource/raleway/700.css";
-
+import "@fontsource/raleway/400.css"
+import "@fontsource/raleway/400-italic.css"
+import "@fontsource/raleway/500-italic.css"
+import "@fontsource/raleway/600-italic.css"
+import "@fontsource/raleway/700.css"
 
 const theme = {
   ...tailwind,

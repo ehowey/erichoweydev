@@ -70,7 +70,7 @@ const RecentWriting = () => {
           ))}
         </ul>
         <Themed.p>
-          <Button variant="alt" as={Link} to="/writing">
+          <Button variant="alt" as={Link} to="/writing/">
             More Writing
           </Button>
         </Themed.p>
