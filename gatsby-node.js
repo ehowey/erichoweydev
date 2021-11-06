@@ -1,6 +1,6 @@
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const { createContentDigest } = require(`gatsby-core-utils`)
-const _ = require("lodash")
+const kebabCase = require("just-kebab-case")
 
 exports.createSchemaCustomization = ({ actions, schema }) => {
   const { createTypes, createFieldExtension } = actions
@@ -187,7 +187,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // Create the category pages
   categories.forEach((category) => {
     createPage({
-      path: `/categories/${_.kebabCase(category.fieldValue)}/`,
+      path: `/categories/${kebabCase(category.fieldValue)}/`,
       component: CategoryQuery,
       context: {
         category: category.fieldValue,

@@ -3,7 +3,7 @@ import { jsx, Themed } from "theme-ui"
 import { Link, graphql } from "gatsby"
 import Seo from "../utils/seo"
 import Layout from "../components/layout/layout"
-import kebabCase from "lodash/kebabCase"
+import kebabCase from "just-kebab-case"
 
 const CategoriesPage = ({ data }) => {
   const categories = data.categoryList.group

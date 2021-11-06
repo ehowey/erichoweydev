@@ -83,28 +83,15 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `pages`,
-        path: `content/pages`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
         name: `posts`,
-        path: `content/posts`,
+        path: `src/posts`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `content/site-assets`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-page-creator`,
-      options: {
-        path: `content/pages`,
+        path: `src/images`,
       },
     },
     {
@@ -116,10 +103,6 @@ module.exports = {
         },
         gatsbyRemarkPlugins: [
           {
-            resolve: `gatsby-remark-relative-images`,
-            options: {},
-          },
-          {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 1920,
@@ -129,32 +112,26 @@ module.exports = {
               quality: 50,
             },
           },
-          {
-            resolve: `gatsby-remark-copy-linked-files`,
-            options: {
-              destinationDir: `content/assets`,
-            },
-          },
-
           { resolve: `gatsby-remark-smartypants` },
           { resolve: `gatsby-remark-reading-time` },
-          { resolve: `gatsby-remark-responsive-iframe` },
-          { resolve: `gatsby-remark-external-links` },
-        ],
-        remarkPlugins: [remarkSlug],
-        rehypePlugins: [],
-        plugins: [
           {
-            resolve: `gatsby-remark-images`,
+            resolve: `gatsby-remark-external-links`,
             options: {
-              maxWidth: 1920,
-              linkImagesToOriginal: false,
-              withWebp: true,
-              backgroundColor: `transparent`,
-              quality: 1920,
+              target: `_self`,
             },
           },
         ],
+        remarkPlugins: [remarkSlug],
+      },
+    },
+    {
+      resolve: `gatsby-remark-images`,
+      options: {
+        maxWidth: 1920,
+        linkImagesToOriginal: false,
+        withWebp: true,
+        backgroundColor: `transparent`,
+        quality: 1920,
       },
     },
     `gatsby-plugin-mdx-embed`,
@@ -162,34 +139,10 @@ module.exports = {
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
-    `gatsby-transformer-yaml`,
-    `gatsby-transformer-json`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-theme-ui`,
     `gatsby-plugin-image`,
-    // {
-    //   resolve: `gatsby-theme-catalyst-core`,
-    //   options: {
-    //     assetPath: `content/site-assets`,
-    //   },
-    // },
-    // {
-    //   resolve: `gatsby-theme-catalyst-header-top`,
-    //   options: {
-    //     useStickyHeader: true,
-    //     useColorMode: false,
-    //   },
-    // },
-    // {
-    //   resolve: `gatsby-theme-catalyst-blog`,
-    //   options: {
-    //     basePath: "/writing",
-    //     excerptLength: 300,
-    //     assetPath: `content/site-assets`,
-    //     rssTitle: `erichowey.dev RSS Feed`,
-    //   },
-    // },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -199,7 +152,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#000000`,
         display: `minimal-ui`,
-        icon: `content/site-assets/catalyst-site-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/erichowey-site-icon.png`, // This path is relative to the root of the site.
       },
     },
     {

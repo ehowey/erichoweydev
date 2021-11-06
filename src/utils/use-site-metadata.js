@@ -3,7 +3,7 @@ export const useSiteMetadata = () => {
   const data = useStaticQuery(
     graphql`
       query SiteMetaData {
-        logo: file(name: { eq: "catalyst-site-logo" }) {
+        logo: file(name: { eq: "erichowey-site-logo" }) {
           childImageSharp {
             gatsbyImageData(
               height: 300
@@ -12,7 +12,7 @@ export const useSiteMetadata = () => {
             )
           }
         }
-        seoImage: file(name: { eq: "catalyst-site-social" }) {
+        seoImage: file(name: { eq: "erichowey-site-social" }) {
           childImageSharp {
             resize(width: 1024) {
               src

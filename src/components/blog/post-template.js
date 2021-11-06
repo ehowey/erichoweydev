@@ -6,7 +6,7 @@ import Layout from "../layout/layout"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { GatsbyImage } from "gatsby-plugin-image"
 import PostFooter from "./post-footer"
-import kebabCase from "lodash/kebabCase"
+import kebabCase from "just-kebab-case"
 import { FaRegClock } from "react-icons/fa"
 
 const Post = ({ data: { post }, previous, next }) => (
