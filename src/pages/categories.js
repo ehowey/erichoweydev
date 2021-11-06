@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Themed } from "theme-ui"
 import { Link, graphql } from "gatsby"
-import Seo from "../utils/seo"
+import Seo from "../components/seo"
 import Layout from "../components/layout/layout"
 import kebabCase from "just-kebab-case"
 

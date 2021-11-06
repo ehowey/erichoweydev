@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, useThemeUI } from "theme-ui"
-import { SocialHeader } from "../../../utils/social-links"
+import { SocialHeader } from "../social-links"
 import { IconContext } from "react-icons"
 
 const SocialWrapper = ({ isNavOpen }) => {

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Themed } from "theme-ui"
 import { Link } from "gatsby"
-import Seo from "../../utils/seo"
+import Seo from "../../components/seo"
 import Layout from "../layout/layout"
 
 const CategoryPage = ({ posts, category }) => {

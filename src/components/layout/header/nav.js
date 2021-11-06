@@ -3,7 +3,7 @@ import { jsx } from "theme-ui"
 import { useEffect, useRef } from "react"
 import { Link } from "gatsby"
 import SocialIcons from "./social-icons"
-import { useSiteMetadata } from "../../../utils/use-site-metadata"
+import { useSiteMetadata } from "../../../hooks/use-site-metadata"
 
 const Nav = ({ isNavOpen, setIsNavOpen }) => {
   const { menuLinks } = useSiteMetadata()

@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, useThemeUI, Themed } from "theme-ui"
-import { useSiteMetadata } from "../../utils/use-site-metadata"
-import { SocialFooter } from "../../utils/social-links"
+import { useSiteMetadata } from "../../hooks/use-site-metadata"
+import { SocialFooter } from "./social-links"
 import { IconContext } from "react-icons"
 
 const SiteFooter = () => {

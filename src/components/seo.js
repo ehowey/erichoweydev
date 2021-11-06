@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
-import { useSiteMetadata } from "./use-site-metadata"
+import { useSiteMetadata } from "../hooks/use-site-metadata"
 import { useLocation } from "@reach/router"
 
 const Seo = ({
@@ -14,14 +14,8 @@ const Seo = ({
   image: propImage,
   isBlogPost,
 }) => {
-  const {
-    title,
-    description,
-    keywords,
-    twitterUsername,
-    siteUrl,
-    seoImage,
-  } = useSiteMetadata()
+  const { title, description, keywords, twitterUsername, siteUrl, seoImage } =
+    useSiteMetadata()
   const location = useLocation()
   const seoTitle = propTitle || title
   const seoDescription = propDescription || description

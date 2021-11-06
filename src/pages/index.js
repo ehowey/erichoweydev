@@ -6,7 +6,7 @@ import About from "../components/home-page/about"
 import Work from "../components/home-page/work"
 import Contact from "../components/home-page/contact"
 import Layout from "../components/layout/layout"
-import Seo from "../utils/seo"
+import Seo from "../components/seo"
 
 const HomePage = () => {
   return (
