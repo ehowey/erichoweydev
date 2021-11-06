@@ -20,7 +20,7 @@ Dealing more explicitly with the problem of internal (relative) and external (ur
 
 Previously it was possible to allow relative links in SANITY's [url schema type](https://www.sanity.io/docs/url-type) which works great if you have a savvy developer inputting data, but leaves a lot of room for error if the user is less familiar with urls and how they work. But now with conditional fields you can explicitly ask the user what kind of link they need and show them different inputs based on their selection.
 
-![example of conditional links in sanity](./conditionalLinks-looped.gif)
+![example of conditional links in SANITY studio](./conditionalLinks-demo.gif)
 
 Check it out! Here is what the link schema I came up with looks like. Note the `hidden` fields which control when inputs are hidden or visible. Imagine these like boolean if statements, `hidden: true` and `hidden: false` with the true and false values being determined based on the results of the inline function call.
 

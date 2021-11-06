@@ -123,17 +123,29 @@ module.exports = {
         ],
         remarkPlugins: [remarkSlug],
       },
+      plugins: [
+        {
+          resolve: `gatsby-remark-images`,
+          options: {
+            maxWidth: 1920,
+            linkImagesToOriginal: false,
+            withWebp: true,
+            backgroundColor: `transparent`,
+            quality: 50,
+          },
+        },
+      ],
     },
-    {
-      resolve: `gatsby-remark-images`,
-      options: {
-        maxWidth: 1920,
-        linkImagesToOriginal: false,
-        withWebp: true,
-        backgroundColor: `transparent`,
-        quality: 1920,
-      },
-    },
+    // {
+    //   resolve: `gatsby-remark-images`,
+    //   options: {
+    //     maxWidth: 1920,
+    //     linkImagesToOriginal: false,
+    //     withWebp: true,
+    //     backgroundColor: `transparent`,
+    //     quality: 1920,
+    //   },
+    // },
     `gatsby-plugin-mdx-embed`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,

@@ -156,7 +156,7 @@ const theme = {
     },
     pre: {
       ...prism,
-      fontSize: 1,
+      fontSize: "14px",
       p: 3,
       my: 4,
       borderRadius: ["0px", null, "4px", null, null],
