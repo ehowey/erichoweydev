@@ -1,14 +1,9 @@
 import React from "react"
-import { NavProvider } from "./src/utils/nav-context"
 import { MDXProvider } from "@mdx-js/react"
 import Seo from "./src/utils/seo"
 
 export const wrapRootElement = ({ element }) => {
-  return (
-    <NavProvider>
-      <MDXProvider components={{ Seo }}>{element}</MDXProvider>
-    </NavProvider>
-  )
+  return <MDXProvider components={{ Seo }}>{element}</MDXProvider>
 }
 
 export const onRouteUpdate = ({ location, prevLocation }) => {

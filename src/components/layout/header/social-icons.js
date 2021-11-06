@@ -1,12 +1,9 @@
 /** @jsx jsx */
 import { jsx, useThemeUI } from "theme-ui"
-import { useContext } from "react"
-import { NavContext } from "../../../utils/nav-context"
 import { SocialHeader } from "../../../utils/social-links"
 import { IconContext } from "react-icons"
 
-const SocialWrapper = () => {
-  const [isNavOpen] = useContext(NavContext)
+const SocialWrapper = ({ isNavOpen }) => {
   const { theme } = useThemeUI()
 
   return (

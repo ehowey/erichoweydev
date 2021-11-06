@@ -8,9 +8,9 @@ const CategoryListQuery = ({ data }) => {
 
 export const query = graphql`
   query {
-    categoryList: allCatalystPost(
+    categoryList: allBlogPost(
       limit: 1000
-      filter: { draft: { ne: true }, published: { eq: true } }
+      filter: { published: { eq: true } }
     ) {
       group(field: categories) {
         fieldValue

@@ -10,22 +10,22 @@ import { truncate } from "lodash"
 const RecentWriting = () => {
   const data = useStaticQuery(graphql`
     {
-      allCatalystPost(
+      allBlogPost(
         limit: 3
         sort: { fields: date, order: DESC }
-        filter: { draft: { ne: true }, published: { eq: true } }
+        filter: { published: { eq: true } }
       ) {
         nodes {
           id
           title
-          date(formatString: "MMMM DD, YYYY")
+          date(formatString: "MMMM D, YYYY")
           slug
           excerpt
         }
       }
     }
   `)
-  const posts = data.allCatalystPost.nodes
+  const posts = data.allBlogPost.nodes
 
   return (
     <SectionWrapper
@@ -56,7 +56,7 @@ const RecentWriting = () => {
               }}
             >
               <Themed.h3 sx={{ mb: 0 }}>
-                <Themed.a to={post.slug} as={Link}>
+                <Themed.a to={`/writing/${post.slug}`} as={Link}>
                   {post.title}
                 </Themed.a>
               </Themed.h3>

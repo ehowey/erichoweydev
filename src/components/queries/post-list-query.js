@@ -3,16 +3,16 @@ import { graphql } from "gatsby"
 import PostList from "../blog/post-list"
 
 const EricPostListQuery = ({ data }) => {
-  const { allCatalystPost } = data
-  return <PostList posts={allCatalystPost.nodes} />
+  const { allBlogPost } = data
+  return <PostList posts={allBlogPost.nodes} />
 }
 
 export const query = graphql`
   {
-    allCatalystPost(
+    allBlogPost(
       sort: { fields: [date, title], order: DESC }
       limit: 1000
-      filter: { draft: { ne: true }, published: { eq: true } }
+      filter: { published: { eq: true } }
     ) {
       nodes {
         id
@@ -22,7 +22,6 @@ export const query = graphql`
         author
         authorLink
         date(formatString: "MMMM DD, YYYY")
-        tags
         categories
         timeToRead
         featuredImage {

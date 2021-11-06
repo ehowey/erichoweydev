@@ -31,7 +31,6 @@ export const useSiteMetadata = () => {
             menuLinks {
               name
               link
-              location
             }
             socialLinks {
               name

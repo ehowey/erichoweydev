@@ -1,21 +1,17 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Post from "../blog/post"
+import Post from "./post"
 
-const EricPostQuery = ({ data }) => {
-  const { catalystPost, previous, next } = data
+const PostQuery = ({ data }) => {
+  const { blogPost, previous, next } = data
   return (
-    <Post
-      data={{ ...data, post: catalystPost }}
-      previous={previous}
-      next={next}
-    />
+    <Post data={{ ...data, post: blogPost }} previous={previous} next={next} />
   )
 }
 
 export const query = graphql`
-  query($id: String!, $previousId: String, $nextId: String) {
-    catalystPost(id: { eq: $id }) {
+  query ($id: String!, $previousId: String, $nextId: String) {
+    blogPost(id: { eq: $id }) {
       id
       excerpt
       body
@@ -23,11 +19,10 @@ export const query = graphql`
       title
       author
       authorLink
-      tags
       categories
       keywords
       timeToRead
-      date(formatString: "MMMM DD, YYYY")
+      date(formatString: "MMMM D, YYYY")
       featuredImage {
         childImageSharp {
           gatsbyImageData(layout: FULL_WIDTH)
@@ -44,21 +39,17 @@ export const query = graphql`
         }
       }
     }
-    previous: catalystPost(id: { eq: $previousId }) {
+    previous: blogPost(id: { eq: $previousId }) {
       id
-      excerpt
       slug
       title
-      date(formatString: "MMMM DD, YYYY")
     }
-    next: catalystPost(id: { eq: $nextId }) {
+    next: blogPost(id: { eq: $nextId }) {
       id
-      excerpt
       slug
       title
-      date(formatString: "MMMM DD, YYYY")
     }
   }
 `
 
-export default EricPostQuery
+export default PostQuery

@@ -1,13 +1,12 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
-import { useContext, useEffect, useRef } from "react"
-import { NavContext } from "../../../utils/nav-context"
-import NavMenuRight from "./nav-menu-right"
-import NavMenuLeft from "./nav-menu-left"
+import { useEffect, useRef } from "react"
+import { Link } from "gatsby"
 import SocialIcons from "./social-icons"
+import { useSiteMetadata } from "../../../utils/use-site-metadata"
 
-const Nav = () => {
-  const [setIsNavOpen, isNavOpen] = useContext(NavContext)
+const Nav = ({ isNavOpen, setIsNavOpen }) => {
+  const { menuLinks } = useSiteMetadata()
   const navRef = useRef()
 
   // Handle moving the focus up to the menu when it is opened, esc buttong to close menu
@@ -41,7 +40,7 @@ const Nav = () => {
       document.removeEventListener("keydown", tabListener)
       document.removeEventListener("keydown", escListener)
     }
-  }, [isNavOpen])
+  }, [isNavOpen]) //eslint-disable-line
 
   return (
     <nav
@@ -60,23 +59,68 @@ const Nav = () => {
         justifyContent: ["start", null, "flex-end", null, null],
         variant: "variant.nav",
       }}
-      aria-label="Primary menu"
+      aria-label="Primary navigation menu"
     >
-      <div
+      <ul
         sx={{
-          width: "100%",
+          listStyle: "none",
+          m: 0,
+          p: 0,
           display: "flex",
           flexDirection: ["column", null, "row", null, null],
-          justifyContent: [null, null, "space-between", null, null],
+          alignItems: "center",
           flexWrap: "wrap",
-          textAlign: ["center", null, "left", null, null],
-          variant: "variants.navUl",
+          variant: "variants.navLinksRight",
         }}
       >
-        <NavMenuLeft />
-        <NavMenuRight />
-      </div>
-      <SocialIcons />
+        {menuLinks.map((link) => {
+          return (
+            <li
+              key={link.link}
+              sx={{
+                my: [2, null, 0, null, null],
+                mr: [0, null, 3, null, null],
+                cursor: "pointer",
+                ".active": {
+                  textDecoration: "underline",
+                  textDecorationThickness: "0.125em",
+                  color: "primary",
+                  variant: "variants.navLinkActive",
+                },
+                ":last-of-type": {
+                  mr: 0,
+                },
+                variant: "variants.navLi",
+              }}
+            >
+              <Link
+                to={link.link}
+                activeClassName="active"
+                onClick={() => setIsNavOpen(false)}
+                sx={{
+                  position: "relative",
+                  py: 2,
+                  px: 1,
+                  color: isNavOpen ? "header.textOpen" : "header.text",
+                  textDecoration: "none",
+                  fontWeight: "bold",
+                  letterSpacing: "1px",
+                  zIndex: 2,
+                  ":hover, :focus, :active": {
+                    textDecoration: "underline",
+                    textDecorationThickness: "0.125em",
+                    color: "primary",
+                  },
+                  variant: "variants.navLink",
+                }}
+              >
+                {link.name}
+              </Link>
+            </li>
+          )
+        })}
+      </ul>
+      <SocialIcons isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
     </nav>
   )
 }

@@ -2,7 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useSiteMetadata } from "./use-site-metadata"
-import { useCatalystConfig } from "./use-catalyst-config"
 import { useLocation } from "@reach/router"
 
 const Seo = ({

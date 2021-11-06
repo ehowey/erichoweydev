@@ -2,15 +2,8 @@
 import { jsx } from "theme-ui"
 import { StaticImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
-import { useContext } from "react"
-import { NavContext } from "../../../utils/nav-context"
-import { useSiteMetadata } from "../../../utils/use-site-metadata"
 
-const SiteBranding = () => {
-  const [isNavOpen, setIsNavOpen] = useContext(NavContext)
-  const { title } = useSiteMetadata()
-  // const [mode] = useColorMode()
-  // const isDark = false
+const SiteBranding = ({ isNavOpen, setIsNavOpen }) => {
   return (
     <div
       sx={{
@@ -35,8 +28,7 @@ const SiteBranding = () => {
             filter: isNavOpen ? "invert(1)" : "none",
             variant: "variants.siteLogo",
           }}
-          alt={title}
-          // loading="eager"
+          alt="Eric Howey Signature Logo"
           imgStyle={{ objectFit: "contain" }}
         />
       </Link>

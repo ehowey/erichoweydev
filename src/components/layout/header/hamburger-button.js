@@ -1,14 +1,12 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
-import { useContext } from "react"
-import { NavContext } from "../../../utils/nav-context"
 
 const Span = ({ open }) => (
   <span
     sx={{
       backgroundColor: "currentColor",
       display: "block",
-      height: "1px",
+      height: "2px",
       left: "calc(50% - 10px)",
       position: "absolute",
       transformOrigin: "center",
@@ -16,7 +14,6 @@ const Span = ({ open }) => (
       transitionProperty: "background-color, opacity, transform",
       transitionTimingFunction: "ease-out",
       width: "20px",
-
       ":nth-of-type(1)": {
         top: "calc(50% - 8px)",
         transform: open && "translateY(7px) rotate(45deg)",
@@ -33,8 +30,7 @@ const Span = ({ open }) => (
   ></span>
 )
 
-const SiteMobileButton = () => {
-  const [isNavOpen, setIsNavOpen] = useContext(NavContext)
+const SiteMobileButton = ({ isNavOpen, setIsNavOpen }) => {
   return (
     <button
       aria-haspopup={true}

@@ -1,13 +1,12 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
-import { useContext } from "react"
+import { useState } from "react"
 import Branding from "./branding"
 import Nav from "./nav"
 import HamburgerButton from "./hamburger-button"
-import { NavContext } from "../../../utils/nav-context"
 
 const SiteHeader = () => {
-  const [isNavOpen] = useContext(NavContext)
+  const [isNavOpen, setIsNavOpen] = useState(false)
   return (
     <header
       sx={{
@@ -40,9 +39,9 @@ const SiteHeader = () => {
           py: [1, null, 2, null, null],
         }}
       >
-        <Branding />
-        <Nav />
-        <HamburgerButton />
+        <Branding isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
+        <Nav isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
+        <HamburgerButton isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
       </div>
     </header>
   )
