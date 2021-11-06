@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Category from "../blog/category-template"
+import Category from "./category-template"
 
 const CategoryQuery = ({ data, pageContext }) => {
   const { allBlogPost } = data
@@ -20,13 +20,6 @@ export const query = graphql`
         excerpt
         slug
         title
-        subTitle
-        author
-        authorLink
-        date(formatString: "MMMM DD, YYYY")
-        categories
-        timeToRead
-        postType
       }
     }
   }

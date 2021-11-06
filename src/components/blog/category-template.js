@@ -13,7 +13,11 @@ const CategoryPage = ({ posts, category }) => {
         {posts.map((post) => (
           <Themed.li key={post.slug}>
             <Themed.p>
-              <Themed.a as={Link} to={post.slug} sx={{ fontSize: 3 }}>
+              <Themed.a
+                as={Link}
+                to={`/writing/${post.slug}/`}
+                sx={{ fontSize: 3 }}
+              >
                 {post.title}
               </Themed.a>
               <br />

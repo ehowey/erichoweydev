@@ -1,5 +1,6 @@
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const { createContentDigest } = require(`gatsby-core-utils`)
+const _ = require("lodash")
 
 exports.createSchemaCustomization = ({ actions, schema }) => {
   const { createTypes, createFieldExtension } = actions
@@ -92,7 +93,7 @@ exports.onCreateNode = async ({ node, actions, getNode, createNodeId }) => {
     // Remove leading slash and any other slashes
     slug = slug.replace(/\//g, "")
 
-    const fieldData = {
+    const blogFieldData = {
       title: node.frontmatter.title,
       subTitle: node.frontmatter.subTitle,
       author: node.frontmatter.author,
@@ -111,15 +112,15 @@ exports.onCreateNode = async ({ node, actions, getNode, createNodeId }) => {
     const blogPostNodeId = createNodeId(`${node.id} >>> BlogPost`)
 
     await createNode({
-      ...fieldData,
+      ...blogFieldData,
       // Required fields.
       id: blogPostNodeId,
       parent: node.id,
       children: [],
       internal: {
         type: `BlogPost`,
-        contentDigest: createContentDigest(fieldData),
-        content: JSON.stringify(fieldData),
+        contentDigest: createContentDigest(blogFieldData),
+        content: JSON.stringify(blogFieldData),
         description: `Blog post sourced from MDX content.`,
       },
     })
@@ -129,9 +130,10 @@ exports.onCreateNode = async ({ node, actions, getNode, createNodeId }) => {
 
 // Post query templates are simply data-fetching wrappers that import components
 const PostQuery = require.resolve(`./src/components/blog/post-query`)
+const CategoryQuery = require.resolve(`./src/components/blog/category-query`)
 
 // Create the blog post pages because we need page context passed down
-exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
+exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
   // Root path  the root path of this is www.mysite.com/rootPath/blogPostSlug
@@ -150,6 +152,11 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
           slug
         }
       }
+      categoryList: allBlogPost(filter: { published: { eq: true } }) {
+        group(field: categories) {
+          fieldValue
+        }
+      }
     }
   `)
 
@@ -158,6 +165,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   }
 
   const posts = result.data.blogPosts.nodes
+  const categories = result.data.categoryList.group
 
   // Create a page for each Post
   posts.forEach((post, index) => {
@@ -172,6 +180,17 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
         id: post.id,
         previousId: previous ? previous.id : undefined,
         nextId: next ? next.id : undefined,
+      },
+    })
+  })
+
+  // Create the category pages
+  categories.forEach((category) => {
+    createPage({
+      path: `/categories/${_.kebabCase(category.fieldValue)}/`,
+      component: CategoryQuery,
+      context: {
+        category: category.fieldValue,
       },
     })
   })

@@ -1,6 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Post from "./post"
+import Post from "./post-template"
 
 const PostQuery = ({ data }) => {
   const { blogPost, previous, next } = data

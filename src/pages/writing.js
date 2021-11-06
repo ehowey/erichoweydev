@@ -1,18 +1,19 @@
 /** @jsx jsx */
 import { jsx, Themed } from "theme-ui"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import Seo from "../../utils/seo"
-import Layout from "../layout/layout"
+import Seo from "../utils/seo"
+import Layout from "../components/layout/layout"
 import { FaRegClock } from "react-icons/fa"
 import { darken } from "@theme-ui/color"
 
-const PostsList = ({ posts }) => {
+const PostsList = ({ data }) => {
+  const posts = data.allBlogPost.nodes
   return (
     <Layout>
       <Seo
         title="Writing"
-        description="Writing, blog posts and digital musings by Eric Howey. My work focuses on the JAMStack, Gatsby, SANITY and Theme UI. There is an occasional sprinkling of mental health in here as well. Posts are updated over time as a kind of digital garden. Enjoy!"
+        description="Writing, blog posts and digital musings by Eric Howey. My work focuses on the Jamstack, Gatsby, SANITY and Theme UI. There is an occasional sprinkling of mental health in here as well. Enjoy!"
       />
       <div
         sx={{
@@ -190,3 +191,30 @@ const PostsList = ({ posts }) => {
 }
 
 export default PostsList
+
+export const query = graphql`
+  {
+    allBlogPost(
+      sort: { fields: [date, title], order: DESC }
+      limit: 1000
+      filter: { published: { eq: true } }
+    ) {
+      nodes {
+        id
+        excerpt
+        slug
+        title
+        author
+        authorLink
+        date(formatString: "MMMM D, YYYY")
+        categories
+        timeToRead
+        featuredImage {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+    }
+  }
+`

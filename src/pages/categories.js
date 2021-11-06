@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { jsx, Themed } from "theme-ui"
-import { Link } from "gatsby"
-import Seo from "../../utils/seo"
-import Layout from "../layout/layout"
+import { Link, graphql } from "gatsby"
+import Seo from "../utils/seo"
+import Layout from "../components/layout/layout"
 import kebabCase from "lodash/kebabCase"
 
-const CategoryList = ({ categories }) => {
+const CategoriesPage = ({ data }) => {
+  const categories = data.categoryList.group
   return (
     <Layout>
       <Seo title="Categories" />
@@ -30,4 +31,18 @@ const CategoryList = ({ categories }) => {
   )
 }
 
-export default CategoryList
+export default CategoriesPage
+
+export const query = graphql`
+  query {
+    categoryList: allBlogPost(
+      limit: 1000
+      filter: { published: { eq: true } }
+    ) {
+      group(field: categories) {
+        fieldValue
+        totalCount
+      }
+    }
+  }
+`
