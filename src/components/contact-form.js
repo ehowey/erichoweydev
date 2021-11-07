@@ -8,7 +8,8 @@ import { motion, AnimatePresence } from "framer-motion"
 const ContactForm = () => {
   // Initiate forms
   const { register, handleSubmit, reset, formState } = useForm()
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const { isSubmitting } = formState
+  const [showToast, setShowToast] = useState(false)
 
   // Transforms the form data from the React Hook Form output to a format Netlify can read
   const encode = (data) => {
@@ -28,7 +29,7 @@ const ContactForm = () => {
       body: encode({ "form-name": "contact-form", ...formData }),
     })
       .then((response) => {
-        setIsSubmitted(true)
+        setShowToast(true)
       })
       .catch((error) => {
         console.log(error)
@@ -38,10 +39,10 @@ const ContactForm = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       reset()
-      setIsSubmitted(false)
-    }, 2200)
+      setShowToast(false)
+    }, 1800)
     return () => clearTimeout(timer)
-  }, [isSubmitted]) //eslint-disable-line
+  }, [showToast]) //eslint-disable-line
 
   return (
     <form
@@ -88,6 +89,7 @@ const ContactForm = () => {
             color: formState.errors.email ? "error" : "textGray",
             fontSize: 0,
             mb: 0,
+            mt: 2,
           }}
         >
           {formState.errors.email && <FiAlertCircle sx={{ mr: 1 }} />}
@@ -120,6 +122,7 @@ const ContactForm = () => {
             color: formState.errors.message ? "error" : "textGray",
             fontSize: 0,
             mb: 0,
+            mt: 2,
           }}
         >
           {formState.errors.message && <FiAlertCircle sx={{ mr: 1 }} />}
@@ -160,7 +163,7 @@ const ContactForm = () => {
       </label>
       <div sx={{ position: "relative" }}>
         <AnimatePresence>
-          {isSubmitted && (
+          {showToast && (
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -203,7 +206,18 @@ const ContactForm = () => {
         <Button
           variant="primary"
           type="submit"
-          sx={{ py: 1, px: 3, mt: 3, fontSize: 2, fontWeight: 500 }}
+          disabled={isSubmitting || showToast}
+          sx={{
+            py: 1,
+            px: 3,
+            mt: 3,
+            fontSize: 2,
+            fontWeight: 500,
+            ":disabled": {
+              bg: "gray",
+              opacity: "0.5",
+            },
+          }}
         >
           Start the conversation
         </Button>

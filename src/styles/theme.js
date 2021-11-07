@@ -66,6 +66,7 @@ const theme = {
     secondary: baseColors.secondary,
     accent: baseColors.accent,
     textGray: baseColors.textGray,
+    muted: "hsl(210, 38%, 95%)",
     error: baseColors.error,
     success: baseColors.success,
     codeBg: "hsl(220, 26%, 14%)",

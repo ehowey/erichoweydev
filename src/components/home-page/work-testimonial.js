@@ -29,10 +29,6 @@ const WorkTestimonial = () => {
         maxWidth: "maxContentWidth",
         p: 3,
         my: 4,
-        // borderLeftColor: "primary",
-        // borderLeftStyle: "solid",
-        // borderLeftWidth: "8px",
-        // borderRadius: "4px",
       }}
     >
       <motion.div
