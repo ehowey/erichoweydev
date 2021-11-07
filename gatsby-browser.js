@@ -1,5 +1,6 @@
 import React from "react"
 import { MDXProvider } from "@mdx-js/react"
+import "./src/styles/global.css"
 import Seo from "./src/components/seo"
 
 export const wrapRootElement = ({ element }) => {

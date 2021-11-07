@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import { SkipNavLink, SkipNavContent } from "@reach/skip-nav"
-import GlobalCSS from "../../styles/global-css"
 import SiteContainer from "./site-container"
 import Header from "./header/header"
 import Main from "./main"
@@ -11,7 +10,6 @@ import Footer from "./footer"
 const SiteLayout = ({ children }) => {
   return (
     <SiteContainer>
-      <GlobalCSS />
       <SkipNavLink />
       <Header />
       <Main>

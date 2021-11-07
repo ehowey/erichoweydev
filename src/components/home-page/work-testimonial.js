@@ -57,11 +57,12 @@ const WorkTestimonial = () => {
               fontSize: "300px",
               fontFamily: "serif",
               color: "primary",
-              opacity: "0.2",
+              opacity: "0.15",
               position: "absolute",
-              top: "-50px",
-              left: "-50px",
+              top: "-60px",
+              left: "-30px",
               zIndex: "-1",
+              fontStyle: "normal",
             },
           }}
         >

@@ -110,6 +110,7 @@ const Hero = () => {
               href="#hire-me"
               sx={{
                 fontSize: 3,
+                fontWeight: 500,
                 px: 4,
                 "::after": {
                   content: '"\\00A0 \\2192"',

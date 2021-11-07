@@ -58,7 +58,7 @@ const ContactForm = () => {
             display: "flex",
             alignItems: "center",
             textTransform: "uppercase",
-            color: formState.errors.name ? "alertRed" : "textGray",
+            color: formState.errors.name ? "error" : "textGray",
             fontSize: 0,
             mb: 0,
           }}
@@ -85,7 +85,7 @@ const ContactForm = () => {
             display: "flex",
             alignItems: "center",
             textTransform: "uppercase",
-            color: formState.errors.email ? "alertRed" : "textGray",
+            color: formState.errors.email ? "error" : "textGray",
             fontSize: 0,
             mb: 0,
           }}
@@ -98,7 +98,8 @@ const ContactForm = () => {
           name="email"
           {...register("email", {
             required: true,
-            pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+            pattern:
+              /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
           })}
           sx={{
             p: 1,
@@ -116,7 +117,7 @@ const ContactForm = () => {
             display: "flex",
             alignItems: "center",
             textTransform: "uppercase",
-            color: formState.errors.message ? "alertRed" : "textGray",
+            color: formState.errors.message ? "error" : "textGray",
             fontSize: 0,
             mb: 0,
           }}
@@ -165,7 +166,7 @@ const ContactForm = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               sx={{
-                bg: "alertGreen",
+                bg: "success",
                 position: "absolute",
                 top: "-56px",
                 left: ["0px", null, "-36px", null, null],
@@ -183,7 +184,7 @@ const ContactForm = () => {
                   height: 0,
                   borderStyle: "solid",
                   borderWidth: "20px 16px 0 16px",
-                  borderTopColor: "alertGreen",
+                  borderTopColor: "success",
                   borderRightColor: "transparent",
                   borderLeftColor: "transparent",
                   borderBottomColor: "transparent",
@@ -202,7 +203,7 @@ const ContactForm = () => {
         <Button
           variant="primary"
           type="submit"
-          sx={{ py: 1, px: 3, mt: 3, fontSize: 2 }}
+          sx={{ py: 1, px: 3, mt: 3, fontSize: 2, fontWeight: 500 }}
         >
           Start the conversation
         </Button>

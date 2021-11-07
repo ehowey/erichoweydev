@@ -1,11 +1,3 @@
-const {
-  NODE_ENV,
-  URL: NETLIFY_SITE_URL = "https://www.erichowey.dev",
-  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
-  CONTEXT: NETLIFY_ENV = NODE_ENV,
-} = process.env
-const isNetlifyProduction = NETLIFY_ENV === "production"
-const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
 const remarkSlug = require("remark-slug")
 
 module.exports = {
@@ -38,7 +30,7 @@ module.exports = {
       `gatsby themes`,
     ],
     author: `Eric Howey`,
-    siteUrl,
+    siteUrl: `https://www.erichowey.dev`,
     menuLinks: [
       {
         name: `Me`,
@@ -113,6 +105,7 @@ module.exports = {
             },
           },
           { resolve: `gatsby-remark-smartypants` },
+          { resolve: `gatsby-remark-copy-linked-files` },
           { resolve: `gatsby-remark-reading-time` },
           {
             resolve: `gatsby-remark-external-links`,
@@ -123,29 +116,17 @@ module.exports = {
         ],
         remarkPlugins: [remarkSlug],
       },
-      plugins: [
-        {
-          resolve: `gatsby-remark-images`,
-          options: {
-            maxWidth: 1920,
-            linkImagesToOriginal: false,
-            withWebp: true,
-            backgroundColor: `transparent`,
-            quality: 50,
-          },
-        },
-      ],
     },
-    // {
-    //   resolve: `gatsby-remark-images`,
-    //   options: {
-    //     maxWidth: 1920,
-    //     linkImagesToOriginal: false,
-    //     withWebp: true,
-    //     backgroundColor: `transparent`,
-    //     quality: 1920,
-    //   },
-    // },
+    {
+      resolve: `gatsby-remark-images`,
+      options: {
+        maxWidth: 1920,
+        linkImagesToOriginal: false,
+        withWebp: true,
+        backgroundColor: `transparent`,
+        quality: 50,
+      },
+    },
     `gatsby-plugin-mdx-embed`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
@@ -167,40 +148,6 @@ module.exports = {
         icon: `src/images/erichowey-site-icon.png`, // This path is relative to the root of the site.
       },
     },
-    {
-      resolve: `@raae/gatsby-plugin-fathom`,
-      options: {
-        site: "FNHMMBXM",
-        loadType: "defer",
-      },
-    },
-    `gatsby-plugin-remove-serviceworker`,
-    {
-      resolve: `gatsby-plugin-netlify`,
-      options: {
-        headers: {
-          "/**/*.html": [
-            "cache-control: public",
-            "cache-control: max-age=0",
-            "cache-control: must-revalidate",
-          ],
-          "/page-data/*.json": [
-            "cache-control: public",
-            "cache-control: max-age=0",
-            "cache-control: must-revalidate",
-          ],
-          "/app-data.json": [
-            "cache-control: public",
-            "cache-control: max-age=0",
-            "cache-control: must-revalidate",
-          ],
-          "/static/*": [
-            "cache-control: public",
-            "cache-control: max-age=31536000",
-            "cache-control: immutable",
-          ],
-        },
-      },
-    },
+    `gatsby-plugin-netlify`,
   ],
 }

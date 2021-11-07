@@ -13,7 +13,7 @@ const SocialWrapper = ({ isNavOpen }) => {
         alignItems: "center",
         mr: ["auto", null, 0, null, null],
         ml: ["auto", null, 3, null, null],
-        mt: [2, null, 0, null, null],
+        mt: [4, null, 0, null, null],
         a: {
           color: isNavOpen ? "header.iconsOpen" : "header.icons",
           mr: isNavOpen ? 3 : 2,
