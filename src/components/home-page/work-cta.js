@@ -46,7 +46,7 @@ const WorkCTA = () => {
           variant="primary"
           as={Link}
           to="/it-starts-with-hello/"
-          sx={{ display: "flex", fontSize: 2 }}
+          sx={{ display: "flex", fontSize: 2, fontWeight: 500 }}
         >
           It starts with hello
           <motion.div sx={{ ml: 2 }} variants={handMotion}>
