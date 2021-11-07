@@ -7,6 +7,7 @@ const SectionHeader = (props) => {
       sx={{
         textAlign: "center",
         textTransform: "uppercase",
+        mt: 4,
         "::after": {
           display: "block",
           content: '""',

@@ -17,15 +17,19 @@ const PostFooter = ({ previous, next }) => (
       >
         <div
           sx={{
-            width: ["60%", "40%", null, null, null],
+            width: ["70%", "40%", null, null, null],
             mb: [3, 0, null, null, null],
           }}
         >
-          {" "}
           {previous && (
             <div>
               <Themed.h5>&larr; Previous Post</Themed.h5>
-              <Themed.a as={Link} to={previous.slug} rel="prev">
+              <Themed.a
+                as={Link}
+                to={`/writing/${previous.slug}`}
+                rel="prev"
+                sx={{ fontSize: 2 }}
+              >
                 {previous.title}
               </Themed.a>
             </div>
@@ -34,7 +38,7 @@ const PostFooter = ({ previous, next }) => (
         <div
           sx={{
             alignSelf: ["flex-end", "flex-start", null, null, null],
-            width: ["60%", "40%", null, null, null],
+            width: ["70%", "40%", null, null, null],
           }}
         >
           {next && (
@@ -44,7 +48,12 @@ const PostFooter = ({ previous, next }) => (
               }}
             >
               <Themed.h5>Next Post &rarr;</Themed.h5>
-              <Themed.a as={Link} to={next.slug} rel="next">
+              <Themed.a
+                as={Link}
+                to={`/writing/${next.slug}`}
+                rel="next"
+                sx={{ fontSize: 2 }}
+              >
                 {next.title}
               </Themed.a>
             </div>

@@ -1,11 +1,4 @@
-const {
-  NODE_ENV,
-  URL: NETLIFY_SITE_URL = "https://www.erichowey.dev",
-  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
-  CONTEXT: NETLIFY_ENV = NODE_ENV,
-} = process.env
-const isNetlifyProduction = NETLIFY_ENV === "production"
-const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
+const remarkSlug = require("remark-slug")
 
 module.exports = {
   siteMetadata: {
@@ -37,7 +30,7 @@ module.exports = {
       `gatsby themes`,
     ],
     author: `Eric Howey`,
-    siteUrl,
+    siteUrl: `https://www.erichowey.dev`,
     menuLinks: [
       {
         name: `Me`,
@@ -78,79 +71,160 @@ module.exports = {
       },
     ],
   },
-  flags: {
-    DEV_SSR: true,
-    FAST_DEV: true,
-  },
   plugins: [
     {
-      resolve: `gatsby-theme-catalyst-core`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        assetPath: `content/site-assets`,
+        name: `posts`,
+        path: `src/posts`,
       },
     },
     {
-      resolve: `gatsby-theme-catalyst-header-top`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        useStickyHeader: true,
-        useColorMode: false,
+        name: `images`,
+        path: `src/images`,
       },
     },
     {
-      resolve: `gatsby-theme-catalyst-blog`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        basePath: "/writing",
-        excerptLength: 300,
-        assetPath: `content/site-assets`,
-        rssTitle: `erichowey.dev RSS Feed`,
+        extensions: [`.md`, `.mdx`],
+        defaultLayouts: {
+          default: require.resolve("./src/components/layout/layout.js"),
+        },
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1920,
+              linkImagesToOriginal: false,
+              withWebp: true,
+              backgroundColor: `transparent`,
+              quality: 50,
+            },
+          },
+          { resolve: `gatsby-remark-smartypants` },
+          { resolve: `gatsby-remark-copy-linked-files` },
+          { resolve: `gatsby-remark-reading-time` },
+          {
+            resolve: `gatsby-remark-external-links`,
+            options: {
+              target: `_self`,
+            },
+          },
+        ],
+        remarkPlugins: [remarkSlug],
+      },
+    },
+    {
+      resolve: `gatsby-remark-images`,
+      options: {
+        maxWidth: 1920,
+        linkImagesToOriginal: false,
+        withWebp: true,
+        backgroundColor: `transparent`,
+        quality: 50,
+      },
+    },
+    `gatsby-plugin-mdx-embed`,
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-catch-links`,
+    `gatsby-plugin-theme-ui`,
+    `gatsby-plugin-image`,
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            output: `/rss.xml`,
+            title: `EricHowey.dev`,
+            description: `Writings about technology, Jamstack, and frontend web development.`,
+            query: `
+              {
+                allBlogPost(
+                  sort: { fields: [date, title], order: DESC }
+                  limit: 1000
+                  filter: {published: {eq: true}}
+                ) {
+                  nodes {
+                    id
+                    slug
+                    title
+                    author
+                    excerpt
+                    date(formatString: "ddd, DD MMM YYYY HH:mm:ss ZZ")
+                    socialImage {
+                      publicURL
+                    }
+                    featuredImage {
+                      publicURL
+                    }
+                  }
+                }
+              }
+            `,
+            serialize: ({
+              query: {
+                site: {
+                  siteMetadata: { siteUrl },
+                },
+                allBlogPost,
+              },
+            }) => {
+              const rssFeed = allBlogPost.nodes.map((node) => {
+                const hasSocial = node.socialImage !== null
+                const hasFeatured = node.featuredImage !== null
+                const rssImage = hasSocial
+                  ? `${siteUrl}${node.socialImage.publicURL}`
+                  : hasFeatured
+                  ? `${siteUrl}${node.featuredImage.publicURL}`
+                  : null
+                const serialized = {
+                  guid: `${siteUrl}/writing/${node.slug}/`,
+                  url: `${siteUrl}/writing/${node.slug}/`,
+                  title: node.title,
+                  author: node.author,
+                  description: node.excerpt,
+                  pubDate: node.date,
+                  enclosure: { url: rssImage },
+                }
+                return serialized
+              })
+              return rssFeed
+            },
+          },
+        ],
       },
     },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `erichoweydev`,
-        short_name: `erichoweydev`,
+        name: `EricHowey.dev`,
+        short_name: `EH.dev`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#000000`,
+        theme_color: `#9ce5f4`,
         display: `minimal-ui`,
-        icon: `content/site-assets/catalyst-site-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/erichowey-site-icon.png`, // This path is relative to the root of the site.
       },
     },
-    {
-      resolve: `@raae/gatsby-plugin-fathom`,
-      options: {
-        site: "FNHMMBXM",
-        loadType: "defer",
-      },
-    },
-    `gatsby-plugin-remove-serviceworker`,
-    {
-      resolve: `gatsby-plugin-netlify`,
-      options: {
-        headers: {
-          "/**/*.html": [
-            "cache-control: public",
-            "cache-control: max-age=0",
-            "cache-control: must-revalidate",
-          ],
-          "/page-data/*.json": [
-            "cache-control: public",
-            "cache-control: max-age=0",
-            "cache-control: must-revalidate",
-          ],
-          "/app-data.json": [
-            "cache-control: public",
-            "cache-control: max-age=0",
-            "cache-control: must-revalidate",
-          ],
-          "/static/*": [
-            "cache-control: public",
-            "cache-control: max-age=31536000",
-            "cache-control: immutable",
-          ],
-        },
-      },
-    },
+    `gatsby-plugin-netlify`,
   ],
 }
