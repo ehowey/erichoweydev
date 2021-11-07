@@ -22,6 +22,7 @@ const SiteBranding = ({ isNavOpen, setIsNavOpen }) => {
         <StaticImage
           src="./eh-logo.png"
           placeholder="blurred"
+          loading="eager"
           sx={{
             height: ["40px", "50px", null, "60px", null],
             width: ["61px", "76px", null, "96px", null],

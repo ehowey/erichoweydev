@@ -69,6 +69,7 @@ const Hero = () => {
           />
           <GatsbyImage
             image={data.welcomeImage.childImageSharp.gatsbyImageData}
+            loading="eager"
             sx={{
               width: ["200px", null, null, "220px", null],
               height: ["200px", null, null, "220px", null],
