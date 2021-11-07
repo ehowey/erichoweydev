@@ -137,13 +137,90 @@ module.exports = {
     `gatsby-plugin-theme-ui`,
     `gatsby-plugin-image`,
     {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            output: `/rss.xml`,
+            title: `EricHowey.dev`,
+            description: `Writings about technology, Jamstack, and frontend web development.`,
+            query: `
+              {
+                allBlogPost(
+                  sort: { fields: [date, title], order: DESC }
+                  limit: 1000
+                  filter: {published: {eq: true}}
+                ) {
+                  nodes {
+                    id
+                    slug
+                    title
+                    author
+                    excerpt
+                    date(formatString: "ddd, DD MMM YYYY HH:mm:ss ZZ")
+                    socialImage {
+                      publicURL
+                    }
+                    featuredImage {
+                      publicURL
+                    }
+                  }
+                }
+              }
+            `,
+            serialize: ({
+              query: {
+                site: {
+                  siteMetadata: { siteUrl },
+                },
+                allBlogPost,
+              },
+            }) => {
+              const rssFeed = allBlogPost.nodes.map((node) => {
+                const hasSocial = node.socialImage !== null
+                const hasFeatured = node.featuredImage !== null
+                const rssImage = hasSocial
+                  ? `${siteUrl}${node.socialImage.publicURL}`
+                  : hasFeatured
+                  ? `${siteUrl}${node.featuredImage.publicURL}`
+                  : null
+                const serialized = {
+                  guid: `${siteUrl}/writing/${node.slug}/`,
+                  url: `${siteUrl}/writing/${node.slug}/`,
+                  title: node.title,
+                  author: node.author,
+                  description: node.excerpt,
+                  pubDate: node.date,
+                  enclosure: { url: rssImage },
+                }
+                return serialized
+              })
+              return rssFeed
+            },
+          },
+        ],
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `erichoweydev`,
-        short_name: `erichoweydev`,
+        name: `EricHowey.dev`,
+        short_name: `EH.dev`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#000000`,
+        theme_color: `#9ce5f4`,
         display: `minimal-ui`,
         icon: `src/images/erichowey-site-icon.png`, // This path is relative to the root of the site.
       },
