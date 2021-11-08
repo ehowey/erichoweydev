@@ -139,7 +139,7 @@ const Post = ({ data: { post }, previous, next }) => (
               textTransform: "uppercase",
               letterSpacing: "wider",
               textAlign: "center",
-              m: 0,
+              mb: 4,
               a: {
                 color: "textGray",
                 textDecoration: "none",

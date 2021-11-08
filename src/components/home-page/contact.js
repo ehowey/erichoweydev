@@ -8,8 +8,6 @@ import { plus, darkPlus } from "./patterns"
 import ContactForm from "../contact-form"
 
 const SiteSection = () => {
-  // Initiate forms
-  // const { register, handleSubmit, errors, reset, formState } = useForm()
   const data = useStaticQuery(graphql`
     {
       contactImage1: file(relativePath: { eq: "absurd-fish-talking.png" }) {
@@ -23,45 +21,7 @@ const SiteSection = () => {
       }
     }
   `)
-  // const [mode] = useColorMode()
   const isDark = false
-
-  // const [isSubmitted, setIsSubmitted] = useState(false)
-
-  // // Transforms the form data from the React Hook Form output to a format Netlify can read
-  // const encode = (data) => {
-  //   return Object.keys(data)
-  //     .map(
-  //       (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-  //     )
-  //     .join("&")
-  // }
-
-  // const handlePost = (formData, event) => {
-  //   event.preventDefault()
-
-  //   fetch(`/`, {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  //     body: encode({ "form-name": "contact-form", ...formData }),
-  //   })
-  //     .then((response) => {
-  //       setIsSubmitted(true)
-  //       reset()
-  //     })
-  //     .catch((error) => {
-  //       console.log(error)
-  //     })
-  // }
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setIsSubmitted(false)
-  //   }, 2000)
-  //   return () => clearTimeout(timer)
-  // }, [isSubmitted])
-
-  // console.log(isSubmitted)
 
   return (
     <SectionWrapper
