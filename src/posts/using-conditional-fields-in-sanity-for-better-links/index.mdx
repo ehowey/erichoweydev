@@ -7,37 +7,164 @@ date: 2021-11-07
 featuredImage: ./featured.jpg
 featuredImageCaption: Photo by Didssph on Unsplash
 socialImage: ./social.jpg
-published: false
+published: true
 ---
 
-Here is the TLDR. I think most of the time and for most situations, you should use a "starter" when beginning a new Gatsby project. In my opinion Gatsby themes are best suited for two main use cases; large enterprise size projects or a high flow design/development agency.
+SANITY.io has just released [conditional fields](https://www.sanity.io/docs/conditional-fields) for their content studio which enables developer superpowers to fine tune the editing experience in ways that just weren't possible before.
 
-I say this as someone who has invested a tremendous amount of time and energy into using and learning about [Gatsby themes](https://www.gatsbyjs.com/docs/themes/). I even helped write some of the Gatsby docs way-back-when about [composing multiple themes](https://www.gatsbyjs.com/tutorial/using-multiple-themes-together) together. The core concept behind Gatsby themes is solid and it remains a powerful framework feature, however my experience has been that themes eventually become a burden for small-medium sized projects.
+You can now conditionally hide and show fields in the editor based on content in other fields.
 
-## What are Gatsby themes?
+> Heyo! This post assumes you are already a bit familiar with SANITY and their concept of schemas. If you are brand new to SANITY you might want to take a [spin through their crash course](https://www.sanity.io/docs/getting-started) and come back here.
 
-Gatsby themes are a way to abstract and encapsulate specific portions of a website so that it can be maintained and updated independently from the deployed project. Imagine building blocks that are assembled together to form a complete website. I also believe that themes can be largely divided into four subtypes; core themes, layout themes, data themes, and presentational themes. You can read more about this idea in a [blog post I wrote for Gatsby](https://www.gatsbyjs.com/blog/2020-05-14-introducing-gatsby-theme-catalyst/) on the topic of themes.
+Dealing more explicitly with the problem of internal (relative) and external (url) links immediately came to mind for me as an ideal use case for learning conditional fields.
 
-## Pros and Cons
+Previously it was possible to allow relative links in SANITY's [url schema type](https://www.sanity.io/docs/url-type) which works great if you have a savvy developer inputing data, but leaves a lot of room for error if the user is less familiar with urls and how they work. But now with conditional fields you can explicitly ask the user what kind of link they need and show them different inputs based on their selection.
 
-The pros and cons of Gatsby themes aren't distinct but related - one person's pro is another person's con. You need to see themes through the lens of your use case to understand how using a theme might be a benefit or a hindrance.
+![example of conditional links in SANITY studio](./conditionalLinks-demo.gif)
 
-This story starts and ends with abstraction. Gatsby themes allows you to neatly cut your website up into blocks and compose them together as you see fit. The themes are then available on either a private or public repository and used as a depedency like anything else. Components, design systems, and data models all neatly tucked into seperate packages. When I was using themes I often had 3, 4 or 5 different themes linked together. Configuration was as simple as changing a few theme options inside `gatsby-config.js`.
+Check it out! Here is what the link schema I came up with looks like. Note the `hidden` fields which control when inputs are hidden or visible. Imagine these like boolean if statements, `hidden: true` and `hidden: false` with the true and false values being determined based on the results of the inline function call.
 
-One immediate plus of this approach is speed. Even faster than a starter. All of the configuration options that need to be tweaked are right in front of you. This meant that I could immediately start focusing time on writing code that was unique to a particular project and did not have to revisit setting up something like a layout component.
+```js
+export default {
+  name: "link",
+  title: "Link",
+  type: "object",
+  fields: [
+    {
+      title: "Select the type of link",
+      description:
+        "External links go to other websites using the format `https://www.google.com`. Internal links are restricted to other pages in the SANITY database.",
+      name: "linkType",
+      type: "string",
+      options: {
+        list: [
+          { title: "External", value: "external" },
+          { title: "Internal", value: "internal" },
+        ],
+        layout: "radio",
+      },
+    },
+    {
+      title: "URL",
+      name: "href",
+      type: "url",
+      hidden: ({ parent }) => parent?.linkType !== "external", // hidden if link type is not external
+      validation: (Rule) =>
+        Rule.uri({
+          allowRelative: true,
+          scheme: ["https", "http", "mailto", "tel"],
+        }),
+    },
+    {
+      title: "Open in new tab?",
+      name: "blank",
+      description: "Read https://css-tricks.com/use-target_blank/",
+      type: "boolean",
+      hidden: ({ parent }) => parent?.linkType !== "external", // hidden if link type is not external
+    },
+    {
+      name: "internalLink",
+      type: "reference",
+      title: "Internal Link",
+      hidden: ({ parent }) => parent?.linkType !== "internal", // hidden if link type is not internal
+      to: [
+        { type: "post" },
+        { type: "page" },
+        // other types you may want to link to
+      ],
+    },
+  ],
+}
+```
 
-Another plus is maintainability; each theme is walled off from the main website and can be worked on independently without affectng the deployed project. A design team can focus on the design system and component library, while the backend team can focus on the data model and sourcing. No changes are applied to the production website until its packages are updated.
+When entering a link the content editor is first presented with a choice; internal or external. And then based on that selection it either shows them a url entry field or a reference entry field. The url field is pretty standard fair - enter any valid web address. The internalLink field is where it gets cool; the content editor selects a reference to an actual page in the database to be the link. This prevents there from ever being dead links or typos! And remember that SANITY won't let you delete pages that have a reference to them - no accidentally deleting pages and breaking links either!
 
-Without a doubt the biggest pro of Gatsby themes is the ability to encapsulate and abstract portions of a Gatsby site. Imagine building blocks clicking together to create the final website. Gatsby themes can be anything from a set of visual components, to a 'core' theme that handles setting up the GraphQL queries, packages, and overall site structure. A theme can be large or small, however finding the balance between too large and too small can be a bit tricky,
+So this is great - but now we need to render that content correctly from the backend into our frontend. This next bit is biased towards React, however likely applies to other popular frontend frameworks with some tweaks.
 
-The second pro of Gatsby themes is the concept of [component shadowing](https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/shadowing/) which allows you to replace components and files from the theme in the final Gatsby website. This is a really powerful model, with a catch. More on that catch in a moment.
+With the schema above you will get back data that looks like this.
 
-The third pro of Gatsby themes is easy upgrades and maintenance. The themes can be published to either a public or private NPM repository and updates are as simple as a version change. The design team can focus on a component library, the frontend team can pull all those changes into the site with just a simple version update.
+```json
+{
+  "linkType": "internal", // could be 'external'
+  "href": "https://www.google.com",
+  "blank": false,
+  "internalLink": {
+    "id": "-7625244c-859f-5967-818d-63d741d1d36c",
+    "slug": {
+      "current": "fish-are-the-best-pets-ever"
+    }
+  }
+}
+```
 
-The last pro of Gatsby themes is simplicity. Gatsby themes can take a set of options similar to a plugin which can allow you to provide an entire site, wrapped up in a bow, that can just be installed like a plugin, accept a predefined set of options and boom you are off and running.
+You can then build a custom component that takes in this data and conditionally renders either a Link component for client side routing or a standard anchor tag for external links.
 
-As you can see there are a lot of pros. And I believe Gatsby themes remain an important part of the Gatsby ecosystem. They just aren't quite done.
+Here is an example from Gatsby.
 
-## Cons
+```jsx
+import React from "react"
+import { Link } from "gatsby"
 
-In many ways the cons of Gatsby themes mirror the pros. And here is where context matters.
+const SanityLink = ({ children, link, ...props }) => {
+  const internalSanityLink = link?.linkType === "internal"
+  const externalSanityLink = link?.linkType === "external"
+
+  if (internalSanityLink) {
+    return (
+      <Link to={link.internalLink.slug.current} {...props}>
+        {children}
+      </Link>
+    )
+  }
+  if (externalSanityLink) {
+    return (
+      <a href={link.href} target={link.blank ? `_blank` : null} {...props}>
+        {children}
+      </a>
+    )
+  }
+}
+
+export default SanityLink
+```
+
+The other frontend hurdle with these links is creating an appropriate serializer for [presenting portable text](https://www.sanity.io/docs/presenting-block-text) (what SANITY calls its formatted text content). In portable text data is stored in arrays of 'block content' that are identified with specific marks and types. For example if you entered bolded text it would be stored with a bold mark. In this case our links are stored with a link mark. These marks and types allow you to programmatically control how the raw portable text is rendered back to the frontend.
+
+Here is an example for the link. In this example I'm conditionally handling a few different variations on the link data with early returns and then finally dumping into an href tag as the final return statement.
+
+```js
+// serializer.js
+// other serialzers...
+link: ({ children, mark }) => {
+      if (mark.linkType === "internal" && mark.internalLink._type === "post") {
+        return (
+          <Link to={`/blog/${mark.internalLink.slug.current}`}>
+            {children}
+          </Link>
+        )
+      }
+      if (mark.linkType === "internal") {
+        return (
+          <Link as={Link} to={`/${mark.internalLink.slug.current}`}>
+            {children}
+          </Link>
+        )
+      }
+      if (mark.linkType === "external" && mark.blank) {
+        return (
+          <a href={mark.href} target="_blank">
+            {children}
+          </a>
+        )
+      }
+      if (mark.linkType === "external") {
+        return <a href={mark.href}>{children}</a>
+      }
+    },
+```
+
+You can read more about setting up serializers in my blog post on [using Theme-UI with SANITY and Gatsby](/writing/using-theme-ui-with-sanity/).
+
+So there you have it! Conditional fields for the win! This open up lots of new possibilities to customize and enhance the content editing experience for everyone. How are you using (or planning to use) conditional fields in your content model? Do you have some ideas and suggestions for how these conditional links could be improved on? I would love to hear about it!
+
+Happy coding!
