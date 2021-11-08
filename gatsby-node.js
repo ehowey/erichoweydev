@@ -107,8 +107,6 @@ exports.onCreateNode = async ({ node, actions, getNode, createNodeId }) => {
     // Remove leading slash and any other slashes
     slug = slug.replace(/\//g, "")
 
-    console.log(node.frontmatter)
-
     const blogFieldData = {
       title: node.frontmatter.title,
       subTitle: node.frontmatter.subTitle,
