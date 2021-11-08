@@ -18,6 +18,20 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       return result
     }
 
+  createFieldExtension({
+    name: `defaultFalse`,
+    extend() {
+      return {
+        resolve(source, args, context, info) {
+          if (source[info.fieldName] == null) {
+            return false
+          }
+          return source[info.fieldName]
+        },
+      }
+    },
+  })
+
   const blogPostTypes = {
     name: `BlogPost`,
     fields: {
@@ -25,7 +39,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
       subTitle: { type: `String` },
       author: { type: `String` },
       authorLink: { type: `String` },
-      published: { type: `Boolean` },
+      published: { type: `Boolean!`, extensions: { defaultFalse: {} } },
       slug: { type: `String!` },
       postType: { type: `String` },
       date: { type: `Date!`, extensions: { dateformat: {} } },
@@ -92,6 +106,8 @@ exports.onCreateNode = async ({ node, actions, getNode, createNodeId }) => {
 
     // Remove leading slash and any other slashes
     slug = slug.replace(/\//g, "")
+
+    console.log(node.frontmatter)
 
     const blogFieldData = {
       title: node.frontmatter.title,
