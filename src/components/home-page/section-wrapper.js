@@ -2,16 +2,11 @@
 import { jsx } from "theme-ui"
 
 const SectionWrapper = ({ children, ...props }) => {
-  // const [mode] = useColorMode()
-  const isDark = false
-
   return (
     <section
       sx={{
         backgroundColor: props.bg || "inherit",
-        backgroundImage: isDark
-          ? props.darkpattern || "none"
-          : props.pattern || "none",
+        backgroundImage: props.pattern || "none",
         px: 3,
         py: 5,
         width: "100vw",

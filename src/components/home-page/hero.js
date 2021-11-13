@@ -3,7 +3,7 @@ import { jsx, Themed, Button } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import SectionWrapper from "./section-wrapper"
-import { darken, lighten } from "@theme-ui/color"
+import { darken } from "@theme-ui/color"
 import { motion } from "framer-motion"
 
 const Hero = () => {
@@ -16,9 +16,6 @@ const Hero = () => {
       }
     }
   `)
-
-  // const [mode] = useColorMode()
-  const isDark = false
 
   return (
     <SectionWrapper bg="secondary">
@@ -45,7 +42,7 @@ const Hero = () => {
             transition={{ delay: 0.4, type: "tween", duration: 0.8 }}
             sx={{
               position: "absolute",
-              bg: isDark ? lighten("accent", 0.2) : darken("accent", 0.3),
+              bg: darken("accent", 0.3),
               width: "210px",
               height: "210px",
               left: "-16px",
@@ -59,7 +56,7 @@ const Hero = () => {
             transition={{ delay: 0.6, type: "tween", duration: 0.8 }}
             sx={{
               position: "absolute",
-              bg: isDark ? lighten("accent", 0.1) : darken("accent", 0.5),
+              bg: darken("accent", 0.5),
               width: "160px",
               height: "160px",
               right: "-8px",

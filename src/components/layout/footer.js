@@ -1,12 +1,11 @@
 /** @jsx jsx */
-import { jsx, useThemeUI, Themed } from "theme-ui"
+import { jsx, Themed } from "theme-ui"
 import { useSiteMetadata } from "../../hooks/use-site-metadata"
-import { SocialFooter } from "./social-links"
-import { IconContext } from "react-icons"
+import { FiGithub, FiTwitter } from "react-icons/fi"
+import { lighten } from "@theme-ui/color"
 
 const SiteFooter = () => {
   const { title } = useSiteMetadata()
-  const { theme } = useThemeUI()
 
   return (
     <footer
@@ -46,19 +45,32 @@ const SiteFooter = () => {
             sx={{
               a: {
                 color: "footer.icons",
-                mr: 3,
-              },
-              "a:last-of-type": {
-                mr: 0,
+                p: 2,
+                textDecoration: "none",
+                borderRadius: "4px",
+                transition: "all 0.2s ease-in-out",
+                fontSize: 2,
               },
               "a:hover": {
-                color: "primary",
+                color: "text",
+                bg: lighten("primary", 0.3),
               },
             }}
           >
-            <IconContext.Provider value={{ size: theme.sizes.iconsFooter }}>
-              <SocialFooter />
-            </IconContext.Provider>
+            <a
+              href="https://github.com/ehowey"
+              aria-label="GitHub"
+              rel="noopener noreferrer"
+            >
+              <FiGithub />
+            </a>
+            <a
+              href="https://twitter.com/erchwy"
+              aria-label="Twitter"
+              rel="noopener noreferrer"
+            >
+              <FiTwitter />
+            </a>
           </div>
           <Themed.p
             sx={{

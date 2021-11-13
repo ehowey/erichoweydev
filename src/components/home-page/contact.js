@@ -21,7 +21,6 @@ const SiteSection = () => {
       }
     }
   `)
-  const isDark = false
 
   return (
     <SectionWrapper
@@ -62,7 +61,6 @@ const SiteSection = () => {
             gridColumn: ["1 / -1", "1 / 3", null, null, null],
             gridRow: "1 / 2",
             opacity: ["0.05", "1", null, null, null],
-            filter: isDark ? "invert(1)" : "none",
           }}
           alt="Talking Fish"
           imgStyle={{ objectFit: "contain" }}
@@ -73,9 +71,7 @@ const SiteSection = () => {
             gridRow: "1 / 2",
             zIndex: "3",
             display: ["none", "block", null, null, null],
-            background: isDark
-              ? "linear-gradient(90deg, transparent, #1a202c 60%)"
-              : "linear-gradient(90deg, transparent, #ffffff 60%)",
+            background: "linear-gradient(90deg, transparent, #ffffff 60%)",
             backgroundSize: "cover",
           }}
         />

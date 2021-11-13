@@ -5,11 +5,8 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import { contours, darkContours } from "./patterns"
-// import { motion, useAnimation } from "framer-motion"
-// import { useInView } from "react-intersection-observer"
-// import { useEffect } from "react"
 
-const SiteSection = () => {
+const AboutSection = () => {
   const data = useStaticQuery(graphql`
     {
       aboutImage1: file(relativePath: { eq: "absurd-lightbulb-head.png" }) {
@@ -41,37 +38,6 @@ const SiteSection = () => {
       }
     }
   `)
-  // const [mode] = useColorMode()
-  const isDark = false
-
-  // Code for animations is commented out for now, decided it was too much
-  // const textVariants = {
-  //   visible: {
-  //     y: 0,
-  //     opacity: 1,
-  //     transition: { type: "tween", duration: 0.3 },
-  //   },
-  // }
-
-  // const para1Control = useAnimation()
-  // const para2Control = useAnimation()
-  // const para3Control = useAnimation()
-
-  // const [para1Ref, para1InView] = useInView({ threshold: 0.3 })
-  // const [para2Ref, para2InView] = useInView({ threshold: 0.3 })
-  // const [para3Ref, para3InView] = useInView({ threshold: 0.3 })
-
-  // useEffect(() => {
-  //   if (para1InView) {
-  //     para1Control.start("visible")
-  //   }
-  //   if (para2InView) {
-  //     para2Control.start("visible")
-  //   }
-  //   if (para3InView) {
-  //     para3Control.start("visible")
-  //   }
-  // }, [para1InView, para2InView, para3InView]) //eslint-disable-line
 
   return (
     <SectionWrapper id="me" pattern={contours} darkpattern={darkContours}>
@@ -88,10 +54,6 @@ const SiteSection = () => {
         }}
       >
         <div
-          // initial={{ y: 50, opacity: 0 }}
-          // animate={para1Control}
-          // variants={textVariants}
-          // ref={para1Ref}
           sx={{
             gridColumn: ["1 / -1", null, "1 / 3", null, null],
             gridRow: ["2 / 3", null, "1 / 2", null, null],
@@ -115,16 +77,11 @@ const SiteSection = () => {
             justifySelf: "center",
             gridColumn: ["1 / -1", null, "3 / -1", null, null],
             gridRow: ["1 / 2", null, "1 / 2", null, null],
-            filter: isDark ? "invert(1)" : "none",
           }}
           alt="A fun face"
           imgStyle={{ objectFit: "contain" }}
         />
         <div
-          // initial={{ y: 50, opacity: 0 }}
-          // animate={para2Control}
-          // variants={textVariants}
-          // ref={para2Ref}
           sx={{
             gridColumn: ["1 / -1", null, "2 / -1", null, null],
             gridRow: ["4 / 5", null, "3 / 4", null, null],
@@ -150,16 +107,11 @@ const SiteSection = () => {
             justifySelf: "center",
             gridColumn: ["1 / -1", null, "1 / 2", null, null],
             gridRow: ["3 / 4", null, "3 / 4", null, null],
-            filter: isDark ? "invert(1)" : "none",
           }}
           alt="A picture of a grad cap"
           imgStyle={{ objectFit: "contain" }}
         />
         <div
-          // initial={{ y: 50, opacity: 0 }}
-          // animate={para3Control}
-          // variants={textVariants}
-          // ref={para3Ref}
           sx={{
             gridColumn: ["1 / -1", null, "1 / 3", null, null],
             gridRow: ["6 / 7", null, "4 / 5", null, null],
@@ -183,7 +135,6 @@ const SiteSection = () => {
             justifySelf: "center",
             gridColumn: ["1 / -1", null, "3 / -1", null, null],
             gridRow: ["5 / 6", null, "4 / 5", null, null],
-            filter: isDark ? "invert(1)" : "none",
           }}
           alt="A slow race"
           imgStyle={{ objectFit: "contain" }}
@@ -193,4 +144,4 @@ const SiteSection = () => {
   )
 }
 
-export default SiteSection
+export default AboutSection

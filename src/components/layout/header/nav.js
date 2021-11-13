@@ -2,8 +2,9 @@
 import { jsx } from "theme-ui"
 import { useEffect, useRef } from "react"
 import { Link } from "gatsby"
-import SocialIcons from "./social-icons"
 import { useSiteMetadata } from "../../../hooks/use-site-metadata"
+import { FiGithub, FiTwitter } from "react-icons/fi"
+import { lighten } from "@theme-ui/color"
 
 const Nav = ({ isNavOpen, setIsNavOpen }) => {
   const { menuLinks } = useSiteMetadata()
@@ -120,7 +121,51 @@ const Nav = ({ isNavOpen, setIsNavOpen }) => {
           )
         })}
       </ul>
-      <SocialIcons isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
+      <div
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          mr: ["auto", null, 0, null, null],
+          ml: ["auto", null, 3, null, null],
+          mt: [4, null, 0, null, null],
+          a: {
+            color: isNavOpen ? "header.iconsOpen" : "header.icons",
+            p: 2,
+            textDecoration: "none",
+            display: "grid",
+            placeItems: "center",
+            borderRadius: "4px",
+            transition: "all 0.2s ease-in-out",
+          },
+
+          "a:hover": {
+            color: "text",
+            bg: lighten("primary", 0.3),
+          },
+          button: {
+            color: isNavOpen ? "header.iconsOpen" : "header.icons",
+            ml: isNavOpen ? 3 : 2,
+            ":hover": {
+              color: "primary",
+            },
+          },
+        }}
+      >
+        <a
+          href="https://github.com/ehowey"
+          aria-label="GitHub"
+          rel="noopener noreferrer"
+        >
+          <FiGithub />
+        </a>
+        <a
+          href="https://twitter.com/erchwy"
+          aria-label="Twitter"
+          rel="noopener noreferrer"
+        >
+          <FiTwitter />
+        </a>
+      </div>
     </nav>
   )
 }
