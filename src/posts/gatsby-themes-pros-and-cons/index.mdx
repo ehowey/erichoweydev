@@ -3,41 +3,53 @@ title: Gatsby Themes Pros and Cons
 author: Eric Howey
 authorLink: https://twitter.com/erchwy
 categories: [Gatsby]
-date: 2021-11-10
+date: 2021-11-13
 featuredImage: ./featured.jpg
 featuredImageCaption: Photo by Didssph on Unsplash
 socialImage: ./social.jpg
-published: false
+published: true
 ---
 
-Here is the TLDR. I think most of the time you should use a "starter" when beginning a new Gatsby project. In my opinion Gatsby themes are best suited for two main use cases; large enterprise size projects or a high flow design/development agency.
+Here is the TLDR. I think for most projects, most of the time, you should use a "starter" when beginning a new Gatsby project. In my opinion [Gatsby themes](https://www.gatsbyjs.com/docs/themes/) are best suited for two main use cases; large enterprise size projects or a high flow design/development agency.
 
-I say this as someone who has invested a tremendous amount of time and energy into using and learning about [Gatsby themes](https://www.gatsbyjs.com/docs/themes/). I even helped write some of the Gatsby docs way-back-when about [composing multiple themes](https://www.gatsbyjs.com/tutorial/using-multiple-themes-together) together. The core concept behind Gatsby themes is solid and remains a powerful framework feature, however my experience has been that the drawbacks of Gatsby themes eventually become a burden in small to medium sized projects.
+I say this as someone who has invested a tremendous amount of time and energy into using and learning about Gatsby themes. I even helped write some of the Gatsby docs way-back-when about [composing multiple themes](https://www.gatsbyjs.com/tutorial/using-multiple-themes-together) together. The core concept behind Gatsby themes remains a powerful framework feature, however my experience has been that the drawbacks of Gatsby themes ultimately become a burden in most small to medium sized projects.
 
 ## What are Gatsby themes?
 
-Gatsby themes are a way to abstract and encapsulate portions of a website so that it can be maintained and updated independently from the deployed project. Imagine building blocks that are assembled together to form a complete website. A bit like the component model - but at a larger scale. Themes can be seperated into four subtypes; core themes - responsible for dependencies and initial setup, layout themes - responsible for structural portions of the website like headers and footer, data themes - responsible for data fetching and manipulation, and finally presentational themes - responsible for the visual elements a user sees and interacts with. You can read more about these different types of themes in a [blog post I wrote for Gatsby](https://www.gatsbyjs.com/blog/2020-05-14-introducing-gatsby-theme-catalyst/) on the topic.
+Gatsby themes are a way to abstract and encapsulate portions of a website so that they can be maintained and updated independently from the production deploy. Imagine building blocks that are assembled together to form a complete website. A bit like the component model - but at a larger scale.
 
-Themes are distributed on either a private or public package repository (e.g. npm), used as a depedency, and included in `gatsby-config.js` just like a plugin. Also like a plugin Gatsby themes can take a set of options. These options open up a lot of customization for themes, and the options can also be passed down to sibling and child themes to be used across the website. With themes everything is neatly tucked into seperate packages and updated like any other dependency. When I was using themes I often had 3, 4 or 5 different themes composed together.
+Themes can be seperated into four subtypes; core themes - responsible for dependencies and initial configuration, layout themes - responsible for structural portions of the website like headers and footer, data themes - responsible for data fetching and manipulation, and finally presentational themes - responsible for the visual elements a user sees and interacts with. When I was using themes I often had 3, 4 or 5 different themes composed together in the final project.
+
+Themes are distributed on either a private or public package repository (e.g. npm), added as a depedency, and included in `gatsby-config.js` just like a plugin. Also like a plugin, Gatsby themes can take a set of options. These options open up a convenient API surface for customizing themes, and these options can be passed down to sibling and child themes as well. With themes everything is neatly tucked into seperate packages and managed just like any other project dependency. 
 
 ## Pros and Cons
 
 This story starts and ends with abstraction.
 
-Themes abstract the code running a website into seperate packages and these packages can then be maintained, versioned and updated with total indepdence. This means that a larger organization can have a set of UI/UX engineers workig on a component library inside as a Gatsby theme with their own workflows, repository, and structure. That theme can then be used in not one project, but 5, 10 or 100 projects as it is needed. A back-of-the-front team could focus on the data fetching, data shape, and GraphQL mesh; again that team is independent and can share the progress across hundreds of projects.
+As discussed above, Gatsby themes abstract the code running a website into seperate packages and these packages can be maintained, versioned and updated with total indepdence. This means that a larger organization can have a set of UI/UX engineers workig on a component library inside as a Gatsby theme with their own workflows, repository, and structure. That theme can then be used in not one project, but 5, 10 or 100 projects as is needed. A back-of-the-front team could focus on the data fetching, data shape, and GraphQL mesh; again that team has total indepdence and can share the progress across hundreds of projects.
 
-Notice that I am referencing _teams_ of people. This is the scale where I believe Gatsby themes shine the brightest. Encapsulation and abstraction have the greatest benefit here as there are well defined scopes of work.
+Notice that I am referencing _teams_ of people. Large teams. This is the scale where I believe Gatsby themes really start to shine and add value.
 
-At a small to medium sized scale where just a few developers are working across an entire project the abstraction of themes stops being a benefit and starts to slow you down.
+At a small to medium sized scale where just a few developers (or one developer) are working across an entire project the abstraction of themes starts to become a hindrance.
 
-Need to update a depedency that is inside of a theme? Well now you need to update the theme, and then go and update the project to reflect these changes. Want to change the branding component? You can use [component shadowing](https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/shadowing/) to reach into the layout theme and replace components but you start to get a complicated web of files, folders, and connections. My experience is that gradually there and more friction points between the themes and the production website that just aren't worth it.
+Need to update a depedency that is inside of a theme? Well now you need to update the theme, and then go and update the project to reflect these changes. Want to change the branding component? You can use [component shadowing](https://www.gatsbyjs.com/docs/how-to/plugins-and-themes/shadowing/) to reach into the layout theme and replace components but this starts to create a complicated web of interlinked files and folders. 
 
-## One exception
+My experience is that gradually there and more friction points between themes and the production website that just aren't worth it on all but the largest projects.
 
-I think one other place where Gatsby themes shine, and are useful, is for new developers as they provide a "low-code" entry point to creating a Gatsby website. You could conceivably setup a theme entirely through theme options and very minimal configuration. This is where a Gatsby theme functions a bit more like a traditional Wordpress theme - one singular theme with a slew of options and configuration.
+## For new developers?
 
-But here is the problem with this. Most developers who are working with Gatsby are either experienced developers or want to get their hands dirty in the code. If someone is looking for a low-code or no-code website there are much better choices than Gatsby.
+I think one other place where Gatsby themes can be useful, is for new developers as they provide a "low-code" entry point for creating a Gatsby website. Here a Gatsby theme can act more like a traditional Wordpress theme; a singular theme that takes in a series of design tokens and settings to allow a moderate level of personalization while abstracting away all the difficult bits of code.
 
-## The ability to eject
+But here is the trouble I see with this. Most developers who are working with Gatsby are either experienced developers already or are developers working to become experienced. We want to muck around in the code ourselves, not have it hidden away. If someone is looking for a low-code or no-code solution there are much better choices out there than Gatsby.
 
-I believe one substantial improvement for themes would be a smooth ejection code-mod/cli command. Something like `gatsby theme-name eject`. This would allow themes to serve as a starting point - and then be left behind when they are starting to create too much friction in a project.
+## What can be done?
+
+I believe the biggest improvement for themes would be an ejection codemod or cli command. Something like `gatsby theme-name eject`. This would allow themes to serve as a starting point - and then be left behind from when they start to get in the way. But...this would be _super_ tricky to do...
+
+Another thing you can do is to use a monorepo with yarn workspaces. If you are working with Gatsby themes this is a much smoother and easier setup to work with. You can directly view both the code for the themes and the internal file structure required for component shadowing. It is really annoying to go trapezing through your `node_modules` folder looking for bits of code.
+
+I _think_ Gatsby was trying to solve some of these friction points with the [Gatsby Admin](https://www.npmjs.com/package/gatsby-admin) project which has been shelved as far as I can tell. This provided a GUI to surface the file connections, theme options, and folder structures. Something like a Wordpress dashboard for your Gatsby site. I don't have any details on what happened but I can see why it was put on hold - this just isn't the developer market that Gatsby serves (right now anyways).
+
+As I said at the outset - Gatsby themes are a powerful and important framework feature. However over time I have come to believe that they shine brightest at a size and scale where abstraction and encapsulation provide critical workflow value. For your next Gatsby project you probably want to pick a [starter](https://www.gatsbyjs.com/starters/).
+
+Happy coding!
