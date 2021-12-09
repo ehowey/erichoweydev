@@ -1,0 +1,39 @@
+---
+title: Getting started with gatsby-node
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+categories: [Gatsby]
+date: 2021-12-01
+featuredImage: ./featured.jpg
+featuredImageCaption: Photo by William Felker on Unsplash
+socialImage: ./social.jpg
+published: false
+---
+
+Gatsby does a lot of things well but its superpower (in my opinion) is the [GraphQL data layer](https://www.gatsbyjs.com/docs/reference/graphql-data-layer/). What Gatsby has coined the "content mesh". Plugins allow you to customize and add to this data layer but _eventually_ you will probably find yourself needing to do something more.
+
+Maybe you need to grab some geolocation data at build time, add a custom excerpt field, or transform some dates.
+
+Enter `gatsby-node.js`.
+
+This is where the magic of building out that amazing content mesh happens and Gatsby provides [a ton of APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/) to hook into the node creation process at different points in the build process.
+
+Gatsby has great docs on [cuztomizing the GraphQL schema](https://www.gatsbyjs.com/docs/reference/graphql-data-layer/schema-customization/) but I still have found `gatsby-node` intimidating and tricky to work with. Testing changes means restarting the development server, so the feedback loop is slower; and then there is [GraphQL schema definitions](https://graphql.org/learn/schema/) to understand as well. It is a lot to wrap your mind around.
+
+Hopefully this helps get the most out of `gatsby-node` and also makes some of the core APIs easier to work with. Let's go!
+
+## Gatsby's data pipeline
+
+I can't profess to have a deep understanding of all things Gatsby but I have found it really helpful to generally grasp what is happening at each step in the node creation and build process.
+
+1. Schema definition (createSchemaCustomization)
+1. Schema inference (sourceNodes)
+1. Source data from external APIs and internal files (sourceNodes)
+1. Extend or customize the created GraphQl nodes (createResolvers)
+1. Create pages (createPages)
+
+The four most important APIs to understand are `createSchemaCustomization`, `sourceNodes`, `createResolvers` and `createPages`. If you understand these you unlock Gatsby superpowers! Muhahaha!
+
+## createSchemaCustomization
+
+This is the first part of the node creation process that allows you to predefine the shape of your data for Gatsby which can speed up the build process and also set you up. Gatsby does a great job of inferring schema's based on provided data during the sourceNodes process but
