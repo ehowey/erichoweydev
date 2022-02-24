@@ -50,7 +50,7 @@ const RecentWriting = () => {
         >
           {posts.map((post) => (
             <li
-              key={post.id}
+              key={post.slug}
               sx={{
                 mb: 4,
               }}

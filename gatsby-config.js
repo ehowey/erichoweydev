@@ -3,7 +3,7 @@ const remarkSlug = require("remark-slug")
 module.exports = {
   siteMetadata: {
     title: `Eric Howey`,
-    description: `Frontend web developer and designer, based in Calgary, Alberta. Specializing in Javascript, React, Gatsby, NextJS and SANITY. Say hello and let's build something amazing together!`,
+    description: `Frontend web developer and designer, based in Calgary, Alberta. I work at the intersection of caring and code. Specializing in Javascript, React, Gatsby, NextJS and SANITY.`,
     keywords: [
       `web developer`,
       `Cochrane`,

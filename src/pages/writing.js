@@ -53,6 +53,7 @@ const PostsList = ({ data }) => {
             {posts.map((post) => {
               return (
                 <article
+                  key={post.slug}
                   sx={{
                     borderRadius: "4px",
                     backgroundColor: "accent",
@@ -82,7 +83,6 @@ const PostsList = ({ data }) => {
                     },
                     variant: "variants.postListWrapper",
                   }}
-                  key={post.slug}
                 >
                   <Link to={`/writing/${post.slug}/`}>
                     <GatsbyImage
