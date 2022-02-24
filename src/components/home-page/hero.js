@@ -98,8 +98,8 @@ const Hero = () => {
               display: "inline",
             }}
           >
-            My name is Eric Howey. I'm a web developer and mental health
-            therapist. I listen and care.
+            My name is Eric Howey and I work at the intersection of caring and
+            code.
           </Themed.p>
           <div sx={{ mt: 4 }}>
             <Button
