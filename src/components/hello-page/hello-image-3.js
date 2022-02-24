@@ -1,17 +1,18 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image"
 
 const HelloImage3 = () => {
-  const data = useStaticQuery(graphql`{
-  image: file(relativePath: {eq: "documentation-example.jpg"}) {
-    childImageSharp {
-      gatsbyImageData(layout: FULL_WIDTH)
+  const data = useStaticQuery(graphql`
+    {
+      image: file(relativePath: { eq: "documentation-example.jpg" }) {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
+        }
+      }
     }
-  }
-}
-`)
+  `)
 
   const image = data.image.childImageSharp.gatsbyImageData
 
@@ -19,6 +20,7 @@ const HelloImage3 = () => {
     <figure
       sx={{
         mx: 0,
+        my: 4,
       }}
     >
       <GatsbyImage
@@ -33,7 +35,8 @@ const HelloImage3 = () => {
           marginLeft: ["-50vw", null, null, "-42.5vw", "-40vw"],
           marginRight: ["-50vw", null, null, "-42.5vw", "-40vw"],
         }}
-        alt="Documentation example for lifewithbenjamin.com" />
+        alt="Documentation example for lifewithbenjamin.com"
+      />
       <figcaption
         sx={{
           color: "grey",
@@ -45,7 +48,7 @@ const HelloImage3 = () => {
         Documentation example for lifewithbenjamin.com
       </figcaption>
     </figure>
-  );
+  )
 }
 
 export default HelloImage3

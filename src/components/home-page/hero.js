@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Themed, Button } from "theme-ui"
+import { jsx, Themed } from "theme-ui"
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import SectionWrapper from "./section-wrapper"
