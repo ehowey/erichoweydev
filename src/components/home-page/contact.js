@@ -47,11 +47,7 @@ const SiteSection = () => {
             zIndex: 5,
           }}
         >
-          <Themed.h3>Inspired idea? Creating something special?</Themed.h3>
-          <Themed.p>
-            Hire me to create a bespoke online presence that drives success,
-            promotes your brand and connects with your audience.
-          </Themed.p>
+          <Themed.h3>Creating something special? Want to chat?</Themed.h3>
           <ContactForm />
         </div>
         <GatsbyImage

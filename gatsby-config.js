@@ -41,10 +41,6 @@ module.exports = {
         link: `/#work`,
       },
       {
-        name: `Hire`,
-        link: `/#hire-me`,
-      },
-      {
         name: `Process`,
         link: `/it-starts-with-hello/`,
       },

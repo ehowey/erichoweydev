@@ -101,7 +101,7 @@ const Hero = () => {
             My name is Eric Howey and I work at the intersection of caring and
             code.
           </Themed.p>
-          <div sx={{ mt: 4 }}>
+          {/* <div sx={{ mt: 4 }}>
             <Button
               variant="primary"
               as="a"
@@ -121,7 +121,7 @@ const Hero = () => {
             >
               Hire me
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </SectionWrapper>
