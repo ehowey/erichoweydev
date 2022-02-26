@@ -9,6 +9,7 @@ const SiteContainer = ({ children }) => {
         display: "grid",
         gridTemplateColumns: "minmax(0, 1fr)",
         gridTemplateRows: "auto minmax(0, 1fr) auto",
+        overflowX: "hidden",
         gridTemplateAreas: `
         "header" 
         "main"

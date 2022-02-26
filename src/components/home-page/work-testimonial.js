@@ -63,7 +63,7 @@ const WorkTestimonial = () => {
         >
           Eric turned MindMapBC into a site with a perfect balance between
           eye-catching design features and simple, accessible functionality.{" "}
-          <span sx={{ color: "primary", fontWeight: 600 }}>
+          <span sx={{ fontWeight: 700 }}>
             We cannot recommend him highly enough.
           </span>
         </Themed.p>

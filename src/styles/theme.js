@@ -4,8 +4,8 @@ import prism from "@theme-ui/prism/presets/oceanic-next"
 import { baseColors } from "./baseColors"
 import "@fontsource/raleway/400.css"
 import "@fontsource/raleway/400-italic.css"
+import "@fontsource/raleway/500.css"
 import "@fontsource/raleway/500-italic.css"
-import "@fontsource/raleway/600-italic.css"
 import "@fontsource/raleway/700.css"
 
 const theme = {
