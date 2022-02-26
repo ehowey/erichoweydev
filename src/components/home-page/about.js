@@ -90,9 +90,7 @@ const AboutSection = () => {
           <Themed.h3 sx={{ fontSize: [3, 4, null, null, null] }}>
             By passion a frontend web developer
           </Themed.h3>
-          <Themed.p>
-            I have degrees in philosophy and social work, not computer science.
-          </Themed.p>
+          <Themed.p>I have degrees in philosophy and social work.</Themed.p>
           <Themed.p>
             I enjoy the juxtaposition between creating websites and my job as a
             mental health therapist. Fixing a line of code is reassuringly
@@ -122,10 +120,9 @@ const AboutSection = () => {
           </Themed.h3>
           <Themed.p>I don’t do rushed.</Themed.p>
           <Themed.p>
-            Building an engaging, performant and accessible website is an
-            intentional process. It requires problem solving and creativity. I
-            only work on one project at a time and appreciate the artisanship of
-            the finished product.
+            Building an engaging, fast and accessible website is a collaborative
+            process. It requires communication, problem solving and creativity.
+            I enjoy taking the time to get things right.
           </Themed.p>
         </div>
         <GatsbyImage
