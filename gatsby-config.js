@@ -48,6 +48,10 @@ module.exports = {
         name: `Writing`,
         link: `/writing/`,
       },
+      {
+        name: `Contact`,
+        link: `/#contact`,
+      },
     ],
     socialLinks: [
       {

@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
-import { plus, darkPlus } from "./patterns"
+import { plus } from "./patterns"
 import ContactForm from "../contact-form"
 
 const SiteSection = () => {
@@ -23,12 +23,7 @@ const SiteSection = () => {
   `)
 
   return (
-    <SectionWrapper
-      id="hire-me"
-      pattern={plus}
-      darkpattern={darkPlus}
-      sx={{ mb: -5 }}
-    >
+    <SectionWrapper id="contact" pattern={plus} sx={{ mb: -5 }}>
       <SectionHeader>I'm ready to listen</SectionHeader>
       <div
         sx={{

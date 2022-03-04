@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
-import { contours, darkContours } from "./patterns"
+import { contours } from "./patterns"
 
 const AboutSection = () => {
   const data = useStaticQuery(graphql`
@@ -40,7 +40,7 @@ const AboutSection = () => {
   `)
 
   return (
-    <SectionWrapper id="me" pattern={contours} darkpattern={darkContours}>
+    <SectionWrapper id="me" pattern={contours}>
       <SectionHeader>About Me</SectionHeader>
       <div
         sx={{
@@ -64,9 +64,13 @@ const AboutSection = () => {
           </Themed.h3>
           <Themed.p>It sucked.</Themed.p>
           <Themed.p>
-            A lot has changed since then. I develop kickass websites using
-            modern web technologies. I can grow facial hair and I have two super
-            awesome kids. It <i>really</i> has changed.
+            A lot has changed since then. I develop{" "}
+            <Themed.a href="https://www.gatsbyjs.com/blog/gatsby-best-of-2021-agency-awards-the-winners/">
+              award winning
+            </Themed.a>{" "}
+            websites using forward thinking technologies. Oh, and I've got two
+            super awesome kids and I can even grow facial hair. It <i>really</i>{" "}
+            has changed.
           </Themed.p>
         </div>
         <GatsbyImage

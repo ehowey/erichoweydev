@@ -7,7 +7,7 @@ import WorkCard from "./work-card"
 import WorkTechnologies from "./work-technologies"
 import WorkCTA from "./work-cta"
 import WorkTestimonial from "./work-testimonial"
-import { rain, darkRain } from "./patterns"
+import { rain } from "./patterns"
 
 const WorkSection = () => {
   const data = useStaticQuery(graphql`
@@ -30,12 +30,7 @@ const WorkSection = () => {
     }
   `)
   return (
-    <SectionWrapper
-      id="work"
-      bg="secondary"
-      pattern={rain}
-      darkpattern={darkRain}
-    >
+    <SectionWrapper id="work" bg="secondary" pattern={rain}>
       <SectionHeader>Selected Work</SectionHeader>
       <div
         sx={{

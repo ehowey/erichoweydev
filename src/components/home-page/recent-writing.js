@@ -3,7 +3,7 @@ import { jsx, Themed } from "theme-ui"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
-import { triangles, darkTriangles } from "./patterns"
+import { triangles } from "./patterns"
 import { Button } from "@theme-ui/components"
 import { truncate } from "lodash"
 
@@ -28,11 +28,7 @@ const RecentWriting = () => {
   const posts = data.allBlogPost.nodes
 
   return (
-    <SectionWrapper
-      id="writing"
-      pattern={triangles}
-      darkpattern={darkTriangles}
-    >
+    <SectionWrapper id="writing" pattern={triangles}>
       <SectionHeader>Recent Writing</SectionHeader>
       <div
         sx={{
