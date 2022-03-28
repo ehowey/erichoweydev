@@ -12,7 +12,7 @@ import { rain } from "./patterns"
 const WorkSection = () => {
   const data = useStaticQuery(graphql`
     {
-      projectImage1: file(relativePath: { eq: "work-catalyst.png" }) {
+      projectImage1: file(relativePath: { eq: "work-bcammhe.png" }) {
         childImageSharp {
           gatsbyImageData(width: 900, layout: CONSTRAINED)
         }
@@ -22,7 +22,7 @@ const WorkSection = () => {
           gatsbyImageData(width: 900, layout: CONSTRAINED)
         }
       }
-      projectImage3: file(relativePath: { eq: "work-bsharpe.png" }) {
+      projectImage3: file(relativePath: { eq: "work-stripemart.png" }) {
         childImageSharp {
           gatsbyImageData(width: 900, layout: CONSTRAINED)
         }
@@ -46,23 +46,20 @@ const WorkSection = () => {
         <WorkCard
           link="https://www.mindmapbc.ca/"
           image={data.projectImage2.childImageSharp.gatsbyImageData}
-          title="www.mindmapbc.ca"
-          description="A custom made database of mental health resources. Includes geolocation, mapping, and advanced search functionality. Built using Gatsby and SANITY."
+          title="MindMapBC"
+          description="A custom made database of mental health resources focused on LGBTQ2S+ health. Includes geolocation, mapping, and advanced search functionality."
         />
         <WorkCard
-          link="https://www.gatsbycatalyst.com"
+          link="https://www.bcammhe.ca"
           image={data.projectImage1.childImageSharp.gatsbyImageData}
-          title="Gatsby Theme Catalyst"
-          description="A set of opinionated themes and starters I built to accelerate my
-              own workflow when building new Gatsby projects. Uses ThemeUI and MDX. Free and open
-              source."
+          title="BC Alliance for Monitoring Mental Health Equity"
+          description="An award winning promotional website to improve equitable access to mental health. Includes a sortable database of research articles which are cross-linked with policy recommendations."
         />
         <WorkCard
-          link="https://www.briannasharpe.com/"
+          link="https://github.com/ehowey/gatsby-starter-stripemart"
           image={data.projectImage3.childImageSharp.gatsbyImageData}
-          title="www.briannasharpe.com"
-          description="A portfolio website to showcase Brianna's freelance
-              writing and personal brand. Built using Gatsby and SANITY."
+          title="Gatsby Starter Stripemart"
+          description="A template for a minimal e-commerce store using Gatsby, SANITY, Stripe, Use-Shopping-Cart and Netlify. Includes cart management and custom checkout flow. Open sourced for all!"
         />
       </div>
       <div sx={{ display: "grid", placeItems: "center", my: 4 }}>
