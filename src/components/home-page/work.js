@@ -12,12 +12,12 @@ import { rain } from "./patterns"
 const WorkSection = () => {
   const data = useStaticQuery(graphql`
     {
-      projectImage1: file(relativePath: { eq: "work-bcammhe.png" }) {
+      projectImage1: file(relativePath: { eq: "work-bcammhe-2.png" }) {
         childImageSharp {
           gatsbyImageData(width: 900, layout: CONSTRAINED)
         }
       }
-      projectImage2: file(relativePath: { eq: "work-mmbc-2.jpg" }) {
+      projectImage2: file(relativePath: { eq: "work-mmbc-3.png" }) {
         childImageSharp {
           gatsbyImageData(width: 900, layout: CONSTRAINED)
         }
