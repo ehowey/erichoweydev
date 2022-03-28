@@ -246,6 +246,22 @@ const theme = {
         bg: "primaryHover",
       },
     },
+    outline: {
+      bg: "transparent",
+      cursor: "pointer",
+      boxShadow: "default",
+      color: "#bb5420",
+      borderRadius: "4px",
+      borderStyle: "solid",
+      borderWidth: "4px",
+      borderColor: "#bb5420",
+      transition: "all 0.3s ease",
+      px: 2,
+      py: 1,
+      ":hover, :active, :focus": {
+        backgroundColor: "#feebc8",
+      },
+    },
     alt: {
       bg: "transparent",
       border: "none",

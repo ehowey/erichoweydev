@@ -42,7 +42,9 @@ const SiteSection = () => {
             zIndex: 5,
           }}
         >
-          <Themed.h3>Creating something special? Want to chat?</Themed.h3>
+          <Themed.h3>
+            Creating something special and want to chat? Drop me a line.
+          </Themed.h3>
           <ContactForm />
         </div>
         <GatsbyImage

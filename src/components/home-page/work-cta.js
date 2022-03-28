@@ -36,26 +36,36 @@ const WorkCTA = () => {
       >
         Follow the journey from hello to finished product.
       </Themed.p>
-      <motion.div
-        initial="rest"
-        whileHover="hover"
-        animate="rest"
-        sx={{ position: "relative" }}
-      >
-        <Button
-          variant="primary"
-          as={Link}
-          to="/it-starts-with-hello/"
-          sx={{ display: "flex", fontSize: 2, fontWeight: 500 }}
+      <div sx={{ display: "flex" }}>
+        <motion.div
+          initial="rest"
+          whileHover="hover"
+          animate="rest"
+          sx={{ position: "relative" }}
         >
-          It starts with hello
-          <motion.div sx={{ ml: 2 }} variants={handMotion}>
-            <span role="img" aria-label="Waving hand">
-              👋
-            </span>
-          </motion.div>
-        </Button>
-      </motion.div>
+          <Button
+            variant="primary"
+            as={Link}
+            to="/it-starts-with-hello/"
+            sx={{ display: "flex", fontSize: 2, fontWeight: 500 }}
+          >
+            It starts with hello
+            <motion.div sx={{ ml: 2 }} variants={handMotion}>
+              <span role="img" aria-label="Waving hand">
+                👋
+              </span>
+            </motion.div>
+          </Button>
+        </motion.div>
+        {/* <Button
+          variant="outline"
+          as={Link}
+          to="/tech"
+          sx={{ fontSize: 2, fontWeight: 500, ml: [0, 0, 3, 4, null] }}
+        >
+          Tech choices
+        </Button> */}
+      </div>
     </div>
   )
 }
