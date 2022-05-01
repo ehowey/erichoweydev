@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Button, Themed } from "theme-ui"
+import { jsx, Themed } from "theme-ui"
 import { Link } from "gatsby"
 import { motion } from "framer-motion"
 
@@ -44,7 +44,6 @@ const WorkCTA = () => {
           sx={{ position: "relative" }}
         >
           <Link
-            variant="primary"
             to="/it-starts-with-hello/"
             sx={(t) =>
               Object.assign(t.buttons.primary, {

@@ -35,7 +35,7 @@ const WorkSection = () => {
       <div
         sx={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr",
+          gridTemplateColumns: "1fr 1fr",
           gridTemplateRows: "auto",
           gridGap: 4,
           maxWidth: "maxPageWidth",
@@ -54,6 +54,12 @@ const WorkSection = () => {
           image={data.projectImage1.childImageSharp.gatsbyImageData}
           title="BC Alliance for Monitoring Mental Health Equity"
           description="An award winning promotional website to improve equitable access to mental health. Includes a sortable database of research articles which are cross-linked with policy recommendations."
+        />
+        <WorkCard
+          link="https://www.focus-study.me"
+          image={data.projectImage3.childImageSharp.gatsbyImageData}
+          title="FOCUS study"
+          description="A vibrant and energetic web presence for an international COVID-19 study focused on youth. Includes full support for multiple languages and regions."
         />
         <WorkCard
           link="https://github.com/ehowey/gatsby-starter-stripemart"
