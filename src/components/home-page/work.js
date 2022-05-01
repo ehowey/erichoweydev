@@ -38,9 +38,11 @@ const WorkSection = () => {
           gridTemplateColumns: "1fr 1fr",
           gridTemplateRows: "auto",
           gridGap: 4,
-          maxWidth: "maxPageWidth",
+          // maxWidth: "maxPageWidth",
           margin: "0 auto",
           pt: 5,
+          px: 4,
+          maxWidth: ["700px", null, null, "1440px", null],
         }}
       >
         <WorkCard

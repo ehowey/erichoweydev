@@ -7,8 +7,6 @@ const Card = (props) => {
     <a
       sx={{
         gridColumn: ["1 / -1", null, null, "auto", null],
-        minWidth: "300px",
-        maxWidth: "650px",
         boxShadow: "0 2px 15px rgba(0,0,0,.1)",
         transition: "all .15s ease-in-out",
         textDecoration: "none",
@@ -16,6 +14,8 @@ const Card = (props) => {
         backgroundColor: "background",
         margin: "0 auto",
         borderRadius: "4px",
+        display: "flex",
+        flexDirection: ["column", null, null, "row", null],
         ":hover, :focus, :active": {
           boxShadow: "0 2px 30px rgba(0,0,0,.15)",
           transform: "translateY(-3px)",
