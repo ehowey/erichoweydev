@@ -242,6 +242,9 @@ const theme = {
       transition: "all 0.3s ease",
       cursor: "pointer",
       boxShadow: "default",
+      px: 3,
+      py: 1,
+      textDecoration: "none",
       ":hover, :active, :focus": {
         bg: "primaryHover",
       },
