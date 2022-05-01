@@ -15,13 +15,16 @@ const CategoriesPage = ({ data }) => {
         {categories.map((category) => (
           <Themed.li key={category.fieldValue}>
             <Themed.p>
-              <Themed.a
-                as={Link}
+              <Link
                 to={`/categories/${kebabCase(category.fieldValue)}/`}
-                sx={{ fontSize: 3 }}
+                sx={(t) =>
+                  Object.assign(t.styles.a, {
+                    fontSize: 3,
+                  })
+                }
               >
                 {category.fieldValue}
-              </Themed.a>{" "}
+              </Link>{" "}
               &mdash; {category.totalCount} posts
             </Themed.p>
           </Themed.li>

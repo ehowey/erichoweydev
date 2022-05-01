@@ -96,18 +96,17 @@ const Post = ({ data: { post }, previous, next }) => (
                   },
                 }}
               >
-                <Themed.a
-                  as={Link}
+                <Link
                   to={`/categories/${kebabCase(category)}/`}
-                  sx={{
-                    textDecoration: "none",
-                    ":hover": {
-                      textDecoration: "underline",
-                    },
-                  }}
+                  // sx={{
+                  //   textDecoration: "none",
+                  //   ":hover": {
+                  //     textDecoration: "underline",
+                  //   },
+                  // }}
                 >
                   {category}
-                </Themed.a>
+                </Link>
               </Themed.li>
             ))}
           </Themed.ul>

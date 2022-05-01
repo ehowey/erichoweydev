@@ -13,13 +13,12 @@ const CategoryPage = ({ posts, category }) => {
         {posts.map((post) => (
           <Themed.li key={post.slug}>
             <Themed.p>
-              <Themed.a
-                as={Link}
+              <Link
                 to={`/writing/${post.slug}/`}
-                sx={{ fontSize: 3 }}
+                sx={(t) => Object.assign(t.styles.a, { fontSize: 3 })}
               >
                 {post.title}
-              </Themed.a>
+              </Link>
               <br />
               {post.excerpt}
             </Themed.p>

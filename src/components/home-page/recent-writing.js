@@ -4,7 +4,6 @@ import { Link, graphql, useStaticQuery } from "gatsby"
 import SectionWrapper from "./section-wrapper"
 import SectionHeader from "./section-header"
 import { triangles } from "./patterns"
-import { Button } from "@theme-ui/components"
 import { truncate } from "lodash"
 
 const RecentWriting = () => {
@@ -52,9 +51,9 @@ const RecentWriting = () => {
               }}
             >
               <Themed.h3 sx={{ mb: 0 }}>
-                <Themed.a to={`/writing/${post.slug}`} as={Link}>
+                <Link to={`/writing/${post.slug}`} sx={(t) => t.styles.a}>
                   {post.title}
-                </Themed.a>
+                </Link>
               </Themed.h3>
               <Themed.p sx={{ color: "textGray", mt: 0, fontSize: 1 }}>
                 {post.date}
@@ -66,9 +65,9 @@ const RecentWriting = () => {
           ))}
         </ul>
         <Themed.p>
-          <Button variant="alt" as={Link} to="/writing/">
+          <Link to="/writing/" sx={(t) => t.buttons.alt}>
             More Writing
-          </Button>
+          </Link>
         </Themed.p>
       </div>
     </SectionWrapper>

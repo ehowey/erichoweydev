@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Button, Themed } from "theme-ui"
+import { jsx, Themed } from "theme-ui"
 import { Link } from "gatsby"
 import { motion } from "framer-motion"
 
@@ -43,11 +43,16 @@ const WorkCTA = () => {
           animate="rest"
           sx={{ position: "relative" }}
         >
-          <Button
+          <Link
             variant="primary"
-            as={Link}
             to="/it-starts-with-hello/"
-            sx={{ display: "flex", fontSize: 2, fontWeight: 500 }}
+            sx={(t) =>
+              Object.assign(t.styles.a, {
+                display: "flex",
+                fontSize: 2,
+                fontWeight: 500,
+              })
+            }
           >
             It starts with hello
             <motion.div sx={{ ml: 2 }} variants={handMotion}>
@@ -55,7 +60,7 @@ const WorkCTA = () => {
                 👋
               </span>
             </motion.div>
-          </Button>
+          </Link>
         </motion.div>
         {/* <Button
           variant="outline"

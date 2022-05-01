@@ -24,14 +24,13 @@ const PostFooter = ({ previous, next }) => (
           {previous && (
             <div>
               <Themed.h5>&larr; Previous Post</Themed.h5>
-              <Themed.a
-                as={Link}
+              <Link
                 to={`/writing/${previous.slug}`}
                 rel="prev"
-                sx={{ fontSize: 2 }}
+                sx={(t) => Object.assign(t.styles.a, { fontSize: 2 })}
               >
                 {previous.title}
-              </Themed.a>
+              </Link>
             </div>
           )}
         </div>
@@ -48,14 +47,13 @@ const PostFooter = ({ previous, next }) => (
               }}
             >
               <Themed.h5>Next Post &rarr;</Themed.h5>
-              <Themed.a
-                as={Link}
+              <Link
                 to={`/writing/${next.slug}`}
                 rel="next"
-                sx={{ fontSize: 2 }}
+                sx={(t) => Object.assign(t.styles.a, { fontSize: 2 })}
               >
                 {next.title}
-              </Themed.a>
+              </Link>
             </div>
           )}
         </div>
