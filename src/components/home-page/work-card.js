@@ -27,11 +27,10 @@ const Card = (props) => {
       <GatsbyImage
         image={props.image}
         sx={{
-          height: "300px",
-          borderTopLeftRadius: "4px",
-          borderTopRightRadius: "4px",
+          borderTopLeftRadius: ["4px", null, null, "4px", null],
+          borderTopRightRadius: ["4px", null, null, "0px", null],
+          borderBottomLeftRadius: ["0px", null, null, "4px", null],
         }}
-        fluid={props.image}
         alt={props.title}
       />
       <div
@@ -62,6 +61,13 @@ const Card = (props) => {
         >
           Check it out
         </Themed.p>
+        <div sx={{ height: "24px", mb: 3 }}>
+          <GatsbyImage
+            image={props.techOne}
+            alt="Tech"
+            sx={{ width: "24px", height: "24px", opacity: "0.5" }}
+          />
+        </div>
       </div>
     </a>
   )

@@ -27,6 +27,41 @@ const WorkSection = () => {
           gatsbyImageData(width: 900, layout: CONSTRAINED)
         }
       }
+      projectImage4: file(relativePath: { eq: "work-stripemart.png" }) {
+        childImageSharp {
+          gatsbyImageData(width: 900, layout: CONSTRAINED)
+        }
+      }
+      gatsbyLogo: file(relativePath: { eq: "gatsby-monogram.png" }) {
+        childImageSharp {
+          gatsbyImageData(width: 128, layout: CONSTRAINED)
+        }
+      }
+      sanityLogo: file(relativePath: { eq: "sanity-monogram.png" }) {
+        childImageSharp {
+          gatsbyImageData(width: 128, layout: CONSTRAINED)
+        }
+      }
+      netlifyLogo: file(relativePath: { eq: "netlify-monogram.png" }) {
+        childImageSharp {
+          gatsbyImageData(width: 128, layout: CONSTRAINED)
+        }
+      }
+      nextLogo: file(relativePath: { eq: "nextjs-monogram.png" }) {
+        childImageSharp {
+          gatsbyImageData(width: 128, layout: CONSTRAINED)
+        }
+      }
+      vercelLogo: file(relativePath: { eq: "vercel-monogram.png" }) {
+        childImageSharp {
+          gatsbyImageData(width: 128, layout: CONSTRAINED)
+        }
+      }
+      stripeLogo: file(relativePath: { eq: "stripe-monogram.png" }) {
+        childImageSharp {
+          gatsbyImageData(width: 128, layout: CONSTRAINED)
+        }
+      }
     }
   `)
   return (
@@ -48,24 +83,36 @@ const WorkSection = () => {
         <WorkCard
           link="https://www.mindmapbc.ca/"
           image={data.projectImage2.childImageSharp.gatsbyImageData}
+          techOne={data.gatsbyLogo.childImageSharp.gatsbyImageData}
+          techTwo={data.sanityLogo.childImageSharp.gatsbyImageData}
+          techThree={data.netlifyLogo.childImageSharp.gatsbyImageData}
           title="MindMapBC"
           description="A custom made database of mental health resources focused on LGBTQ2S+ health. Includes geolocation, mapping, and advanced search functionality."
         />
         <WorkCard
           link="https://www.bcammhe.ca"
           image={data.projectImage1.childImageSharp.gatsbyImageData}
+          techOne={data.gatsbyLogo.childImageSharp.gatsbyImageData}
+          techTwo={data.sanityLogo.childImageSharp.gatsbyImageData}
+          techThree={data.netlifyLogo.childImageSharp.gatsbyImageData}
           title="BC Alliance for Monitoring Mental Health Equity"
           description="An award winning promotional website to improve equitable access to mental health. Includes a sortable database of research articles which are cross-linked with policy recommendations."
         />
         <WorkCard
           link="https://www.focus-study.me"
           image={data.projectImage3.childImageSharp.gatsbyImageData}
+          techOne={data.nextLogo.childImageSharp.gatsbyImageData}
+          techTwo={data.sanityLogo.childImageSharp.gatsbyImageData}
+          techThree={data.vercelLogo.childImageSharp.gatsbyImageData}
           title="FOCUS study"
           description="A vibrant and energetic web presence for an international COVID-19 study focused on youth. Includes full support for multiple languages and regions."
         />
         <WorkCard
           link="https://github.com/ehowey/gatsby-starter-stripemart"
           image={data.projectImage3.childImageSharp.gatsbyImageData}
+          techOne={data.gatsbyLogo.childImageSharp.gatsbyImageData}
+          techTwo={data.stripeLogo.childImageSharp.gatsbyImageData}
+          techThree={data.netlifyLogo.childImageSharp.gatsbyImageData}
           title="Gatsby Starter Stripemart"
           description="A template for a minimal e-commerce store using Gatsby, SANITY, Stripe, Use-Shopping-Cart and Netlify. Includes cart management and custom checkout flow. Open sourced for all!"
         />
