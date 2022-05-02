@@ -45,13 +45,12 @@ const WorkCTA = () => {
         >
           <Link
             to="/it-starts-with-hello/"
-            sx={(t) =>
-              Object.assign(t.buttons.primary, {
-                display: "flex",
-                fontSize: 2,
-                fontWeight: 500,
-              })
-            }
+            sx={{
+              variant: "buttons.primary",
+              display: "flex",
+              fontSize: 2,
+              fontWeight: 500,
+            }}
           >
             It starts with hello
             <motion.div sx={{ ml: 2 }} variants={handMotion}>

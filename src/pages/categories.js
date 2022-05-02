@@ -17,11 +17,7 @@ const CategoriesPage = ({ data }) => {
             <Themed.p>
               <Link
                 to={`/categories/${kebabCase(category.fieldValue)}/`}
-                sx={(t) =>
-                  Object.assign(t.styles.a, {
-                    fontSize: 3,
-                  })
-                }
+                sx={(t) => ({ ...t.styles.a, fontSize: 3 })}
               >
                 {category.fieldValue}
               </Link>{" "}

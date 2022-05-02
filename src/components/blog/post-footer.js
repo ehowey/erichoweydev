@@ -27,7 +27,7 @@ const PostFooter = ({ previous, next }) => (
               <Link
                 to={`/writing/${previous.slug}`}
                 rel="prev"
-                sx={(t) => Object.assign(t.styles.a, { fontSize: 2 })}
+                sx={(t) => ({ ...t.styles.a, fontSize: 2 })}
               >
                 {previous.title}
               </Link>
@@ -50,7 +50,7 @@ const PostFooter = ({ previous, next }) => (
               <Link
                 to={`/writing/${next.slug}`}
                 rel="next"
-                sx={(t) => Object.assign(t.styles.a, { fontSize: 2 })}
+                sx={(t) => ({ ...t.styles.a, fontSize: 2 })}
               >
                 {next.title}
               </Link>
