@@ -59,6 +59,7 @@ const theme = {
     heading: "1.25",
   },
   colors: {
+    ...baseColors,
     background: baseColors.white,
     text: baseColors.text,
     primary: baseColors.primary,
