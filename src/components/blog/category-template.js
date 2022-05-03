@@ -15,7 +15,7 @@ const CategoryPage = ({ posts, category }) => {
             <Themed.p>
               <Link
                 to={`/writing/${post.slug}/`}
-                sx={(t) => Object.assign(t.styles.a, { fontSize: 3 })}
+                sx={(t) => ({ ...t.styles.a, fontSize: 3 })}
               >
                 {post.title}
               </Link>

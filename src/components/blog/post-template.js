@@ -98,14 +98,13 @@ const Post = ({ data: { post }, previous, next }) => (
               >
                 <Link
                   to={`/categories/${kebabCase(category)}/`}
-                  sx={(t) =>
-                    Object.assign(t.styles.a, {
-                      textDecoration: "none",
-                      ":hover": {
-                        textDecoration: "underline",
-                      },
-                    })
-                  }
+                  sx={(t) => ({
+                    ...t.styles.a,
+                    textDecoration: "none",
+                    ":hover": {
+                      textDecoration: "underline",
+                    },
+                  })}
                 >
                   {category}
                 </Link>
