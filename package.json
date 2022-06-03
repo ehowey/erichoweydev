@@ -22,7 +22,7 @@
     "gatsby-plugin-feed": "4.13.0",
     "gatsby-plugin-image": "2.13.0",
     "gatsby-plugin-manifest": "4.13.0",
-    "gatsby-plugin-mdx": "3.13.0",
+    "gatsby-plugin-mdx": "3.15.2",
     "gatsby-plugin-mdx-embed": "1.0.0",
     "gatsby-plugin-netlify": "4.3.1",
     "gatsby-plugin-page-creator": "4.13.0",
