@@ -2,7 +2,7 @@
 import { jsx, Themed, Button } from "theme-ui"
 import { useForm } from "react-hook-form"
 import { useState, useEffect } from "react"
-import { FiAlertCircle } from "react-icons/fi"
+import { FiAlertCircle, FiLoader } from "react-icons/fi"
 import { motion, AnimatePresence } from "framer-motion"
 
 const ContactForm = () => {
@@ -10,6 +10,7 @@ const ContactForm = () => {
   const { register, handleSubmit, reset, formState } = useForm()
   const { isSubmitting } = formState
   const [showToast, setShowToast] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   // Transforms the form data from the React Hook Form output to a format Netlify can read
   const encode = (data) => {
@@ -21,6 +22,7 @@ const ContactForm = () => {
   }
 
   const handlePost = (formData, event) => {
+    setLoading(true)
     event.preventDefault()
 
     fetch(`/`, {
@@ -29,6 +31,7 @@ const ContactForm = () => {
       body: encode({ "form-name": "contact-form", ...formData }),
     })
       .then((response) => {
+        setLoading(false)
         setShowToast(true)
       })
       .catch((error) => {
@@ -208,9 +211,11 @@ const ContactForm = () => {
           type="submit"
           disabled={isSubmitting || showToast}
           sx={{
+            mt: 3,
+            width: "250px",
+            textAlign: "center",
             py: 1,
             px: 3,
-            mt: 3,
             fontSize: 2,
             fontWeight: 500,
             ":disabled": {
@@ -219,7 +224,24 @@ const ContactForm = () => {
             },
           }}
         >
-          Start the conversation
+          {loading ? (
+            <FiLoader
+              sx={{
+                animation: "spin infinite 5s linear",
+                "@keyframes spin": {
+                  from: {
+                    transform: "rotate(0deg)",
+                  },
+                  to: {
+                    transform: "rotate(360deg)",
+                  },
+                },
+              }}
+            />
+          ) : (
+            "Start the conversation"
+          )}
+          {/* Start the conversation */}
         </Button>
       </div>
     </form>
