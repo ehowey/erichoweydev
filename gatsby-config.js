@@ -1,4 +1,4 @@
-const remarkSlug = require("remark-slug")
+// import remarkSlug from "remark-slug"
 
 module.exports = {
   siteMetadata: {
@@ -89,10 +89,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
-        extensions: [`.md`, `.mdx`],
-        defaultLayouts: {
-          default: require.resolve("./src/components/layout/layout.js"),
-        },
+        // defaultLayouts: {
+        //   default: require.resolve("./src/components/layout/layout.js"),
+        // },
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
@@ -114,7 +113,7 @@ module.exports = {
             },
           },
         ],
-        remarkPlugins: [remarkSlug],
+        // mdxOptions: { remarkPlugins: [remarkSlug] },
       },
     },
     {
