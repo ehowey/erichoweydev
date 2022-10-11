@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import { jsx, Themed, Button } from "theme-ui"
+import { jsx, Button } from "theme-ui"
+import { Themed } from "@theme-ui/mdx"
 import { useForm } from "react-hook-form"
 import { useState, useEffect } from "react"
 import { FiAlertCircle, FiLoader } from "react-icons/fi"
