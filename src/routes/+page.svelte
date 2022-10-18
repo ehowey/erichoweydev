@@ -12,7 +12,7 @@
 	/>
 </svelte:head>
 
-<section class="prose">
+<section>
 	<h1>Eric Howey</h1>
 	<p>
 		Hello and welcome! My name is Eric Howey and I am a Calgary based web developer who works at the
