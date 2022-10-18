@@ -1,0 +1,229 @@
+---
+title: 10 reasons to use Theme UI in your next Gatsby project
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+categories: [Gatsby, Theme UI]
+date: 2020-03-25
+featuredImage: ./featured-theme-ui.jpg
+socialImage: ./featured-theme-ui.jpg
+published: true
+---
+
+Combining [Theme UI](https://theme-ui.com/) with [Gatsby](https://www.gatsbyjs.org) has been a huge productivity win for me; design tokens, quick mobile styles, a robust component library and more. I am building every new project using Theme UI and here are 10 reasons I think you should consider it too.
+
+## Consistent design system
+
+At the heart of Theme UI is a [theme specification file](https://theme-ui.com/theme-spec) which includes key-value pairs for CSS properties like line-height, font-family, color, etc. Where the theme specification really shines however is in higher level design abstractions like `space` which apply to any CSS property which defines a space such as padding, margin, grid-gap, etc. Space is defined as an array of values such as `space: [0rem, 0.25rem, 0.5rem, 1rem, 2rem, 4rem]`. You can then reference these values by their array index: `margin: 0, padding: 3` is equivalent to `margin: 0rem; padding: 1rem`. This makes it easy to keep your design consistent, no more elements with one-off margins and paddings!
+
+You can check out the [theme specification file for this site](https://github.com/ehowey/erichoweydev/blob/master/src/gatsby-theme-catalyst-core/theme.js) on GitHub to see an example of a what a complete file looks like.
+
+## Great documentation
+
+Theme UI has [excellent documentation](https://theme-ui.com/getting-started). The getting started guide is clear. The organization is logical. The code examples are concise. Complex ideas are broken down into small bite-sized chunks. When you get stuck you can find the answers.
+
+This is one of those _small-but-big_ things that tells you how committed and purposeful the developers have been in the Theme UI project.
+
+## Design tokens
+
+Design tokens enable you to quickly swap colors, fonts, spacing and more across an entire website. This feature is becoming increasingly common in modern web development architecture and is deeply supported in Theme UI. In Theme UI design tokens are managed in a central theme specification file and altering design is one change in one file versus many changes in many files.
+
+Here is an example with colors.
+
+Theme specification file:
+
+```js
+export default {
+  colors: {
+    primary: "blue", // Change me to "yellow"
+    secondary: "green", // Change me to "pink"
+    },
+```
+
+Example Component:
+
+```jsx
+/** @jsx jsx */
+import { jsx } from "theme-ui"
+
+const ChangeColors = () => {
+  return (
+    <div
+      sx={{
+        height: "300px",
+        width: "300px",
+        backgroundColor: "primary",
+        padding: 4,
+      }}
+    >
+      <p
+        sx={{
+          color: "secondary",
+        }}
+      >
+        Go ahead and change those colors!
+      </p>
+    </div>
+  )
+}
+
+export default ChangeColors
+```
+
+## Array syntax for media queries
+
+Writing media queries in CSS has always been a bit awkward and longwinded for complex designs. Theme UI offers an [elegant and effective solution](https://theme-ui.com/theme-spec/#breakpoints) to this problem for most use cases and fallback support for traditional queries if you need it. Media queries the Theme UI way you define a set of breakpoints in your theme specification file, such as `breakpoints: ["480px", "768px", "1024px"]. Then you use an array syntax directly in your component to define the styles between each breakpoint.
+
+Here is an example with changing colors at different breakpoints:
+
+```jsx
+/** @jsx jsx */
+import { jsx } from "theme-ui"
+
+const Breakpoints = () => {
+  return (
+    <p
+      sx={{
+        // 0 - 480px: Green
+        // 480px - 768px: Red
+        //768px - 1024px: Red
+        //1024px and up: Blue
+        color: ["green", "red", null, "blue"],
+      }}
+    >
+      That was some easy media queries!
+    </p>
+  )
+}
+
+export default Breakpoints
+```
+
+## Styled component
+
+Theme UI works automagically with MD and MDX files - the styles defined in the theme specification are applied without any further setup needed. However you will likely need to access your styles outside of markdown in a component; enter the [Styled component](https://theme-ui.com/styled) from Theme UI. This provides a way to "hook" into your Theme UI styles from anywhere in your application. The syntax is also easy to remember which is a bonus - for example `<Styled.p>` or `<Styled.h3>` or `<Styled.ul>`.
+
+Here is an example applying it to a header:
+
+```jsx
+/** @jsx jsx */
+import { jsx, Styled } from "theme-ui"
+
+const StyledFun = () => {
+  return <Styled.h1>Got my theme styles!</Styled.h1>
+}
+
+export default StyledFun
+```
+
+## Variants
+
+[Variants](https://theme-ui.com/guides/variants/) provide a quick way to change element styles without having to shadow or replace an entire component. Imagine you want to change the color of your site title - variants allow you to do this without altering the original component. This enables a pathway for users to make simple design changes to without rewriting whole files.
+
+Original component with a variant:
+
+```jsx
+/** @jsx jsx */
+import { jsx, Styled } from "theme-ui"
+
+const SiteTitle = () => {
+  return (
+    <Styled.h1
+      sx={{
+        color: "red",
+        variant: "variants.siteTitle",
+      }}
+    >
+      My Awesome Site
+    </Styled.h1>
+  )
+}
+
+export default SiteTitle
+```
+
+Theme specification file:
+
+```js
+export default {
+  // Other styles would be in this file as well
+  variants: {
+    siteTitle: {
+      color: "green", // Now it is green, not red
+    },
+  }
+```
+
+## Dark mode API
+
+Theme UI makes creating a dark mode on your website straightforward and yet again includes excellent [documentation on color modes.](https://theme-ui.com/color-modes/) In short you define a dark color scheme in your theme file using the `modes` object and then access the `useColorMode` hook from Theme UI to change state and toggle between light and dark modes on your site. You can set it to respect user preferences for dark mode and you can also define a name for the initial color mode - both of which are useful additions to the API.
+
+Here is a simple example of a dark and light mode color scheme:
+
+```js
+export default {
+  useColorSchemeMediaQuery: true,
+  initialColorModeName: "light",
+  colors: {
+    background: "white",
+    text: "black",
+    modes: {
+      dark: {
+        background: "black",
+        text: "white",
+      },
+    },
+  },
+}
+```
+
+## Theme presets
+
+Theme UI provides a number of theme presets which can be used as a base theme and customized to meet your design. For example if you like working with Tailwind there is a [Tailwind preset](https://theme-ui.com/presets/tailwind) you can use. These presets give you a starting point that you can leverage, versus creating something custom from scratch.
+
+Here is an example of importing a theme preset:
+
+```js
+import { tailwind } from "@theme-ui/preset-tailwind"
+
+export default {
+  ...tailwind, // Gives you the entire preset
+  colors: {
+    ...tailwind.colors, // Gives you the tailwind color presets
+    background: "teal", // Overrides the default background
+    primary: "blue", // Overrides the default primary color
+  },
+}
+```
+
+## Component library
+
+The authors of Theme UI are building a [custom component library](https://theme-ui.com/components) that is preconfigured to accept Theme UI design tokens and variants. At the time of writing they have 25 components and growing covering most common use cases. My favourite component is `<Grid />` which provides a quick way to implement a grid layout with an intuitive API.
+
+Here is an example of a grid layout using Theme UI components:
+
+```jsx
+<Grid gap={2} columns={[2, null, 4]}>
+  <Box bg="primary">Theme</Box>
+  <Box bg="secondary">UI</Box>
+  <Box bg="primary">Is</Box>
+  <Box bg="secondary">Awesome!</Box>
+</Grid>
+```
+
+## Syntax highlighting
+
+Theme UI makes implementing syntax (or code) highlighting on your site possible and as always they provide good [documentation about implementing syntax highlighting](https://theme-ui.com/guides/syntax-highlighting/). Similar to themes there are a number of different presets available including one that will match your syntax highlighting colors with colors from your theme!
+
+No need for an example here - you have been looking at examples of while reading this post!
+
+## Wrapping up
+
+Whatever your next Gatsby project - I hope this gives you some inspiration to try out Theme UI in it. It is a tool I am consistently impressed with and a great developer experience. I would love to hear about what you build and what you like best about Theme UI!
+
+If you want to read a bit more about Theme UI and Gatsby here are a few other helpful resources:
+
+- [How I used Theme UI to build my Gatsby Themes library](https://www.lekoarts.de/en/blog/how-i-used-theme-ui-to-build-my-gatsby-themes-library)
+- [Composing and styling Gatsby Themes (video)](https://www.youtube.com/watch?v=6Z4p-qjnKCQ)
+- [Theme UI - GatsbyJS Official Docs](https://www.gatsbyjs.org/docs/theme-ui/)
+
+Happy coding!
