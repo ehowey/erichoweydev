@@ -1,8 +1,10 @@
 ---
-title: My Second Post!
-date: "2015-05-06T23:46:37.121Z"
-authorId: kylem
+title: Josh's Unique Words
+date: "2022-10-03T23:46:37.121Z"
+authorId: joshj
 ---
+
+*(totally my own words and unique thoughts)*
 
 Wow! I love blogging so much already.
 
