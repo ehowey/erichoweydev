@@ -6,6 +6,9 @@ module.exports = {
     "./src/templates/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ["figtree", "sans-serif"],
+    },
     extend: {},
   },
   plugins: [],

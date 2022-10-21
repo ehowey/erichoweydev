@@ -1,7 +1,11 @@
 import * as React from "react"
 import { Slice } from "gatsby"
 
-const Layout = ({ children }) => {
+interface Props {
+  children?: React.ReactNode
+}
+
+const Layout = ({ children }: Props) => {
   return (
     <div>
       <Slice alias="header" />
