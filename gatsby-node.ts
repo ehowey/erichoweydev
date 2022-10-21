@@ -41,12 +41,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
    */
   createSlice({
     id: `header`,
-    component: require.resolve(`./src/components/header.tsx`),
+    component: path.resolve(`./src/components/header.tsx`),
   })
 
   createSlice({
     id: `footer`,
-    component: require.resolve(`./src/components/footer.tsx`),
+    component: path.resolve(`./src/components/footer.tsx`),
   })
 
   /**
