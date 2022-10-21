@@ -1,17 +1,10 @@
-import React from "react"
-import { MDXProvider } from "@mdx-js/react"
-import "./src/styles/global.css"
-import Seo from "./src/components/seo"
+// custom typefaces
+import "typeface-montserrat"
+import "typeface-merriweather"
+// normalize CSS across browsers
+import "./src/normalize.css"
+// custom CSS styles
+import "./src/style.css"
 
-export const wrapRootElement = ({ element }) => {
-  return <MDXProvider components={{ Seo }}>{element}</MDXProvider>
-}
-
-export const onRouteUpdate = ({ location, prevLocation }) => {
-  if (prevLocation !== null) {
-    const skipLink = document.querySelector("#reach-skip-nav")
-    if (skipLink) {
-      skipLink.focus()
-    }
-  }
-}
+// Highlighting for code blocks
+import "prismjs/themes/prism.css"

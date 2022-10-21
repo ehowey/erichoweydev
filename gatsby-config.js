@@ -1,141 +1,56 @@
-const remarkSlug = require("remark-slug")
-
 module.exports = {
   siteMetadata: {
-    title: `Eric Howey`,
-    description: `Frontend web developer and designer, based in Calgary, Alberta. I work at the intersection of caring and code. Specializing in Javascript, React, Gatsby, NextJS and SANITY.`,
-    keywords: [
-      `web developer`,
-      `Cochrane`,
-      `web design`,
-      `Calgary`,
-      `Gatsby`,
-      `SANITY`,
-      `Gatsbyjs`,
-      `SANITY.io`,
-      `sanity`,
-      `NextJS`,
-      `websites`,
-      `react`,
-      `javascript`,
-      `front end`,
-      `frontend`,
-      `frontend web developer`,
-      `GatsbyJS`,
-      `Sanity`,
-      `Sanity.io`,
-      `developer`,
-      `blog`,
-      `tutorials`,
-      `gatsby themes`,
-    ],
-    author: `Eric Howey`,
-    siteUrl: `https://www.erichowey.dev`,
-    menuLinks: [
-      {
-        name: `Me`,
-        link: `/#me`,
-      },
-      {
-        name: `Work`,
-        link: `/#work`,
-      },
-      {
-        name: `Process`,
-        link: `/it-starts-with-hello/`,
-      },
-      {
-        name: `Writing`,
-        link: `/writing/`,
-      },
-      {
-        name: `Contact`,
-        link: `/#contact`,
-      },
-    ],
-    socialLinks: [
-      {
-        name: `Email`,
-        link: `eric@erichowey.dev`,
-        location: `footer`,
-      },
-      {
-        name: `Github`,
-        link: `https://www.github.com/ehowey`,
-        location: `all`,
-      },
-      {
-        name: `Twitter`,
-        link: `https://www.twitter.com/erchwy`,
-        location: `all`,
-      },
-    ],
+    title: `Gatsby Starter Blog`,
+    author: {
+      name: `Kyle Mathews`,
+      summary: `who lives and works in San Francisco building useful things.`,
+    },
+    description: `A starter blog demonstrating what Gatsby can do.`,
+    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    social: {
+      twitter: `kylemathews`,
+    },
   },
   plugins: [
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `posts`,
-        path: `src/posts`,
+        path: `${__dirname}/content/blog`,
+        name: `blog`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `src/images`,
+        path: `${__dirname}/src/images`,
       },
     },
     {
-      resolve: `gatsby-plugin-mdx`,
+      resolve: `gatsby-transformer-remark`,
       options: {
-        extensions: [`.md`, `.mdx`],
-        defaultLayouts: {
-          default: require.resolve("./src/components/layout/layout.js"),
-        },
-        gatsbyRemarkPlugins: [
+        plugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 1920,
-              linkImagesToOriginal: false,
-              withWebp: true,
-              backgroundColor: `transparent`,
-              quality: 50,
+              maxWidth: 630,
             },
           },
-          { resolve: `gatsby-remark-smartypants` },
-          { resolve: `gatsby-remark-copy-linked-files` },
-          { resolve: `gatsby-remark-reading-time` },
           {
-            resolve: `gatsby-remark-external-links`,
+            resolve: `gatsby-remark-responsive-iframe`,
             options: {
-              target: `_self`,
+              wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
+          `gatsby-remark-prismjs`,
+          `gatsby-remark-copy-linked-files`,
+          `gatsby-remark-smartypants`,
         ],
-        remarkPlugins: [remarkSlug],
       },
     },
-    {
-      resolve: `gatsby-remark-images`,
-      options: {
-        maxWidth: 1920,
-        linkImagesToOriginal: false,
-        withWebp: true,
-        backgroundColor: `transparent`,
-        quality: 50,
-      },
-    },
-    `gatsby-plugin-mdx-embed`,
-    `gatsby-plugin-sitemap`,
-    `gatsby-plugin-robots-txt`,
-    `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-catch-links`,
-    `gatsby-plugin-theme-ui`,
-    `gatsby-plugin-image`,
     {
       resolve: `gatsby-plugin-feed`,
       options: {
@@ -153,62 +68,38 @@ module.exports = {
         `,
         feeds: [
           {
-            output: `/rss.xml`,
-            title: `EricHowey.dev`,
-            description: `Writings about technology, Jamstack, and frontend web development.`,
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.nodes.map(node => {
+                return Object.assign({}, node.frontmatter, {
+                  description: node.excerpt,
+                  date: node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + node.fields.slug,
+                  custom_elements: [{ "content:encoded": node.html }],
+                })
+              })
+            },
             query: `
               {
-                allBlogPost(
-                  sort: { fields: [date, title], order: DESC }
-                  limit: 1000
-                  filter: {published: {eq: true}}
+                allMarkdownRemark(
+                  sort: { order: DESC, fields: [frontmatter___date] },
                 ) {
                   nodes {
-                    id
-                    slug
-                    title
-                    author
                     excerpt
-                    date(formatString: "ddd, DD MMM YYYY HH:mm:ss ZZ")
-                    socialImage {
-                      publicURL
+                    html
+                    fields {
+                      slug
                     }
-                    featuredImage {
-                      publicURL
+                    frontmatter {
+                      title
+                      date
                     }
                   }
                 }
               }
             `,
-            serialize: ({
-              query: {
-                site: {
-                  siteMetadata: { siteUrl },
-                },
-                allBlogPost,
-              },
-            }) => {
-              const rssFeed = allBlogPost.nodes.map((node) => {
-                const hasSocial = node.socialImage !== null
-                const hasFeatured = node.featuredImage !== null
-                const rssImage = hasSocial
-                  ? `${siteUrl}${node.socialImage.publicURL}`
-                  : hasFeatured
-                  ? `${siteUrl}${node.featuredImage.publicURL}`
-                  : null
-                const serialized = {
-                  guid: `${siteUrl}/writing/${node.slug}/`,
-                  url: `${siteUrl}/writing/${node.slug}/`,
-                  title: node.title,
-                  author: node.author,
-                  description: node.excerpt,
-                  pubDate: node.date,
-                  enclosure: { url: rssImage },
-                }
-                return serialized
-              })
-              return rssFeed
-            },
+            output: "/rss.xml",
+            title: "Gatsby Starter Blog RSS Feed",
           },
         ],
       },
@@ -216,15 +107,16 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `EricHowey.dev`,
-        short_name: `EH.dev`,
+        name: `Gatsby Starter Blog`,
+        short_name: `GatsbyJS`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#9ce5f4`,
+        // This will impact how browsers show your PWA/website
+        // https://css-tricks.com/meta-theme-color-and-trickery/
+        // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/erichowey-site-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    `gatsby-plugin-netlify`,
   ],
 }
