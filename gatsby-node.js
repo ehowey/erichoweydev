@@ -1,7 +1,11 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
-exports.sourceNodes = ({actions: {createNode}, createNodeId, createContentDigest}) => {
+exports.sourceNodes = ({
+  actions: { createNode },
+  createNodeId,
+  createContentDigest,
+}) => {
   const authors = [
     {
       name: `Kyle Mathews`,
@@ -14,18 +18,20 @@ exports.sourceNodes = ({actions: {createNode}, createNodeId, createContentDigest
       authorId: `joshj`,
       summary: `who lives and works in Michigan building neat things.`,
       twitter: `0xJ05H`,
-    }
+    },
   ]
 
-  authors.map(author => createNode({
-    ...author,
-    id: createNodeId(author.authorId),
-    internal: {
-      type: `Author`,
-      contentDigest: createContentDigest(author)
-    }
-  }));
-};
+  authors.map(author =>
+    createNode({
+      ...author,
+      id: createNodeId(author.authorId),
+      internal: {
+        type: `Author`,
+        contentDigest: createContentDigest(author),
+      },
+    })
+  )
+}
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage, createSlice } = actions
@@ -35,79 +41,79 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
    */
   createSlice({
     id: `header`,
-    component: require.resolve(`./src/components/header.js`),
+    component: require.resolve(`./src/components/header.tsx`),
   })
 
   createSlice({
     id: `footer`,
-    component: require.resolve(`./src/components/footer.js`),
+    component: require.resolve(`./src/components/footer.tsx`),
   })
-  
+
   /**
    * Create slices for each author bio
    */
 
-  // Define a component for author bio
-  const authorBio = path.resolve(`./src/components/bio.js`)
+  // // Define a component for author bio
+  // const authorBio = path.resolve(`./src/components/bio.js`)
 
-  const authorResults = await graphql(
-    `
-    {
-      allAuthor {
-        nodes {
-          authorId
-        }
-      }
-    }
-    `
-  )
+  // const authorResults = await graphql(
+  //   `
+  //     {
+  //       allAuthor {
+  //         nodes {
+  //           authorId
+  //         }
+  //       }
+  //     }
+  //   `
+  // )
 
-  if (authorResults.errors) {
-    reporter.panicOnBuild(
-      `There was an error loading your authors`,
-      authorResults.errors
-    )
-    return
-  }
+  // if (authorResults.errors) {
+  //   reporter.panicOnBuild(
+  //     `There was an error loading your authors`,
+  //     authorResults.errors
+  //   )
+  //   return
+  // }
 
-  const authors = authorResults.data.allAuthor.nodes
+  // const authors = authorResults.data.allAuthor.nodes
 
-  if (authors.length > 0) {
-    authors.forEach((author) => {
-      // create slice for author
-      createSlice({
-        id: `bio--${author.authorId}`,
-        component: authorBio,
-        context: {
-          id: author.authorId,
-        }
-      })
-    })
-  }
+  // if (authors.length > 0) {
+  //   authors.forEach(author => {
+  //     // create slice for author
+  //     createSlice({
+  //       id: `bio--${author.authorId}`,
+  //       component: authorBio,
+  //       context: {
+  //         id: author.authorId,
+  //       },
+  //     })
+  //   })
+  // }
 
   /**
    * Create blog posts
    */
 
   // Define a template for blog post
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  const blogPost = path.resolve(`./src/templates/blog-post.tsx`)
 
   // Get all markdown blog posts sorted by date
   const blogResults = await graphql(
     `
-    {
-      allMarkdownRemark(sort: {frontmatter: { date: ASC }}, limit: 1000) {
-        nodes {
-          frontmatter {
-            authorId
-          }
-          id
-          fields {
-            slug
+      {
+        allMarkdownRemark(sort: { frontmatter: { date: ASC } }, limit: 1000) {
+          nodes {
+            frontmatter {
+              authorId
+            }
+            id
+            fields {
+              slug
+            }
           }
         }
       }
-    }
     `
   )
 
@@ -143,7 +149,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           // Instruct this blog page to use the matching bio slice
           // Any time the "bio" alias is seen, it'll use the "bio--${authorId}" slice
           bio: `bio--${post.frontmatter.authorId}`,
-        }
+        },
       })
     })
   }
@@ -167,10 +173,10 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   if (node.internal.type === `ImageSharp`) {
     const parent = getNode(node.parent)
 
-    if (parent.relativeDirectory === 'author') {
+    if (parent.relativeDirectory === "author") {
       createNodeField({
         node,
-        name: 'authorId',
+        name: "authorId",
         value: parent.name,
       })
     }
