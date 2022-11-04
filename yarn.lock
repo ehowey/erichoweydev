@@ -1519,6 +1519,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fontsource/figtree@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/figtree/-/figtree-4.5.1.tgz#b611ad0cca3bf48f333c543a67db74df3f23e4b3"
+  integrity sha512-VZjPzbD8+HdTgWI29myAkCsGiidTvCUJ18gsqd+g4ZkdpNFphn/zwlWiudbiICjrQMbC9Q+ZFkDmE+s9ysfGFg==
+
 "@fontsource/raleway@^4.5.11":
   version "4.5.11"
   resolved "https://registry.yarnpkg.com/@fontsource/raleway/-/raleway-4.5.11.tgz#6da0bad1f44e0360fe465663ac0683601d29bda7"

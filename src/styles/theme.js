@@ -2,16 +2,14 @@
 // Try changing some of the colors below to see what happens.
 import prism from "@theme-ui/prism/presets/oceanic-next"
 import { baseColors } from "./baseColors"
-import "@fontsource/raleway/400.css"
-import "@fontsource/raleway/400-italic.css"
-import "@fontsource/raleway/500.css"
-import "@fontsource/raleway/500-italic.css"
-import "@fontsource/raleway/700.css"
+import "@fontsource/figtree/400.css"
+import "@fontsource/figtree/500.css"
+import "@fontsource/figtree/700.css"
 
 const theme = {
   breakpoints: ["580px", "768px", "1200px", "1440px"],
   fonts: {
-    heading: "Raleway, sans-serif",
+    heading: "Figtree, sans-serif",
     body: 'system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
     monospace:
       'Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace',

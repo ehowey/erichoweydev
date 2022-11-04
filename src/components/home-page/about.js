@@ -70,7 +70,7 @@ const AboutSection = () => {
               award winning
             </Themed.a>{" "}
             websites using forward thinking technologies. Oh, and I've got two
-            super awesome kids and I can even grow facial hair. It <i>really</i>{" "}
+            super awesome kids and can even grow facial hair. It <i>really</i>{" "}
             has changed.
           </Themed.p>
         </div>
