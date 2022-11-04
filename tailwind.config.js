@@ -9,7 +9,11 @@ module.exports = {
     fontFamily: {
       sans: ["figtree", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      colors: {
+        "eric-blue": "hsl(190, 80%, 78%)",
+      },
+    },
   },
   plugins: [],
 }
