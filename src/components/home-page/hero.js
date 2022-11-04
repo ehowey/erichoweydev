@@ -99,8 +99,8 @@ const Hero = () => {
               display: "inline",
             }}
           >
-            My name is Eric Howey and I work at the intersection of caring and
-            code.
+            My name is Eric Howey and I work at the intersection of care,
+            creativity and code.
           </Themed.p>
           {/* <div sx={{ mt: 4 }}>
             <Button
