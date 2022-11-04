@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import { jsx, Themed } from "theme-ui"
+import { jsx } from "theme-ui"
+import { Themed } from "@theme-ui/mdx"
 import { Link, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../components/seo"

@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import { jsx, Themed } from "theme-ui"
+import { jsx } from "theme-ui"
+import { Themed } from "@theme-ui/mdx"
 import { Link } from "gatsby"
 import Seo from "../../components/seo"
 import Layout from "../layout/layout"

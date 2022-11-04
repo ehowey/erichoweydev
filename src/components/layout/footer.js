@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import { jsx, Themed } from "theme-ui"
+import { jsx } from "theme-ui"
+import { Themed } from "@theme-ui/mdx"
 import { useSiteMetadata } from "../../hooks/use-site-metadata"
 import { FiGithub, FiTwitter } from "react-icons/fi"
 import { lighten } from "@theme-ui/color"
