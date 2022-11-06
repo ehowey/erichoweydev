@@ -3,13 +3,13 @@ import { jsx } from "theme-ui"
 import { Themed } from "@theme-ui/mdx"
 import { Link, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import Seo from "../components/seo"
-import Layout from "../components/layout/layout"
+import Seo from "../../components/seo"
+import Layout from "../../components/layout/layout"
 import { FaRegClock } from "react-icons/fa"
 import { darken } from "@theme-ui/color"
 
 const PostsList = ({ data }) => {
-  const posts = data.allBlogPost.nodes
+  // const posts = data.allBlogPost.nodes
   return (
     <Layout>
       <Seo
@@ -51,7 +51,7 @@ const PostsList = ({ data }) => {
             }}
           >
             <Themed.h1>Writing</Themed.h1>
-            {posts.map((post) => {
+            {/* {posts.map((post) => {
               return (
                 <article
                   key={post.slug}
@@ -182,7 +182,7 @@ const PostsList = ({ data }) => {
                   </Link>
                 </article>
               )
-            })}
+            })} */}
           </div>
         </div>
       </div>
@@ -192,29 +192,29 @@ const PostsList = ({ data }) => {
 
 export default PostsList
 
-export const query = graphql`
-  {
-    allBlogPost(
-      sort: { fields: [date, title], order: DESC }
-      limit: 1000
-      filter: { published: { eq: true } }
-    ) {
-      nodes {
-        id
-        excerpt
-        slug
-        title
-        author
-        authorLink
-        date(formatString: "MMMM D, YYYY")
-        categories
-        timeToRead
-        featuredImage {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   {
+//     allBlogPost(
+//       sort: { fields: [date, title], order: DESC }
+//       limit: 1000
+//       filter: { published: { eq: true } }
+//     ) {
+//       nodes {
+//         id
+//         excerpt
+//         slug
+//         title
+//         author
+//         authorLink
+//         date(formatString: "MMMM D, YYYY")
+//         categories
+//         timeToRead
+//         featuredImage {
+//           childImageSharp {
+//             gatsbyImageData
+//           }
+//         }
+//       }
+//     }
+//   }
+// `

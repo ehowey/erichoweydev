@@ -1,9 +1,19 @@
-const remarkSlug = require("remark-slug")
+// const remarkSlug = require("remark-slug")
+// import remarkGfm from "remark-gfm"
+
+// const wrapESMPlugin = (name) =>
+//   function wrapESM(opts) {
+//     return async (...args) => {
+//       const mod = await import(name)
+//       const plugin = mod.default(opts)
+//       return plugin(...args)
+//     }
+//   }
 
 module.exports = {
   siteMetadata: {
     title: `Eric Howey`,
-    description: `Frontend web developer and designer, based in Calgary, Alberta. I work at the intersection of caring and code. Specializing in Javascript, React, Gatsby, NextJS and SANITY.`,
+    description: `Frontend web developer, based in Calgary, Alberta. I work at the intersection of caring, creativity and code. Specializing in JavaScript, React, NextJS, Gatsby and more.`,
     keywords: [
       `web developer`,
       `Cochrane`,
@@ -72,13 +82,13 @@ module.exports = {
     ],
   },
   plugins: [
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `posts`,
-        path: `src/posts`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `posts`,
+    //     path: `src/posts`,
+    //   },
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -88,34 +98,7 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-mdx`,
-      options: {
-        extensions: [`.md`, `.mdx`],
-        defaultLayouts: {
-          default: require.resolve("./src/components/layout/layout.js"),
-        },
-        gatsbyRemarkPlugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 1920,
-              linkImagesToOriginal: false,
-              withWebp: true,
-              backgroundColor: `transparent`,
-              quality: 50,
-            },
-          },
-          { resolve: `gatsby-remark-smartypants` },
-          { resolve: `gatsby-remark-copy-linked-files` },
-          { resolve: `gatsby-remark-reading-time` },
-          {
-            resolve: `gatsby-remark-external-links`,
-            options: {
-              target: `_self`,
-            },
-          },
-        ],
-        remarkPlugins: [remarkSlug],
-      },
+      options: {},
     },
     {
       resolve: `gatsby-remark-images`,
@@ -228,3 +211,31 @@ module.exports = {
     `gatsby-plugin-netlify`,
   ],
 }
+// extensions: [`.md`, `.mdx`],
+// defaultLayouts: {
+//   default: require.resolve("./src/components/layout/layout.js"),
+// },
+// mdxOptions: {
+//   remarkPlugins: [wrapESMPlugin("remark-gfm")],
+// },
+// gatsbyRemarkPlugins: [
+//   {
+//     resolve: `gatsby-remark-images`,
+//     options: {
+//       maxWidth: 1920,
+//       linkImagesToOriginal: false,
+//       withWebp: true,
+//       backgroundColor: `transparent`,
+//       quality: 50,
+//     },
+//   },
+//   { resolve: `gatsby-remark-smartypants` },
+//   { resolve: `gatsby-remark-copy-linked-files` },
+//   { resolve: `gatsby-remark-reading-time` },
+//   {
+//     resolve: `gatsby-remark-external-links`,
+//     options: {
+//       target: `_self`,
+//     },
+//   },
+// ],
