@@ -1,0 +1,58 @@
+---
+title: Adding global script and stylesheets to Gatsby head
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+categories: [Gatsby]
+date: 2021-02-16
+featuredImage: ./featured-gatsby-head.jpg
+featuredImageCaption: Photo by Cesar Aloy on Unsplash
+socialImage: ./social-gatsby-head.jpg
+published: true
+type: post
+---
+
+Adding a global script or stylesheet to your `<head>` element in Gatsby can feel a bit tricky. You can't just copy and paste into an html template from days of yore. The final html document structure is composed by Gatsby at build time which means we need a couple of extra steps to get this done.
+
+The best way to do this globally is via the [onRenderBody](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/#onRenderBody) API in `gatsby-ssr.js`. This hooks into the build process and allows you to globally customize the head elements of your entire website.
+
+If you want to customize script and style tags in the head element on a per-page basis this is best handled with [gatsby-plugin-react-helmet](https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/) which allows you to tweak what goes into the head element on the page level.
+
+Here is an example of how I added Fathom analytics globally to a Gatsby site. Other common use cases would be inserting other SaaS trackers, global css style sheets, icon sets, etc. You should consider site performance when adding script and style tags globally to your head element as too many scripts can negatively affect performance.
+
+```js
+// gatsby-ssr.js
+const headComponents = [
+  <script
+    src="https://cdn.usefathom.com/script.js"
+    data-spa="auto"
+    data-site="ABC123"
+    defer
+  ></script>,
+];
+
+export const onRenderBody = ({ setHeadComponents }) => {
+  setHeadComponents(headComponents);
+};
+```
+
+Here is an example of adding a custom stylesheet on a per-page basis using `react-helmet`. In this example this we are loading the css stylesheet for LeafletJS which is something I only want to do on the specific pages that require it for performance reasons.
+
+```js
+// map-page.js
+import { Helmet } from "react-helmet";
+
+const MapPage = () => {
+  return (
+    <Helmet>
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin=""
+      />
+    </Helmet>
+  );
+};
+
+export default MapPage;
+```
