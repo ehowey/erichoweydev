@@ -1,0 +1,31 @@
+---
+import RootHeader from "./RootHeader.astro";
+---
+
+<RootHeader isHome view="desktop" />
+
+<script>
+  import { animate, scroll } from "motion";
+
+  const main = document.querySelectorAll("main")[1];
+  scroll(
+    animate(".desktop-big-eh", {
+      scale: 0.5,
+      top: "-8px",
+      left: "-2px",
+    }),
+    {
+      target: main,
+      offset: ["0px", "150px"],
+    }
+  );
+  scroll(
+    animate(".desktop-topo-bg", {
+      opacity: [1, 0],
+    }),
+    {
+      target: main,
+      offset: ["0px", "150px"],
+    }
+  );
+</script>

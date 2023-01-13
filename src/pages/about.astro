@@ -1,0 +1,44 @@
+---
+import { Picture } from '@astrojs/image/components'
+import PageLayout from '../layouts/PageLayout.astro'
+import PageHeader from '../components/PageHeader.astro'
+import me from '../assets/me-wide.jpg'
+---
+
+<PageLayout
+  title="About"
+  description="Heyo! My name is Eric Howey and among other things I am a web developer and mental health therapist. I enjoy mountain biking, skiing, and being outside."
+>
+  <PageHeader>About</PageHeader>
+  <div class="prose max-w-2xl px-4">
+    <p>
+      Heyo! My name is Eric Howey and among other things I am a web developer
+      and mental health therapist. I enjoy mountain biking, skiing, and being
+      outside. I've seen a polar bear in real life and dropped off a 30 foot
+      waterfall in a kayak (on purpose). I've also been told that I have bad
+      hair and a cute dog.
+    </p>
+    <p>But you aren't here for old-time adventure stories.</p>
+  </div>
+  <Picture
+    src={me}
+    widths={[200, 400, 1024]}
+    sizes="(max-width: 800px) 100vw, 800px"
+    alt="Eric Howey"
+    aspectRatio={'2:1'}
+    class="md:rounded-md shadow shadow-slate-700"
+  />
+  <div class="prose max-w-2xl px-4">
+    <p>You are here for websites.</p>
+    <p>
+      I have been building websites since before I could grow facial hair. I
+      enjoy the juxtaposition between creating websites and my job as a mental
+      health therapist. Fixing a line of code is reassuringly certain when
+      contrasted with the nuance of human experience. I derive a lot of joy from
+      the problem solving and learning I get to do when working on a project.
+      Seeing something I have made out there on the internet still gives me a
+      little rush!
+    </p>
+    <p>And, yes those are little kid hands you spy in the picture above too!</p>
+  </div>
+</PageLayout>

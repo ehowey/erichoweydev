@@ -1,0 +1,126 @@
+---
+title: "Ch-ch-changesets: turn and face the changelog"
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+categories: [Monorepos]
+date: 2021-08-26
+published: true
+layout: ../../../layouts/BlogLayout.astro
+---
+
+Monorepos, arggg, it's _complicated_.
+
+As monorepos grow in size and complexity managing the linked packages gets more and more finicky. I've spent a lot of time trying to sort out better workflows and tooling to automate changelogs, versioning and publishing. After some trial and error, I eventually settled on using [Changesets](https://github.com/atlassian/changesets) in combination with GitHub actions and I'm really happy with the results.
+
+Here are some key takeaways and instructions to get Changesets setup and automated in your monorepo.
+
+## Backstory
+
+A quick bit of background, my original process and tools were a combination of [Lerna](https://github.com/lerna/lerna) and [Yarn workspaces](https://classic.yarnpkg.com/en/docs/workspaces/). This worked _okay_, but I had to manually update the changelogs which became more and more cumbersome over time. I investigated alternate solutions for automating changelogs, including using Lerna itself to do this, and wasn't happy with the results. After reading [Chris Biscardi's blog post on Changesets](https://www.christopherbiscardi.com/post/shipping-multipackage-repos-with-github-actions-changesets-and-lerna) I decided to give this method a try with a few of my own tweaks.
+
+## Setting up Changesets
+
+The first step is to setup Changesets in the monorepo to manage the changelogs and versioning.
+
+To add Changesets to your monorepo use, `yarn add @changesets/cli` and then `yarn changeset init`. This bootstraps a basic Changesets setup inside of a `.changeset` folder in the root of your monorepo. This folder is where your temporary "changesets" are stored until they are merged into the changelog. There is also a config file in here as well, more on this config file in a moment.
+
+To add a changeset you type `yarn changeset` and follow the CLI prompts to add your changeset. The CLI will walk you through which packages you want to version, whether it is a patch, minor, or major change, and let you write a changelog comment. If you look in the `.changeset` folder you will find your new changeset in there stored as markdown. You can edit this changeset directly, which I find helpful when writing longer changelog messages.
+
+Here is what a basic changeset looks like, they all have random (sometimes funny) titles like `witty-pans-sniff.md`. You can have multiple changesets waiting to be versioned and merged into the appropriate changelogs.
+
+```md
+---
+"your-package-name": minor
+---
+
+Your changelog message in markdown meaning that you
+can use _markdown_ syntax like headings and bolded
+text.
+```
+
+To merge changesets into their respective changelogs you run the command `yarn changeset version` which handles versioning the packages based on the changesets and adding the correct information to the changelogs.
+
+This was where I initially stopped. It works great, and was certainly an improvement on how I was managing the changelogs previously. But this meant that I was using Yarn workspaces for linking packages, Changesets for changelogs, and Lerna was still responsible for publishing to NPM.
+
+## Changesets config file
+
+Before we move on to automation, a quick word about the [Changesets config file](https://github.com/atlassian/changesets/blob/main/docs/config-file-options.md). There are a few nice options here to really fine tune how Changesets integrates in your monorepo. Make sure that you pay attention to the `access` and `baseBranch` options and set these appropriately for your project.
+
+Here is an example of what mine looks like. In this example I am explicitly linking packages - so that a group of packages are all versioned together. This might not be something you want, but it was a key feature for me.
+
+```js
+{
+  "$schema": "https://unpkg.com/@changesets/config@1.6.0/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "linked": [
+    [
+      "package-one",
+      "package-two",
+      "package-three"
+    ]
+  ],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": [
+    "package-four-alpha"
+  ]
+}
+```
+
+## Automating Changesets with GitHub actions
+
+Using Changesets to manage versioning and changelogs is a step in the right direction, and it might be where you want to stop in your monorepo, but you can take it one step further and automate the heck out of things using the [Changesets GitHub action](https://github.com/changesets/action). This also allowed me to completely ditch Lerna and rely instead on a combination of just Yarn workspaces, GitHub Actions, and Changesets.
+
+We are going to automate the `changeset version` and `changeset publish` commands to happen when a "release" pull request is merged into the main branch. To give credit where it is due, this is an idea I am pulling straight from Chris' blog post mentioned above - but with some modifications to handle everything exclusively with Changesets instead of Lerna and Changesets together.
+
+Here is what the GitHub action workflow I use looks like. Note that you need an NPM token and a GitHub token included in the [secrets section](https://docs.github.com/en/actions/reference/encrypted-secrets) of your monorepo for this to work.
+
+```yaml
+name: Release
+on:
+  push:
+    branches:
+      - main
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: 14.x
+      - name: Install Dependencies
+        run: yarn
+      - name: Create Release Pull Request or Publish
+        uses: changesets/action@master
+        with:
+          publish: yarn changeset publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+```
+
+Let's talk through what is happening here. This workflow runs anytime there is a push to the main branch of the monorepo, so effectively anytime a pull request is merged this GitHub action will run. The next few steps are checking out the repo, setting up node and installing the package dependencies. The magic starts happening on the last step via the Changesets action. In this step the Changesets action looks to see if any new changesets have been merged, and if there are changesets it will open a new pull request with the version changes and changelog updates. When you merge this pull request it will then publish the updated changes to NPM automatically.
+
+Releasing package updates from your monorepo is now as simple as merging a pull request!
+
+## Add the GitHub bot
+
+Finally, you can add a [Changeset GitHub bot](https://github.com/apps/changeset-bot) which will monitor incoming pull requests for the necessary changeset and comment on pull requests that are missing changesets. This step is not required, but helps if you are managing a public repo with multiple contributors so that all changes are properly documented.
+
+## Prerelease mode
+
+This might not matter for many folks - but Changesets also includes support for a [prerelease mode](https://github.com/atlassian/changesets/blob/main/docs/prereleases.md) that helps to manage versioning when you are prepping a major release and have `alpha` or `beta` versions your are dealing with. This was one of those small, nice-to-have, features that made a really big difference for me when I was prepping for a major release earlier this year.
+
+## Curtains
+
+Congrats! You now have a automagic workflow in your monorepo for managing changelogs, versioning and publishing. Maybe not as smooth as David Bowie on the mic - but hey we can't all sing like that! Ch-Ch-Changesets...curtains please!
+
+Happy coding!
