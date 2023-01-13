@@ -1,0 +1,85 @@
+---
+import RootLayout from './RootLayout.astro'
+import DesktopHeader from '../components/header/DesktopHeader.astro'
+import MobileHeader from '../components/header/MobileHeader.astro'
+import DesktopNav from '../components/DesktopNav.astro'
+import MobileNav from '../components/MobileNav.astro'
+import Footer from '../components/Footer.astro'
+
+import { formatDate } from '../lib/utils'
+
+const { frontmatter } = Astro.props
+
+const today = new Date()
+const publishedDate = new Date(frontmatter.date)
+const timeDiffInMs = today.getTime() - publishedDate.getTime()
+const twoYearsInMs = 730 * 24 * 60 * 60 * 1000
+const archived = timeDiffInMs >= twoYearsInMs
+---
+
+<RootLayout
+  title={frontmatter.title}
+  description={frontmatter.description ?? frontmatter.generatedDescription}
+>
+  <div>
+    <DesktopHeader />
+    <MobileHeader />
+    <MobileNav />
+    <div class="mt-56 lg:mt-60 lg:grid lg:grid-cols-9">
+      <DesktopNav />
+      <main
+        class="md:prose-lg prose relative lg:col-start-3 lg:col-end-10 lg:row-start-1 lg:row-end-2"
+      >
+        <div class="max-w-4xl px-4">
+          <div
+            class="relative z-10 order-first mb-3 mt-0 flex items-center pl-3.5 text-base text-zinc-500"
+          >
+            <span
+              class="absolute inset-y-0 left-0 flex items-center"
+              aria-hidden="true"
+            >
+              <span class="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500"
+              ></span>
+            </span>
+            <time date-time={frontmatter.date}>
+              {formatDate(frontmatter.date)}
+            </time>&nbsp;&bull;&nbsp;{frontmatter.readingTime}
+          </div>
+          <h1
+            class="mt-0 text-3xl font-bold uppercase text-zinc-100 md:text-4xl lg:text-5xl"
+          >
+            {frontmatter.title}
+          </h1>
+          {
+            archived && (
+              <div>
+                <blockquote class="border-orange-600 bg-orange-900 text-zinc-300">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="mr-2 inline-block h-5 w-5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                    />
+                  </svg>
+                  Content has not been updated for more than 2 years, proceed
+                  with caution.
+                </blockquote>
+              </div>
+            )
+          }
+        </div>
+        <div class="max-w-2xl px-4">
+          <slot />
+        </div>
+      </main>
+    </div>
+  </div>
+  <Footer />
+</RootLayout>

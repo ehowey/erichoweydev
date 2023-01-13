@@ -1,0 +1,29 @@
+---
+import HeaderTopo from "./HeaderTopo.astro";
+const { view, isHome } = Astro.props;
+
+const headerClasses = view === "mobile" ? "lg:hidden" : "hidden lg:grid";
+const h1Classes = isHome
+  ? "-top-[8px] -left-[0px] lg:-top-[16px] lg:-left-[4px] text-6xl lg:text-8xl"
+  : "-top-[2px] md:-top-[8px] lg:-top-[12px] text-2xl md:text-4xl lg:text-5xl";
+const imgWrapperClasses = isHome ? "h-44 md:h-60 lg:h-auto" : "h-auto";
+---
+
+<header
+  class={`fixed top-0 ${headerClasses} grid grid-cols-header-base md:grid-cols-header-md lg:grid-cols-header-lg w-full`}
+>
+  <h1
+    class={`${view}-big-eh ${h1Classes} relative z-20 origin-top-left font-black uppercase leading-none text-zinc-100 row-start-1 row-end-2 col-start-1 col-end-3 `}
+  >
+    <a href="/">
+      Eric
+      <br />
+      Howey<span class="text-sky-500">.</span>
+    </a>
+  </h1>
+  <div
+    class={`${view}-topo-bg row-start-1 row-end-2 col-start-2 col-end-4 ${imgWrapperClasses}`}
+  >
+    <HeaderTopo />
+  </div>
+</header>

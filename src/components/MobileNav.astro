@@ -1,0 +1,269 @@
+---
+import { NAV } from '../lib/constants'
+---
+
+<nav
+  id="mobile-nav"
+  data-nav-open="false"
+  class="fixed bottom-3 right-0 z-50 rounded-l border-l border-t border-b border-zinc-600 bg-zinc-900 pl-16 opacity-0 lg:hidden"
+>
+  <p
+    class="relative -top-[4px] text-right text-4xl font-black uppercase leading-none text-zinc-100"
+  >
+    <a href="/">
+      Eric Howey<span class="text-sky-500">.</span>
+    </a>
+  </p>
+  <div class="py-8">
+    <ul
+      class="flex flex-col items-end gap-4 text-xl font-bold uppercase tracking-wide text-zinc-200"
+    >
+      {
+        NAV.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="rounded-l-lg py-2 pl-4 transition-all hover:bg-zinc-800 hover:text-sky-200 active:text-sky-500"
+            >
+              {link.name} &mdash;
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mt-8 mr-4 flex justify-end gap-6">
+      <a
+        class="group -m-1 p-1"
+        href="https://twitter.com/erchwy"
+        aria-label="Follow on Twitter"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          class="h-8 w-8 fill-zinc-400 transition group-hover:fill-sky-300"
+        >
+          <path
+            d="M20.055 7.983c.011.174.011.347.011.523 0 5.338-3.92 11.494-11.09 11.494v-.003A10.755 10.755 0 0 1 3 18.186c.308.038.618.057.928.058a7.655 7.655 0 0 0 4.841-1.733c-1.668-.032-3.13-1.16-3.642-2.805a3.753 3.753 0 0 0 1.76-.07C5.07 13.256 3.76 11.6 3.76 9.676v-.05a3.77 3.77 0 0 0 1.77.505C3.816 8.945 3.288 6.583 4.322 4.737c1.98 2.524 4.9 4.058 8.034 4.22a4.137 4.137 0 0 1 1.128-3.86A3.807 3.807 0 0 1 19 5.274a7.657 7.657 0 0 0 2.475-.98c-.29.934-.9 1.729-1.713 2.233A7.54 7.54 0 0 0 22 5.89a8.084 8.084 0 0 1-1.945 2.093Z"
+          ></path>
+        </svg>
+      </a>
+      <a
+        class="group -m-1 p-1"
+        href="https://github.com/ehowey"
+        aria-label="Follow on GitHub"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          class="h-8 w-8 fill-zinc-400 transition group-hover:fill-sky-300"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M12 2C6.475 2 2 6.588 2 12.253c0 4.537 2.862 8.369 6.838 9.727.5.09.687-.218.687-.487 0-.243-.013-1.05-.013-1.91C7 20.059 6.35 18.957 6.15 18.38c-.113-.295-.6-1.205-1.025-1.448-.35-.192-.85-.667-.013-.68.788-.012 1.35.744 1.538 1.051.9 1.551 2.338 1.116 2.912.846.088-.666.35-1.115.638-1.371-2.225-.256-4.55-1.14-4.55-5.062 0-1.115.387-2.038 1.025-2.756-.1-.256-.45-1.307.1-2.717 0 0 .837-.269 2.75 1.051.8-.23 1.65-.346 2.5-.346.85 0 1.7.115 2.5.346 1.912-1.333 2.75-1.05 2.75-1.05.55 1.409.2 2.46.1 2.716.637.718 1.025 1.628 1.025 2.756 0 3.934-2.337 4.806-4.562 5.062.362.32.675.936.675 1.897 0 1.371-.013 2.473-.013 2.82 0 .268.188.589.688.486a10.039 10.039 0 0 0 4.932-3.74A10.447 10.447 0 0 0 22 12.253C22 6.588 17.525 2 12 2Z"
+          ></path>
+        </svg>
+      </a>
+      <a
+        class="group -m-1 p-1"
+        href="mailto:eric@erichowey.dev"
+        aria-label="Email me"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          class="h-8 w-8 fill-zinc-400 transition group-hover:fill-sky-300"
+        >
+          <path
+            d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"
+          ></path>
+          <path
+            d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"
+          ></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</nav>
+<button
+  id="mobile-nav-button"
+  aria-label="Open Navigation Menu"
+  type="button"
+  class="fixed bottom-5 right-5 z-50 inline-flex items-center rounded-full border border-transparent bg-sky-500 p-3 text-white shadow-sm hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 lg:hidden"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class="h-7 w-7"
+    aria-hidden="true"
+  >
+    <path
+      id="mobile-nav-button-line-1"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="origin-center"
+      d="M 4 8 L 20 8"></path>
+    <path
+      id="mobile-nav-button-line-2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="origin-center"
+      d="M 4 16 L 20 16"></path>
+  </svg>
+</button>
+<div
+  id="mobile-nav-button-backdrop"
+  class="fixed inset-0 z-40 hidden h-screen w-screen bg-black/60 opacity-0 backdrop-blur-sm lg:hidden"
+>
+</div>
+
+<script>
+  import { animate } from 'motion'
+
+  // Elements we need to track for ARIA/animations
+  const mobileNav = document.getElementById('mobile-nav')
+  const mobileNavButton = document.getElementById('mobile-nav-button')
+  const mobileNavButtonBackdrop = document.getElementById(
+    'mobile-nav-button-backdrop'
+  )
+  const mobileNavButtonLine1 = document.getElementById(
+    'mobile-nav-button-line-1'
+  )
+  const mobileNavButtonLine2 = document.getElementById(
+    'mobile-nav-button-line-2'
+  )
+  const focusableEls = document.querySelectorAll(
+    'nav#mobile-nav a[href]:not([disabled]), nav#mobile-nav button:not([disabled]), #mobile-nav-button'
+  )
+  const firstFocusableEl = focusableEls[0]
+  const lastFocusableEl = focusableEls[focusableEls.length - 1]
+
+  //Function for checking tab key, used in trapping focus
+  const trapFocus2 = (event) => {
+    const isTabPressed = event.key === 'Tab' || event.keyCode === 9
+    // Early return if no Tab key
+    if (!isTabPressed) {
+      return
+    }
+
+    if (event.shiftKey) {
+      /* shift + tab */ if (document.activeElement === firstFocusableEl) {
+        lastFocusableEl.focus()
+        event.preventDefault()
+      }
+    } /* tab */ else {
+      if (document.activeElement === lastFocusableEl) {
+        firstFocusableEl.focus()
+        event.preventDefault()
+      }
+    }
+  }
+
+  // Tasks for opening the menu
+  const openMenu = () => {
+    // Add backdrop
+    mobileNavButtonBackdrop.classList.remove('hidden')
+    // Animations
+    animate(mobileNav, {
+      opacity: 1,
+      y: -100,
+    })
+    animate(mobileNavButtonLine1, {
+      transform: 'rotate(45deg) translateY(4px)',
+    })
+    animate(mobileNavButtonLine2, {
+      transform: 'rotate(135deg) translateY(-4px)',
+    })
+    animate(mobileNavButtonBackdrop, { opacity: 1 })
+    // Event listeners
+    document.addEventListener('keydown', trapFocus2, false)
+    document.addEventListener('keydown', handleEsc, false)
+    document.addEventListener('mouseup', handleClickOutside, false)
+  }
+
+  // Tasks for closing menu
+  const closeMenu = () => {
+    console.log('close ran')
+    // Remove event listeners
+    document.removeEventListener('keydown', trapFocus2, false)
+    document.removeEventListener('keydown', handleEsc, false)
+    document.removeEventListener('mouseup', handleClickOutside, false)
+    // Remove backdrop
+    mobileNavButtonBackdrop.classList.add('hidden')
+    // Animations
+    animate(mobileNav, {
+      opacity: 0,
+      y: 0,
+    })
+    animate(mobileNavButtonLine1, {
+      transform: 'rotate(0deg) translateY(0)',
+    })
+    animate(mobileNavButtonLine2, {
+      transform: 'rotate(0deg) translateY(0)',
+    })
+    animate(mobileNavButtonBackdrop, { opacity: 0 })
+    // Move focus back
+    document.querySelector('body').focus()
+  }
+
+  // Handle a click if the menu is closed
+  const handleNavClick = () => {
+    // Handle a click if the menu is closed
+    console.log(mobileNav.dataset.navOpen)
+    if (mobileNav.dataset.navOpen === 'false') {
+      openMenu()
+    }
+    // Handle a click if the menu is open
+    if (mobileNav.dataset.navOpen === 'true') {
+      closeMenu()
+    }
+    mobileNav.dataset.navOpen =
+      mobileNav.dataset.navOpen === 'true' ? 'false' : 'true'
+  }
+
+  // Handle Esc Button
+  const handleEsc = (event) => {
+    const isEscPressed = event.key === 'Esc' || event.keyCode === 27
+    const isMenuOpen = mobileNav.dataset.navOpen === 'true' ? true : false
+    if (!isEscPressed || !isMenuOpen) {
+      return
+    }
+    closeMenu()
+    // Set state in data attribute
+    mobileNav.dataset.navOpen = 'false'
+  }
+
+  // Handle Click outside
+  const handleClickOutside = (event) => {
+    const isMenuOpen = mobileNav.dataset.navOpen === 'true' ? true : false
+    if (
+      !mobileNav.contains(event.target) &&
+      !mobileNavButton.contains(event.target) &&
+      isMenuOpen
+    ) {
+      closeMenu()
+      // Set state in data attribute
+      mobileNav.dataset.navOpen = 'false'
+    }
+  }
+
+  // Attach NavClick Event
+  mobileNavButton.addEventListener('click', handleNavClick, false)
+</script>
+
+<style>
+  body:has(#mobile-nav[data-nav-open='true']) {
+    overflow: hidden;
+  }
+  #mobile-nav[data-nav-open='false'] {
+    display: none;
+    pointer-events: none;
+  }
+  #mobile-nav[data-nav-open='true'] {
+    display: block;
+    pointer-events: auto;
+  }
+</style>

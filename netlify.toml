@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/it-starts-with-hello/"
+  to = "/work/"
+  status = 301
