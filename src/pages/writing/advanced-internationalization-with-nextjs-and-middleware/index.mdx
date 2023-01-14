@@ -10,7 +10,15 @@ published: true
 layout: ../../../layouts/BlogLayout.astro
 ---
 
-> Heads up that NextJs v12.2 included a stable release of middleware, most of what you see here should work but might require some adaption depending on your implementation. Read their [upgrade guide](https://nextjs.org/docs/messages/middleware-upgrade-guide) for more details.
+import BlogQuoteWarn from '../../../components/BlogQuoteWarn.astro'
+
+<BlogQuoteWarn>
+  Heads up that NextJs v12.2 included a stable release of middleware, most of
+  what you see here should work but might require some adaption depending on
+  your implementation. Read their [upgrade
+  guide](https://nextjs.org/docs/messages/middleware-upgrade-guide) for more
+  details.
+</BlogQuoteWarn>
 
 [Next.js 12](https://nextjs.org/blog/next-12) introduced [middleware](https://nextjs.org/docs/middleware) for handling logic at the CDN level (sometimes called an edge function) before a page loads. This is incredibly powerful and unlocks the potential for static pages to have limited server-side logic. There are [lots of examples](https://github.com/vercel/examples/tree/main/edge-functions) of this but one compelling use case I recently used it for is advanced internationalization and content localization.
 
