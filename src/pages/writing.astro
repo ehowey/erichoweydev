@@ -1,6 +1,7 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro'
 import PageHeader from '../components/PageHeader.astro'
+import WritingCard from '../components/WritingCard.astro'
 import { formatDate } from '../lib/utils'
 
 const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
@@ -9,6 +10,7 @@ const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
     .sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
   return sortedAndFiltered
 })
+import { clsx } from 'clsx'
 ---
 
 <PageLayout
@@ -18,53 +20,7 @@ const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
   <PageHeader>Writing</PageHeader>
   <section class="mt-16 max-w-2xl px-4">
     <div class="flex flex-col gap-16">
-      {
-        posts.map((post) => (
-          <a href={post.url}>
-            <article class="group relative flex flex-col items-start">
-              <h2 class="text-2xl font-semibold uppercase text-zinc-100">
-                <div class="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 bg-sky-900/40 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl" />
-                <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl" />
-                <span class="relative z-10">{post.frontmatter.title}</span>
-              </h2>
-              <div class="relative z-10 order-first mb-3 mt-0 flex items-center pl-3.5 text-base text-zinc-500">
-                <span
-                  class="absolute inset-y-0 left-0 flex items-center"
-                  aria-hidden="true"
-                >
-                  <span class="h-4 w-0.5 rounded-full bg-zinc-500" />
-                </span>
-                <time date-time={post.frontmatter.date}>
-                  {formatDate(post.frontmatter.date)}
-                </time>
-                &nbsp;&bull;&nbsp;{post.frontmatter.readingTime}
-              </div>
-              <p class="relative z-10 mt-2 text-base text-zinc-400">
-                {post.frontmatter.excerpt ?? post.frontmatter.generatedExcerpt}
-              </p>
-              <div
-                aria-hidden="true"
-                class="relative z-10 mt-4 flex items-center text-base font-medium text-sky-500"
-              >
-                Read more
-                <svg
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  aria-hidden="true"
-                  class="ml-1 h-4 w-4 stroke-current"
-                >
-                  <path
-                    d="M6.75 5.75 9.25 8l-2.5 2.25"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-            </article>
-          </a>
-        ))
-      }
+      {posts.map((post) => <WritingCard post={post} />)}
     </div>
   </section>
 </PageLayout>

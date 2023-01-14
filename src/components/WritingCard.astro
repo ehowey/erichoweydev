@@ -1,0 +1,74 @@
+---
+import { formatDate } from '../lib/utils'
+
+const { post } = Astro.props
+
+import { clsx } from 'clsx'
+---
+
+<a href={post.url}>
+  <article class="group relative flex flex-col items-start">
+    <h2 class="text-2xl font-semibold uppercase text-zinc-100">
+      <div
+        class="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 bg-sky-900/40 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl"
+      >
+      </div>
+      <span
+        class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"
+      ></span>
+      <span class="relative z-10">{post.frontmatter.title}</span>
+    </h2>
+    <div
+      class="relative z-10 order-first mb-3 mt-0 flex items-center pl-3.5 text-base text-zinc-500"
+    >
+      <span
+        class="absolute inset-y-0 left-0 flex items-center"
+        aria-hidden="true"
+      >
+        <span
+          class={clsx(
+            'w-0.5 rounded-full bg-zinc-500',
+            post.frontmatter.update ? 'h-10' : 'h-4'
+          )}></span>
+      </span>
+      <div class="leading-snug">
+        <time date-time={post.frontmatter.date}>
+          {formatDate(post.frontmatter.date)}
+        </time>
+        &nbsp;&bull;&nbsp;{post.frontmatter.readingTime}
+        {
+          post.frontmatter.update && (
+            <>
+              <br />
+              Updated{' '}
+              <time date-time={post.frontmatter.update}>
+                {formatDate(post.frontmatter.update)}
+              </time>
+            </>
+          )
+        }
+      </div>
+    </div>
+    <p class="relative z-10 mt-2 text-base text-zinc-400">
+      {post.frontmatter.excerpt ?? post.frontmatter.generatedExcerpt}
+    </p>
+    <div
+      aria-hidden="true"
+      class="relative z-10 mt-4 flex items-center text-base font-medium text-sky-500"
+    >
+      Read more
+      <svg
+        viewBox="0 0 16 16"
+        fill="none"
+        aria-hidden="true"
+        class="ml-1 h-4 w-4 stroke-current"
+      >
+        <path
+          d="M6.75 5.75 9.25 8l-2.5 2.25"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </div>
+  </article>
+</a>

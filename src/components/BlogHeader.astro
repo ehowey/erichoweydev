@@ -17,11 +17,28 @@ import { clsx } from 'clsx'
       class="absolute inset-y-0 left-0 flex items-center"
       aria-hidden="true"
     >
-      <span class="h-4 w-0.5 rounded-full bg-zinc-500"></span>
+      <span
+        class={clsx(
+          'w-0.5 rounded-full bg-zinc-500',
+          frontmatter.update ? 'h-10' : 'h-4'
+        )}></span>
     </span>
-    <time date-time={frontmatter.date}>
-      {formatDate(frontmatter.date)}
-    </time>&nbsp;&bull;&nbsp;{frontmatter.readingTime}
+    <div class="leading-snug">
+      <time date-time={frontmatter.date}>
+        {formatDate(frontmatter.date)}
+      </time>&nbsp;&bull;&nbsp;{frontmatter.readingTime}
+      {
+        frontmatter.update && (
+          <>
+            <br />
+            Updated{' '}
+            <time date-time={frontmatter.update}>
+              {formatDate(frontmatter.update)}
+            </time>
+          </>
+        )
+      }
+    </div>
   </div>
   <h1
     class="mt-0 text-3xl font-bold uppercase text-zinc-100 md:text-4xl lg:text-5xl"
