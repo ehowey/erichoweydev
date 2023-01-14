@@ -19,6 +19,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "astro": "^1.9.2",
     "astro-seo": "^0.6.1",
+    "clsx": "^1.2.1",
     "hast-util-to-string": "^2.0.0",
     "just-prune": "^2.2.0",
     "mdast-util-to-hast": "^12.2.5",

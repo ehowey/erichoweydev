@@ -117,7 +117,7 @@ const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
                     {post.frontmatter.title}
                   </a>
                 </h2>
-                <div class="text-base text-zinc-400">
+                <div class="text-zinc-450 text-base">
                   <time date-time={post.frontmatter.date}>
                     {formatDate(post.frontmatter.date)}
                   </time>
