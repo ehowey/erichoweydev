@@ -12,15 +12,16 @@ import gatsby from '../assets/gatsby-monogram.png'
 import vercel from '../assets/vercel-monogram.png'
 import next from '../assets/nextjs-monogram.png'
 import sanity from '../assets/sanity-monogram.png'
-
 import { formatDate } from '../lib/utils'
+import { getCollection } from 'astro:content'
 
-const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
-  const sortedAndFiltered = result
-    .filter((post) => post.frontmatter.published === true)
-    .sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
+const posts = await getCollection('writing', ({ data }) => {
+  return data.published === true
+}).then((result) => {
+  const sorted = result
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
     .slice(0, 3)
-  return sortedAndFiltered
+  return sorted
 })
 ---
 
@@ -111,17 +112,17 @@ const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
               <div class="col-start-2 col-end-3">
                 <h2 class="text-2xl text-zinc-100">
                   <a
-                    href={post.url}
+                    href={post.slug}
                     class="underline decoration-sky-500/70 transition hover:decoration-sky-500"
                   >
-                    {post.frontmatter.title}
+                    {post.data.title}
                   </a>
                 </h2>
-                <div class="text-zinc-450 text-base">
-                  <time date-time={post.frontmatter.date}>
-                    {formatDate(post.frontmatter.date)}
+                <div class="text-base text-zinc-450">
+                  <time date-time={post.data.date}>
+                    {formatDate(post.data.date)}
                   </time>
-                  &nbsp;&bull;&nbsp;{post.frontmatter.readingTime}
+                  &nbsp;&bull;&nbsp;{post.data.readingTime}
                 </div>
               </div>
             </article>
@@ -141,7 +142,7 @@ const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
           sizes="(max-width: 800px) 100vw, 800px"
           alt="A husky dog on a frozen lake in the winter"
           aspectRatio={'1:1'}
-          class="rounded-md h-64 shadow shadow-slate-700"
+          class="h-64 rounded-md shadow shadow-slate-700"
         />
       </div>
       <div class="flex-shrink-0">
@@ -151,7 +152,7 @@ const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
           sizes="(max-width: 800px) 100vw, 800px"
           alt="Eric Howey"
           aspectRatio={'1:1'}
-          class="rounded-md h-64 shadow shadow-slate-700"
+          class="h-64 rounded-md shadow shadow-slate-700"
         />
       </div>
       <div class="flex-shrink-0 translate-y-6">
@@ -161,7 +162,7 @@ const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
           sizes="(max-width: 800px) 100vw, 800px"
           alt="A hardtail mountain bike set against the backdrop of the Rocky Mountains"
           aspectRatio={'1:1'}
-          class="rounded-md h-64 shadow shadow-slate-700"
+          class="h-64 rounded-md shadow shadow-slate-700"
         />
       </div>
       <div class="flex-shrink-0">
@@ -171,7 +172,7 @@ const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
           sizes="(max-width: 800px) 100vw, 800px"
           alt="A hardtail mountain bike set against the backdrop of the Rocky Mountains"
           aspectRatio={'1:1'}
-          class="rounded-md h-64 shadow shadow-slate-700"
+          class="h-64 rounded-md shadow shadow-slate-700"
         />
       </div>
     </div>
@@ -245,7 +246,7 @@ const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
               sizes="100px"
               aspectRatio={'1:1'}
               alt="Netlify logo"
-              class="opacity-30 invert h-5 mr-1"
+              class="mr-1 h-5 opacity-30 invert"
             />
             <Picture
               src={next}
@@ -253,7 +254,7 @@ const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
               sizes="100px"
               aspectRatio={'1:1'}
               alt="Netlify logo"
-              class="opacity-30 invert h-5 mr-1"
+              class="mr-1 h-5 opacity-30 invert"
             />
             <Picture
               src={sanity}
@@ -261,7 +262,7 @@ const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
               sizes="100px"
               aspectRatio={'1:1'}
               alt="Netlify logo"
-              class="opacity-30 invert h-5"
+              class="h-5 opacity-30 invert"
             />
           </div>
         </div>
@@ -309,7 +310,7 @@ const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
               sizes="100px"
               aspectRatio={'1:1'}
               alt="Netlify logo"
-              class="opacity-30 invert h-5 mr-1"
+              class="mr-1 h-5 opacity-30 invert"
             />
             <Picture
               src={gatsby}
@@ -317,7 +318,7 @@ const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
               sizes="100px"
               aspectRatio={'1:1'}
               alt="Netlify logo"
-              class="opacity-30 invert h-5 mr-1"
+              class="mr-1 h-5 opacity-30 invert"
             />
             <Picture
               src={sanity}
@@ -325,7 +326,7 @@ const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
               sizes="100px"
               aspectRatio={'1:1'}
               alt="Netlify logo"
-              class="opacity-30 invert h-5"
+              class="h-5 opacity-30 invert"
             />
           </div>
         </div>
