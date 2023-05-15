@@ -5,7 +5,8 @@ authorLink: https://twitter.com/erchwy
 categories: [Gatsby, Monorepos]
 date: 2020-08-25
 published: true
-layout: ../../../layouts/BlogLayout.astro
+description: Learn how to set up a Gatsby themes monorepo in a single repository. Discover best practices for organizing your code, sharing dependencies, and making updates.
+excerpt: Setting up a Gatsby themes monorepo can streamline your theme development process and make managing multiple themes easier. In this article, we'll show you how to set up a Gatsby themes monorepo and provide you with best practices for organizing your code, sharing dependencies, and making updates more efficient.
 ---
 
 I manage a Gatsby themes monorepo that currently has 11 themes and 8 starters with over 1500 commits - lots of moving parts to keep organized. At the end of this tutorial you will have a Gatsby themes monorepo setup with automated testing, automated dependency management, automated publishing, continuous integration, and continuous deployment!
@@ -141,11 +142,11 @@ There is also a set of tests for accessibilty (a11y) that use [cypress-axe](http
 Here is what a basic Cypress test looks like:
 
 ```js
-describe("Smoke Test", () => {
-  it("Site loads", () => {
-    cy.visit(`/`).assertRoute(`/`);
-  });
-});
+describe('Smoke Test', () => {
+  it('Site loads', () => {
+    cy.visit(`/`).assertRoute(`/`)
+  })
+})
 ```
 
 Here is what the GitHub action looks like:
@@ -157,18 +158,18 @@ on:
     branches:
       - main
     paths:
-      - "starters/**"
-      - "themes/**"
-      - ".github/**"
-      - "cypress/**"
+      - 'starters/**'
+      - 'themes/**'
+      - '.github/**'
+      - 'cypress/**'
   pull_request:
     branches:
       - main
     paths:
-      - "starters/**"
-      - "themes/**"
-      - ".github/**"
-      - "cypress/**"
+      - 'starters/**'
+      - 'themes/**'
+      - '.github/**'
+      - 'cypress/**'
 jobs:
   test_theme:
     runs-on: ubuntu-latest
@@ -203,16 +204,16 @@ Here is what the included dependabot config looks like:
 ```yaml
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "daily"
+      interval: 'daily'
     versioning-strategy: increase
     open-pull-requests-limit: 25
     labels:
-      - "dependencies"
+      - 'dependencies'
     ignore:
-      - dependency-name: "gatsby"
+      - dependency-name: 'gatsby'
 ```
 
 The included config is set to check for daily updates against your root package.json folder, which because of workspaces will also target all of your sub-folders and dependencies. I have found it helpful to manually manage updates to Gatsby itself so that dependency is being ignored. There is [good documentation](https://docs.github.com/en/github/administering-a-repository/keeping-your-dependencies-updated-automatically) for these options and other available settings on the GitHub website.

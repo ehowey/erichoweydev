@@ -5,7 +5,8 @@ authorLink: https://twitter.com/erchwy
 categories: [RedwoodJS, Theme UI]
 date: 2020-05-21
 published: true
-layout: ../../../layouts/BlogLayout.astro
+description: Learn how to use Theme UI with RedwoodJS to create a consistent design system across your app. In this article we'll configure Theme UI in your RedwoodJS app.
+excerpt: Creating a consistent design system across your RedwoodJS app can be challenging, but Theme UI can help. In this article, we'll explore how to use Theme UI with RedwoodJS to create a consistent design system. We'll show you how to configure Theme UI in your RedwoodJS app and use it to create reusable design components.
 ---
 
 > This is current as of Redwood v0.28 and Theme-UI v0.6
@@ -36,14 +37,14 @@ In this theme file we use a [theme preset based on TailwindCSS](https://theme-ui
 
 ```js
 // theme.js
-import { tailwind } from "@theme-ui/presets";
+import { tailwind } from '@theme-ui/presets'
 export default {
   ...tailwind,
   colors: {
-    background: "pink",
-    text: "orange",
+    background: 'pink',
+    text: 'orange',
   },
-};
+}
 ```
 
 ## Wrap ThemeProvider around App.js
@@ -53,14 +54,14 @@ RedwoodJS has an `App.js` component which manages wrapping context providers and
 Here is an example of how to set that up:
 
 ```jsx
-import { FatalErrorBoundary } from "@redwoodjs/web";
-import { RedwoodApolloProvider } from "@redwoodjs/web/apollo";
-import FatalErrorPage from "src/pages/FatalErrorPage";
-import Routes from "src/Routes";
-import "./index.css";
+import { FatalErrorBoundary } from '@redwoodjs/web'
+import { RedwoodApolloProvider } from '@redwoodjs/web/apollo'
+import FatalErrorPage from 'src/pages/FatalErrorPage'
+import Routes from 'src/Routes'
+import './index.css'
 
-import { ThemeProvider } from "theme-ui"; // highlight-line
-import theme from "./theme"; // highlight-line
+import { ThemeProvider } from 'theme-ui' // highlight-line
+import theme from './theme' // highlight-line
 
 const App = () => (
   <FatalErrorBoundary page={FatalErrorPage}>
@@ -70,9 +71,9 @@ const App = () => (
       </ThemeProvider>
     </RedwoodApolloProvider>
   </FatalErrorBoundary>
-);
+)
 
-export default App;
+export default App
 ```
 
 ## Save and checkout the results!
@@ -87,17 +88,17 @@ Try this in your Redwood layout file:
 
 ```jsx
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
-import { Link, routes } from "@redwoodjs/router";
-import { ThemeProvider } from "theme-ui";
-import theme from "./theme";
+import { jsx, Styled } from 'theme-ui'
+import { Link, routes } from '@redwoodjs/router'
+import { ThemeProvider } from 'theme-ui'
+import theme from './theme'
 
 const BlogLayout = ({ children }) => {
   return (
     <>
       <header>
-        <Styled.h1 sx={{ fontFamily: "sans-serif" }}>
-          <Link to={routes.home()} sx={{ textDecoration: "none" }}>
+        <Styled.h1 sx={{ fontFamily: 'sans-serif' }}>
+          <Link to={routes.home()} sx={{ textDecoration: 'none' }}>
             Redwood Blog
           </Link>
         </Styled.h1>
@@ -114,31 +115,31 @@ const BlogLayout = ({ children }) => {
       </header>
       <main>{children}</main>
     </>
-  );
-};
+  )
+}
 
-export default BlogLayout;
+export default BlogLayout
 ```
 
 Add this to your theme file:
 
 ```js
-import { tailwind } from "@theme-ui/presets";
+import { tailwind } from '@theme-ui/presets'
 export default {
   ...tailwind,
   colors: {
-    primary: "green",
-    background: "pink",
-    text: "orange",
+    primary: 'green',
+    background: 'pink',
+    text: 'orange',
   },
   styles: {
     h1: {
-      backgroundColor: "primary",
-      fontStyle: "italic",
-      fontSize: "8rem",
+      backgroundColor: 'primary',
+      fontStyle: 'italic',
+      fontSize: '8rem',
     },
   },
-};
+}
 ```
 
 Hopefully this has given you a taste of what is possible when combining Theme UI and RedwoodJS!

@@ -5,7 +5,8 @@ authorLink: https://twitter.com/erchwy
 categories: [Gatsby, Theme UI]
 date: 2020-06-08
 published: true
-layout: ../../../layouts/BlogLayout.astro
+description: Discover how to use Theme UI variants to create consistent styles and design elements across your Gatsby website. Use variants to simplify your CSS codebase!
+excerpt: Using consistent design elements across your Gatsby website can be challenging, but Theme UI variants make it easy. In this article, we'll explore how to use Theme UI variants to create consistent styles and design elements. We'll show you how to simplify your CSS and make it easier to maintain your website's design over time.
 ---
 
 I am a big fan of using [Theme UI](https://theme-ui.com/) to style Gatsby projects. For me one of the standout features is the less well known - but very powerful - API called [variants](https://theme-ui.com/guides/variants/). Variants allow you, as a theme developer, to enable a happy path for users to customize their visual design without having to shadow entire components.
@@ -24,23 +25,23 @@ In the component you define the variant:
 
 ```jsx
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
+import { jsx, Styled } from 'theme-ui'
 
 const SiteTitle = () => {
   return (
     <Styled.h1
       sx={{
-        color: "purple",
-        fontSize: "5rem",
-        variant: "variants.siteTitle",
+        color: 'purple',
+        fontSize: '5rem',
+        variant: 'variants.siteTitle',
       }}
     >
       My Site's Title
     </Styled.h1>
-  );
-};
+  )
+}
 
-export default SiteTitle;
+export default SiteTitle
 ```
 
 In the theme specification file you reference the variant to modify the CSS:
@@ -49,11 +50,11 @@ In the theme specification file you reference the variant to modify the CSS:
 export default {
   variants: {
     siteTitle: {
-      color: "yellow",
-      fontFamily: "serif",
+      color: 'yellow',
+      fontFamily: 'serif',
     },
   },
-};
+}
 ```
 
 And voila - now your site title is yellow and a serif font!
@@ -62,11 +63,11 @@ The way I have used variants in [gatsby-theme-catalyst-helium](https://www.gatsb
 
 Here is what `gatsby-theme-catalyst-helium` looks like with minimal styles:
 
-![Minimal styles on the theme](./helium-without-styles.png "Minimal styles on the theme")
+![Minimal styles on the theme](./helium-without-styles.png 'Minimal styles on the theme')
 
 Here is what `gatsby-theme-catalyst-helium` looks like with variants:
 
-![Theme styled with variants](./helium-with-styles.png "Theme styled with variants")
+![Theme styled with variants](./helium-with-styles.png 'Theme styled with variants')
 
 Pretty amazing right!
 

@@ -5,7 +5,8 @@ authorLink: https://twitter.com/erchwy
 categories: [Gatsby, SANITY.io]
 date: 2020-07-20
 published: true
-layout: ../../../layouts/BlogLayout.astro
+description: Learn how to integrate geocoding into your Gatsby website using Sanity and the OpenCage API. Discover how to use React Leaflet to display geocoded data.
+excerpt: Integrating geocoding into your Gatsby website can provide valuable location-based information to your users and make your website more interactive. In this article, we'll show you how to integrate geocoding into your Gatsby website using Sanity and the OpenCage Geocoder API. We'll also teach you how to use React Leaflet to display geocoded data and make your website more interactive.
 ---
 
 Geocoding is the process of turning a regular address into latitude and longtitude coordinates that can be used in a mapping application like Google Maps or [LeafletJS](https://leafletjs.com/). I am going to walk through setting up a SANITY.io schema, querying the SANITY.io API via `gatsby-node.js`, passing the query results to the [OpenCage](https://opencagedata.com/) geocoder API, and then finally passing those combined results into a brand new GraphQL node that can be queried inside your Gatsby site.
@@ -37,63 +38,63 @@ Next you will need to setup a SANITY.io content structure. Here is what a really
 ```js
 // home.js
 export default {
-  name: "home",
-  title: "Home",
-  type: "document",
+  name: 'home',
+  title: 'Home',
+  type: 'document',
   fields: [
     {
-      name: "name",
-      title: "Name",
-      type: "string",
+      name: 'name',
+      title: 'Name',
+      type: 'string',
     },
     {
-      name: "address",
-      title: "Address",
-      type: "address", // References address.js
+      name: 'address',
+      title: 'Address',
+      type: 'address', // References address.js
     },
     {
-      name: "summary",
-      title: "Summary",
-      type: "text",
+      name: 'summary',
+      title: 'Summary',
+      type: 'text',
     },
   ],
-};
+}
 ```
 
 ```js
 // address.js referenced in home.js
 export default {
-  name: "address",
-  title: "Address",
-  type: "document",
+  name: 'address',
+  title: 'Address',
+  type: 'document',
   fields: [
     {
-      name: "address",
-      title: "Street Address",
-      type: "string",
+      name: 'address',
+      title: 'Street Address',
+      type: 'string',
     },
     {
-      name: "city",
-      title: "Municipality",
-      type: "string",
+      name: 'city',
+      title: 'Municipality',
+      type: 'string',
     },
     {
-      name: "province",
-      title: "Province",
-      type: "string",
+      name: 'province',
+      title: 'Province',
+      type: 'string',
     },
     {
-      name: "country",
-      title: "Country",
-      type: "string",
+      name: 'country',
+      title: 'Country',
+      type: 'string',
     },
     {
-      name: "postal",
-      title: "Postal Code",
-      type: "string",
+      name: 'postal',
+      title: 'Postal Code',
+      type: 'string',
     },
   ],
-};
+}
 ```
 
 When queried we will get a data structure back from SANITY.io that looks something like this:
@@ -124,7 +125,7 @@ Here is what that query looks like:
 
 ```js
 // gatsby-node.js
-const { request } = require("graphql-request");
+const { request } = require('graphql-request')
 
 exports.sourceNodes = async ({
   actions: { createNode },
@@ -132,7 +133,7 @@ exports.sourceNodes = async ({
   createContentDigest,
 }) => {
   // Get the data from SANITY.io
-  const endpoint = `https://[project-id-here].apicdn.sanity.io/v1/graphql/production/default`;
+  const endpoint = `https://[project-id-here].apicdn.sanity.io/v1/graphql/production/default`
   const query = `{
     allHome {
       name
@@ -145,10 +146,10 @@ exports.sourceNodes = async ({
         postal
       }
     }
-  }`;
-  const data = await request(endpoint, query);
-  const homes = await data.allHome; // Make the data easier to work with
-};
+  }`
+  const data = await request(endpoint, query)
+  const homes = await data.allHome // Make the data easier to work with
+}
 ```
 
 ## Geocode function
@@ -157,9 +158,9 @@ Now that we have our data from SANITY.io we need a function to handle resolving 
 
 ```js
 // gatsby-node.js
-const { request } = require("graphql-request");
-const opencage = require("opencage-api-client");
-require("dotenv").config();
+const { request } = require('graphql-request')
+const opencage = require('opencage-api-client')
+require('dotenv').config()
 
 exports.sourceNodes = async ({
   actions: { createNode },
@@ -167,29 +168,29 @@ exports.sourceNodes = async ({
   createContentDigest,
 }) => {
   // Get the data from SANITY.io
-  const endpoint = `https://[project-id-here].apicdn.sanity.io/v1/graphql/production/default`;
+  const endpoint = `https://[project-id-here].apicdn.sanity.io/v1/graphql/production/default`
   const query = `{
     ...query here
-  }`;
-  const data = await request(endpoint, query);
-  const homes = await data.allHome;
+  }`
+  const data = await request(endpoint, query)
+  const homes = await data.allHome
 
   // Geocode function
   const getGeoCode = async (address) => {
     // Build the query from our data in the formnat address, city, province, country, postal code
-    const query = `${address.address}, ${address.city}, ${address.province}, ${address.country}, ${address.postal}`;
+    const query = `${address.address}, ${address.city}, ${address.province}, ${address.country}, ${address.postal}`
     // Use an env variable for your API key
-    const apiRequestOptions = { key: process.env.OPENCAGE_API_KEY, q: query };
+    const apiRequestOptions = { key: process.env.OPENCAGE_API_KEY, q: query }
     // Fetch the data from OpenCage
-    const data = await opencage.geocode(apiRequestOptions);
+    const data = await opencage.geocode(apiRequestOptions)
     // Parse out just the lat/long coordinates from the returned data
-    const place = data.results[0].geometry;
+    const place = data.results[0].geometry
     // Create a new JSON object with the full address including coordinates.
-    const fullAddress = Object.assign({}, address, place);
+    const fullAddress = Object.assign({}, address, place)
     // Return that address
-    return fullAddress;
-  };
-};
+    return fullAddress
+  }
+}
 ```
 
 ## Create the GraphQL nodes
@@ -200,9 +201,9 @@ Here is the code with comments to explain what is happening on each line:
 
 ```js
 // gatsby-node.js
-const { request } = require("graphql-request");
-const opencage = require("opencage-api-client");
-require("dotenv").config();
+const { request } = require('graphql-request')
+const opencage = require('opencage-api-client')
+require('dotenv').config()
 
 exports.sourceNodes = async ({
   actions: { createNode },
@@ -211,17 +212,17 @@ exports.sourceNodes = async ({
 }) => {
   // Get the data from SANITY.io
   // Put your project ID in - this assumes a public dataset
-  const endpoint = `https://[project-id-here].apicdn.sanity.io/v1/graphql/production/default`;
+  const endpoint = `https://[project-id-here].apicdn.sanity.io/v1/graphql/production/default`
   const query = `{
     ...query here
-  }`;
-  const data = await request(endpoint, query);
-  const homes = await data.allHome;
+  }`
+  const data = await request(endpoint, query)
+  const homes = await data.allHome
 
   // Geocode function
   const getGeoCode = async (address) => {
     // ... geocode function here
-  };
+  }
 
   // Create the GraphQL nodes
   // Wrap everything in a promise so that it does not try to run without the data
@@ -229,12 +230,12 @@ exports.sourceNodes = async ({
     // Map over all of the homes
     homes.map(async (home) => {
       // Get the full address from the Geocode function
-      const homeAddress = await getGeoCode(home.address);
+      const homeAddress = await getGeoCode(home.address)
       // Remove the old home.address field from the homne object
-      delete home.address;
+      delete home.address
       // Create a new home object that has the full address with Geocode.
       // This will also have other information like name, categories, summary, etc.
-      const homeComplete = Object.assign({}, home, homeAddress);
+      const homeComplete = Object.assign({}, home, homeAddress)
       // Create the nodeMetadata
       const nodeMetadata = {
         id: createNodeId(home.name),
@@ -245,14 +246,14 @@ exports.sourceNodes = async ({
           content: JSON.stringify(homeComplete),
           contentDigest: createContentDigest(homeComplete),
         },
-      };
+      }
       // Create the full node object
-      const node = Object.assign({}, homeComplete, nodeMetadata);
+      const node = Object.assign({}, homeComplete, nodeMetadata)
       // Create the GraphQL node
-      createNode(node);
+      createNode(node)
     })
-  );
-};
+  )
+}
 ```
 
 ## Catch those errors
@@ -261,9 +262,9 @@ Last but not least, we are going to wrap everything in a [try...catch](https://d
 
 ```js
 // gatsby-node.js
-const { request } = require("graphql-request");
-const opencage = require("opencage-api-client");
-require("dotenv").config();
+const { request } = require('graphql-request')
+const opencage = require('opencage-api-client')
+require('dotenv').config()
 
 exports.sourceNodes = async ({
   actions: { createNode },
@@ -272,7 +273,7 @@ exports.sourceNodes = async ({
 }) => {
   try {
     // Get the data from SANITY.io
-    const endpoint = `https://[project-id-here].apicdn.sanity.io/v1/graphql/production/default`;
+    const endpoint = `https://[project-id-here].apicdn.sanity.io/v1/graphql/production/default`
     const query = `{
     allHome {
       name
@@ -285,37 +286,37 @@ exports.sourceNodes = async ({
         postal
       }
     }
-  }`;
-    const data = await request(endpoint, query);
-    const homes = await data.allHome; // Make the data easier to work with
+  }`
+    const data = await request(endpoint, query)
+    const homes = await data.allHome // Make the data easier to work with
 
     // Geocode function
     const getGeoCode = async (address) => {
       // Build the query from our data in the formnat address, city, province, country, postal code
-      const query = `${address.address}, ${address.city}, ${address.province}, ${address.country}, ${address.postal}`;
+      const query = `${address.address}, ${address.city}, ${address.province}, ${address.country}, ${address.postal}`
       // Use an env variable for your API key
-      const apiRequestOptions = { key: process.env.OPENCAGE_API_KEY, q: query };
+      const apiRequestOptions = { key: process.env.OPENCAGE_API_KEY, q: query }
       // Fetch the data from OpenCage
-      const data = await opencage.geocode(apiRequestOptions);
+      const data = await opencage.geocode(apiRequestOptions)
       // Parse out just the lat/long coordinates from the returned data
-      const place = data.results[0].geometry;
+      const place = data.results[0].geometry
       // Create a new JSON object with the full address including coordinates.
-      const fullAddress = Object.assign({}, address, place);
+      const fullAddress = Object.assign({}, address, place)
       // Return that address
-      return fullAddress;
-    };
+      return fullAddress
+    }
     // Create the GraphQL nodes
     // Wrap everything in a promise so that it does not try to run without the data
     await Promise.all(
       // Map over all of the homes
       homes.map(async (home) => {
         // Get the full address from the Geocode function
-        const homeAddress = await getGeoCode(home.address);
+        const homeAddress = await getGeoCode(home.address)
         // Remove the old home.address field from the homne object
-        delete home.address;
+        delete home.address
         // Create a new home object that has the full address with Geocode.
         // This will also have other information like name, summary, etc.
-        const homeComplete = Object.assign({}, home, homeAddress);
+        const homeComplete = Object.assign({}, home, homeAddress)
         // Create the nodeMetadata
         const nodeMetadata = {
           id: createNodeId(home.name),
@@ -326,17 +327,17 @@ exports.sourceNodes = async ({
             content: JSON.stringify(homeComplete),
             contentDigest: createContentDigest(homeComplete),
           },
-        };
+        }
         // Create the full node JSON object
-        const node = Object.assign({}, homeComplete, nodeMetadata);
+        const node = Object.assign({}, homeComplete, nodeMetadata)
         // Create the GraphQL node
-        createNode(node);
+        createNode(node)
       })
-    );
+    )
   } catch (e) {
-    console.error(e);
+    console.error(e)
   }
-};
+}
 ```
 
 I hope this helps in your mapping and geocoding journey in the JAMStack and as always I would be happy to answer questions on [Twitter](https://twitter.com/erchwy) or by [email](mailto:eric@erichowey.dev).

@@ -5,7 +5,8 @@ authorLink: https://twitter.com/erchwy
 categories: [Gatsby, SANITY.io, Netlify]
 date: 2020-12-17
 published: true
-layout: ../../../layouts/BlogLayout.astro
+description: Learn how to set up form submission on your Gatsby website using Sanity, Netlify, and React Hook Form. Discover best practices for optimizing your code.
+excerpt: "Setting up form submission on your Gatsby website can be challenging, but it's essential for collecting user data and improving your website's functionality. In this article, we'll show you how to set up form submission using Sanity, Netlify, and React Hook Form and provide you with best practices for optimizing website performance and making your code more maintainable."
 ---
 
 > Heads up this guide was written with v6 of react-hook-form, v7 introduced some changes that will need updates from this code. Check out the [migration guide](https://react-hook-form.com/migrate-v6-to-v7/) for more info.
@@ -81,39 +82,39 @@ Next we need to create a simple database schema for SANITY that we can use to ac
 ```js
 //sanity-studio/schemas/contact.js
 export default {
-  name: "contact",
-  title: "Contact submissions",
-  type: "document",
+  name: 'contact',
+  title: 'Contact submissions',
+  type: 'document',
   fields: [
     {
-      name: "name",
-      title: "Name",
-      type: "string",
+      name: 'name',
+      title: 'Name',
+      type: 'string',
     },
     {
-      name: "email",
-      title: "Email",
-      type: "string",
+      name: 'email',
+      title: 'Email',
+      type: 'string',
     },
     {
-      name: "message",
-      title: "Message",
-      type: "text",
+      name: 'message',
+      title: 'Message',
+      type: 'text',
     },
   ],
-};
+}
 ```
 
 Don't forget you will also need to import and export this file within `sanity-studio/schemas/schema.js`.
 
 ```js
 //...other imports above
-import contact from "./contact";
+import contact from './contact'
 
 // Then we give our schema to the builder and provide the result to SANITY
 export default createSchema({
   // We name our schema
-  name: "default",
+  name: 'default',
   // Then proceed to concatenate our document type
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
@@ -122,7 +123,7 @@ export default createSchema({
     // ... other exports above
     contact,
   ]),
-});
+})
 ```
 
 Last of all we need to deploy a GraphQL API from SANITY. Making sure you are still inside of the `sanity-studio` folder run the following command:
@@ -136,17 +137,17 @@ We are finished with setting up SANITY. Let's head back to Gatsby land.
 We need to create an index page for the project at `src/pages/index.js` and a success page at `src/pages/success.js`. You can copy and paste this code for both pages.
 
 ```js
-import React from "react";
+import React from 'react'
 
 const Page = () => {
   return (
     <div>
       <h1>Index or Success page</h1>
     </div>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page
 ```
 
 Run `gatsby develop` for the first time and marvel at your beautiful hello world!
@@ -165,16 +166,16 @@ yarn add react-hook-form
 We are going to update `index.js` with a basic contact form.
 
 ```js
-import React from "react";
-import { useForm } from "react-hook-form";
+import React from 'react'
+import { useForm } from 'react-hook-form'
 
 const Home = () => {
   // Initiate forms
-  const { register, handleSubmit, errors, reset } = useForm();
+  const { register, handleSubmit, errors, reset } = useForm()
 
   const handlePost = (formData) => {
-    console.log(formData);
-  };
+    console.log(formData)
+  }
 
   return (
     <form
@@ -216,14 +217,14 @@ const Home = () => {
       <label
         htmlFor="got-ya"
         style={{
-          position: "absolute",
-          overflow: "hidden",
-          clip: "rect(0 0 0 0)",
-          height: "1px",
-          width: "1px",
-          margin: "-1px",
-          padding: "0",
-          border: "0",
+          position: 'absolute',
+          overflow: 'hidden',
+          clip: 'rect(0 0 0 0)',
+          height: '1px',
+          width: '1px',
+          margin: '-1px',
+          padding: '0',
+          border: '0',
         }}
       >
         Don’t fill this out if you're human:
@@ -233,10 +234,10 @@ const Home = () => {
         <button type="submit">Submit</button>
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
 ```
 
 There is lots happening here so let's break it down into chunks.
@@ -327,14 +328,14 @@ Now we need a file for our serverless function, create `/functions/submission-cr
 ```js
 exports.handler = async function (event, context, callback) {
   // Pulling out the payload from the body
-  const { payload } = JSON.parse(event.body);
+  const { payload } = JSON.parse(event.body)
 
-  console.log(payload);
+  console.log(payload)
 
   callback(null, {
     statusCode: 200,
-  });
-};
+  })
+}
 ```
 
 Restart your development server, making sure you use `netlify dev`. Now when you submit your form you should see the results logged in your console, and be redirected to the success page.
@@ -361,39 +362,37 @@ Now the fun part, updating our serverless function to send the data to SANITY. H
 
 ```js
 //submission-created.js
-const sanityClient = require("@sanity/client");
+const sanityClient = require('@sanity/client')
 const client = sanityClient({
   projectId: process.env.GATSBY_SANITY_PROJECT_ID,
   dataset: process.env.GATSBY_SANITY_PROJECT_DATASET,
   token: process.env.GATSBY_SANITY_TOKEN,
   useCDN: false,
-});
+})
 
 exports.handler = async function (event, context, callback) {
   // Pulling out the payload from the body
-  const { payload } = JSON.parse(event.body);
+  const { payload } = JSON.parse(event.body)
 
   // Checking which form has been submitted
-  const isContactForm = payload.data.formId === "contact-form";
+  const isContactForm = payload.data.formId === 'contact-form'
 
   // Build the document JSON and submit it to SANITY
   if (isContactForm) {
     const contact = {
-      _type: "contact",
+      _type: 'contact',
       name: payload.data.name,
       email: payload.data.email,
       message: payload.data.message,
-    };
+    }
 
-    const result = await client
-      .create(contact)
-      .catch((err) => console.log(err));
+    const result = await client.create(contact).catch((err) => console.log(err))
   }
 
   callback(null, {
     statusCode: 200,
-  });
-};
+  })
+}
 ```
 
 Let's walk through what is happening here.

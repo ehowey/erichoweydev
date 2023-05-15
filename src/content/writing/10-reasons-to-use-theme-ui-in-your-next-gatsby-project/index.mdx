@@ -5,7 +5,8 @@ authorLink: https://twitter.com/erchwy
 categories: [Gatsby, Theme UI]
 date: 2020-03-25
 published: true
-layout: ../../../layouts/BlogLayout.astro
+description: Discover 10 reasons why you should use Theme UI in your next Gatsby project. This article explores the benefits of using Theme UI for styling and design.
+excerpt: Are you considering using Theme UI in your Gatsby project, but not sure if it's worth it? In this article, we'll give you 10 reasons why you should use Theme UI for styling and design. We'll show you how Theme UI can make your Gatsby development experience more efficient and enjoyable.
 ---
 
 Combining [Theme UI](https://theme-ui.com/) with [Gatsby](https://www.gatsbyjs.org) has been a huge productivity win for me; design tokens, quick mobile styles, a robust component library and more. I am building every new project using Theme UI and here are 10 reasons I think you should consider it too.
@@ -42,30 +43,30 @@ Example Component:
 
 ```jsx
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { jsx } from 'theme-ui'
 
 const ChangeColors = () => {
   return (
     <div
       sx={{
-        height: "300px",
-        width: "300px",
-        backgroundColor: "primary",
+        height: '300px',
+        width: '300px',
+        backgroundColor: 'primary',
         padding: 4,
       }}
     >
       <p
         sx={{
-          color: "secondary",
+          color: 'secondary',
         }}
       >
         Go ahead and change those colors!
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default ChangeColors;
+export default ChangeColors
 ```
 
 ## Array syntax for media queries
@@ -76,7 +77,7 @@ Here is an example with changing colors at different breakpoints:
 
 ```jsx
 /** @jsx jsx */
-import { jsx } from "theme-ui";
+import { jsx } from 'theme-ui'
 
 const Breakpoints = () => {
   return (
@@ -86,15 +87,15 @@ const Breakpoints = () => {
         // 480px - 768px: Red
         //768px - 1024px: Red
         //1024px and up: Blue
-        color: ["green", "red", null, "blue"],
+        color: ['green', 'red', null, 'blue'],
       }}
     >
       That was some easy media queries!
     </p>
-  );
-};
+  )
+}
 
-export default Breakpoints;
+export default Breakpoints
 ```
 
 ## Styled component
@@ -105,13 +106,13 @@ Here is an example applying it to a header:
 
 ```jsx
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
+import { jsx, Styled } from 'theme-ui'
 
 const StyledFun = () => {
-  return <Styled.h1>Got my theme styles!</Styled.h1>;
-};
+  return <Styled.h1>Got my theme styles!</Styled.h1>
+}
 
-export default StyledFun;
+export default StyledFun
 ```
 
 ## Variants
@@ -122,22 +123,22 @@ Original component with a variant:
 
 ```jsx
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
+import { jsx, Styled } from 'theme-ui'
 
 const SiteTitle = () => {
   return (
     <Styled.h1
       sx={{
-        color: "red",
-        variant: "variants.siteTitle",
+        color: 'red',
+        variant: 'variants.siteTitle',
       }}
     >
       My Awesome Site
     </Styled.h1>
-  );
-};
+  )
+}
 
-export default SiteTitle;
+export default SiteTitle
 ```
 
 Theme specification file:
@@ -161,18 +162,18 @@ Here is a simple example of a dark and light mode color scheme:
 ```js
 export default {
   useColorSchemeMediaQuery: true,
-  initialColorModeName: "light",
+  initialColorModeName: 'light',
   colors: {
-    background: "white",
-    text: "black",
+    background: 'white',
+    text: 'black',
     modes: {
       dark: {
-        background: "black",
-        text: "white",
+        background: 'black',
+        text: 'white',
       },
     },
   },
-};
+}
 ```
 
 ## Theme presets
@@ -182,16 +183,16 @@ Theme UI provides a number of theme presets which can be used as a base theme an
 Here is an example of importing a theme preset:
 
 ```js
-import { tailwind } from "@theme-ui/preset-tailwind";
+import { tailwind } from '@theme-ui/preset-tailwind'
 
 export default {
   ...tailwind, // Gives you the entire preset
   colors: {
     ...tailwind.colors, // Gives you the tailwind color presets
-    background: "teal", // Overrides the default background
-    primary: "blue", // Overrides the default primary color
+    background: 'teal', // Overrides the default background
+    primary: 'blue', // Overrides the default primary color
   },
-};
+}
 ```
 
 ## Component library

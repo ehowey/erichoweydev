@@ -5,7 +5,8 @@ authorLink: https://twitter.com/erchwy
 categories: [Gatsby]
 date: 2020-02-24
 published: true
-layout: ../../../layouts/BlogLayout.astro
+description: Learn how to build a sub-menu with Gatsby in this tutorial. We'll cover how to create a dropdown menu, how to use React hooks, and how to make it accessible.
+excerpt: "Are you looking to add a sub-menu to your Gatsby website? In this tutorial, we'll walk you through step-by-step on how to create a dropdown menu using React hooks. We'll also show you how to make the sub-menu accessible and responsive."
 ---
 
 You have a great Gatsby site! You followed all the tutorials and it is _blazing_ fast. But wait, you need a sub-menu (or dropdown menu) in your navigation?
@@ -53,7 +54,7 @@ module.exports = {
       },
     ],
   },
-};
+}
 ```
 
 ## Schema Inference
@@ -70,7 +71,7 @@ Instead of allowing Gatsby to infer the fields we need to define them using the 
 
 ```js
 exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions;
+  const { createTypes } = actions
   const typeDefs = `
     type Site implements Node {
       siteMetadata: SiteMetadata
@@ -87,9 +88,9 @@ exports.createSchemaCustomization = ({ actions }) => {
       name: String
       link: String
     }
-  `;
-  createTypes(typeDefs);
-};
+  `
+  createTypes(typeDefs)
+}
 ```
 
 When using this API capitalization matters, and also note that I did not include `@dontInfer` to [opt out of type inference](https://www.gatsbyjs.org/docs/schema-customization/#opting-out-of-type-inference). I am letting Gatsby handle inferring all of the other fields in `siteMetadata` but I am explicitly telling it to about the `menuLinks` and `subMenu` fields.
@@ -100,20 +101,20 @@ Did you see the exclamation points beside some of the fields above? Remember tha
 
 ```js
 exports.createSchemaCustomization = ({ actions }) => {
-  const { createFieldExtension, createTypes } = actions;
+  const { createFieldExtension, createTypes } = actions
   createFieldExtension({
     name: `defaultArray`,
     extend() {
       return {
         resolve(source, args, context, info) {
           if (source[info.fieldName] == null) {
-            return [];
+            return []
           }
-          return source[info.fieldName];
+          return source[info.fieldName]
         },
-      };
+      }
     },
-  });
+  })
   const typeDefs = `
     type Site implements Node {
       siteMetadata: SiteMetadata
@@ -130,9 +131,9 @@ exports.createSchemaCustomization = ({ actions }) => {
       name: String
       link: String
     }
-  `;
-  createTypes(typeDefs);
-};
+  `
+  createTypes(typeDefs)
+}
 ```
 
 ## Query Results
@@ -211,8 +212,8 @@ Here is a full implementation of a menu and sub-menu with basic styling using [T
 ```jsx
 <ul
   sx={{
-    listStyle: "none",
-    background: "darkorange",
+    listStyle: 'none',
+    background: 'darkorange',
     margin: 0,
     padding: 0,
   }}
@@ -220,29 +221,29 @@ Here is a full implementation of a menu and sub-menu with basic styling using [T
   {menuLinks.map((link) => (
     <li
       sx={{
-        color: "white",
-        backgroundColor: "darkorange",
-        display: "block",
-        float: "left",
-        padding: "1rem",
-        position: "relative",
-        transitionDuration: "0.5s",
-        ":hover": {
-          backgroundColor: "red",
-          cursor: "pointer",
+        color: 'white',
+        backgroundColor: 'darkorange',
+        display: 'block',
+        float: 'left',
+        padding: '1rem',
+        position: 'relative',
+        transitionDuration: '0.5s',
+        ':hover': {
+          backgroundColor: 'red',
+          cursor: 'pointer',
         },
-        ":hover > ul, :focus-within > ul ": {
-          visibility: "visible",
-          opacity: "1",
-          display: "block",
+        ':hover > ul, :focus-within > ul ': {
+          visibility: 'visible',
+          opacity: '1',
+          display: 'block',
         },
       }}
       key={link.name}
     >
       <a
         sx={{
-          color: "white",
-          textDecoration: "none",
+          color: 'white',
+          textDecoration: 'none',
         }}
         href={link.link}
         aria-haspopup={link.subMenu && link.subMenu.length > 0 ? true : false}
@@ -252,22 +253,22 @@ Here is a full implementation of a menu and sub-menu with basic styling using [T
       {link.subMenu && link.subMenu.length > 0 ? (
         <ul
           sx={{
-            listStyle: "none",
+            listStyle: 'none',
             m: 0,
             p: 0,
-            backgroundColor: "darkorange",
-            visibility: "hidden",
-            opacity: "0",
-            display: "none",
-            minWidth: "8rem",
-            position: "absolute",
-            transition: "all 0.5s ease",
-            marginTop: "1rem",
-            left: "0",
-            ":hover": {
-              visibility: "visible",
-              opacity: "1",
-              display: "block",
+            backgroundColor: 'darkorange',
+            visibility: 'hidden',
+            opacity: '0',
+            display: 'none',
+            minWidth: '8rem',
+            position: 'absolute',
+            transition: 'all 0.5s ease',
+            marginTop: '1rem',
+            left: '0',
+            ':hover': {
+              visibility: 'visible',
+              opacity: '1',
+              display: 'block',
             },
           }}
           aria-label="submenu"
@@ -275,19 +276,19 @@ Here is a full implementation of a menu and sub-menu with basic styling using [T
           {link.subMenu.map((subLink) => (
             <li
               sx={{
-                clear: "both",
-                width: "100%",
-                padding: "1rem",
-                ":hover": {
-                  backgroundColor: "red",
+                clear: 'both',
+                width: '100%',
+                padding: '1rem',
+                ':hover': {
+                  backgroundColor: 'red',
                 },
               }}
               key={subLink.name}
             >
               <a
                 sx={{
-                  color: "white",
-                  textDecoration: "none",
+                  color: 'white',
+                  textDecoration: 'none',
                 }}
                 href={subLink.link}
               >

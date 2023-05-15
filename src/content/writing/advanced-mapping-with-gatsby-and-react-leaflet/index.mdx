@@ -5,7 +5,8 @@ authorLink: https://twitter.com/erchwy
 categories: [Gatsby]
 date: 2021-01-26
 published: true
-layout: ../../../layouts/BlogLayout.astro
+description: Learn how to create advanced maps with Gatsby and React Leaflet. Discover how to add markers, popups, and and make your website more engaging and interactive.
+excerpt: Advanced mapping with Gatsby and React Leaflet can add a new dimension to your website and make it more engaging for your users. In this article, we'll show you how to create advanced maps with Gatsby and React Leaflet, including adding markers, popups, and custom tiles to your maps.
 ---
 
 Hang on to your hats - this is a blustery one! In this post we walk through creating an imaginary real estate mapping app using [Gatsby](https://www.gatsbyjs.com/) and [React Leaflet](https://react-leaflet.js.org/).
@@ -47,7 +48,7 @@ Next you need to add `gatsby-plugin-react-leaflet` to your Gatsby plugins array.
 plugins: [
   // other plugins...
   `gatsby-plugin-react-leaflet`,
-];
+]
 ```
 
 ### Step 2: Adding our map
@@ -56,9 +57,9 @@ Now let's add a very basic map to our project. Create a new page at `src/pages/m
 
 ```jsx
 // src/pages/map.js
-import React from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { useHasMounted } from "gatsby-theme-catalyst-core";
+import React from 'react'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { useHasMounted } from 'gatsby-theme-catalyst-core'
 
 const Map = () => {
   return (
@@ -67,7 +68,7 @@ const Map = () => {
         <MapContainer
           center={[51.505, -0.09]}
           zoom={13}
-          style={{ height: "400px" }}
+          style={{ height: '400px' }}
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -81,10 +82,10 @@ const Map = () => {
         </MapContainer>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Map;
+export default Map
 ```
 
 Save and refresh and you should be looking at a simple map on your page!
@@ -121,10 +122,10 @@ Here is what your `map.js` file should look like now.
 
 ```jsx
 // src/pages/map.js
-import React from "react";
-import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
-import { useHasMounted } from "gatsby-theme-catalyst-core";
-import geojson from "../data/geojson.json";
+import React from 'react'
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'
+import { useHasMounted } from 'gatsby-theme-catalyst-core'
+import geojson from '../data/geojson.json'
 
 const Map = () => {
   return (
@@ -133,7 +134,7 @@ const Map = () => {
         <MapContainer
           center={[51.072806, -114.11918]}
           zoom={10}
-          style={{ height: "400px" }}
+          style={{ height: '400px' }}
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -143,10 +144,10 @@ const Map = () => {
         </MapContainer>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Map;
+export default Map
 ```
 
 Save and refresh your browser, you should see our new markers on the map. The GeoJson component automatically creates the markers for us - now we are getting somewhere!
@@ -175,10 +176,10 @@ We are going to add our logic to separate functional components, e.g. `GetVisibl
 
 ```jsx
 // src/pages/map.js
-import React, { useState, useEffect, useRef } from "react";
-import AddLocate from "../lib/add-locate";
-import GetVisibleMarkers from "../lib/get-visible-markers";
-import UpdateMapPosition from "../lib/update-map-position";
+import React, { useState, useEffect, useRef } from 'react'
+import AddLocate from '../lib/add-locate'
+import GetVisibleMarkers from '../lib/get-visible-markers'
+import UpdateMapPosition from '../lib/update-map-position'
 //... more imports
 
 const Map = () => {
@@ -200,7 +201,7 @@ const Map = () => {
         <MapContainer
           center={[51.072806, -114.11918]}
           zoom={10}
-          style={{ height: "400px" }}
+          style={{ height: '400px' }}
         >
           <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -231,10 +232,10 @@ const Map = () => {
       )}
       {/*more below here*/}
     </>
-  );
-};
+  )
+}
 
-export default Map;
+export default Map
 ```
 
 ### Clustering your map markers
@@ -294,21 +295,21 @@ Next we want to control the appearance and colors for these clusters - the defau
 // Creating cluster icons for the map
 // Copy and paste before your return inside Map component
 const createClusters = (cluster) => {
-  const childCount = cluster.getChildCount();
-  let size = "";
+  const childCount = cluster.getChildCount()
+  let size = ''
   if (childCount < 10) {
-    size = "small";
+    size = 'small'
   } else if (childCount < 25) {
-    size = "medium";
+    size = 'medium'
   } else {
-    size = "large";
+    size = 'large'
   }
   return L.divIcon({
     html: `<div><span><b>${childCount}</b></span></div>`,
     className: `custom-marker-cluster custom-marker-cluster-${size}`,
     iconSize: new L.point(40, 40),
-  });
-};
+  })
+}
 ```
 
 Now create a custom css file for your map at `src/lib/map.css` and copy and paste the [css code from GitHub](https://github.com/ehowey/gatsby-advanced-mapping/blob/main/src/lib/map.css) to your new file. You will notice there is some custom code in there for popups as well - don't fear that is coming up next!
@@ -326,9 +327,9 @@ The GeoJson component has a prop called `onEachFeature` which we can use to spec
 // Creating popups for the map
 // Copy and paste before your return inside Map component
 const createPopups = (feature = {}, layer) => {
-  const { properties = {} } = feature;
-  const { address, price, bedrooms, bathrooms } = properties;
-  const popup = L.popup();
+  const { properties = {} } = feature
+  const { address, price, bedrooms, bathrooms } = properties
+  const popup = L.popup()
   const html = `
     <div class="popup-container">
     <h3 class="popup-header">${address.street}</h3>
@@ -337,10 +338,10 @@ const createPopups = (feature = {}, layer) => {
     <li><strong>Bedrooms:</strong> ${bedrooms.toString()}</li>
     <li><strong>Bathrooms:</strong>${bathrooms.toString()}</li>
     </div>
-    `;
-  popup.setContent(html);
-  layer.bindPopup(popup);
-};
+    `
+  popup.setContent(html)
+  layer.bindPopup(popup)
+}
 ```
 
 Next we need to assign the `createPopups` function to the `onEachFeature` prop for the GeoJson component.
@@ -404,32 +405,32 @@ Because of react-leaflet's refactor to hooks we can handle this logic in its own
 
 ```jsx
 // src/lib/update-map-position.js
-import { useEffect } from "react";
-import { useMap } from "react-leaflet";
+import { useEffect } from 'react'
+import { useMap } from 'react-leaflet'
 
 const UpdateMapViewportLogic = ({ geoJsonKey, groupRef, displayedMarkers }) => {
   // Access the map context with the useMap hook
-  const map = useMap();
+  const map = useMap()
 
   // Reset the bounds of the map based on the displayed markers
   const updateMapPosition = () => {
     if (displayedMarkers.length > 0 && map && groupRef.current) {
-      const layer = groupRef.current;
+      const layer = groupRef.current
       if (layer) {
-        map.fitBounds(layer.getBounds().pad(0.5));
+        map.fitBounds(layer.getBounds().pad(0.5))
       }
     }
-  };
+  }
 
   // useEffect Hook to reset viewport when geoJson changes
   useEffect(() => {
-    updateMapPosition();
-  }, [geoJsonKey]); //eslint-disable-line
+    updateMapPosition()
+  }, [geoJsonKey]) //eslint-disable-line
 
-  return null;
-};
+  return null
+}
 
-export default UpdateMapViewportLogic;
+export default UpdateMapViewportLogic
 ```
 
 Next we need to add this component _below_ the other components inside the MapContainer. Here is what the component tree should now look like inside of `map.js`.
@@ -438,7 +439,7 @@ Next we need to add this component _below_ the other components inside the MapCo
 // src/pages.map.js
 
 // Import it
-import UpdateMapPosition from "../lib/update-map-position";
+import UpdateMapPosition from '../lib/update-map-position'
 
 const Map = () => {
   //...other stuff here
@@ -447,7 +448,7 @@ const Map = () => {
     <MapContainer
       center={[51.072806, -114.11918]}
       zoom={10}
-      style={{ height: "400px" }}
+      style={{ height: '400px' }}
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -472,8 +473,8 @@ const Map = () => {
       />
     </MapContainer>
     //...other stuff below
-  );
-};
+  )
+}
 ```
 
 ### Tracking the visible markers
@@ -482,8 +483,8 @@ Most mapping applications display a list of search results beside or below the m
 
 ```jsx
 // src/lib/update-map-position.js
-import { useMap, useMapEvents } from "react-leaflet";
-import L from "leaflet";
+import { useMap, useMapEvents } from 'react-leaflet'
+import L from 'leaflet'
 
 const GetVisibleMarkersLogic = ({
   groupRef,
@@ -491,34 +492,34 @@ const GetVisibleMarkersLogic = ({
   setVisibleMarkers,
 }) => {
   // Access the map context with the useMap hook
-  const map = useMap();
+  const map = useMap()
 
   // Get visible markers on the map
   const getVisibleMarkers = () => {
     if (map && groupRef.current && clusterRef.current) {
-      const cluster = clusterRef.current;
-      let features = [];
+      const cluster = clusterRef.current
+      let features = []
       cluster.eachLayer(function (layer) {
         if (layer instanceof L.Marker) {
           if (map.getBounds().contains(layer.getLatLng())) {
-            features.push(layer.feature);
+            features.push(layer.feature)
           }
         }
-      });
-      setVisibleMarkers(features);
+      })
+      setVisibleMarkers(features)
     }
-  };
+  }
 
   // Hook to access map events from Leaflet API
   useMapEvents({
     zoomend: () => getVisibleMarkers(),
     moveend: () => getVisibleMarkers(),
-  });
+  })
 
-  return null;
-};
+  return null
+}
 
-export default GetVisibleMarkersLogic;
+export default GetVisibleMarkersLogic
 ```
 
 Now we need to add this component to our main map page and initiate the state for our visible markers.
@@ -526,18 +527,18 @@ Now we need to add this component to our main map page and initiate the state fo
 ```jsx
 // src/pages/map.js
 // Import it
-import GetVisibleMarkers from "../lib/get-visible-markers";
+import GetVisibleMarkers from '../lib/get-visible-markers'
 
 const Map = () => {
   //...other stuff here
   // Add the state
-  const [visibleMarkers, setVisibleMarkers] = useState(geojson);
+  const [visibleMarkers, setVisibleMarkers] = useState(geojson)
   return (
     //...other stuff above
     <MapContainer
       center={[51.072806, -114.11918]}
       zoom={10}
-      style={{ height: "400px" }}
+      style={{ height: '400px' }}
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -568,8 +569,8 @@ const Map = () => {
       />
     </MapContainer>
     //...other stuff below
-  );
-};
+  )
+}
 ```
 
 Now that you have the visible markers being tracked in state you can display those visible markers inside of your application just as you would any other kind of data. Here is a very rough version of how I did it in the demo code.
@@ -577,9 +578,9 @@ Now that you have the visible markers being tracked in state you can display tho
 ```jsx
 <div>
   <h2>Visible Markers</h2>
-  <div style={{ display: "flex", flexWrap: "wrap" }}>
+  <div style={{ display: 'flex', flexWrap: 'wrap' }}>
     {visibleMarkers.map((marker) => (
-      <div key={marker.properties.address.street} style={{ padding: "1rem" }}>
+      <div key={marker.properties.address.street} style={{ padding: '1rem' }}>
         <h3>{marker.properties.address.street}</h3>
         <ul>
           <li>Price: {marker.properties.price.toString()}</li>
@@ -606,7 +607,7 @@ Next we need to add the necessary Font Awesome css to our html head element. FYI
 
 ```jsx
 // src/pages/map.js
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet'
 
 const Map = () => {
   //...other code is here
@@ -620,40 +621,40 @@ const Map = () => {
       </Helmet>
       {/* Other code is below here */}
     </>
-  );
-};
+  )
+}
 ```
 
 Now we need to handle actually adding the locate button to the map which we will do with another functional component.
 
 ```jsx
 // src/lib/add-locate.js
-import { useEffect } from "react";
-import { useMap } from "react-leaflet";
-import Locate from "leaflet.locatecontrol";
-import "leaflet.locatecontrol/dist/L.Control.Locate.min.css";
+import { useEffect } from 'react'
+import { useMap } from 'react-leaflet'
+import Locate from 'leaflet.locatecontrol'
+import 'leaflet.locatecontrol/dist/L.Control.Locate.min.css'
 
 const AddLocateLogic = () => {
   // Access the map context with the useMap hook
-  const map = useMap();
+  const map = useMap()
 
   // Add locate control once the map loads
   useEffect(() => {
     const locateOptions = {
-      position: "bottomright",
+      position: 'bottomright',
       // Set other options in here for locate control
       // flyTo: true,
       // drawCircle: false,
       // showPopup: false,
-    };
-    const locateControl = new Locate(locateOptions);
-    locateControl.addTo(map);
-  }, [map]);
+    }
+    const locateControl = new Locate(locateOptions)
+    locateControl.addTo(map)
+  }, [map])
 
-  return null;
-};
+  return null
+}
 
-export default AddLocateLogic;
+export default AddLocateLogic
 ```
 
 Finally we need to add this component to our main `map.js` page.
@@ -661,18 +662,18 @@ Finally we need to add this component to our main `map.js` page.
 ```jsx
 // src/pages/map.js
 // Import it
-import AddLocate from "../lib/add-locate";
+import AddLocate from '../lib/add-locate'
 
 const Map = () => {
   //...other stuff here
   // Add the state
-  const [visibleMarkers, setVisibleMarkers] = useState(geojson);
+  const [visibleMarkers, setVisibleMarkers] = useState(geojson)
   return (
     //...other stuff above
     <MapContainer
       center={[51.072806, -114.11918]}
       zoom={10}
-      style={{ height: "400px" }}
+      style={{ height: '400px' }}
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -704,8 +705,8 @@ const Map = () => {
       <AddLocate />
     </MapContainer>
     //...other stuff below
-  );
-};
+  )
+}
 ```
 
 ## Wrap up

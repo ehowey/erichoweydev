@@ -5,7 +5,8 @@ authorLink: https://twitter.com/erchwy
 categories: [SANITY.io]
 date: 2021-04-03
 published: true
-layout: ../../../layouts/BlogLayout.astro
+description: Learn how to set up a staging website with Sanity, a headless CMS. Discover how to streamline your content process and test changes to your website publishes.
+excerpt: Setting up a staging website with Sanity can streamline your content creation process and help you test changes to your website before publishing them live. In this article, we'll show you how to set up a staging website with Sanity, a popular headless CMS.
 ---
 
 > Heads up! This guide uses an experimental feature of SANITY.
@@ -121,13 +122,13 @@ The logo component; note the boolean flag for whether we are in the staging or p
 
 ```jsx
 // components/logo.js
-import React from "react";
-import client from "part:@sanity/base/client";
-import styles from "./logo.css";
+import React from 'react'
+import client from 'part:@sanity/base/client'
+import styles from './logo.css'
 
 const myLogo = () => {
-  const { dataset } = client.config();
-  const isStaging = dataset === "staging"; // highlight-line
+  const { dataset } = client.config()
+  const isStaging = dataset === 'staging' // highlight-line
   return (
     <div className={styles.root}>
       <div>
@@ -142,17 +143,17 @@ const myLogo = () => {
         // highlight-end
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default myLogo;
+export default myLogo
 ```
 
 The css, most of this I copy and pasted from the base css that SANITY is already using. Note the staging class at the bottom.
 
 ```css
 /* components/logo.css */
-@import "part:@sanity/base/theme/variables-style";
+@import 'part:@sanity/base/theme/variables-style';
 
 .root {
   text-decoration: none;

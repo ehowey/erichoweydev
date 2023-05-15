@@ -13,7 +13,8 @@ const writingCollection = defineCollection({
       .transform((str) => new Date(str))
       .optional(),
     published: z.boolean(),
-    layout: z.string().default('../../../layouts/BlogLayout.astro'),
+    description: z.string().max(160),
+    excerpt: z.string().max(400),
   }),
 })
 // 3. Export a single `collections` object to register your collection(s)

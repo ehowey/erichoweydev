@@ -5,7 +5,8 @@ authorLink: https://twitter.com/erchwy
 categories: [Gatsby]
 date: 2021-02-16
 published: true
-layout: ../../../layouts/BlogLayout.astro
+description: Learn how to add global scripts and stylesheets to the head of your Gatsby website. Discover best practices for optimizing website performance and code.
+excerpt: Adding global scripts and stylesheets to the head of your Gatsby website can improve website performance and make your code more maintainable. In this article, we'll show you how to add global scripts and stylesheets to your Gatsby website and provide you with best practices for optimizing website performance.
 ---
 
 Adding a global script or stylesheet to your `<head>` element in Gatsby can feel a bit tricky. You can't just copy and paste into an html template from days of yore. The final html document structure is composed by Gatsby at build time which means we need a couple of extra steps to get this done.
@@ -25,18 +26,18 @@ const headComponents = [
     data-site="ABC123"
     defer
   ></script>,
-];
+]
 
 export const onRenderBody = ({ setHeadComponents }) => {
-  setHeadComponents(headComponents);
-};
+  setHeadComponents(headComponents)
+}
 ```
 
 Here is an example of adding a custom stylesheet on a per-page basis using `react-helmet`. In this example this we are loading the css stylesheet for LeafletJS which is something I only want to do on the specific pages that require it for performance reasons.
 
 ```js
 // map-page.js
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet'
 
 const MapPage = () => {
   return (
@@ -48,8 +49,8 @@ const MapPage = () => {
         crossorigin=""
       />
     </Helmet>
-  );
-};
+  )
+}
 
-export default MapPage;
+export default MapPage
 ```

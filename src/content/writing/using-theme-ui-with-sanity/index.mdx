@@ -5,7 +5,8 @@ authorLink: https://twitter.com/erchwy
 categories: [Theme UI, SANITY.io]
 date: 2020-02-08
 published: true
-layout: ../../../layouts/BlogLayout.astro
+description: Learn how to use Theme UI with Sanity in this tutorial. We'll cover how to set up Theme UI and Sanity, how to style your Sanity content using Theme UI.
+excerpt: Are you looking to use Theme UI with Sanity? In this tutorial, we'll show you how to set up Theme UI and Sanity, and how to use Theme UI to style your Sanity content. We'll also walk you through creating a custom Theme UI preset for your Sanity project.
 ---
 
 Gatsby, SANITY.io and Theme UI are quickly becoming my go-to stack of development tools. [Gatsby](https://www.gatsbyjs.org/) on the frontend. [SANITY](https://www.sanity.io/) on the backend. [Theme UI](https://theme-ui.com/) as the design system interface. Combining these three tools has been fairly smooth, but it took me a while to realize I could link Theme UI design tokens directly with SANITY block content using a serializer. Then things really took off!
@@ -26,28 +27,28 @@ Using the [Styled component](https://theme-ui.com/styled) from Theme UI you are 
 
 ```jsx
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui";
+import { jsx, Styled } from 'theme-ui'
 
 const serializers = {
   types: {
     block(props) {
       switch (props.node.style) {
-        case "h1":
-          return <Styled.h1>{props.children}</Styled.h1>;
-        case "h2":
-          return <Styled.h2>{props.children}</Styled.h2>;
-        case "h3":
-          return <Styled.h3>{props.children}</Styled.h3>;
-        case "h4":
-          return <Styled.h4>{props.children}</Styled.h4>;
-        case "h5":
-          return <Styled.h5>{props.children}</Styled.h5>;
-        case "h6":
-          return <Styled.h6>{props.children}</Styled.h6>;
-        case "blockquote":
-          return <Styled.blockquote>{props.children}</Styled.blockquote>;
+        case 'h1':
+          return <Styled.h1>{props.children}</Styled.h1>
+        case 'h2':
+          return <Styled.h2>{props.children}</Styled.h2>
+        case 'h3':
+          return <Styled.h3>{props.children}</Styled.h3>
+        case 'h4':
+          return <Styled.h4>{props.children}</Styled.h4>
+        case 'h5':
+          return <Styled.h5>{props.children}</Styled.h5>
+        case 'h6':
+          return <Styled.h6>{props.children}</Styled.h6>
+        case 'blockquote':
+          return <Styled.blockquote>{props.children}</Styled.blockquote>
         default:
-          return <Styled.p>{props.children}</Styled.p>;
+          return <Styled.p>{props.children}</Styled.p>
       }
     },
   },
@@ -56,9 +57,9 @@ const serializers = {
       <Styled.a href={mark.href}>{children}</Styled.a>
     ),
   },
-};
+}
 
-export default serializers;
+export default serializers
 ```
 
 Happy coding! If this helps you I would love to hear about it!

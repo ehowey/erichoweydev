@@ -5,7 +5,8 @@ authorLink: https://twitter.com/erchwy
 categories: [Gatsby]
 date: 2020-12-21
 published: true
-layout: ../../../layouts/BlogLayout.astro
+description: Learn how to add a load more button and infinite scroll to your Gatsby website. Discover how to use React hooks to dynamically load data.
+excerpt: Adding a load more button and infinite scroll to your Gatsby website can improve website performance and provide a better user experience. In this article, we'll show you how to use React hooks and GraphQL queries to dynamically load data and add a load more button and infinite scroll to your Gatsby website.
 ---
 
 Load more buttons and infinite scrolling are common UI patterns on websites with large amounts of content. It improves page load performance and allows users to dynamically view more content as needed.
@@ -35,9 +36,9 @@ Let's get going!
 Here is the working code for the load more button version of our news feed.
 
 ```jsx
-import React, { useState, useEffect } from "react";
-import { useStaticQuery, graphql } from "gatsby";
-import Article from "../components/article";
+import React, { useState, useEffect } from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+import Article from '../components/article'
 
 const Page = () => {
   const data = useStaticQuery(graphql`
@@ -52,42 +53,42 @@ const Page = () => {
         }
       }
     }
-  `);
+  `)
   // Array of all news articles
-  const allNews = data.allNewsJson.nodes;
+  const allNews = data.allNewsJson.nodes
 
   // State for the list
-  const [list, setList] = useState([...allNews.slice(0, 10)]);
+  const [list, setList] = useState([...allNews.slice(0, 10)])
 
   // State to trigger oad more
-  const [loadMore, setLoadMore] = useState(false);
+  const [loadMore, setLoadMore] = useState(false)
 
   // State of whether there is more to load
-  const [hasMore, setHasMore] = useState(allNews.length > 10);
+  const [hasMore, setHasMore] = useState(allNews.length > 10)
 
   // Load more button click
   const handleLoadMore = () => {
-    setLoadMore(true);
-  };
+    setLoadMore(true)
+  }
 
   // Handle loading more articles
   useEffect(() => {
     if (loadMore && hasMore) {
-      const currentLength = list.length;
-      const isMore = currentLength < allNews.length;
+      const currentLength = list.length
+      const isMore = currentLength < allNews.length
       const nextResults = isMore
         ? allNews.slice(currentLength, currentLength + 10)
-        : [];
-      setList([...list, ...nextResults]);
-      setLoadMore(false);
+        : []
+      setList([...list, ...nextResults])
+      setLoadMore(false)
     }
-  }, [loadMore, hasMore]); //eslint-disable-line
+  }, [loadMore, hasMore]) //eslint-disable-line
 
   //Check if there is more
   useEffect(() => {
-    const isMore = list.length < allNews.length;
-    setHasMore(isMore);
-  }, [list]); //eslint-disable-line
+    const isMore = list.length < allNews.length
+    setHasMore(isMore)
+  }, [list]) //eslint-disable-line
 
   return (
     <div>
@@ -103,10 +104,10 @@ const Page = () => {
         <p>No more results</p>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page
 ```
 
 Let's walk through what is happening here. To begin with the data is being sourced from GraphQL and then assigned to the `allNews` variable. This is an array of all the news articles, and typically in Gatsby you would stop here and just map over this array to display your data.
@@ -126,9 +127,9 @@ Finally the `useMore` boolean is used as a ternary operator in the JSX to condit
 We can expand on this code to create an infinite scrolling version of our news feed. Here is the working code for this, with an explanation below of what has changed.
 
 ```jsx
-import React, { useState, useEffect, useRef } from "react";
-import { useStaticQuery, graphql } from "gatsby";
-import Article from "../components/article";
+import React, { useState, useEffect, useRef } from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
+import Article from '../components/article'
 
 const Page = () => {
   const data = useStaticQuery(graphql`
@@ -143,61 +144,61 @@ const Page = () => {
         }
       }
     }
-  `);
+  `)
   // Array of all news articles
-  const allNews = data.allNewsJson.nodes;
+  const allNews = data.allNewsJson.nodes
 
   // State for the list
-  const [list, setList] = useState([...allNews.slice(0, 10)]);
+  const [list, setList] = useState([...allNews.slice(0, 10)])
 
   // State to trigger oad more
-  const [loadMore, setLoadMore] = useState(false);
+  const [loadMore, setLoadMore] = useState(false)
 
   // State of whether there is more to load
-  const [hasMore, setHasMore] = useState(allNews.length > 10);
+  const [hasMore, setHasMore] = useState(allNews.length > 10)
 
   //Set a ref for the loading div
-  const loadRef = useRef();
+  const loadRef = useRef()
 
   // Handle intersection with load more div
   const handleObserver = (entities) => {
-    const target = entities[0];
+    const target = entities[0]
     if (target.isIntersecting) {
-      setLoadMore(true);
+      setLoadMore(true)
     }
-  };
+  }
 
   //Initialize the intersection observer API
   useEffect(() => {
     var options = {
       root: null,
-      rootMargin: "20px",
+      rootMargin: '20px',
       threshold: 1.0,
-    };
-    const observer = new IntersectionObserver(handleObserver, options);
-    if (loadRef.current) {
-      observer.observe(loadRef.current);
     }
-  }, []);
+    const observer = new IntersectionObserver(handleObserver, options)
+    if (loadRef.current) {
+      observer.observe(loadRef.current)
+    }
+  }, [])
 
   // Handle loading more articles
   useEffect(() => {
     if (loadMore && hasMore) {
-      const currentLength = list.length;
-      const isMore = currentLength < allNews.length;
+      const currentLength = list.length
+      const isMore = currentLength < allNews.length
       const nextResults = isMore
         ? allNews.slice(currentLength, currentLength + 10)
-        : [];
-      setList([...list, ...nextResults]);
-      setLoadMore(false);
+        : []
+      setList([...list, ...nextResults])
+      setLoadMore(false)
     }
-  }, [loadMore, hasMore]); //eslint-disable-line
+  }, [loadMore, hasMore]) //eslint-disable-line
 
   //Check if there is more
   useEffect(() => {
-    const isMore = list.length < allNews.length;
-    setHasMore(isMore);
-  }, [list]); //eslint-disable-line
+    const isMore = list.length < allNews.length
+    setHasMore(isMore)
+  }, [list]) //eslint-disable-line
 
   return (
     <div>
@@ -211,10 +212,10 @@ const Page = () => {
         {hasMore ? <p>Loading...</p> : <p>No more results</p>}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page
 ```
 
 Our code is very similar to the load more button with a few key differences. We have replaced the button with a `<div>` that has a ref assigned to it. The [intersection observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) is initialized in a useEffect hook and used to track whether the scroll position is intersecting with this ref on the page. When an intersection happens it triggers the `hasMore` state to true, setting off the same cascade of effects as our load more button from before.
