@@ -7,7 +7,7 @@ const writingCollection = defineCollection({
     author: z.string().default('Eric Howey'),
     authorLink: z.string().url().default('https://twitter.com/erchwy'),
     categories: z.array(z.string()),
-    date: z.string().transform((str) => new Date(str)),
+    date: z.any(),
     update: z
       .string()
       .transform((str) => new Date(str))
