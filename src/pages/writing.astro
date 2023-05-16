@@ -2,15 +2,16 @@
 import PageLayout from '../layouts/PageLayout.astro'
 import PageHeader from '../components/PageHeader.astro'
 import WritingCard from '../components/WritingCard.astro'
-import { formatDate } from '../lib/utils'
+import { getCollection } from 'astro:content'
 
-const posts = await Astro.glob('./writing/**/*.mdx').then((result) => {
-  const sortedAndFiltered = result
-    .filter((post) => post.frontmatter.published === true)
-    .sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
-  return sortedAndFiltered
+const posts = await getCollection('writing', ({ data }) => {
+  return data.published === true
+}).then((result) => {
+  const sorted = result.sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  )
+  return sorted
 })
-import { clsx } from 'clsx'
 ---
 
 <PageLayout

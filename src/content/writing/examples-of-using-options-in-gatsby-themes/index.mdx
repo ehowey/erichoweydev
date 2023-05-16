@@ -1,0 +1,146 @@
+---
+title: Examples of using options in Gatsby themes
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+categories: [Gatsby]
+date: 2020-02-01
+published: true
+description: Explore how to use options in Gatsby themes with examples. Learn how to create themes that allow customization and how to pass options to theme components.
+excerpt: Gatsby themes allow for flexible, customizable site development. In this article, we'll dive into options in Gatsby themes and explore how to use them to create flexible, configurable themes. We'll also provide several examples of using options in Gatsby themes and show you how to pass options to theme components.
+---
+
+The ability to define options for Gatsby themes unlocks a powerful set of development opportunities. You may have already used an option like `contentPath` before but there is so much more you can do!
+
+Before you go any further, you need to pause and read [Chris Biscardi's excellent post](https://www.christopherbiscardi.com/post/applying-theme-options-using-custom-configuration-nodes/) about setting up a custom GraphQL node for theme options which can then be queried in components. I won't repeat what he has already said so well!
+
+## Setup a hook for your theme options
+
+Once you have your GraphQL node setup following Chris's instructions next you will want to build a utility hook for the query. This keeps queries separate from presentational components and improves readability, something like `useThemeOptions`.
+
+```jsx
+import { useStaticQuery, graphql } from 'gatsby'
+
+export const useThemeOptions = () => {
+  const { themeOptions } = useStaticQuery(
+    graphql`
+      query {
+        themeOptions {
+          contentPath
+          assetPath
+          displaySiteLogo
+          displaySiteTitle
+          useHero
+          invertSiteLogo
+          mobileMenuBreakpoint
+          useColorMode
+          footerContentLocation
+        }
+      }
+    `
+  )
+  return themeOptions
+}
+```
+
+Now when you want to access a theme option in a component it would be like this. Quicker and clearer to read.
+
+```jsx
+import { useThemeOptions } from './util/use-theme-options'
+
+const { displaySiteTitle } = useThemeOptions()
+```
+
+## Using theme options to conditionally render a component
+
+When building a theme, giving the user design flexibility without having to shadow the entire component is a value added feature. Not every website will want a logo and conversely some websites only want a logo. The theme options `displaySiteLogo` and `displaySiteTitle` are boolean values that could be used to toggle this.
+
+```jsx
+import React from 'react'
+import { useThemeOptions } from 'gatsby-theme-super-heroes'
+import Logo from './branding-logo'
+import Title from './branding-title'
+
+const SiteBranding = () => {
+  const { displaySiteLogo, displaySiteTitle } = useThemeOptions()
+  return (
+    <div>
+      {displaySiteLogo && <Logo />}
+      {displaySiteTitle && <Title />}
+    </div>
+  )
+}
+
+export default SiteBranding
+```
+
+## Using theme options to conditionally change CSS styles
+
+Another area theme options prove useful is conditionally styling an element. For example an option like `footerContentLocation`, could allow for three values; "left", "right" and "center". Each value corresponds to the alignment of content in the footer. In some designs having the footer content centered makes the most sense, while in other designs you may want it on the left side.
+
+Here is an example of a footer component in action, note this uses the [Theme UI sx prop](https://theme-ui.com/sx-prop), which may look a bit unfamiliar if you haven't seen this pattern before.
+
+```jsx
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
+import { useSiteMetadata, useThemeOptions } from 'gatsby-theme-super-heroes'
+
+const SiteFooter = () => {
+  const { title } = useSiteMetadata()
+  const { footerContentLocation } = useThemeOptions()
+  const isLeft = footerContentLocation === 'left'
+  const isRight = footerContentLocation === 'right'
+  const isCenter = footerContentLocation === 'center'
+
+  return (
+    <footer
+      sx={{
+        display: 'grid',
+        alignContent: 'center',
+        justifyContent:
+          (isLeft && 'start') || (isRight && 'end') || (isCenter && 'center'),
+        textAlign:
+          (isLeft && 'left') || (isRight && 'right') || (isCenter && 'center'),
+      }}
+    >
+      <p>Some awesome footer content here!</p>
+    </footer>
+  )
+}
+
+export default SiteFooter
+```
+
+## Passing information to gatsby-config.js
+
+The last example of using a theme option is passing information to gatsby-config.js. In this example `contentPath` and `assetPath` are passed to `gatsby-source-filesystem`. This requires gatsby-config.js to be modified from a straight export to a function, also requiring you to be using a theme and a starter together. The starter passes the information to the theme. It is a good idea to ensure that these folders exist in the starter otherwise you will get a build error, Gatsby explains how to do this in the [theme conventions doc](https://www.gatsbyjs.org/docs/themes/conventions/#initializing-requisky-directories).
+
+```js
+// Note the change to a function instead of just module.exports = {}
+module.exports = (options) => {
+  return {
+    siteMetadata: {
+      title: `Placeholder title`,
+      description: `Placeholder description`,
+      author: `Placeholder author`,
+    },
+    plugins: [
+      {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+          name: `pages`,
+          path: options.contentPath || `content/pages`,
+        },
+      },
+      {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+          name: `images`,
+          path: options.assetPath || `content/assets`,
+        },
+      },
+    ],
+  }
+}
+```
+
+Hopefully these examples inspire you to think about ways you can use theme options creatively in your next Gatsby theme! You can see more examples of how I used theme options throughout [Gatsby Theme Catalyst](https://github.com/ehowey/gatsby-theme-catalyst). I would love to hear about your projects as I think it is still early days for Gatsby themes and additional patterns are sure to emerge.

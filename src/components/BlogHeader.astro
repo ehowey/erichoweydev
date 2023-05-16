@@ -10,44 +10,9 @@ import { clsx } from 'clsx'
 ---
 
 <div class="max-w-4xl px-4">
-  <div
-    class="relative z-10 order-first mb-3 mt-0 flex items-center pl-3.5 text-base text-zinc-450"
-  >
-    <span
-      class="absolute inset-y-0 left-0 flex items-center"
-      aria-hidden="true"
-    >
-      <span
-        class={clsx(
-          'w-0.5 rounded-full bg-zinc-500',
-          frontmatter.update ? 'h-10' : 'h-4'
-        )}></span>
-    </span>
-    <div class="leading-snug">
-      <time date-time={frontmatter.date}>
-        {formatDate(frontmatter.date)}
-      </time>&nbsp;&bull;&nbsp;{frontmatter.readingTime}
-      {
-        frontmatter.update && (
-          <>
-            <br />
-            Updated{' '}
-            <time date-time={frontmatter.update}>
-              {formatDate(frontmatter.update)}
-            </time>
-          </>
-        )
-      }
-    </div>
-  </div>
-  <h1
-    class="mt-0 text-3xl font-bold uppercase text-zinc-100 md:text-4xl lg:text-5xl"
-  >
-    {frontmatter.title}
-  </h1>
   {
     archived && (
-      <div>
+      <div class="max-w-prose pb-6">
         <blockquote class="border-orange-600 bg-orange-900 text-zinc-300">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -69,4 +34,39 @@ import { clsx } from 'clsx'
       </div>
     )
   }
+  <div
+    class="relative z-10 order-first mb-3 mt-0 flex items-center pl-3.5 text-base text-zinc-450"
+  >
+    <span
+      class="absolute inset-y-0 left-0 flex items-center"
+      aria-hidden="true"
+    >
+      <span
+        class={clsx(
+          'w-0.5 rounded-full bg-sky-700',
+          frontmatter.update ? 'h-10' : 'h-4'
+        )}></span>
+    </span>
+    <div class="leading-snug">
+      <time date-time={frontmatter.date}>
+        {formatDate(frontmatter.date)}
+      </time>
+      {
+        frontmatter.update && (
+          <>
+            <br />
+            Updated{' '}
+            <time date-time={frontmatter.update}>
+              {formatDate(frontmatter.update)}
+            </time>
+          </>
+        )
+      }
+    </div>
+  </div>
+  <h1
+    class="mt-0 text-3xl font-bold uppercase text-zinc-100 md:text-4xl lg:text-5xl"
+  >
+    {frontmatter.title}
+  </h1>
 </div>
