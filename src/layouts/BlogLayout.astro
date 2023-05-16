@@ -10,10 +10,7 @@ import BlogHeader from '../components/BlogHeader.astro'
 const { frontmatter } = Astro.props
 ---
 
-<RootLayout
-  title={frontmatter.title}
-  description={frontmatter.description ?? frontmatter.generatedDescription}
->
+<RootLayout title={frontmatter.title} description={frontmatter.description}>
   <div>
     <DesktopHeader />
     <MobileHeader />

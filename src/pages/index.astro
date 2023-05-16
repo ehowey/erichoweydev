@@ -112,7 +112,7 @@ const posts = await getCollection('writing', ({ data }) => {
               <div class="col-start-2 col-end-3">
                 <h2 class="text-2xl text-zinc-100">
                   <a
-                    href={post.slug}
+                    href={'/writing/' + post.slug}
                     class="underline decoration-sky-500/70 transition hover:decoration-sky-500"
                   >
                     {post.data.title}

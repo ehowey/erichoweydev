@@ -10,6 +10,30 @@ import { clsx } from 'clsx'
 ---
 
 <div class="max-w-4xl px-4">
+  {
+    archived && (
+      <div class="max-w-prose pb-6">
+        <blockquote class="border-orange-600 bg-orange-900 text-zinc-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="mr-2 inline-block h-5 w-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+            />
+          </svg>
+          Content has not been updated for more than 2 years, proceed with
+          caution.
+        </blockquote>
+      </div>
+    )
+  }
   <div
     class="relative z-10 order-first mb-3 mt-0 flex items-center pl-3.5 text-base text-zinc-450"
   >
@@ -19,7 +43,7 @@ import { clsx } from 'clsx'
     >
       <span
         class={clsx(
-          'w-0.5 rounded-full bg-zinc-500',
+          'w-0.5 rounded-full bg-sky-700',
           frontmatter.update ? 'h-10' : 'h-4'
         )}></span>
     </span>
@@ -45,28 +69,4 @@ import { clsx } from 'clsx'
   >
     {frontmatter.title}
   </h1>
-  {
-    archived && (
-      <div>
-        <blockquote class="border-orange-600 bg-orange-900 text-zinc-300">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="mr-2 inline-block h-5 w-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
-            />
-          </svg>
-          Content has not been updated for more than 2 years, proceed with
-          caution.
-        </blockquote>
-      </div>
-    )
-  }
 </div>

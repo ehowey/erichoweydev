@@ -11,11 +11,11 @@ const { post } = Astro.props
 import { clsx } from 'clsx'
 ---
 
-<a href={post.slug}>
+<a href={'/writing/' + post.slug}>
   <article class="group relative flex flex-col items-start">
     <h2 class="text-2xl font-semibold uppercase text-zinc-100">
       <div
-        class="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-sky-900/40 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl"
+        class="absolute -inset-x-4 -inset-y-6 z-0 scale-95 bg-sky-900/40 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-10 sm:-inset-x-6 sm:rounded-2xl"
       >
       </div>
       <span
@@ -54,7 +54,7 @@ import { clsx } from 'clsx'
       </div>
     </div>
     <p class="relative z-10 mt-2 text-base text-zinc-400">
-      {post.data.excerpt ?? post.data.generatedExcerpt}
+      {post.data.excerpt}
     </p>
     <div
       aria-hidden="true"
