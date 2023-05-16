@@ -2,3 +2,7 @@
   from = "/it-starts-with-hello/"
   to = "/work/"
   status = 301
+
+[[edge_functions]]
+function = "og-image"
+path = "/api/og-image"
