@@ -1,21 +1,19 @@
 import rss from '@astrojs/rss'
+import { getCollection } from 'astro:content'
 
-const postImportResult = import.meta.glob('./writing/**/*.mdx', { eager: true })
-const posts = Object.values(postImportResult).sort(
-  (a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)
-)
-const site = import.meta.env.SITE
-
-export const get = () =>
-  rss({
+export async function get() {
+  const posts = await getCollection('writing')
+  return rss({
     title: 'Eric Howey | Writing',
     description:
       'Musing, ramblings and articles about modern frontend web development.',
-    site: site,
+    site: 'https://www.erichowey.dev',
     items: posts.map((post) => ({
-      link: new URL(post.url, site).href,
-      title: post.frontmatter.title,
-      pubDate: post.frontmatter.date,
+      title: post.data.title,
+      pubDate: post.data.date,
+      description: post.data.description,
+      link: `/writing/${post.slug}/`,
     })),
     customData: `<language>en</language>`,
   })
+}
