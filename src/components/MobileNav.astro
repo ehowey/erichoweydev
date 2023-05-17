@@ -5,7 +5,7 @@ import { NAV } from '../lib/constants'
 <nav
   id="mobile-nav"
   data-nav-open="false"
-  class="fixed bottom-3 right-0 z-50 rounded-l border-l border-t border-b border-zinc-600 bg-zinc-900 py-8 pl-12 opacity-0 lg:hidden"
+  class="fixed bottom-3 right-0 z-50 rounded-l border-b border-l border-t border-zinc-600 bg-zinc-900 py-8 pl-12 opacity-0 lg:hidden"
 >
   <p
     class="relative -top-[4px] mb-8 text-right text-4xl font-black uppercase leading-none text-zinc-100"
@@ -30,7 +30,7 @@ import { NAV } from '../lib/constants'
       ))
     }
   </ul>
-  <div class="mt-8 mr-4 flex justify-end gap-6">
+  <div class="mr-4 mt-8 flex justify-end gap-6">
     <a
       class="group -m-1 p-1"
       href="https://twitter.com/erchwy"
@@ -184,7 +184,6 @@ import { NAV } from '../lib/constants'
 
   // Tasks for closing menu
   const closeMenu = () => {
-    console.log('close ran')
     // Remove event listeners
     document.removeEventListener('keydown', trapFocus2, false)
     document.removeEventListener('keydown', handleEsc, false)
@@ -210,7 +209,6 @@ import { NAV } from '../lib/constants'
   // Handle a click if the menu is closed
   const handleNavClick = () => {
     // Handle a click if the menu is closed
-    console.log(mobileNav.dataset.navOpen)
     if (mobileNav.dataset.navOpen === 'false') {
       openMenu()
     }
