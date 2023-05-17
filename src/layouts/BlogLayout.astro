@@ -8,9 +8,17 @@ import Footer from '../components/Footer.astro'
 import BlogHeader from '../components/BlogHeader.astro'
 
 const { frontmatter } = Astro.props
+const ogImageURL = new URL(
+  `/api/og-image/?title=${encodeURI(frontmatter.title)}`,
+  Astro.site
+)
 ---
 
-<RootLayout title={frontmatter.title} description={frontmatter.description}>
+<RootLayout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  ogImageURL={ogImageURL}
+>
   <div>
     <DesktopHeader />
     <MobileHeader />

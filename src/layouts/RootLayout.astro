@@ -1,18 +1,23 @@
 ---
 export interface Props {
   title: string
-  description: string
+  description?: string
+  ogImageURL?: URL
 }
 
-const { title, description: propDescription } = Astro.props
+const {
+  title,
+  description: propDescription,
+  ogImageURL: propImage,
+} = Astro.props
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
-const socialImageURL = new URL('/og-default.jpg', Astro.site)
-
+const defaultImageURL = new URL('/og-default.jpg', Astro.site)
 const defaultDescription =
   'I’m Eric, a web developer and mental health therapist who works at the confluence of care, creativity and code. Based in Calgary, Alberta.'
 
 const description = propDescription ?? defaultDescription
+const socialImageURL = propImage ?? defaultImageURL
 ---
 
 <!DOCTYPE html>
