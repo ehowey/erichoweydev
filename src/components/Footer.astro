@@ -1,4 +1,9 @@
-<footer class="mt-40 border-t-2 border-t-sky-900 py-8 px-4 md:px-8 lg:mt-52">
+---
+import { Image } from '@astrojs/image/components'
+import prideFlag from '../assets/pride-flag.png'
+---
+
+<footer class="mt-40 border-t-2 border-t-sky-900 px-4 py-8 md:px-8 lg:mt-52">
   <div class="flex flex-col justify-between gap-8 lg:flex-row">
     <div class="lg:order-2 lg:w-1/2">
       <p class="text-base italic text-zinc-400">
@@ -10,7 +15,8 @@
       </p>
     </div>
     <div class="text-base text-zinc-400 lg:order-1 lg:w-1/2 lg:self-end">
-      <p>
+      <Image src={prideFlag} alt="Progress pride flag" height={36} />
+      <p class="mt-2">
         © {new Date().getFullYear()}
         Eric Howey -{' '}
         <a href="mailto:eric@erichowey.dev" class="underline"
