@@ -6,12 +6,42 @@ import DesktopNav from '../components/DesktopNav.astro'
 import MobileNav from '../components/MobileNav.astro'
 import Footer from '../components/Footer.astro'
 import BlogHeader from '../components/BlogHeader.astro'
+import type { MarkdownHeading } from 'astro'
 
-const { frontmatter } = Astro.props
+const { frontmatter, headings } = Astro.props
 const ogImageURL = new URL(
   `/api/og-image/?title=${encodeURI(frontmatter.title)}`,
   Astro.site
 )
+
+interface ToCItem {
+  depth: number
+  text: string
+  slug: string
+  subheadings: Array<{
+    depth: number
+    text: string
+    slug: string
+  }>
+}
+
+function buildToc(headings: MarkdownHeading[]) {
+  const toc: ToCItem[] = []
+  const parentHeadings = new Map()
+  headings.forEach((h) => {
+    const heading = { ...h, subheadings: [] }
+    parentHeadings.set(heading.depth, heading)
+    // Change 2 to 1 if your markdown includes your <h1>
+    if (heading.depth === 2) {
+      toc.push(heading)
+    } else if (heading.depth === 3) {
+      parentHeadings.get(heading.depth - 1).subheadings.push(heading)
+    }
+  })
+  return toc
+}
+
+const toc = buildToc(headings)
 ---
 
 <RootLayout
@@ -33,30 +63,47 @@ const ogImageURL = new URL(
             <BlogHeader frontmatter={frontmatter} />
           </div>
           <div
-            class="col-start-1 col-end-10 row-start-2 row-end-3 max-w-2xl px-4 md:col-end-7 lg:col-end-8"
+            class="col-start-1 col-end-10 row-start-2 row-end-3 mt-12 max-w-2xl scroll-mt-8 px-4 prose-headings:scroll-mt-8 first:prose-p:mt-0 md:col-end-7 lg:col-end-8"
           >
             <slot />
           </div>
-          <div
-            class="not-prose lg:cold-start-8 sticky top-[150px] col-start-7 col-end-10 row-start-2 row-end-3 mt-7 hidden self-start md:block"
-          >
-            <h2 class="text-xl font-bold uppercase text-zinc-100">
-              Page contents
-            </h2>
-            <nav class="text-zinc-400">
-              <ol>
-                <li><a href="#">Bikes</a></li>
-                <li><a href="#">BMX</a></li>
-                <li><a href="#">Jump Bike 3000</a></li>
-                <li><a href="#">Bikes</a></li>
-                <li><a href="#">BMX</a></li>
-                <li><a href="#">Jump Bike 3000</a></li>
-                <li><a href="#">Bikes</a></li>
-                <li><a href="#">BMX</a></li>
-                <li><a href="#">Jump Bike 3000</a></li>
-              </ol>
-            </nav>
-          </div>
+          {
+            toc.length > 0 && (
+              <div class="not-prose lg:cold-start-8 sticky top-[150px] col-start-7 col-end-10 row-start-2 row-end-3 mt-12 hidden self-start pr-4 md:block">
+                <h2 class="text-xl font-bold uppercase text-zinc-100">
+                  Page contents
+                </h2>
+                <nav class="mt-2 text-base text-zinc-400">
+                  <ol>
+                    {toc.map((heading) => (
+                      <li>
+                        <a
+                          href={'#' + heading.slug}
+                          class="transition-colors duration-150 hover:text-sky-400"
+                        >
+                          &mdash; {heading.text}
+                        </a>
+                        {heading.subheadings.length > 0 && (
+                          <ol class="pl-4 text-xs">
+                            {heading.subheadings.map((subheading) => (
+                              <li>
+                                <a
+                                  href={'#' + subheading.slug}
+                                  class="transition-colors duration-150 hover:text-sky-400"
+                                >
+                                  {subheading.text}
+                                </a>
+                              </li>
+                            ))}
+                          </ol>
+                        )}
+                      </li>
+                    ))}
+                  </ol>
+                </nav>
+              </div>
+            )
+          }
         </div>
       </main>
     </div>
