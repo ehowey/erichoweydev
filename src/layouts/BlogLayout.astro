@@ -76,7 +76,7 @@ const toc = buildToc(headings)
                 <nav class="mt-2 text-base text-zinc-400">
                   <ol>
                     {toc.map((heading) => (
-                      <li>
+                      <li class="mb-1 last-of-type:mb-0">
                         <a
                           href={'#' + heading.slug}
                           class="transition-colors duration-150 hover:text-sky-400"
@@ -86,7 +86,7 @@ const toc = buildToc(headings)
                         {heading.subheadings.length > 0 && (
                           <ol class="pl-4 text-xs">
                             {heading.subheadings.map((subheading) => (
-                              <li>
+                              <li class="pl-1 leading-snug">
                                 <a
                                   href={'#' + subheading.slug}
                                   class="transition-colors duration-150 hover:text-sky-400"
