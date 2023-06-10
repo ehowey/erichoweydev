@@ -44,20 +44,20 @@ import { clsx } from 'clsx'
       <span
         class={clsx(
           'w-0.5 rounded-full bg-sky-700',
-          frontmatter.update ? 'h-10' : 'h-4'
+          frontmatter.updated ? 'h-12' : 'h-4'
         )}></span>
     </span>
-    <div class="leading-snug">
+    <div>
       <time date-time={frontmatter.date}>
         {formatDate(frontmatter.date)}
       </time>
       {
-        frontmatter.update && (
+        frontmatter.updated && (
           <>
             <br />
             Updated{' '}
-            <time date-time={frontmatter.update}>
-              {formatDate(frontmatter.update)}
+            <time date-time={frontmatter.updated}>
+              {formatDate(frontmatter.updated)}
             </time>
           </>
         )

@@ -8,10 +8,7 @@ const writingCollection = defineCollection({
     authorLink: z.string().url().default('https://twitter.com/erchwy'),
     categories: z.array(z.string()),
     date: z.any(),
-    update: z
-      .string()
-      .transform((str) => new Date(str))
-      .optional(),
+    updated: z.any().optional(),
     published: z.boolean(),
     description: z.string().max(160),
     excerpt: z.string().max(400),

@@ -18,11 +18,13 @@ import { getCollection } from 'astro:content'
 const posts = await getCollection('writing', ({ data }) => {
   return data.published === true
 }).then((result) => {
+  
   const sorted = result
     .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
     .slice(0, 3)
   return sorted
 })
+
 ---
 
 <HomeLayout
@@ -119,9 +121,12 @@ const posts = await getCollection('writing', ({ data }) => {
                   </a>
                 </h2>
                 <div class="text-base text-zinc-450">
-                  <time date-time={post.data.date}>
+                  {post.data.updated ? (<time date-time={post.data.date}></div>
                     {formatDate(post.data.date)}
-                  </time>
+                  </time>) : (<time date-time={post.data.date}></div>
+                    {formatDate(post.data.date)}
+                  </time>)}
+                 
                 </div>
               </div>
             </article>
