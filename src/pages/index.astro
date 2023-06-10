@@ -18,13 +18,35 @@ import { getCollection } from 'astro:content'
 const posts = await getCollection('writing', ({ data }) => {
   return data.published === true
 }).then((result) => {
-  
   const sorted = result
-    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+    .sort((a, b) => {
+      if (b.data.updated) {
+        if (b.data.updated.valueOf() > a.data.date.valueOf()) {
+          return 1
+        }
+        if (b.data.updated.valueOf() < a.data.date.valueOf()) {
+          return -1
+        }
+      }
+      if (a.data.updated) {
+        if (b.data.date.valueOf() > a.data.updated.valueOf()) {
+          return 1
+        }
+        if (b.data.date.valueOf() < a.data.updated.valueOf()) {
+          return -1
+        }
+      }
+      if (b.data.date.valueOf() > a.data.date.valueOf()) {
+        return 1
+      }
+      if (b.data.date.valueOf() < a.data.date.valueOf()) {
+        return -1
+      }
+      return 0
+    })
     .slice(0, 3)
   return sorted
 })
-
 ---
 
 <HomeLayout
@@ -121,12 +143,15 @@ const posts = await getCollection('writing', ({ data }) => {
                   </a>
                 </h2>
                 <div class="text-base text-zinc-450">
-                  {post.data.updated ? (<time date-time={post.data.date}></div>
-                    {formatDate(post.data.date)}
-                  </time>) : (<time date-time={post.data.date}></div>
-                    {formatDate(post.data.date)}
-                  </time>)}
-                 
+                  {post.data.updated ? (
+                    <time date-time={post.data.updated}>
+                      Updated {formatDate(post.data.updated)}
+                    </time>
+                  ) : (
+                    <time date-time={post.data.date}>
+                      {formatDate(post.data.date)}
+                    </time>
+                  )}
                 </div>
               </div>
             </article>
