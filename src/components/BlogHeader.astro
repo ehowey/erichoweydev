@@ -43,11 +43,11 @@ import { clsx } from 'clsx'
     >
       <span
         class={clsx(
-          'w-0.5 rounded-full bg-sky-700',
-          frontmatter.updated ? 'h-12' : 'h-4'
+          'w-0.5 rounded-full bg-zinc-500',
+          frontmatter.updated ? 'h-10' : 'h-4'
         )}></span>
     </span>
-    <div>
+    <div class="leading-snug">
       <time date-time={frontmatter.date}>
         {formatDate(frontmatter.date)}
       </time>
