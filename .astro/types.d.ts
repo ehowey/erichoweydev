@@ -283,6 +283,13 @@ declare module 'astro:content' {
   collection: "writing";
   data: InferEntrySchema<"writing">
 } & { render(): Render[".mdx"] };
+"how-to-automate-og-images/index.mdx": {
+	id: "how-to-automate-og-images/index.mdx";
+  slug: "how-to-automate-og-images";
+  body: string;
+  collection: "writing";
+  data: InferEntrySchema<"writing">
+} & { render(): Render[".mdx"] };
 "how-to-display-alternate-content-in-dark-mode-using-theme-ui/index.mdx": {
 	id: "how-to-display-alternate-content-in-dark-mode-using-theme-ui/index.mdx";
   slug: "how-to-display-alternate-content-in-dark-mode-using-theme-ui";

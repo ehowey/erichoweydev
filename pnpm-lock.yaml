@@ -28,18 +28,9 @@ dependencies:
   clsx:
     specifier: ^1.2.1
     version: 1.2.1
-  hast-util-to-string:
-    specifier: ^2.0.0
-    version: 2.0.0
   just-prune:
     specifier: ^2.2.0
     version: 2.2.0
-  mdast-util-to-hast:
-    specifier: ^12.3.0
-    version: 12.3.0
-  mdast-util-to-string:
-    specifier: ^3.2.0
-    version: 3.2.0
   motion:
     specifier: ^10.16.2
     version: 10.16.2
@@ -2061,12 +2052,6 @@ packages:
       space-separated-tokens: 2.0.2
       web-namespaces: 2.0.1
       zwitch: 2.0.4
-    dev: false
-
-  /hast-util-to-string@2.0.0:
-    resolution: {integrity: sha512-02AQ3vLhuH3FisaMM+i/9sm4OXGSq1UhOOCpTLLQtHdL3tZt7qil69r8M8iDkZYyC0HCFylcYoP+8IO7ddta1A==}
-    dependencies:
-      '@types/hast': 2.3.4
     dev: false
 
   /hast-util-whitespace@2.0.1:

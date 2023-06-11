@@ -1,0 +1,44 @@
+---
+title: How to automate OG Images with Netlify Edge Functions
+author: Eric Howey
+authorLink: https://twitter.com/erchwy
+categories: [Astro, Netlify]
+date: 2023-06-12
+published: false
+description: Lorem ipsum
+excerpt: Lorem ipsum
+---
+
+import BlogQuoteInfo from '../../../components/BlogQuoteInfo.astro'
+
+Automating the creation of custom [open graph (OG) images](https://ogp.me/) opens up interesting and valuable use cases from personalized conference tickets to detailed user profiles and more. Fundamentally automated OG images let you provide more detailed and personalized information to your users. And that is a good thing.
+
+Probably one of the most well known examples of this is the generated OG images for GitHub repositories. GitHub generates a social image with some basic information about the repository; stars, contributors, etc. The information is useful and it helps users make a decision about whether they want to click that link or not.
+
+![Demonstration of GitHub OG Image using the repository for this website](/images/github-twitter-og.png)
+
+<BlogQuoteInfo>
+  In this blog post I am going to focus in on doing this on Netlify Edge
+  Functions but Vercel also has a [great solution for generated OG images
+  too](https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation).
+  Likewise the example repo uses Astro however you can easily use this same
+  technique with NextJS, Gatsby, Remix, and others.
+</BlogQuoteInfo>
+
+## Getting setup
+
+I am going to assume you have an existing project you want to trial this on, if not feel free to initialize a fresh repository using whatever frontend framework you prefer.
+
+Next up you should make sure you have a current version of the [Netlify CLI](https://docs.netlify.com/cli/get-started/) by running `npm install netlify-cli -g`.
+
+Now we need to create a `/netlify/edge-functions/og-image.ts` file. This will be our edge function where all of the magic happens!
+
+Last, but not least, we need a netlify settings file in the root of our project to specify the path for the edge function. Create a `netlify.toml` file in the root of your project with the following code:
+
+```toml
+[[edge_functions]]
+function = "og-image"
+path = "/api/og-image"
+```
+
+Finally run `netlify dev` to start up your project. You may get some prompts about configuring your code editor for Edge Functions the first time you do this. Now goto `localhost:3000/api/og-image` and check it out!
