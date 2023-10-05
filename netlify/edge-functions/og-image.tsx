@@ -56,6 +56,6 @@ export default function handler(req: Request) {
     {
       width: 1200,
       height: 630,
-    }
+    },
   )
 }

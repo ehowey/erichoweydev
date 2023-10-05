@@ -153,8 +153,8 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(
         new URL(
           `/${cookieLocale}${req.nextUrl.pathname}${req.nextUrl.search}`,
-          req.url
-        )
+          req.url,
+        ),
       )
     }
 
@@ -165,49 +165,49 @@ export async function middleware(req: NextRequest) {
     // Redirect All France
     if (country === 'fr') {
       return NextResponse.redirect(
-        new URL(`/fr-fr${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
+        new URL(`/fr-fr${req.nextUrl.pathname}${req.nextUrl.search}`, req.url),
       )
     }
 
     // Redirect All Belgium
     if (country === 'be') {
       return NextResponse.redirect(
-        new URL(`/fr-be${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
+        new URL(`/fr-be${req.nextUrl.pathname}${req.nextUrl.search}`, req.url),
       )
     }
 
     // Redirect all Great Britain
     if (country === 'gb') {
       return NextResponse.redirect(
-        new URL(`/en-gb${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
+        new URL(`/en-gb${req.nextUrl.pathname}${req.nextUrl.search}`, req.url),
       )
     }
 
     // Redirect French-Canada
     if (country === 'ca' && language === 'fr') {
       return NextResponse.redirect(
-        new URL(`/fr-ca${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
+        new URL(`/fr-ca${req.nextUrl.pathname}${req.nextUrl.search}`, req.url),
       )
     }
 
     // Redirect all other Canadian requests
     if (country === 'ca') {
       return NextResponse.redirect(
-        new URL(`/en-ca${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
+        new URL(`/en-ca${req.nextUrl.pathname}${req.nextUrl.search}`, req.url),
       )
     }
 
     // Handle French language fallback
     if (language === 'fr') {
       return NextResponse.redirect(
-        new URL(`/fr${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
+        new URL(`/fr${req.nextUrl.pathname}${req.nextUrl.search}`, req.url),
       )
     }
 
     // Handle the default locale fallback to english
     if (req.nextUrl.locale === 'default') {
       return NextResponse.redirect(
-        new URL(`/en${req.nextUrl.pathname}${req.nextUrl.search}`, req.url)
+        new URL(`/en${req.nextUrl.pathname}${req.nextUrl.search}`, req.url),
       )
     }
   } catch (error) {

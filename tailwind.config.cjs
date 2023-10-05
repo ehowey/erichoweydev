@@ -31,6 +31,9 @@ module.exports = {
           450: '#79818f',
         },
       },
+      aspectRatio: {
+        '2/1': '2 / 1',
+      },
       gridTemplateColumns: {
         // Complex site-specific row configuration
         'layout-lg': '300px 720px auto',

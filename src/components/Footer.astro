@@ -1,5 +1,5 @@
 ---
-import { Image } from '@astrojs/image/components'
+import { Image } from 'astro:assets'
 import prideFlag from '../assets/pride-flag.png'
 ---
 
@@ -18,7 +18,7 @@ import prideFlag from '../assets/pride-flag.png'
       <Image src={prideFlag} alt="Progress pride flag" height={36} />
       <p class="mt-2">
         © {new Date().getFullYear()}
-        Eric Howey -{' '}
+         Eric Howey -{' '}
         <a href="mailto:eric@erichowey.dev" class="underline"
           >eric@erichowey.dev</a
         >

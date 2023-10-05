@@ -11,7 +11,7 @@ import type { MarkdownHeading } from 'astro'
 const { frontmatter, headings } = Astro.props
 const ogImageURL = new URL(
   `/api/og-image/?title=${encodeURI(frontmatter.title)}`,
-  Astro.site
+  Astro.site,
 )
 
 interface ToCItem {

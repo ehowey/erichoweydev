@@ -8,7 +8,7 @@ const posts = await getCollection('writing', ({ data }) => {
   return data.published === true
 }).then((result) => {
   const sorted = result.sort(
-    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
   )
   return sorted
 })
