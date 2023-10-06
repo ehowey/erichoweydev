@@ -1,30 +1,30 @@
 ---
-import RootHeader from "./RootHeader.astro";
+import RootHeader from './RootHeader.astro'
 ---
 
 <RootHeader isHome view="mobile" />
 
 <script>
-  import { animate, scroll } from "motion";
+  import { animate, scroll } from 'motion'
 
-  const main = document.querySelectorAll("main")[1];
+  const main = document.querySelectorAll('main')[1]
   scroll(
-    animate(".mobile-big-eh", {
-      filter: ["blur(0)", "blur(10px)"],
+    animate('.mobile-big-eh', {
+      filter: ['blur(0)', 'blur(10px)'],
       opacity: [1, 0],
     }),
     {
       target: main,
-      offset: ["30px", "180px"],
-    }
-  );
+      offset: ['30px', '180px'],
+    },
+  )
   scroll(
-    animate(".mobile-topo-bg", {
+    animate('.mobile-topo-bg', {
       opacity: [1, 0],
     }),
     {
       target: main,
-      offset: ["0px", "180px"],
-    }
-  );
+      offset: ['0px', '180px'],
+    },
+  )
 </script>

@@ -1,5 +1,13 @@
 module.exports = {
-  singleQuote: true,
   semi: false,
-  plugins: [require('prettier-plugin-tailwindcss')],
+  singleQuote: true,
+  plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
+  overrides: [
+    {
+      files: '*.astro',
+      options: {
+        parser: 'astro',
+      },
+    },
+  ],
 }

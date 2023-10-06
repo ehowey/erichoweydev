@@ -21,23 +21,21 @@ Once you have your GraphQL node setup following Chris's instructions next you wi
 import { useStaticQuery, graphql } from 'gatsby'
 
 export const useThemeOptions = () => {
-  const { themeOptions } = useStaticQuery(
-    graphql`
-      query {
-        themeOptions {
-          contentPath
-          assetPath
-          displaySiteLogo
-          displaySiteTitle
-          useHero
-          invertSiteLogo
-          mobileMenuBreakpoint
-          useColorMode
-          footerContentLocation
-        }
+  const { themeOptions } = useStaticQuery(graphql`
+    query {
+      themeOptions {
+        contentPath
+        assetPath
+        displaySiteLogo
+        displaySiteTitle
+        useHero
+        invertSiteLogo
+        mobileMenuBreakpoint
+        useColorMode
+        footerContentLocation
       }
-    `
-  )
+    }
+  `)
   return themeOptions
 }
 ```

@@ -1,6 +1,6 @@
 ---
 import HomeLayout from '../layouts/HomeLayout.astro'
-import { Picture } from '@astrojs/image/components'
+import { Image } from 'astro:assets'
 import erichowey from '../assets/eric-howey-sq.jpg'
 import dog from '../assets/dog.jpg'
 import bike from '../assets/bike-sq.jpg'
@@ -62,13 +62,13 @@ const posts = await getCollection('writing', ({ data }) => {
     <p class="mt-6 max-w-xl text-lg text-zinc-400">
       Hello and welcome! I’m Eric, a freelance web developer and mental health
       therapist based in Calgary, Alberta. I built my first website in 1998
-      (spoiler, it sucked!). But I'm happy to report that I have improved.
+      (spoiler, it sucked!). But I'm happy to report things have improved.
       Today, I build <a
         href="https://www.gatsbyjs.com/blog/gatsby-best-of-2021-agency-awards-the-winners/"
         class="font-medium text-sky-500 underline decoration-sky-500/40 transition-all hover:text-sky-400 hover:decoration-sky-500"
         >award winning</a
       >
-      websites combining my expertise in technology and healthcare!
+       websites combining my expertise in technology and healthcare!
     </p>
     <div class="mt-6 flex gap-6">
       <a
@@ -165,43 +165,35 @@ const posts = await getCollection('writing', ({ data }) => {
       class="relative z-20 col-span-full row-start-1 row-end-2 flex h-96 w-full max-w-7xl items-center justify-center gap-6 lg:justify-between lg:gap-12"
     >
       <div class="flex-shrink-0 -translate-y-6">
-        <Picture
+        <Image
           src={dog}
-          widths={[200, 400, 800]}
           sizes="(max-width: 800px) 100vw, 800px"
           alt="A husky dog on a frozen lake in the winter"
-          aspectRatio={'1:1'}
-          class="h-64 rounded-md shadow shadow-slate-700"
+          class="h-64 w-64 rounded-md shadow shadow-slate-700"
         />
       </div>
       <div class="flex-shrink-0">
-        <Picture
+        <Image
           src={erichowey}
-          widths={[200, 400, 800]}
           sizes="(max-width: 800px) 100vw, 800px"
           alt="Eric Howey"
-          aspectRatio={'1:1'}
-          class="h-64 rounded-md shadow shadow-slate-700"
+          class="h-64 w-64 rounded-md shadow shadow-slate-700"
         />
       </div>
       <div class="flex-shrink-0 translate-y-6">
-        <Picture
+        <Image
           src={kids}
-          widths={[200, 400, 800]}
           sizes="(max-width: 800px) 100vw, 800px"
           alt="A hardtail mountain bike set against the backdrop of the Rocky Mountains"
-          aspectRatio={'1:1'}
-          class="h-64 rounded-md shadow shadow-slate-700"
+          class="h-64 w-64 rounded-md shadow shadow-slate-700"
         />
       </div>
       <div class="flex-shrink-0">
-        <Picture
+        <Image
           src={bike}
-          widths={[200, 400, 800]}
           sizes="(max-width: 800px) 100vw, 800px"
           alt="A hardtail mountain bike set against the backdrop of the Rocky Mountains"
-          aspectRatio={'1:1'}
-          class="h-64 rounded-md shadow shadow-slate-700"
+          class="h-64 w-64 rounded-md shadow shadow-slate-700"
         />
       </div>
     </div>
@@ -239,11 +231,9 @@ const posts = await getCollection('writing', ({ data }) => {
           >
           </div>
           <div class="relative z-10 col-span-full row-span-full">
-            <Picture
+            <Image
               src={focus}
-              widths={[200, 400, 800]}
               sizes="(max-width: 800px) 100vw, 800px"
-              aspectRatio={'2:1'}
               alt="FOCUS is a project built with NextJS and Vercel to promote information about how COVID-19 affects youth health and wellbeing."
             />
           </div>
@@ -269,29 +259,23 @@ const posts = await getCollection('writing', ({ data }) => {
             >
           </div>
           <div class="flex items-center justify-end text-zinc-500">
-            <Picture
+            <Image
               src={vercel}
-              widths={[100]}
-              sizes="100px"
-              aspectRatio={'1:1'}
+              sizes="50px"
               alt="Netlify logo"
-              class="mr-1 h-5 opacity-30 invert"
+              class="mr-1 h-5 w-5 opacity-30 invert"
             />
-            <Picture
+            <Image
               src={next}
-              widths={[100]}
-              sizes="100px"
-              aspectRatio={'1:1'}
+              sizes="50px"
               alt="Netlify logo"
-              class="mr-1 h-5 opacity-30 invert"
+              class="mr-1 h-5 w-5 opacity-30 invert"
             />
-            <Picture
+            <Image
               src={sanity}
-              widths={[100]}
-              sizes="100px"
-              aspectRatio={'1:1'}
+              sizes="50px"
               alt="Netlify logo"
-              class="h-5 opacity-30 invert"
+              class="h-5 w-5 opacity-30 invert"
             />
           </div>
         </div>
@@ -303,11 +287,9 @@ const posts = await getCollection('writing', ({ data }) => {
           >
           </div>
           <div class="relative z-10 col-span-full row-span-full">
-            <Picture
+            <Image
               src={mmbc}
-              widths={[200, 400, 800]}
               sizes="(max-width: 800px) 100vw, 800px"
-              aspectRatio={'2:1'}
               alt="MindMapBC a project built with Sanity and Gatsby to better serve LGBTQ2S mental health"
             />
           </div>
@@ -333,29 +315,23 @@ const posts = await getCollection('writing', ({ data }) => {
             >
           </div>
           <div class="flex items-center justify-end text-zinc-500">
-            <Picture
+            <Image
               src={netlify}
-              widths={[100]}
-              sizes="100px"
-              aspectRatio={'1:1'}
+              sizes="50px"
               alt="Netlify logo"
-              class="mr-1 h-5 opacity-30 invert"
+              class="mr-1 h-5 w-5 opacity-30 invert"
             />
-            <Picture
+            <Image
               src={gatsby}
-              widths={[100]}
-              sizes="100px"
-              aspectRatio={'1:1'}
+              sizes="50px"
               alt="Netlify logo"
-              class="mr-1 h-5 opacity-30 invert"
+              class="mr-1 h-5 w-5 opacity-30 invert"
             />
-            <Picture
+            <Image
               src={sanity}
-              widths={[100]}
-              sizes="100px"
-              aspectRatio={'1:1'}
+              sizes="50px"
               alt="Netlify logo"
-              class="h-5 opacity-30 invert"
+              class="h-5 w-5 opacity-30 invert"
             />
           </div>
         </div>

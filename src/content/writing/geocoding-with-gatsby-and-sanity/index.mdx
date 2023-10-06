@@ -251,7 +251,7 @@ exports.sourceNodes = async ({
       const node = Object.assign({}, homeComplete, nodeMetadata)
       // Create the GraphQL node
       createNode(node)
-    })
+    }),
   )
 }
 ```
@@ -332,7 +332,7 @@ exports.sourceNodes = async ({
         const node = Object.assign({}, homeComplete, nodeMetadata)
         // Create the GraphQL node
         createNode(node)
-      })
+      }),
     )
   } catch (e) {
     console.error(e)
