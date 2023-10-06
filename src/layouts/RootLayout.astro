@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from 'astro:transitions'
+
 export interface Props {
   title: string
   description?: string
@@ -84,6 +86,7 @@ const socialImageURL = propImage ?? defaultImageURL
     <!-- Fathom Analytics Script -->
     <script src="https://cdn.usefathom.com/script.js" data-site="FNHMMBXM" defer
     ></script>
+    <ViewTransitions />
   </head>
   <body class="relative flex min-h-screen flex-col justify-between bg-zinc-900">
     <slot />
