@@ -1,7 +1,7 @@
-/** @type {import("prettier").Config} */
 module.exports = {
-  plugins: ['prettier-plugin-astro'],
-pluginSearchDirs: ["."],
+  semi: false,
+  singleQuote: true,
+  plugins: ['prettier-plugin-astro', 'prettier-plugin-tailwindcss'],
   overrides: [
     {
       files: '*.astro',
@@ -10,4 +10,4 @@ pluginSearchDirs: ["."],
       },
     },
   ],
-};
+}
