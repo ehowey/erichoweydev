@@ -3,42 +3,108 @@ title: How to automate OG Images with Netlify Edge Functions
 author: Eric Howey
 authorLink: https://twitter.com/erchwy
 categories: [Astro, Netlify]
-date: 2023-06-12
-published: false
+date: 2023-10-12
+published: true
 description: Lorem ipsum
 excerpt: Lorem ipsum
 ---
 
 import BlogQuoteInfo from '~/components/BlogQuoteInfo.astro'
 
-Automating the creation of custom [open graph (OG) images](https://ogp.me/) opens up interesting and valuable use cases from personalized conference tickets to shareable user profiles and more. Fundamentally automated OG images let you provide more personalized information to your users at scale. And that is a good thing.
+Automating the creation of custom [open graph (OG) images](https://ogp.me/) opens up interesting business use cases from personalized conference tickets to shareable user profiles and more. Fundamentally automated OG images unlock personalized information sharing at scale. You can manually create 10 images, maybe a couple hundred images, but if you have thousands or millions of images all needing dynamic content then this is the way to go.
 
-Probably one of the most well known examples of this is the generated OG images for GitHub repositories. GitHub generates a social image with some basic information about the repository; stars, contributors, etc. The information is useful and it helps users make a decision about whether they want to click that link or not.
+Probably one of the most well known examples of this is the generated OG images for GitHub repositories. GitHub generates a social image with some basic information about the repository; stars, contributors, etc. The information is useful and it helps users make a decision about whether they want to click that link in their social media stream or not.
 
 ![Demonstration of GitHub OG Image using the repository for this website](/images/github-twitter-og.png)
 
 <BlogQuoteInfo>
-  In this blog post I am going to focus in on doing this on Netlify Edge
+  In this blog post I am going to show how to do this using Netlify Edge
   Functions but Vercel also has a [great solution for generated OG images
   too](https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation).
-  Likewise the example repo uses Astro however you can easily use this same
-  technique with NextJS, Remix, SvelteKit and other frameworks.
 </BlogQuoteInfo>
 
 ## Getting setup
 
-I am going to assume you have an existing project you want to trial this on, if not feel free to initialize a fresh repository using whatever frontend framework you prefer.
+1. Use an existing project or initialize a fresh repository of whatever frontend framework you prefer (this demo uses Astro but it will work with NextJS, Remix, SvelteKit and others).
+2. Make sure you have a current version of the [Netlify CLI](https://docs.netlify.com/cli/get-started/) by running `npm install netlify-cli -g`.
+3. Create a blank edge function at `/netlify/edge-functions/og-image.ts` file. This will be where all of the magic happens!
+4. Create a `netlify.toml` file in the root of your project with the following code:
 
-Next up you should make sure you have a current version of the [Netlify CLI](https://docs.netlify.com/cli/get-started/) by running `npm install netlify-cli -g`.
-
-Now we need to create a `/netlify/edge-functions/og-image.ts` file. This will be our edge function where all of the magic happens!
-
-Last, but not least, we need a netlify settings file in the root of our project to specify the path for the edge function. Create a `netlify.toml` file in the root of your project with the following code:
-
-```toml
+```toml title="netlify.toml"
 [[edge_functions]]
 function = "og-image"
 path = "/api/og-image"
 ```
 
-Finally run `netlify dev` to start up your project. You may get some prompts about configuring your code editor for Edge Functions the first time you do this. Now goto `localhost:3000/api/og-image` and check it out!
+5. Run `netlify dev` to start up your project using the Netlify development server which will let us test and preview the edge function. The first time you do this you should some prompts about configuring your code editor for Edge Functions.
+
+## Making a basic image
+
+Open up your `og-image.ts` edge function and paste in the following code:
+
+```tsx title="og-image.ts"
+//@ts-nocheck: Typescript not recognizing as JSX due to edge function
+import React from 'https://esm.sh/react@18.2.0'
+import { ImageResponse } from 'https://deno.land/x/og_edge/mod.ts'
+
+export default async function handler(req: Request) {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: 128,
+          background: 'lavender',
+        }}
+      >
+        Hello world!
+      </div>
+    ),
+  )
+}
+```
+
+Now goto `localhost:4321/api/og-image` and check our the beautiful hello world! Nothing special happening here, yet.
+
+## Getting dynamic
+
+The magic of automated open graph images is that they can be generated at run time based on whatever query parameters you provide. User name, blog post title, address, product rating, price, etc. You can get as creative as you want here.
+
+We pass this information to our image generation API using [URL search params](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams). It could look a little like this: `https://www.my-site.com/api/og-image?title=Hello%20World`. The important bits are the parts that come after the `?` mark.
+
+Our edge function can then decode these search params and we can use them in our code as variables.
+
+Here is a simple example building on what we had before:
+
+```tsx title="og-image.ts" {6-7, 22}
+//@ts-nocheck: Typescript not recognizing as JSX due to edge function
+import React from 'https://esm.sh/react@18.2.0'
+import { ImageResponse } from 'https://deno.land/x/og_edge/mod.ts'
+
+export default async function handler(req: Request) {
+  const { searchParams } = new URL(req.url)
+  const title = searchParams.get('title')
+
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: 128,
+          background: 'lavender',
+        }}
+      >
+        {title}
+      </div>
+    ),
+  )
+}
+```
