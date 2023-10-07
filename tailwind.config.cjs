@@ -13,6 +13,8 @@ module.exports = {
       lg: '1024px',
       // => @media (min-width: 1024px) { ... }
 
+      toc: '1280px',
+
       xl: '1440px',
       // => @media (min-width: 1440px) { ... }
 
