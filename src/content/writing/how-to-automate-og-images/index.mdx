@@ -72,13 +72,13 @@ Now goto `localhost:4321/api/og-image` and check our the beautiful hello world! 
 
 ## Getting dynamic
 
-The magic of automated open graph images is that they can be generated at run time based on whatever query parameters you provide. User name, blog post title, address, product rating, price, etc. You can get as creative as you want here.
+The magic of automated open graph images is that they can be generated at run time based on whatever URL search parameters are provided. User name, blog post title, address, product rating, price, etc. You can get as creative as you want here because it happens at run time, not build time.
 
-We pass this information to our image generation API using [URL search params](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams). It could look a little like this: `https://www.my-site.com/api/og-image?title=Hello%20World`. The important bits are the parts that come after the `?` mark.
+This information is passed to our image generation API using [URL search params](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams). A really simple example is something like this: `https://www.my-site.com/api/og-image?title=Hello%20World`.
 
-Our edge function can then decode these search params and we can use them in our code as variables.
+The important bits to notice are everything that comes after the `?` mark where we pass the title as a search parameter to the edge function. Our edge function can then decode these search params and to use in our image as variables.
 
-Here is a simple example building on what we had before:
+Here is an example building on what we had before to include a dynamic title in the image:
 
 ```tsx title="og-image.ts" {6-7, 22}
 //@ts-nocheck: Typescript not recognizing as JSX due to edge function
@@ -108,3 +108,9 @@ export default async function handler(req: Request) {
   )
 }
 ```
+
+## Looking fancy
+
+What we so far works, but it really isn't that special or eye catching. We need some pop!
+
+Using the generated images we are limited to what we can create using CSS and SVGs and the [Satori rendering engine](https://github.com/vercel/satori). The key here is the ability to use inlined SVGs as this lets you add in quite a bit of pop while keeping within the limitations of what is possible with Satori.
