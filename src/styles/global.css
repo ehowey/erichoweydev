@@ -1,0 +1,20 @@
+[data-rehype-pretty-code-title] {
+  display: inline-flex;
+  background-color: #1c2024;
+  color: #9ecbff;
+  border-top-left-radius: 0.125rem;
+  border-top-right-radius: 0.125rem;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid rgb(228 228 231 / 0.1);
+  border-bottom: none;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+  font-size: 0.875rem;
+}
+
+[data-highlighted-line] {
+  background-color: #3f3f46;
+  border-left-color: #0ea5e9;
+  border-left-width: 2px;
+  border-left-style: solid;
+}

@@ -53,10 +53,12 @@ const toc = buildToc(headings)
     <DesktopHeader />
     <MobileHeader />
     <MobileNav />
-    <div class="mt-36 md:mt-56 lg:mt-60 lg:grid lg:grid-cols-9">
+    <div
+      class="mt-40 lg:mt-52 lg:grid lg:grid-cols-9 xl:mt-72 2xl:mt-96 3xl:mt-[450px] 4xl:mt-[600px]"
+    >
       <DesktopNav />
       <main
-        class="md:prose-lg prose relative prose-pre:mb-7 prose-pre:rounded-sm lg:col-start-3 lg:col-end-10 lg:row-start-1 lg:row-end-2"
+        class="md:prose-lg prose relative lg:col-start-3 lg:col-end-10 lg:row-start-1 lg:row-end-2"
       >
         <div class="grid grid-cols-9 gap-x-8">
           <div class="col-start-1 col-end-10 row-start-1 row-end-2">
@@ -69,7 +71,7 @@ const toc = buildToc(headings)
           </div>
           {
             toc.length > 0 && (
-              <div class="not-prose lg:cold-start-8 sticky top-[150px] col-start-7 col-end-10 row-start-2 row-end-3 mt-12 hidden self-start pr-4 md:block">
+              <div class="not-prose lg:cold-start-8 toc:block sticky top-[150px] col-start-7 col-end-10 row-start-2 row-end-3 mt-12 hidden self-start pr-4 md:block lg:hidden 2xl:col-start-6 3xl:col-start-5">
                 <h2 class="text-xl font-bold uppercase text-zinc-100">
                   Page contents
                 </h2>

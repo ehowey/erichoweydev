@@ -12,6 +12,8 @@ const writingCollection = defineCollection({
     published: z.boolean(),
     description: z.string().max(160),
     excerpt: z.string().max(400),
+    demo: z.string().url().optional(),
+    repo: z.string().url().optional(),
   }),
 })
 // 3. Export a single `collections` object to register your collection(s)

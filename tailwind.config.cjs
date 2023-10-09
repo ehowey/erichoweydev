@@ -13,6 +13,8 @@ module.exports = {
       lg: '1024px',
       // => @media (min-width: 1024px) { ... }
 
+      toc: '1280px',
+
       xl: '1440px',
       // => @media (min-width: 1440px) { ... }
 
@@ -216,7 +218,8 @@ module.exports = {
             fontSize: theme('fontSize.sm')[0],
             fontWeight: theme('fontWeight.medium'),
             backgroundColor: 'var(--tw-prose-pre-bg)',
-            borderRadius: theme('borderRadius.3xl'),
+            borderRadius: theme('borderRadius.sm'),
+            marginBottom: theme('spacing.7'),
             padding: theme('spacing.8'),
             overflowX: 'auto',
             border: '1px solid',

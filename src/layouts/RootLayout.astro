@@ -1,4 +1,6 @@
 ---
+import '~/styles/global.css'
+
 export interface Props {
   title: string
   description?: string
@@ -6,7 +8,7 @@ export interface Props {
 }
 
 const {
-  title,
+  title: propTitle,
   description: propDescription,
   ogImageURL: propImage,
 } = Astro.props
@@ -18,12 +20,15 @@ const defaultDescription =
 
 const description = propDescription ?? defaultDescription
 const socialImageURL = propImage ?? defaultImageURL
+const socialImageAlt = propImage
+  ? `Text reading ${propTitle} on a dark blue background with contour lines and erichowey.dev in the corner`
+  : 'Photo of Eric Howey alongside a blue background with the text Web Developer, Mental Health Therapist, I listen and care.'
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <title>{title} | Eric Howey</title>
+    <title>{propTitle} | Eric Howey</title>
     <meta name="description" content={description} />
     <meta name="author" content="Eric Howey" />
     <meta charset="UTF-8" />
@@ -58,26 +63,19 @@ const socialImageURL = propImage ?? defaultImageURL
     <!-- Twitter Card data -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:site" content="https://twitter.com/erchwy" />
-    <meta property="twitter:title" content={title} />
+    <meta property="twitter:title" content={propTitle} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={socialImageURL.href} />
-    <meta property="twitter:image:src" content={socialImageURL.href} />
-    <meta
-      property="twitter:image:alt"
-      content="Photo of Eric Howey alongside a blue background with the text Web Developer, Mental Health Therapist, I listen and care."
-    />
+    <meta property="twitter:image:alt" content={socialImageAlt} />
     <meta name="twitter:creator" content="@erchwy" />
 
     <!-- Open Graph data -->
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={propTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL.href} />
     <meta property="og:image" content={socialImageURL.href} />
-    <meta
-      property="og:image:alt"
-      content="Photo of Eric Howey alongside a blue background with the text Web Developer, Mental Health Therapist, I listen and care."
-    />
+    <meta property="og:image:alt" content={socialImageAlt} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Eric Howey Web Development" />

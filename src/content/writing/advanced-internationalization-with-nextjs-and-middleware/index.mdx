@@ -10,7 +10,7 @@ description: Learn how to handle advanced internationalization patterns using Ne
 excerpt: Next.js 12 introduced middleware for handling logic at the CDN level (sometimes called an edge function) before a page loads. This is very powerful and unlocks the potential for static pages to have limited server-side logic. A compelling use case is advanced internationalization and localization.
 ---
 
-import BlogQuoteIdea from '../../../components/BlogQuoteIdea.astro'
+import BlogQuoteIdea from '~/components/BlogQuoteIdea.astro'
 
 [Next.js 12](https://nextjs.org/blog/next-12) introduced [middleware](https://nextjs.org/docs/middleware) for handling logic at the CDN level (sometimes called an edge function) before a page loads. This is incredibly powerful and unlocks the potential for static pages to have limited server-side logic. There are [lots of examples](https://github.com/vercel/examples/tree/main/edge-functions) of this but one compelling use case I recently used it for is advanced internationalization and content localization.
 
@@ -65,7 +65,7 @@ Whew! See it starts to get a bit tricky as you think through the various edge ca
 
 Next.js has an `i18n` config option which can be set in the `next.config.js` file. The two things to note here is that we set a locale of `default` which we also specify as the `defaultLocale` and that we set `localeDetection: false`. We turn off Next.js locale detection because we are going to handle that ourselves in the middleware.
 
-```js
+```js title="next-config.js"
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
@@ -102,8 +102,7 @@ Now we get into the fun bits! Here is what that user experience we described abo
   file in the right location and with the right name!
 </BlogQuoteIdea>
 
-```ts
-// middleware.ts
+```ts title="middleware.ts"
 import { NextRequest, NextResponse } from 'next/server'
 
 // Regex to check whether something has an extension, e.g. .jpg
@@ -220,7 +219,7 @@ export async function middleware(req: NextRequest) {
 
 Next up we need a language selector so the user can change their language. In the project demo I am using [Radix-UI](https://www.radix-ui.com/) and [react-cookie-consent](https://github.com/Mastermindzh/react-cookie-consent) to help abstract some accessibility concerns and actually setting the cookie consent, but you don't need to use these packages.
 
-```js
+```js title="LanguageSelect.tsx"
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 // RadixUI is used here but isn't necessary
