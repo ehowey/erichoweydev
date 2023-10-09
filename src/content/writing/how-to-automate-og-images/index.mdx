@@ -3,34 +3,38 @@ title: How to automate OG Images with Netlify Edge Functions
 author: Eric Howey
 authorLink: https://twitter.com/erchwy
 categories: [Astro, Netlify]
-date: 2023-10-12
+date: 2023-10-9
 published: true
 description: Learn how to create automated open graph images for your website! Take SEO and content customization to the next level without the work of bespoke images.
-excerpt: Automating the creation of custom open graph images opens up interesting business use cases from personalized conference tickets to shareable user profiles and more. Fundamentally automated OG images unlock personalized information sharing at scale.
+excerpt: Automating the creation of custom open graph images opens up interesting business use cases from personalized conference tickets to shareable user profiles and more. undamentally automated OG images unlock personalized information sharing at scale and make it easier to have great SEO.
 demo: https://og-images-demo.netlify.app
 repo: https://github.com/ehowey/og-images-demo
 ---
 
 import BlogQuoteInfo from '~/components/BlogQuoteInfo.astro'
 
-Automating the creation of custom [open graph (OG) images](https://ogp.me/) opens up interesting business use cases from personalized conference tickets to shareable user profiles and more. Fundamentally automated OG images unlock personalized information sharing at scale. You can manually create 10 images, maybe a couple hundred images, but if you have thousands or millions of images all needing dynamic content then this is the way to go.
+Automating the creation of custom [open graph (OG) images](https://ogp.me/) opens up interesting business use cases from personalized conference tickets to shareable user profiles to easy blog post images. Fundamentally automated OG images unlock personalized information sharing at scale and make it easier to have great SEO. You can manually create 10 images, maybe a couple hundred images, but if you have thousands or millions of images then this is the way to go.
 
-Probably one of the most well known examples of this is the generated OG images for GitHub repositories. GitHub generates a social image with some basic information about the repository; stars, contributors, etc. The information is useful and it helps users make a decision about whether they want to click that link in their social media stream or not.
+[Project Demo](https://og-images-demo.netlify.app)
+
+[GitHub Repo](https://github.com/ehowey/og-images-demo)
+
+Probably one of the most well known examples of this is the generated OG images for GitHub repositories. GitHub generates an open graph social media image with some basic information about the repository: stars, contributors, forks, etc. The information is meaningful and helps users make a decision about whether they want to click on a link or not.
 
 ![Demonstration of GitHub OG Image using the repository for this website](/images/github-twitter-og.png)
 
+## Getting setup
+
 <BlogQuoteInfo>
-  In this blog post I am going to show how to do this using Netlify Edge
-  Functions but Vercel also has a [great solution for generated OG images
+  In this blog post I am going to show how to do this using Netlify edge
+  functions but Vercel also has a [great solution for generated OG images
   too](https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation).
 </BlogQuoteInfo>
-
-## Getting setup
 
 1. Use an existing project or initialize a fresh repository of whatever frontend framework you prefer (this demo uses Astro but it will work with NextJS, Remix, SvelteKit and others).
 2. Make sure you have a current version of the [Netlify CLI](https://docs.netlify.com/cli/get-started/) by running `npm install netlify-cli -g`.
 3. Create a blank edge function at `/netlify/edge-functions/og-image.ts` file. This will be where all of the magic happens!
-4. Create a `netlify.toml` file in the root of your project with the following code:
+4. Create a `netlify.toml` file in the root of your project with the following code. The path is where your edge function will be publicly available.
 
 ```toml title="netlify.toml"
 [[edge_functions]]
@@ -38,9 +42,11 @@ function = "og-image"
 path = "/api/og-image"
 ```
 
-5. Run `netlify dev` to start up your project using the Netlify development server which will let us test and preview the edge function. The first time you do this you should some prompts about configuring your code editor for Edge Functions.
+5. Run `netlify dev` to start up your project using the Netlify development server which will let us test and preview the edge function. The first time you do this you should see some prompts about configuring your code editor for edge functions.
 
 ## Making a basic image
+
+Under the hood we are using [og-edge](https://github.com/ascorbic/og-edge) which is a Deno port of Vercel's open graph image generator created by [Matt Kane](https://twitter.com/ascorbic).
 
 Open up your `og-image.ts` edge function and paste in the following code:
 
@@ -78,7 +84,7 @@ The magic of automated open graph images is that they can be generated at run ti
 
 This information is passed to our image generation API using [URL search params](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams). A really simple example is something like this: `https://www.my-site.com/api/og-image?title=Hello%20World`.
 
-The important bits to notice are everything that comes after the `?` mark where we pass the title as a search parameter to the edge function. Our edge function can then decode these search params and to use in our image as variables.
+The important bits to notice are everything that comes after the `?` mark where we pass the title as a search parameter to the edge function. Our edge function can then decode these search params and use them in our image as variables.
 
 Here is an example building on what we had before to include a dynamic title in the image:
 
@@ -216,6 +222,6 @@ This can get a bit more complicated as you have alt tags to think about for the 
 
 ## Deploy, deploy, deploy
 
-If you have been following along you should be able to deploy your project and view your new edge function via the raw URL which will be `https://www.mysite.com/api/og-image`.
+If you have been following along you should be able to deploy your project and view your new edge function via the raw URL which will be `https://www.mysite.com/api/og-image`. Don't forget to do some testing to make sure it is generating images and setting all the proper meta tags!
 
-What you do next is up to you! Happy coding!
+What you do next is up to you! Have fun and happy coding!
