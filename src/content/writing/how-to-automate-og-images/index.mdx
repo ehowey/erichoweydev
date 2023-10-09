@@ -7,6 +7,8 @@ date: 2023-10-12
 published: true
 description: Lorem ipsum
 excerpt: Lorem ipsum
+demo: https://twitter.com/erchwy
+repo: https://twitter.com/erchwy
 ---
 
 import BlogQuoteInfo from '~/components/BlogQuoteInfo.astro'
@@ -43,7 +45,7 @@ path = "/api/og-image"
 Open up your `og-image.ts` edge function and paste in the following code:
 
 ```tsx title="og-image.ts"
-//@ts-nocheck: Typescript not recognizing as JSX due to edge function
+/** @jsxImportSource https://esm.sh/react */
 import React from 'https://esm.sh/react@18.2.0'
 import { ImageResponse } from 'https://deno.land/x/og_edge/mod.ts'
 
@@ -81,7 +83,7 @@ The important bits to notice are everything that comes after the `?` mark where 
 Here is an example building on what we had before to include a dynamic title in the image:
 
 ```tsx title="og-image.ts" {6-7, 22}
-//@ts-nocheck: Typescript not recognizing as JSX due to edge function
+/** @jsxImportSource https://esm.sh/react */
 import React from 'https://esm.sh/react@18.2.0'
 import { ImageResponse } from 'https://deno.land/x/og_edge/mod.ts'
 
@@ -109,8 +111,13 @@ export default async function handler(req: Request) {
 }
 ```
 
-## Looking fancy
+## Rendering engine
 
-What we so far works, but it really isn't that special or eye catching. We need some pop!
+The HTML and CSS are rendered to an image using the [Satori rendering engine](https://github.com/vercel/satori). Satori gives you a limited subset of CSS and HTML to work with focusing on properties that affect visual appearance like color, borders, shadows, etc. The big win is that Satori lets you customize fonts, inserts SVGs, and even basic images.
 
-Using the generated images we are limited to what we can create using CSS and SVGs and the [Satori rendering engine](https://github.com/vercel/satori). The key here is the ability to use inlined SVGs as this lets you add in quite a bit of pop while keeping within the limitations of what is possible with Satori.
+The key here is that you need to work within the limitations of what is possible both with the rendering engine and also edge functions. At the time of writing CPU execution time is limited to 50ms for an edge function. Inlined SVGs give you a lot of creative freedom to keep the response times fast on the edge function while still adding visual pop.
+
+<BlogQuoteInfo>
+  Satori uses _only_ flexbox for layout, meaning you can't use CSS grid at this
+  time for managing element position.
+</BlogQuoteInfo>
