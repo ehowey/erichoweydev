@@ -1,5 +1,5 @@
 ---
-import RootLayout from '~/components/layouts/RootLayout.astro'
+import BaseLayout from '~/components/layouts/BaseLayout.astro'
 import DesktopHeader from '~/components/header/DesktopHeader.astro'
 import MobileHeader from '~/components/header/MobileHeader.astro'
 import DesktopNav from '~/components/DesktopNav.astro'
@@ -13,7 +13,7 @@ export interface Props {
 const { title, description } = Astro.props
 ---
 
-<RootLayout title={title} description={description}>
+<BaseLayout title={title} description={description}>
   <div>
     <DesktopHeader />
     <MobileHeader />
@@ -30,4 +30,4 @@ const { title, description } = Astro.props
     </div>
   </div>
   <Footer />
-</RootLayout>
+</BaseLayout>

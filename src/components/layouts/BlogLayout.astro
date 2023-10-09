@@ -1,5 +1,5 @@
 ---
-import RootLayout from '~/components/layouts/RootLayout.astro'
+import BaseLayout from '~/components/layouts/BaseLayout.astro'
 import DesktopHeader from '~/components/header/DesktopHeader.astro'
 import MobileHeader from '~/components/header/MobileHeader.astro'
 import DesktopNav from '~/components/DesktopNav.astro'
@@ -44,7 +44,7 @@ function buildToc(headings: MarkdownHeading[]) {
 const toc = buildToc(headings)
 ---
 
-<RootLayout
+<BaseLayout
   title={frontmatter.title}
   description={frontmatter.description}
   ogImageURL={ogImageURL}
@@ -111,4 +111,4 @@ const toc = buildToc(headings)
     </div>
   </div>
   <Footer />
-</RootLayout>
+</BaseLayout>
