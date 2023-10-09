@@ -339,6 +339,13 @@ declare module 'astro:content' {
   collection: "writing";
   data: InferEntrySchema<"writing">
 } & { render(): Render[".mdx"] };
+"test-post/index.mdx": {
+	id: "test-post/index.mdx";
+  slug: "test-post";
+  body: string;
+  collection: "writing";
+  data: InferEntrySchema<"writing">
+} & { render(): Render[".mdx"] };
 "understanding-latent-component-shadowing-in-gatsby-themes/index.mdx": {
 	id: "understanding-latent-component-shadowing-in-gatsby-themes/index.mdx";
   slug: "understanding-latent-component-shadowing-in-gatsby-themes";

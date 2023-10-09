@@ -16,6 +16,9 @@ import { formatDate } from '../lib/utils'
 import { getCollection } from 'astro:content'
 
 const posts = await getCollection('writing', ({ data }) => {
+  if (import.meta.env.DEV) {
+    return data
+  }
   return data.published === true
 }).then((result) => {
   const sorted = result
