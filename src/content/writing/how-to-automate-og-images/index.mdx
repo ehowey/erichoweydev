@@ -7,8 +7,8 @@ date: 2023-10-12
 published: true
 description: Lorem ipsum
 excerpt: Lorem ipsum
-demo: https://twitter.com/erchwy
-repo: https://twitter.com/erchwy
+demo: https://og-images-demo.netlify.app
+repo: https://github.com/ehowey/og-images-demo
 ---
 
 import BlogQuoteInfo from '~/components/BlogQuoteInfo.astro'
@@ -44,7 +44,7 @@ path = "/api/og-image"
 
 Open up your `og-image.ts` edge function and paste in the following code:
 
-```tsx title="og-image.ts"
+```tsx title="/netlify/edge-functions/og-image.ts"
 /** @jsxImportSource https://esm.sh/react */
 import React from 'https://esm.sh/react@18.2.0'
 import { ImageResponse } from 'https://deno.land/x/og_edge/mod.ts'
@@ -82,7 +82,7 @@ The important bits to notice are everything that comes after the `?` mark where 
 
 Here is an example building on what we had before to include a dynamic title in the image:
 
-```tsx title="og-image.ts" {6-7, 22}
+```tsx title="/netlify/edge-functions/og-image.ts" {6-7, 22}
 /** @jsxImportSource https://esm.sh/react */
 import React from 'https://esm.sh/react@18.2.0'
 import { ImageResponse } from 'https://deno.land/x/og_edge/mod.ts'
@@ -118,6 +118,104 @@ The HTML and CSS are rendered to an image using the [Satori rendering engine](ht
 The key here is that you need to work within the limitations of what is possible both with the rendering engine and also edge functions. At the time of writing CPU execution time is limited to 50ms for an edge function. Inlined SVGs give you a lot of creative freedom to keep the response times fast on the edge function while still adding visual pop.
 
 <BlogQuoteInfo>
-  Satori uses _only_ flexbox for layout, meaning you can't use CSS grid at this
-  time for managing element position.
+  Satori uses only flexbox for layout, meaning you can't use CSS grid at this
+  time for element position.
 </BlogQuoteInfo>
+
+Let's add a simple rocket ship SVG into our example:
+
+```tsx title="/netlify/edge-functions/og-image.ts" {35-49}
+/** @jsxImportSource https://esm.sh/react */
+import React from 'https://esm.sh/react@18.2.0'
+import { ImageResponse } from 'https://deno.land/x/og_edge/mod.ts'
+
+export default async function handler(req: Request) {
+  const { searchParams } = new URL(req.url)
+  const title = searchParams.get('title')
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: 64,
+          background: 'lavender',
+          border: '20px solid indigo',
+          padding: '0 200px',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '72px',
+            height: '72px',
+            backgroundColor: 'indigo',
+            borderRadius: '9999em',
+            marginRight: '24px',
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="#ffffff"
+            width="48px"
+            height="48px"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"
+            />
+          </svg>
+        </div>
+        {title}
+      </div>
+    ),
+  )
+}
+```
+
+## Setting your open graph meta tags
+
+Now that you have your open graph images automated you need to dynamically set your open graph meta tags. There are lots of ways you could accomplish this but probably the happiest path is using a layout component which accepts a prop for the image URL.
+
+If you are using Astro you could do something like this:
+
+```tsx title="Page.tsx"
+---
+// ...rest of frontmatter
+const ogImageURL = new URL(
+  `/api/og-image/?title=${encodeURI(frontmatter.title)}`,
+  Astro.site,
+)
+---
+<Layout ogImageURL={ogImageURL}>
+{/* ...your content*/}
+</Layout>
+```
+
+Then inside of your layout component you use that prop to set all the appropriate meta tags inside the head.
+
+```tsx title="Layout.tsx"
+<head>
+  <meta property="og:image" content={socialImageURL.href} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  {/* ...rest of the head*/}
+</head>
+```
+
+This can get a bit more complicated as you have alt tags to think about for the image, fallback images if the prop isn't present, and framework specific ways of managing SEO. If you feel like browsing through some raw code you can read through how I am doing this on my own site here: [https://github.com/ehowey/erichoweydev](https://github.com/ehowey/erichoweydev).
+
+## Deploy, deploy, deploy
+
+If you have been following along you should be able to deploy your project and view your new edge function via the raw URL which will be `https://www.mysite.com/api/og-image`.
+
+What you do next is up to you! Happy coding!
