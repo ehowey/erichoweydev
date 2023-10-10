@@ -1,9 +1,9 @@
 ---
-import DesktopNav from '~/components/DesktopNav.astro'
 import MobileNav from '~/components/MobileNav.astro'
-import PlaceholderHeader from '../header/PlaceholderHeader.astro'
 import PlaceholderSidebar from '../header/PlaceholderSidebar.astro'
-import Footer from '~/components/Footer.astro'
+import Header from '~/components/layout/Header.astro'
+import Footer from '~/components/layout/Footer.astro'
+
 import '~/styles/global.css'
 import { clsx } from 'clsx'
 
@@ -95,7 +95,7 @@ const socialImageAlt = propImage
     <MobileNav />
     <div class="grid-cols-layout-base grid-rows-layout-base grid min-h-screen">
       <div class="col-span-full row-start-1 row-end-2">
-        <PlaceholderHeader />
+        <Header isHome={isHome} />
       </div>
       <div class="col-start-1 col-end-2 row-start-2 row-end-3">
         <PlaceholderSidebar />
