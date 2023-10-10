@@ -1,11 +1,12 @@
 ---
 import { Image } from 'astro:assets'
-import PageLayout from '~/components/layouts/PageLayout.astro'
+import PageLayout from '~/components/old/PageLayout.astro'
 import PageHeader from '~/components/PageHeader.astro'
 import me from '../assets/me-wide.jpg'
+import BaseLayout from '~/components/layout/BaseLayout.astro'
 ---
 
-<PageLayout
+<BaseLayout
   title="About"
   description="Heyo! My name is Eric Howey and among other things I am a web developer and mental health therapist. I enjoy mountain biking, skiing, and being outside."
 >
@@ -45,4 +46,4 @@ import me from '../assets/me-wide.jpg'
     </p>
     <p>And, yes those are little kid hands you spy in the picture above too!</p>
   </div>
-</PageLayout>
+</BaseLayout>

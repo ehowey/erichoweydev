@@ -1,6 +1,8 @@
 ---
-import { getCollection } from 'astro:content'
-import BlogLayout from '../../layouts/BlogLayout.astro'
+import { getCollection, type CollectionEntry } from 'astro:content'
+import BlogHeader from '~/components/BlogHeader.astro'
+import PlaceholderSidebar from '~/components/header/PlaceholderSidebar.astro'
+import BaseLayout from '~/components/layout/BaseLayout.astro'
 
 export async function getStaticPaths() {
   const blogEntries = await (
@@ -19,10 +21,22 @@ export async function getStaticPaths() {
   }))
 }
 
+interface Props {
+  entry: CollectionEntry<'writing'>
+}
+
 const { entry } = Astro.props
+const frontmatter = entry.data
 const { Content, headings } = await entry.render()
+console.log(Astro.props)
 ---
 
-<BlogLayout frontmatter={entry.data} headings={headings}>
-  <Content />
-</BlogLayout>
+<BaseLayout title={'Test'}>
+  <div slot="main" class="prose px-4">
+    <BlogHeader frontmatter={frontmatter} />
+    <Content />
+  </div>
+  <div slot="aside">
+    <PlaceholderSidebar />
+  </div>
+</BaseLayout>

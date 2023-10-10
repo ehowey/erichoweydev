@@ -1,5 +1,5 @@
 ---
-import HomeLayout from '~/components/layouts/HomeLayout.astro'
+import HomeLayout from '~/components/old/HomeLayout.astro'
 import { Image } from 'astro:assets'
 import erichowey from '~/assets/eric-howey-sq.jpg'
 import dog from '~/assets/dog.jpg'
@@ -14,6 +14,7 @@ import next from '~/assets/nextjs-monogram.png'
 import sanity from '~/assets/sanity-monogram.png'
 import { formatDate } from '~/lib/utils'
 import { getCollection } from 'astro:content'
+import BaseLayout from '~/components/layout/BaseLayout.astro'
 
 const posts = await getCollection('writing', ({ data }) => {
   if (import.meta.env.DEV) {
@@ -52,7 +53,8 @@ const posts = await getCollection('writing', ({ data }) => {
 })
 ---
 
-<HomeLayout
+<BaseLayout
+  isHome
   title="Hello and Welcome"
   description="I’m Eric, a web developer and mental health therapist who works at the confluence of care, creativity and code. Based in Calgary, Alberta."
 >
@@ -380,7 +382,7 @@ const posts = await getCollection('writing', ({ data }) => {
       <a href="https://twitter.com/erchwy">@erchwy</a>
     </p>
   </section>
-</HomeLayout>
+</BaseLayout>
 
 <style>
   .clip-trapezoid {

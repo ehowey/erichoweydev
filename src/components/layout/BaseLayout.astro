@@ -1,16 +1,24 @@
 ---
+import DesktopNav from '~/components/DesktopNav.astro'
+import MobileNav from '~/components/MobileNav.astro'
+import PlaceholderHeader from '../header/PlaceholderHeader.astro'
+import PlaceholderSidebar from '../header/PlaceholderSidebar.astro'
+import Footer from '~/components/Footer.astro'
 import '~/styles/global.css'
+import { clsx } from 'clsx'
 
 export interface Props {
   title: string
   description?: string
   ogImageURL?: URL
+  isHome?: boolean
 }
 
 const {
   title: propTitle,
   description: propDescription,
   ogImageURL: propImage,
+  isHome,
 } = Astro.props
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
@@ -83,7 +91,34 @@ const socialImageAlt = propImage
     <script src="https://cdn.usefathom.com/script.js" data-site="FNHMMBXM" defer
     ></script>
   </head>
-  <body class="relative flex min-h-screen flex-col justify-between bg-zinc-900">
-    <slot />
+  <body class="relative bg-zinc-900">
+    <MobileNav />
+    <div class="grid-cols-layout-base grid-rows-layout-base grid min-h-screen">
+      <div class="col-span-full row-start-1 row-end-2">
+        <PlaceholderHeader />
+      </div>
+      <div class="col-start-1 col-end-2 row-start-2 row-end-3">
+        <PlaceholderSidebar />
+      </div>
+      <main
+        class={clsx(
+          'col-start-2 row-start-2 row-end-3',
+          isHome ? 'col-end-4' : 'col-end-3',
+        )}
+      >
+        <slot name="main" />
+      </main>
+      <div
+        class={clsx(
+          'col-start-3 col-end-4 row-start-2 row-end-3',
+          isHome && 'hidden',
+        )}
+      >
+        <slot name="aside" />
+      </div>
+      <div class="col-span-full row-start-3 row-end-4">
+        <Footer />
+      </div>
+    </div>
   </body>
 </html>
