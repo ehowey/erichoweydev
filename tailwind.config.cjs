@@ -39,6 +39,8 @@ module.exports = {
       gridTemplateColumns: {
         // Complex site-specific row configuration
         'layout-base': 'minmax(0, 1fr) 720px minmax(0, 1fr)',
+        'header-base': 'auto 30px minmax(0, 1fr)',
+
         // 'layout-lg': '300px 720px auto',
         // 'header-base': 'auto 20px minmax(0, 1fr)',
         // 'header-md': 'auto 20px minmax(0, 1fr)',

@@ -10,40 +10,45 @@ import BaseLayout from '~/components/layout/BaseLayout.astro'
   title="About"
   description="Heyo! My name is Eric Howey and among other things I am a web developer and mental health therapist. I enjoy mountain biking, skiing, and being outside."
 >
-  <PageHeader>About</PageHeader>
-  <div class="prose max-w-2xl px-4">
-    <p>
-      Heyo! My name is Eric Howey (he/him) and among other things I am a web
-      developer and mental health therapist. I enjoy mountain biking, skiing,
-      and being outside. I've seen a polar bear in real life and dropped off a
-      30 foot waterfall in a kayak (on purpose). I've also been told that I have
-      bad hair and a cute dog.
-    </p>
-  </div>
-  <div class="max-w-3xl">
-    <Image
-      src={me}
-      sizes="(max-width: 800px) 100vw, 800px"
-      alt="Eric Howey"
-      class="aspect-2/1 shadow shadow-slate-700 md:rounded-md"
-    />
-  </div>
-  <div class="prose max-w-2xl px-4">
-    <p>
-      But you aren't here for old-time adventure stories. You're here for
-      websites.
-    </p>
-    <p>
-      I have been building websites in one form or another since before I could
-      grow facial hair. I enjoy the juxtaposition between creating websites and
-      my job as a mental health therapist. Fixing a line of code is reassuringly
-      certain when contrasted with the ambiguity of human experience.
-    </p>
-    <p>
-      I derive a lot of joy from problem solving and learning as I design and
-      code. Seeing something I have made live on the internet still gives me a
-      little rush!
-    </p>
-    <p>And, yes those are little kid hands you spy in the picture above too!</p>
+  <div slot="main">
+    <PageHeader>About</PageHeader>
+    <div class="prose max-w-2xl px-4">
+      <p>
+        Heyo! My name is Eric Howey (he/him) and among other things I am a web
+        developer and mental health therapist. I enjoy mountain biking, skiing,
+        and being outside. I've seen a polar bear in real life and dropped off a
+        30 foot waterfall in a kayak (on purpose). I've also been told that I
+        have bad hair and a cute dog.
+      </p>
+    </div>
+    <div class="max-w-3xl">
+      <Image
+        src={me}
+        sizes="(max-width: 800px) 100vw, 800px"
+        alt="Eric Howey"
+        class="aspect-2/1 shadow shadow-slate-700 md:rounded-md"
+      />
+    </div>
+    <div class="prose max-w-2xl px-4">
+      <p>
+        But you aren't here for old-time adventure stories. You're here for
+        websites.
+      </p>
+      <p>
+        I have been building websites in one form or another since before I
+        could grow facial hair. I enjoy the juxtaposition between creating
+        websites and my job as a mental health therapist. Fixing a line of code
+        is reassuringly certain when contrasted with the ambiguity of human
+        experience.
+      </p>
+      <p>
+        I derive a lot of joy from problem solving and learning as I design and
+        code. Seeing something I have made live on the internet still gives me a
+        little rush!
+      </p>
+      <p>
+        And, yes those are little kid hands you spy in the picture above too!
+      </p>
+    </div>
   </div>
 </BaseLayout>

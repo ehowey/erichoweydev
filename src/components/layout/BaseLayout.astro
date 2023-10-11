@@ -1,7 +1,8 @@
 ---
 import MobileNav from '~/components/MobileNav.astro'
 import PlaceholderSidebar from '../header/PlaceholderSidebar.astro'
-import Header from '~/components/layout/Header.astro'
+import HeaderDesktop from '~/components/layout/HeaderDesktop.astro'
+import HeaderMobile from './HeaderMobile.astro'
 import Footer from '~/components/layout/Footer.astro'
 
 import '~/styles/global.css'
@@ -95,7 +96,8 @@ const socialImageAlt = propImage
     <MobileNav />
     <div class="grid-cols-layout-base grid-rows-layout-base grid min-h-screen">
       <div class="col-span-full row-start-1 row-end-2">
-        <Header isHome={isHome} />
+        <HeaderDesktop isHome={isHome} />
+        <HeaderMobile isHome={isHome} />
       </div>
       <div class="col-start-1 col-end-2 row-start-2 row-end-3">
         <PlaceholderSidebar />
