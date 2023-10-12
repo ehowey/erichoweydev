@@ -1,7 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content'
 import BlogHeader from '~/components/BlogHeader.astro'
-import PlaceholderSidebar from '~/components/header/PlaceholderSidebar.astro'
 import BaseLayout from '~/components/layout/BaseLayout.astro'
 
 export async function getStaticPaths() {
@@ -28,15 +27,12 @@ interface Props {
 const { entry } = Astro.props
 const frontmatter = entry.data
 const { Content, headings } = await entry.render()
-console.log(Astro.props)
 ---
 
-<BaseLayout title={'Test'}>
+<BaseLayout title={frontmatter.title}>
   <div slot="main" class="prose px-4">
     <BlogHeader frontmatter={frontmatter} />
     <Content />
   </div>
-  <div slot="aside">
-    <PlaceholderSidebar />
-  </div>
+  <div slot="aside"></div>
 </BaseLayout>

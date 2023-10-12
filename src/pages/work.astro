@@ -1,78 +1,81 @@
 ---
-import PageLayout from '~/components/old/PageLayout.astro'
 import PageHeader from '~/components/PageHeader.astro'
+import BaseLayout from '~/components/layout/BaseLayout.astro'
 ---
 
-<PageLayout
+<BaseLayout
   title="Work"
   description="I'm an experienced freelance web developer based in Calgary, Alberta. I specialize in complex web projects and enjoy taking the time to get things done right."
 >
-  <PageHeader>Work</PageHeader>
-  <div class="prose max-w-2xl px-4">
-    <p>
-      Like many good things in life, my work begins with human connection and
-      relationship. I’m a web developer and mental health therapist after all.
-    </p>
-    <p>
-      I enjoy taking the time to get things right and am a big believer that
-      slow is smooth and smooth is fast. I typically just work on a few
-      contracts per year.
-    </p>
-    <p>
-      Each project I work on goes through a full design and development cycle
-      all the way from setting initial business goals to launching a finished
-      website live on the internet. Along the way I meet regularly with clients
-      and also provide full access to a live staging website to monitor
-      progress.
-    </p>
-    <p>
-      I also do some contract frontend development work for larger companies
-      working as part of an existing engineering team. I have experience with
-      marketing, writing, internationalization, brand development, and data
-      visualization. From a technical perspective I am most comfortable in
-      React-based codebases and have solid HTML and CSS fundamentals.
-    </p>
-    <p>
-      I have a Master of Social Work (MSW) degree from the University of
-      Victoria and am a Registered Social Worker in the province of Alberta.
-    </p>
-    <h2>Selected work</h2>
-    <ul>
-      <li>
-        <a href="https://www.sanity.io/">Sanity</a>&nbsp;&mdash;&nbsp;Marketing
-        and technical writing working on SEO improvements.
-      </li>
-      <li>
-        <a href="https://www.focus-study.me/">FOCUS Covid-19 Study</a
-        >&nbsp;&mdash;&nbsp;All design and development work including
-        internationalization and branding. Worked with an interdisciplinary team
-        of academics and researchers from UBC and INSERM to create a youthful
-        web presence for their Covid research study. Built using NextJS and
-        Sanity.
-      </li>
-      <li>
-        <a href="https://www.bcammhe.ca/"
-          >BC Alliance for Monitoring Mental Health Equity</a
-        >&nbsp;&mdash;&nbsp;All design and development work including branding.
-        Collaborated with a team of professors and policy makers to raise public
-        awareness of inequity in the delivery of mental healthcare. Won a design
-        and development <a
-          href="https://www.gatsbyjs.com/blog/gatsby-best-of-2021-agency-awards-the-winners/"
-          >award in 2021</a
-        > for best non-profit website. Built using Gatsby and Sanity.
-      </li>
-      <li>
-        <a href="https://www.helpscout.com/">HelpScout</a
-        >&nbsp;&mdash;&nbsp;Frontend developer working to implement new designs
-        and feature requests.
-      </li>
-      <li>
-        <a href="https://www.mindmapbc.ca/">MindMapBC</a>&nbsp;&mdash;&nbsp;All
-        development work and partnered with a graphics artist on illustration
-        and designs. MindMapBC provides a searchable geograhic database of
-        mental health resources focused on LGBTQ2S-affirming care. Built using
-        Gatsby and Sanity.
-      </li>
-    </ul>
+  <div slot="main">
+    <PageHeader>Work</PageHeader>
+    <div class="prose max-w-2xl px-4">
+      <p>
+        Like many good things in life, my work begins with human connection and
+        relationship. I’m a web developer and mental health therapist after all.
+      </p>
+      <p>
+        I enjoy taking the time to get things right and am a big believer that
+        slow is smooth and smooth is fast. I typically just work on a few
+        contracts per year.
+      </p>
+      <p>
+        Each project I work on goes through a full design and development cycle
+        all the way from setting initial business goals to launching a finished
+        website live on the internet. Along the way I meet regularly with
+        clients and also provide full access to a live staging website to
+        monitor progress.
+      </p>
+      <p>
+        I also do some contract frontend development work for larger companies
+        working as part of an existing engineering team. I have experience with
+        marketing, writing, internationalization, brand development, and data
+        visualization. From a technical perspective I am most comfortable in
+        React-based codebases and have solid HTML and CSS fundamentals.
+      </p>
+      <p>
+        I have a Master of Social Work (MSW) degree from the University of
+        Victoria and am a Registered Social Worker in the province of Alberta.
+      </p>
+      <h2>Selected work</h2>
+      <ul>
+        <li>
+          <a href="https://www.sanity.io/">Sanity</a
+          >&nbsp;&mdash;&nbsp;Marketing and technical writing working on SEO
+          improvements.
+        </li>
+        <li>
+          <a href="https://www.focus-study.me/">FOCUS Covid-19 Study</a
+          >&nbsp;&mdash;&nbsp;All design and development work including
+          internationalization and branding. Worked with an interdisciplinary
+          team of academics and researchers from UBC and INSERM to create a
+          youthful web presence for their Covid research study. Built using
+          NextJS and Sanity.
+        </li>
+        <li>
+          <a href="https://www.bcammhe.ca/"
+            >BC Alliance for Monitoring Mental Health Equity</a
+          >&nbsp;&mdash;&nbsp;All design and development work including
+          branding. Collaborated with a team of professors and policy makers to
+          raise public awareness of inequity in the delivery of mental
+          healthcare. Won a design and development <a
+            href="https://www.gatsbyjs.com/blog/gatsby-best-of-2021-agency-awards-the-winners/"
+            >award in 2021</a
+          > for best non-profit website. Built using Gatsby and Sanity.
+        </li>
+        <li>
+          <a href="https://www.helpscout.com/">HelpScout</a
+          >&nbsp;&mdash;&nbsp;Frontend developer working to implement new
+          designs and feature requests.
+        </li>
+        <li>
+          <a href="https://www.mindmapbc.ca/">MindMapBC</a
+          >&nbsp;&mdash;&nbsp;All development work and partnered with a graphics
+          artist on illustration and designs. MindMapBC provides a searchable
+          geograhic database of mental health resources focused on
+          LGBTQ2S-affirming care. Built using Gatsby and Sanity.
+        </li>
+      </ul>
+    </div>
   </div>
-</PageLayout>
+</BaseLayout>

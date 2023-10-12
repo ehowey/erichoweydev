@@ -38,7 +38,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         // Complex site-specific row configuration
-        'layout-base-mobile': 'minmax(0, 720px)',
+        'layout-base-mobile': 'minmax(0, 1fr)',
         'layout-base-desktop': 'minmax(0, 1fr) 720px minmax(0, 1fr)',
         'header-base': 'auto 30px minmax(0, 1fr)',
       },
