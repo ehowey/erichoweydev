@@ -1,8 +1,8 @@
 ---
-import MobileNav from '~/components/MobileNav.astro'
-import PlaceholderSidebar from '../header/PlaceholderSidebar.astro'
 import HeaderDesktop from '~/components/layout/HeaderDesktop.astro'
 import HeaderMobile from './HeaderMobile.astro'
+import NavMobile from '~/components/layout/NavMobile.astro'
+import NavDesktop from './NavDesktop.astro'
 import Footer from '~/components/layout/Footer.astro'
 
 import '~/styles/global.css'
@@ -93,26 +93,28 @@ const socialImageAlt = propImage
     ></script>
   </head>
   <body class="relative bg-zinc-900">
-    <MobileNav />
-    <div class="grid-cols-layout-base grid-rows-layout-base grid min-h-screen">
+    <NavMobile />
+    <div
+      class="grid-cols-layout-base-mobile lg:grid-cols-layout-base-desktop grid-rows-layout-base grid min-h-screen"
+    >
       <div class="col-span-full row-start-1 row-end-2">
         <HeaderDesktop isHome={isHome} />
         <HeaderMobile isHome={isHome} />
       </div>
-      <div class="col-start-1 col-end-2 row-start-2 row-end-3">
-        <PlaceholderSidebar />
+      <div class="col-start-1 col-end-2 row-start-2 row-end-3 hidden lg:block">
+        <NavDesktop />
       </div>
       <main
         class={clsx(
-          'col-start-2 row-start-2 row-end-3',
-          isHome ? 'col-end-4' : 'col-end-3',
+          'col-span-full lg:col-start-2 row-start-2 row-end-3',
+          isHome ? 'lg:col-end-4' : 'lg:col-end-3',
         )}
       >
         <slot name="main" />
       </main>
       <div
         class={clsx(
-          'col-start-3 col-end-4 row-start-2 row-end-3',
+          'hidden lg:block col-start-3 col-end-4 row-start-2 row-end-3',
           isHome && 'hidden',
         )}
       >

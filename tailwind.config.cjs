@@ -38,13 +38,9 @@ module.exports = {
       },
       gridTemplateColumns: {
         // Complex site-specific row configuration
-        'layout-base': 'minmax(0, 1fr) 720px minmax(0, 1fr)',
+        'layout-base-mobile': 'minmax(0, 720px)',
+        'layout-base-desktop': 'minmax(0, 1fr) 720px minmax(0, 1fr)',
         'header-base': 'auto 30px minmax(0, 1fr)',
-
-        // 'layout-lg': '300px 720px auto',
-        // 'header-base': 'auto 20px minmax(0, 1fr)',
-        // 'header-md': 'auto 20px minmax(0, 1fr)',
-        // 'header-lg': 'auto 40px minmax(0, 1fr)',
       },
       gridTemplateRows: {
         'layout-base': 'auto minmax(0, 1fr) auto',

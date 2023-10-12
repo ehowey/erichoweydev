@@ -1,10 +1,8 @@
 ---
-import { NAV } from '../lib/constants'
+import { NAV } from '../../lib/constants'
 ---
 
-<nav
-  class="hidden lg:block lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-3 sticky self-start top-[150px]"
->
+<nav class="sticky top-0 hidden self-start lg:block">
   <ul
     class="flex flex-col gap-3 text-xl font-bold uppercase tracking-wide text-zinc-100"
   >
@@ -13,7 +11,7 @@ import { NAV } from '../lib/constants'
         <li>
           <a
             href={link.href}
-            class="hover:text-sky-200 active:text-sky-500 transition-all hover:bg-zinc-800 py-2 pr-4 rounded-r-lg"
+            class="rounded-r-lg py-2 pr-4 transition-all hover:bg-zinc-800 hover:text-sky-200 active:text-sky-500"
           >
             &mdash; {link.name}
           </a>
