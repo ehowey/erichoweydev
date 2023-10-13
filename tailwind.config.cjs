@@ -99,6 +99,9 @@ module.exports = {
           },
 
           // Headings
+          'h2, h3, h4, h5, h6': {
+            scrollMarginTop: theme('spacing.8'),
+          },
           'h2, h3': {
             color: 'var(--tw-prose-headings)',
             fontWeight: theme('fontWeight.semibold'),
