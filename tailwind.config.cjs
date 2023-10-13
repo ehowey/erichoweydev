@@ -14,6 +14,7 @@ module.exports = {
       // => @media (min-width: 1024px) { ... }
 
       toc: '1280px',
+      // => @media (min-width: 1280px) { ... }
 
       xl: '1440px',
       // => @media (min-width: 1440px) { ... }
@@ -38,9 +39,10 @@ module.exports = {
       },
       gridTemplateColumns: {
         // Complex site-specific row configuration
-        'layout-base-mobile': 'minmax(0, 1fr)',
-        'layout-base-desktop': 'minmax(0, 1fr) 720px minmax(0, 1fr)',
-        'header-base': 'auto 30px minmax(0, 1fr)',
+        'layout-base-1col': 'minmax(0, 1fr)',
+        'layout-base-2col': 'minmax(0, 1fr) 720px',
+        'layout-base-3col': 'minmax(0, 1fr) 720px minmax(0, 1fr)',
+        header: 'auto 30px minmax(0, 1fr)',
       },
       gridTemplateRows: {
         'layout-base': 'auto minmax(0, 1fr) auto',

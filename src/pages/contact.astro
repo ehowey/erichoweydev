@@ -1,5 +1,6 @@
 ---
-import PageHeader from '~/components/PageHeader.astro'
+import ContainerProse from '~/components/ContainerProse.astro'
+import HeaderPage from '~/components/HeaderPage.astro'
 import BaseLayout from '~/components/layout/BaseLayout.astro'
 ---
 
@@ -8,9 +9,9 @@ import BaseLayout from '~/components/layout/BaseLayout.astro'
   description="Creating something special and want to chat? I would love to listen! Send me a quick email or a DM on Twitter and we can schedule a time to talk."
 >
   <div slot="main">
-    <PageHeader>Contact</PageHeader>
-    <div class="prose px-4">
-      <p class="max-w-lg">
+    <HeaderPage>Contact</HeaderPage>
+    <ContainerProse>
+      <p>
         Creating something special and want to chat? I would love to listen!
         Send me a quick email or a DM on Twitter and we can schedule a time to
         talk.
@@ -47,6 +48,6 @@ import BaseLayout from '~/components/layout/BaseLayout.astro'
         </svg>
         <a href="https://twitter.com/erchwy">@erchwy</a>
       </p>
-    </div>
+    </ContainerProse>
   </div>
 </BaseLayout>

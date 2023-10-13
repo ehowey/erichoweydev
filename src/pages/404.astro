@@ -1,6 +1,7 @@
 ---
+import ContainerProse from '~/components/ContainerProse.astro'
 import BaseLayout from '~/components/layout/BaseLayout.astro'
-import PageHeader from '~/components/PageHeader.astro'
+import HeaderPage from '~/components/HeaderPage.astro'
 ---
 
 <BaseLayout
@@ -8,13 +9,13 @@ import PageHeader from '~/components/PageHeader.astro'
   description="Just a bland old error page. Rest assured you will find your way home!"
 >
   <div slot="main">
-    <PageHeader>404 Error</PageHeader>
-    <div class="prose px-4">
+    <HeaderPage>404 Error</HeaderPage>
+    <ContainerProse>
       <p>
         Uh oh! Looks like you took a wrong turn and found a dead end! Hate when
         that happens!
       </p>
       <p>Let me show you the <a href="/">way back home.</a></p>
-    </div>
+    </ContainerProse>
   </div>
 </BaseLayout>

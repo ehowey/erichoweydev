@@ -10,7 +10,7 @@ description: Learn how to handle advanced internationalization patterns using Ne
 excerpt: Next.js 12 introduced middleware for handling logic at the CDN level (sometimes called an edge function) before a page loads. This is very powerful and unlocks the potential for static pages to have limited server-side logic. A compelling use case is advanced internationalization and localization.
 ---
 
-import BlogQuoteIdea from '~/components/BlogQuoteIdea.astro'
+import BlockquoteIdea from '~/components/BlockquoteIdea.astro'
 
 [Next.js 12](https://nextjs.org/blog/next-12) introduced [middleware](https://nextjs.org/docs/middleware) for handling logic at the CDN level (sometimes called an edge function) before a page loads. This is incredibly powerful and unlocks the potential for static pages to have limited server-side logic. There are [lots of examples](https://github.com/vercel/examples/tree/main/edge-functions) of this but one compelling use case I recently used it for is advanced internationalization and content localization.
 
@@ -94,13 +94,13 @@ module.exports = {
 
 Now we get into the fun bits! Here is what that user experience we described above looks like in code. Note that we return early for public files, like images and we return early for api routes.
 
-<BlogQuoteIdea>
+<BlockquoteIdea>
   Your `middleware.ts` file should be located inside of the root project
   directory or inside the `src` folder if you are using it. During the beta
   release the middleware file was located inside of the `pages` folder and also
   had an `_` in front of it. Double check to make sure you have the middleware
   file in the right location and with the right name!
-</BlogQuoteIdea>
+</BlockquoteIdea>
 
 ```ts title="middleware.ts"
 import { NextRequest, NextResponse } from 'next/server'

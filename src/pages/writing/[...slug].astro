@@ -1,6 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content'
-import BlogHeader from '~/components/BlogHeader.astro'
+import HeaderBlog from '~/components/HeaderBlog.astro'
+import ContainerProse from '~/components/ContainerProse.astro'
 import BaseLayout from '~/components/layout/BaseLayout.astro'
 
 export async function getStaticPaths() {
@@ -30,9 +31,11 @@ const { Content, headings } = await entry.render()
 ---
 
 <BaseLayout title={frontmatter.title}>
-  <div slot="main" class="prose px-4">
-    <BlogHeader frontmatter={frontmatter} />
-    <Content />
+  <div slot="main">
+    <ContainerProse>
+      <HeaderBlog frontmatter={frontmatter} />
+      <Content />
+    </ContainerProse>
   </div>
   <div slot="aside"></div>
 </BaseLayout>

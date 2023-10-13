@@ -1,5 +1,6 @@
 ---
-import PageHeader from '~/components/PageHeader.astro'
+import ContainerProse from '~/components/ContainerProse.astro'
+import HeaderPage from '~/components/HeaderPage.astro'
 import BaseLayout from '~/components/layout/BaseLayout.astro'
 ---
 
@@ -8,8 +9,8 @@ import BaseLayout from '~/components/layout/BaseLayout.astro'
   description="I'm an experienced freelance web developer based in Calgary, Alberta. I specialize in complex web projects and enjoy taking the time to get things done right."
 >
   <div slot="main">
-    <PageHeader>Work</PageHeader>
-    <div class="prose px-4">
+    <HeaderPage>Work</HeaderPage>
+    <ContainerProse>
       <p>
         Like many good things in life, my work begins with human connection and
         relationship. I’m a web developer and mental health therapist after all.
@@ -76,6 +77,6 @@ import BaseLayout from '~/components/layout/BaseLayout.astro'
           LGBTQ2S-affirming care. Built using Gatsby and Sanity.
         </li>
       </ul>
-    </div>
+    </ContainerProse>
   </div>
 </BaseLayout>

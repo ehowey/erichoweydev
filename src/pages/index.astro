@@ -1,6 +1,9 @@
 ---
-import HomeLayout from '~/components/old/HomeLayout.astro'
 import { Image } from 'astro:assets'
+import { formatDate } from '~/lib/utils'
+import { getCollection } from 'astro:content'
+import BaseLayout from '~/components/layout/BaseLayout.astro'
+// Image imports
 import erichowey from '~/assets/eric-howey-sq.jpg'
 import dog from '~/assets/dog.jpg'
 import bike from '~/assets/bike-sq.jpg'
@@ -12,9 +15,6 @@ import gatsby from '~/assets/gatsby-monogram.png'
 import vercel from '~/assets/vercel-monogram.png'
 import next from '~/assets/nextjs-monogram.png'
 import sanity from '~/assets/sanity-monogram.png'
-import { formatDate } from '~/lib/utils'
-import { getCollection } from 'astro:content'
-import BaseLayout from '~/components/layout/BaseLayout.astro'
 
 const posts = await getCollection('writing', ({ data }) => {
   if (import.meta.env.DEV) {

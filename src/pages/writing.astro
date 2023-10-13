@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '~/components/layout/BaseLayout.astro'
-import PageHeader from '~/components/PageHeader.astro'
-import WritingCard from '~/components/WritingCard.astro'
+import HeaderPage from '~/components/HeaderPage.astro'
+import CardWriting from '~/components/CardWriting.astro'
 import { getCollection } from 'astro:content'
 
 const posts = await getCollection('writing', ({ data }) => {
@@ -22,10 +22,10 @@ const posts = await getCollection('writing', ({ data }) => {
   description="An archive of my musing, ramblings and articles about web development, React, Gatsby, Next.js and more. Everything mini-notes to full length guides. Dig in!"
 >
   <div slot="main">
-    <PageHeader>Writing</PageHeader>
-    <section class="mt-16 max-w-2xl px-4">
+    <HeaderPage>Writing</HeaderPage>
+    <section class="mt-16 max-w-prose px-4">
       <div class="flex flex-col gap-16">
-        {posts.map((post) => <WritingCard post={post} />)}
+        {posts.map((post) => <CardWriting post={post} />)}
       </div>
     </section>
   </div>
