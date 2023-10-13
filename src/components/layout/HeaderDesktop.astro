@@ -1,0 +1,62 @@
+---
+import HeaderTopo from './HeaderTopo.astro'
+
+interface Props {
+  isHome?: boolean
+}
+
+const { isHome } = Astro.props
+
+const h1Classes = isHome
+  ? '-top-[8px] -left-[0px] lg:-top-[16px] lg:-left-[4px] text-6xl lg:text-8xl'
+  : '-top-[2px] md:-top-[8px] lg:-top-[12px] text-2xl md:text-4xl lg:text-5xl'
+const imgWrapperClasses = isHome ? 'h-44 md:h-60 lg:h-auto' : 'h-auto'
+---
+
+<header class={`fixed top-0 hidden lg:grid grid-cols-header w-full`}>
+  <h1
+    class={`${h1Classes} relative z-20 origin-top-left font-black uppercase leading-none text-zinc-100 row-start-1 row-end-2 col-start-1 col-end-3 eh-title-desktop`}
+  >
+    <a href="/">
+      Eric
+      <br />
+       Howey<span class="text-sky-500">.</span>
+    </a>
+  </h1>
+  <div
+    class={`eh-topo-desktop row-start-1 row-end-2 col-start-2 col-end-4 ${imgWrapperClasses}`}
+  >
+    <HeaderTopo />
+  </div>
+</header>
+
+<script>
+  import { animate, scroll } from 'motion'
+
+  const main = document.querySelectorAll('main')[1]
+  const isHome = window.location.pathname === '/'
+
+  if (isHome) {
+    scroll(
+      animate('.eh-title-desktop', {
+        scale: 0.5,
+        top: '-8px',
+        left: '-2px',
+      }),
+      {
+        target: main,
+        offset: ['0px', '150px'],
+      },
+    )
+  }
+
+  scroll(
+    animate('.eh-topo-desktop', {
+      opacity: [1, 0],
+    }),
+    {
+      target: main,
+      offset: ['0px', '150px'],
+    },
+  )
+</script>

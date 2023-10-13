@@ -1,5 +1,5 @@
 ---
-import { NAV } from '../lib/constants'
+import { NAV } from '~/lib/constants'
 ---
 
 <nav
@@ -87,7 +87,7 @@ import { NAV } from '../lib/constants'
   id="mobile-nav-button"
   aria-label="Open Navigation Menu"
   type="button"
-  class="fixed bottom-5 right-5 z-50 inline-flex items-center rounded-full border border-transparent bg-sky-500 p-3 text-white shadow-sm hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 lg:hidden"
+  class="fixed bottom-5 right-5 z-50 inline-flex items-center rounded-full border border-transparent bg-gradient-to-tr from-sky-500 via-blue-600 to-indigo-600 p-3 text-white shadow-sm hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 lg:hidden"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -122,20 +122,24 @@ import { NAV } from '../lib/constants'
   import { animate } from 'motion'
 
   // Elements we need to track for ARIA/animations
-  const mobileNav = document.getElementById('mobile-nav')
-  const mobileNavButton = document.getElementById('mobile-nav-button')
+  const bodyElement = document.querySelector('body') as HTMLElement
+
+  const mobileNav = document.getElementById('mobile-nav') as HTMLElement
+  const mobileNavButton = document.getElementById(
+    'mobile-nav-button',
+  ) as HTMLButtonElement
   const mobileNavButtonBackdrop = document.getElementById(
     'mobile-nav-button-backdrop',
-  )
+  ) as HTMLElement
   const mobileNavButtonLine1 = document.getElementById(
     'mobile-nav-button-line-1',
-  )
+  ) as HTMLElement
   const mobileNavButtonLine2 = document.getElementById(
     'mobile-nav-button-line-2',
-  )
+  ) as HTMLElement
   const focusableEls = document.querySelectorAll(
     'nav#mobile-nav a[href]:not([disabled]), nav#mobile-nav button:not([disabled]), #mobile-nav-button',
-  )
+  ) as NodeListOf<HTMLElement>
   const firstFocusableEl = focusableEls[0]
   const lastFocusableEl = focusableEls[focusableEls.length - 1]
 
@@ -203,7 +207,7 @@ import { NAV } from '../lib/constants'
     })
     animate(mobileNavButtonBackdrop, { opacity: 0 })
     // Move focus back
-    document.querySelector('body').focus()
+    bodyElement.focus()
   }
 
   // Handle a click if the menu is closed

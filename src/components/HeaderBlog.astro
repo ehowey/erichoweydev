@@ -1,15 +1,21 @@
 ---
+import { formatDate } from '~/lib/utils'
+import { clsx } from 'clsx'
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+  frontmatter: CollectionEntry<'writing'>['data']
+}
+
 const { frontmatter } = Astro.props
-import { formatDate } from '../lib/utils'
 const today = new Date()
 const publishedDate = new Date(frontmatter.date)
 const timeDiffInMs = today.getTime() - publishedDate.getTime()
 const twoYearsInMs = 730 * 24 * 60 * 60 * 1000
 const archived = timeDiffInMs >= twoYearsInMs
-import { clsx } from 'clsx'
 ---
 
-<div class="max-w-4xl px-4">
+<>
   {
     archived && (
       <div class="max-w-prose pb-6">
@@ -69,4 +75,4 @@ import { clsx } from 'clsx'
   >
     {frontmatter.title}
   </h1>
-</div>
+</>

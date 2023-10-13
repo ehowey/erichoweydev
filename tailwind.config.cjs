@@ -14,6 +14,7 @@ module.exports = {
       // => @media (min-width: 1024px) { ... }
 
       toc: '1280px',
+      // => @media (min-width: 1280px) { ... }
 
       xl: '1440px',
       // => @media (min-width: 1440px) { ... }
@@ -38,10 +39,13 @@ module.exports = {
       },
       gridTemplateColumns: {
         // Complex site-specific row configuration
-        'layout-lg': '300px 720px auto',
-        'header-base': 'auto 20px minmax(0, 1fr)',
-        'header-md': 'auto 20px minmax(0, 1fr)',
-        'header-lg': 'auto 40px minmax(0, 1fr)',
+        'layout-base-1col': 'minmax(0, 1fr)',
+        'layout-base-2col': '220px minmax(0, 1fr)',
+        'layout-base-3col': 'minmax(0, 1fr) 768px minmax(0, 1fr)',
+        header: 'auto 30px minmax(0, 1fr)',
+      },
+      gridTemplateRows: {
+        'layout-base': 'auto minmax(0, 1fr) auto',
       },
     },
     fontSize: {
@@ -95,6 +99,9 @@ module.exports = {
           },
 
           // Headings
+          'h2, h3, h4, h5, h6': {
+            scrollMarginTop: theme('spacing.8'),
+          },
           'h2, h3': {
             color: 'var(--tw-prose-headings)',
             fontWeight: theme('fontWeight.semibold'),

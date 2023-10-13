@@ -11,7 +11,7 @@ demo: https://og-images-demo.netlify.app
 repo: https://github.com/ehowey/og-images-demo
 ---
 
-import BlogQuoteInfo from '~/components/BlogQuoteInfo.astro'
+import BlockquoteInfo from '~/components/BlockquoteInfo.astro'
 
 Automating the creation of custom [open graph (OG) images](https://ogp.me/) opens up interesting business use cases from personalized conference tickets to shareable user profiles to easy blog post images. Fundamentally automated OG images unlock personalized information sharing at scale and make it easier to have great SEO. You can manually create 10 images, maybe a couple hundred images, but if you have thousands or millions of images then this is the way to go.
 
@@ -25,11 +25,11 @@ Probably one of the most well known examples of this is the generated OG images 
 
 ## Getting setup
 
-<BlogQuoteInfo>
+<BlockquoteInfo>
   In this blog post I am going to show how to do this using Netlify edge
   functions but Vercel also has a [great solution for generated OG images
   too](https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation).
-</BlogQuoteInfo>
+</BlockquoteInfo>
 
 1. Use an existing project or initialize a fresh repository of whatever frontend framework you prefer (this demo uses Astro but it will work with NextJS, Remix, SvelteKit and others).
 2. Make sure you have a current version of the [Netlify CLI](https://docs.netlify.com/cli/get-started/) by running `npm install netlify-cli -g`.
@@ -123,10 +123,10 @@ The HTML and CSS are rendered to an image using the [Satori rendering engine](ht
 
 The key here is that you need to work within the limitations of what is possible both with the rendering engine and also edge functions. At the time of writing CPU execution time is limited to 50ms for an edge function. Inlined SVGs give you a lot of creative freedom to keep the response times fast on the edge function while still adding visual pop.
 
-<BlogQuoteInfo>
+<BlockquoteInfo>
   Satori uses only flexbox for layout, meaning you can't use CSS grid at this
   time for element position.
-</BlogQuoteInfo>
+</BlockquoteInfo>
 
 Let's add a simple rocket ship SVG into our example:
 

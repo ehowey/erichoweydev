@@ -1,18 +1,21 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro'
-import PageHeader from '../components/PageHeader.astro'
+import ContainerProse from '~/components/ContainerProse.astro'
+import BaseLayout from '~/components/layout/BaseLayout.astro'
+import HeaderPage from '~/components/HeaderPage.astro'
 ---
 
-<PageLayout
+<BaseLayout
   title="404"
-  description="Whoops! Took a wrong turn and ended up at the 404 page. I'm sorry this happened. But we will get you on the right track again!"
+  description="Just a bland old error page. Rest assured you will find your way home!"
 >
-  <PageHeader>404 Error</PageHeader>
-  <div class="prose max-w-2xl px-4">
-    <p>
-      Uh oh! Looks like you took a wrong turn and found a dead end! Hate when
-      that happens!
-    </p>
-    <p>Let me show you the <a href="/">way back home.</a></p>
+  <div slot="main">
+    <HeaderPage>404 Error</HeaderPage>
+    <ContainerProse>
+      <p>
+        Uh oh! Looks like you took a wrong turn and found a dead end! Hate when
+        that happens!
+      </p>
+      <p>Let me show you the <a href="/">way back home.</a></p>
+    </ContainerProse>
   </div>
-</PageLayout>
+</BaseLayout>
