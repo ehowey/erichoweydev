@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from 'astro:content'
 import HeaderBlog from '~/components/HeaderBlog.astro'
 import ContainerProse from '~/components/ContainerProse.astro'
 import BaseLayout from '~/components/layout/BaseLayout.astro'
+import TableOfContentsBlog from '~/components/TableOfContentsBlog.astro'
 
 export async function getStaticPaths() {
   const blogEntries = await (
@@ -37,5 +38,7 @@ const { Content, headings } = await entry.render()
       <Content />
     </ContainerProse>
   </div>
-  <div slot="aside"></div>
+  <div slot="aside">
+    <TableOfContentsBlog headings={headings} />
+  </div>
 </BaseLayout>

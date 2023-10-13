@@ -1,0 +1,74 @@
+---
+import type { MarkdownHeading } from 'astro'
+
+interface Props {
+  headings: MarkdownHeading[]
+}
+
+interface ToCItem {
+  depth: number
+  text: string
+  slug: string
+  subheadings: Array<{
+    depth: number
+    text: string
+    slug: string
+  }>
+}
+
+const { headings } = Astro.props
+
+const buildToc = (headings: MarkdownHeading[]) => {
+  const toc: ToCItem[] = []
+  const parentHeadings = new Map()
+  headings.forEach((h) => {
+    const heading = { ...h, subheadings: [] }
+    parentHeadings.set(heading.depth, heading)
+    // Change 2 to 1 if your markdown includes your <h1>
+    if (heading.depth === 2) {
+      toc.push(heading)
+    } else if (heading.depth === 3) {
+      parentHeadings.get(heading.depth - 1).subheadings.push(heading)
+    }
+  })
+  return toc
+}
+
+const toc = buildToc(headings)
+---
+
+{
+  toc.length > 0 && (
+    <div class="not-prose">
+      <h2 class="text-xl font-bold uppercase text-zinc-100">Page contents</h2>
+      <nav class="mt-2 text-base text-zinc-400">
+        <ol>
+          {toc.map((heading) => (
+            <li class="mb-1 last-of-type:mb-0">
+              <a
+                href={'#' + heading.slug}
+                class="transition-colors duration-150 hover:text-sky-400"
+              >
+                &mdash; {heading.text}
+              </a>
+              {heading.subheadings.length > 0 && (
+                <ol class="pl-4 text-xs">
+                  {heading.subheadings.map((subheading) => (
+                    <li class="pl-1 leading-snug">
+                      <a
+                        href={'#' + subheading.slug}
+                        class="transition-colors duration-150 hover:text-sky-400"
+                      >
+                        {subheading.text}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    </div>
+  )
+}
