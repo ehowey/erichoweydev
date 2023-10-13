@@ -59,8 +59,8 @@ const posts = await getCollection('writing', ({ data }) => {
   description="I’m Eric, a web developer and mental health therapist who works at the confluence of care, creativity and code. Based in Calgary, Alberta."
 >
   <div slot="main">
-    <section class="px-4">
-      <h2 class="max-w-2xl text-5xl font-bold tracking-tight text-zinc-100">
+    <section class="mx-auto max-w-prose px-4 lg:mx-0">
+      <h2 class="text-5xl font-bold tracking-tight text-zinc-100">
         I work at the confluence of care, creativity, and code<span
           class="text-sky-500">.</span
         >
@@ -129,7 +129,7 @@ const posts = await getCollection('writing', ({ data }) => {
         </a>
       </div>
     </section>
-    <section class="mt-24 max-w-2xl px-4">
+    <section class="mx-auto mt-24 max-w-prose px-4 lg:mx-0">
       <h2 class="text-4xl font-bold uppercase text-zinc-200">Recent writing</h2>
       <ol role="list" class="mt-8 flex flex-col gap-8">
         {
@@ -229,9 +229,9 @@ const posts = await getCollection('writing', ({ data }) => {
         </svg>
       </div>
     </section>
-    <section class="mt-24 max-w-7xl px-4">
+    <section class="mx-auto mt-24 max-w-prose px-4 lg:mx-0 lg:max-w-7xl">
       <h2 class="text-4xl font-bold uppercase text-zinc-200">Selected Work</h2>
-      <div class="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
+      <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
         <div
           class="flex max-w-xl flex-col overflow-hidden rounded-md shadow-lg"
         >
@@ -350,7 +350,7 @@ const posts = await getCollection('writing', ({ data }) => {
         </div>
       </div>
     </section>
-    <section class="prose mt-24 max-w-xl px-4">
+    <section class="prose mx-auto mt-24 max-w-prose px-4 lg:mx-0">
       <h2 class="text-4xl font-bold uppercase text-zinc-200">Get in touch</h2>
       <p class="mt-6 max-w-xl">
         Creating something special and want to chat? I would love to listen!
