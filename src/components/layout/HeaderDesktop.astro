@@ -1,9 +1,12 @@
 ---
 import HeaderTopo from './HeaderTopo.astro'
 
-const { view, isHome } = Astro.props
+interface Props {
+  isHome?: boolean
+}
 
-// const headerClasses = view === 'mobile' ? 'lg:hidden' : 'hidden lg:grid'
+const { isHome } = Astro.props
+
 const h1Classes = isHome
   ? '-top-[8px] -left-[0px] lg:-top-[16px] lg:-left-[4px] text-6xl lg:text-8xl'
   : '-top-[2px] md:-top-[8px] lg:-top-[12px] text-2xl md:text-4xl lg:text-5xl'
