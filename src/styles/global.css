@@ -1,3 +1,7 @@
+[data-rehype-pretty-code-fragment] {
+  max-width: 100vw;
+}
+
 [data-rehype-pretty-code-title] {
   display: inline-flex;
   background-color: #1c2024;
