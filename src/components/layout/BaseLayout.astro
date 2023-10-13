@@ -102,7 +102,7 @@ const socialImageAlt = propImage
         <HeaderMobile isHome={isHome} />
       </div>
       <div
-        class="col-start-1 col-end-2 row-start-2 row-end-3 mt-64 hidden lg:block"
+        class="col-start-1 col-end-2 row-start-2 row-end-3 mt-80 hidden lg:block"
       >
         <NavDesktop />
       </div>
@@ -110,15 +110,15 @@ const socialImageAlt = propImage
         class={clsx(
           'col-span-full lg:col-start-2 row-start-2 row-end-3 mx-auto',
           isHome
-            ? 'lg:col-end-4 mt-64'
-            : 'lg:col-end-3 mt-32 md:mt-40 lg:mt-64',
+            ? 'lg:col-end-4 mt-64 lg:mt-80'
+            : 'lg:col-end-3 mt-32 md:mt-40 lg:mt-80',
         )}
       >
         <slot name="main" />
       </main>
       <div
         class={clsx(
-          'hidden toc:block col-start-3 col-end-4 row-start-2 row-end-3 place-self-start self-start sticky top-40 mt-96',
+          'hidden toc:block col-start-3 col-end-4 row-start-2 row-end-3 place-self-start self-start sticky top-40 mt-80',
           isHome && 'hidden',
         )}
       >

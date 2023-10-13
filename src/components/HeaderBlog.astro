@@ -15,7 +15,7 @@ const twoYearsInMs = 730 * 24 * 60 * 60 * 1000
 const archived = timeDiffInMs >= twoYearsInMs
 ---
 
-<div>
+<>
   {
     archived && (
       <div class="max-w-prose pb-6">
@@ -75,4 +75,4 @@ const archived = timeDiffInMs >= twoYearsInMs
   >
     {frontmatter.title}
   </h1>
-</div>
+</>
