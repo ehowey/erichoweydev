@@ -29,9 +29,13 @@ interface Props {
 const { entry } = Astro.props
 const frontmatter = entry.data
 const { Content, headings } = await entry.render()
+const ogImageURL = new URL(
+  `/api/og-image/?title=${encodeURI(frontmatter.title)}`,
+  Astro.site,
+)
 ---
 
-<BaseLayout title={frontmatter.title}>
+<BaseLayout title={frontmatter.title} ogImageURL={ogImageURL}>
   <div slot="main">
     <ContainerProse>
       <HeaderBlog frontmatter={frontmatter} />
