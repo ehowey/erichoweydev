@@ -28,12 +28,10 @@
 }
 
 #eh-topo-area1-bg {
-  opacity: 0;
   transition: all 0.3s ease-in-out;
 }
 
 #eh-topo-area1-bg:hover {
-  opacity: 1;
   fill: #f11;
 }
 
@@ -46,13 +44,11 @@
 }
 
 #eh-topo-area2-bg {
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 #eh-topo-area2-bg:hover {
   fill: #f012be;
-  opacity: 1;
 }
 
 #eh-topo-area2-bg:hover + #eh-topo-area2-line {
