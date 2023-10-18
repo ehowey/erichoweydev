@@ -1,3 +1,24 @@
+<script>
+  const area1 = document.getElementById('eh-topo-area1-bg') as HTMLElement
+  const area2 = document.getElementById('eh-topo-area2-bg') as HTMLElement
+
+  const handleArea1Click = () => {
+    window.location.href = '/you-are-awesome'
+  }
+
+  const handleArea2Click = () => {
+    window.location.href = '/you-are-awesome'
+  }
+
+  area1.addEventListener('click', handleArea1Click, false)
+  area2.addEventListener('click', handleArea2Click, false)
+</script>
+
+<span class="sr-only"
+  >There is a hidden page you can visit at /you-are-awesome. Didn't want you to
+  miss out on the fun!</span
+>
+
 <svg
   viewBox="0 0 1034 240"
   xmlns="http://www.w3.org/2000/svg"

@@ -1,0 +1,89 @@
+---
+import '~/styles/global.css'
+
+export interface Props {
+  title: string
+  description?: string
+  ogImageURL?: URL
+}
+
+const {
+  title: propTitle,
+  description: propDescription,
+  ogImageURL: propImage,
+} = Astro.props
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const defaultImageURL = new URL('/images/og-default.jpg', Astro.site)
+const defaultDescription =
+  'I’m Eric, a web developer and mental health therapist who works at the confluence of care, creativity and code. Based in Calgary, Alberta.'
+
+const description = propDescription ?? defaultDescription
+const socialImageURL = propImage ?? defaultImageURL
+const socialImageAlt = propImage
+  ? `Text reading ${propTitle} on a dark blue background with contour lines and erichowey.dev in the corner`
+  : 'Photo of Eric Howey alongside a blue background with the text Web Developer, Mental Health Therapist, I listen and care.'
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>{propTitle} | Eric Howey</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Eric Howey" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="msapplication-TileImage" content="/favicon-144x144.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    <meta name="msapplication-TileColor" content="#0284c7" />
+    <meta name="theme-color" content="#0284c7" />
+    <meta name="generator" content={Astro.generator} />
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/favicon-192x192.png"
+    />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Twitter Card data -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:site" content="https://twitter.com/erchwy" />
+    <meta property="twitter:title" content={propTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={socialImageURL.href} />
+    <meta property="twitter:image:alt" content={socialImageAlt} />
+    <meta name="twitter:creator" content="@erchwy" />
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content={propTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:image" content={socialImageURL.href} />
+    <meta property="og:image:alt" content={socialImageAlt} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Eric Howey Web Development" />
+    <!-- Fathom Analytics Script -->
+    <script src="https://cdn.usefathom.com/script.js" data-site="FNHMMBXM" defer
+    ></script>
+  </head>
+  <body class="relative bg-zinc-900">
+    <slot />
+  </body>
+</html>

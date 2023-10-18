@@ -26,6 +26,7 @@
 #eh-topo-area1-bg:hover {
   transition: fill 0.3s ease-in-out;
   fill: #f11;
+  cursor: pointer;
 }
 
 #eh-topo-area1-bg:hover + #eh-topo-area1-line {
@@ -36,6 +37,7 @@
 #eh-topo-area2-bg:hover {
   transition: fill 0.3s ease-in-out;
   fill: #f012be;
+  cursor: pointer;
 }
 
 #eh-topo-area2-bg:hover + #eh-topo-area2-line {
