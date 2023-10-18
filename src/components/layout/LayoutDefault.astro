@@ -1,0 +1,58 @@
+---
+import HeaderDesktop from '~/components/layout/HeaderDesktop.astro'
+import HeaderMobile from './HeaderMobile.astro'
+import NavMobile from '~/components/layout/NavMobile.astro'
+import NavDesktop from './NavDesktop.astro'
+import Footer from '~/components/layout/Footer.astro'
+import LayoutBase from './LayoutBase.astro'
+
+import '~/styles/global.css'
+import { clsx } from 'clsx'
+
+export interface Props {
+  title: string
+  description?: string
+  ogImageURL?: URL
+  isHome?: boolean
+}
+
+const { title, description, ogImageURL, isHome } = Astro.props
+---
+
+<LayoutBase title={title} description={description} ogImageURL={ogImageURL}>
+  <NavMobile />
+  <div
+    class="grid min-h-screen grid-cols-layout-base-1col grid-rows-layout-base lg:grid-cols-layout-base-2col toc:grid-cols-layout-base-3col"
+  >
+    <div class="z-10 col-span-full row-start-1 row-end-2">
+      <HeaderDesktop isHome={isHome} />
+      <HeaderMobile isHome={isHome} />
+    </div>
+    <div
+      class="z-20 col-start-1 col-end-2 row-start-2 row-end-3 mt-80 hidden lg:block"
+    >
+      <NavDesktop />
+    </div>
+    <main
+      class={clsx(
+        'col-span-full lg:col-start-2 row-start-2 row-end-3 mx-auto z-20',
+        isHome
+          ? 'lg:col-end-4 mt-64 lg:mt-80'
+          : 'lg:col-end-3 mt-32 md:mt-40 lg:mt-80',
+      )}
+    >
+      <slot name="main" />
+    </main>
+    <div
+      class={clsx(
+        'hidden toc:block col-start-3 col-end-4 row-start-2 row-end-3 place-self-start self-start sticky top-40 mt-80 z-20',
+        isHome && 'hidden',
+      )}
+    >
+      <slot name="aside" />
+    </div>
+    <div class="col-span-full row-start-3 row-end-4 mt-28">
+      <Footer />
+    </div>
+  </div>
+</LayoutBase>

@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '~/components/layout/BaseLayout.astro'
+import LayoutDefault from '~/components/layout/LayoutDefault.astro'
 import HeaderPage from '~/components/HeaderPage.astro'
 import CardWriting from '~/components/CardWriting.astro'
 import { getCollection } from 'astro:content'
@@ -17,7 +17,7 @@ const posts = await getCollection('writing', ({ data }) => {
 })
 ---
 
-<BaseLayout
+<LayoutDefault
   title="Writing"
   description="An archive of my musing, ramblings and articles about web development, React, Gatsby, Next.js and more. Everything mini-notes to full length guides. Dig in!"
 >
@@ -29,4 +29,4 @@ const posts = await getCollection('writing', ({ data }) => {
       </div>
     </section>
   </div>
-</BaseLayout>
+</LayoutDefault>

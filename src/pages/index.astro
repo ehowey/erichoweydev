@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets'
 import { formatDate } from '~/lib/utils'
 import { getCollection } from 'astro:content'
-import BaseLayout from '~/components/layout/BaseLayout.astro'
+import LayoutDefault from '~/components/layout/LayoutDefault.astro'
 // Image imports
 import erichowey from '~/assets/eric-howey-sq.jpg'
 import dog from '~/assets/dog.jpg'
@@ -53,7 +53,7 @@ const posts = await getCollection('writing', ({ data }) => {
 })
 ---
 
-<BaseLayout
+<LayoutDefault
   isHome
   title="Hello and Welcome"
   description="I’m Eric, a web developer and mental health therapist who works at the confluence of care, creativity and code. Based in Calgary, Alberta."
@@ -391,7 +391,7 @@ const posts = await getCollection('writing', ({ data }) => {
       </p>
     </section>
   </div>
-</BaseLayout>
+</LayoutDefault>
 
 <style>
   .clip-trapezoid {

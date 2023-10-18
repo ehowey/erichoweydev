@@ -1,5 +1,5 @@
 ---
-import RawLayout from '~/components/layout/RawLayout.astro'
+import LayoutBase from '~/components/layout/LayoutBase.astro'
 
 const ogImageURL = new URL(
   `/api/og-image/?title=${encodeURI('You are awesome')}`,
@@ -7,7 +7,7 @@ const ogImageURL = new URL(
 )
 ---
 
-<RawLayout
+<LayoutBase
   title="You are awesome"
   description="A page celebrating you! Yes you! You are a worthy person and I appreciate you. Thank-you for being you!"
   ogImageURL={ogImageURL}
@@ -40,4 +40,4 @@ const ogImageURL = new URL(
       </div>
     </div>
   </main>
-</RawLayout>
+</LayoutBase>

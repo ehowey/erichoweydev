@@ -2,11 +2,11 @@
 import { Image } from 'astro:assets'
 import HeaderPage from '~/components/HeaderPage.astro'
 import me from '../assets/me-wide.jpg'
-import BaseLayout from '~/components/layout/BaseLayout.astro'
+import LayoutDefault from '~/components/layout/LayoutDefault.astro'
 import ContainerProse from '~/components/ContainerProse.astro'
 ---
 
-<BaseLayout
+<LayoutDefault
   title="About"
   description="Heyo! My name is Eric Howey and among other things I am a web developer and mental health therapist. I enjoy mountain biking, skiing, and being outside."
 >
@@ -51,4 +51,4 @@ import ContainerProse from '~/components/ContainerProse.astro'
       </p>
     </ContainerProse>
   </div>
-</BaseLayout>
+</LayoutDefault>
