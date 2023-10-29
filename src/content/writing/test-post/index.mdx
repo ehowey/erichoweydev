@@ -1,46 +1,59 @@
 ---
-title: Test post
+title: Using Next.js and Tremor for charts, graphs and data visualization
 author: Eric Howey
 authorLink: https://twitter.com/erchwy
-categories: [Astro, Netlify]
-date: 2023-10-25
+categories: [Next.js]
+date: 2023-11-01
 published: false
 description: Test post
 excerpt: Test post
-demo: https://og-images-demo.netlify.app
-repo: https://github.com/ehowey/og-images-demo
+demo: https://nextjs-tremor-demo.netlify.app/
+repo: https://github.com/ehowey/nextjs-tremor-demo
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dictum luctus ante at ornare. Praesent at dui arcu. Aenean a fringilla turpis. Proin sodales diam mi, nec elementum ex vulputate sed. Mauris a dui lobortis, semper mi ac, sagittis massa. Ut posuere vel ligula non euismod. Maecenas sed ante urna. Donec accumsan ullamcorper lorem, vel aliquet arcu maximus ut. Pellentesque ut accumsan lorem, in suscipit nibh. Praesent venenatis sed justo a faucibus.
+Charts, graphs, and data visualizations are an important tool when presenting data or trying to explain a complex topic more clearly. They are widely used in websites, apps, and other digital media. Just think back to the last major election and I guarantee it was brimming with charts and graphs!
 
-Donec sed tincidunt tortor. Pellentesque velit metus, pretium in lacus vel, vehicula bibendum velit. Vestibulum id ligula ac risus fermentum auctor. Phasellus mattis nisl vitae nisl posuere malesuada. Quisque elit urna, maximus et nisi quis, pulvinar vestibulum leo. Quisque finibus turpis eget tristique molestie. Integer nec lorem eu est imperdiet pellentesque eu id felis. Suspendisse non sollicitudin odio. Etiam dictum diam vel mi tincidunt, eget dignissim mi eleifend. Sed vestibulum ipsum in ultrices facilisis. Ut in felis gravida, finibus felis in, scelerisque lorem.
+Creating these charts is not always easy with lots of potential gotcha moments. I have tried a lot of charting and data visualization libraries and found that [Tremor](https://www.tremor.so/) strikes the right balance between configurability, good design, and happy defaults.
 
-Integer porta volutpat aliquet. Sed tempus magna id condimentum sollicitudin. Fusce dictum ut justo nec sodales. Quisque ullamcorper nisl ipsum, vel porta augue posuere sed. Nulla facilisi. Etiam posuere, risus ut ultricies fringilla, sem mi aliquam dolor, ut elementum ligula libero id arcu. Aenean fringilla pharetra elit, ac maximus justo varius nec. Donec rhoncus ac diam bibendum mattis. Aliquam erat volutpat. Ut ut lectus a ex scelerisque sodales laoreet ut magna. Vivamus egestas cursus hendrerit. Ut congue, risus et consequat pharetra, lacus quam pretium odio, at vehicula mi nunc quis metus.
+With Tremor it is easier to land in the pit of success.
 
-```tsx
----
-import HeaderTopo from './HeaderTopo.astro'
+That isn't to say it is perfect, by being opinionated about design Tremor is less configurable than some other charting libraries. Tremor also uses Tailwind for styling which is a bonus for some and a dealbreaker for others.
 
-interface Props {
-  isHome?: boolean
-}
+## Getting setup
 
-const { isHome } = Astro.props
+If you don't already have a Next.js project with Tailwind installed and configured then you can follow their [getting started guide](https://nextjs.org/docs/getting-started/installation), which will preconfigure Next.js and Tailwind for you.
 
-const h1Classes = isHome
-  ? '-top-[8px] left-0 text-6xl'
-  : '-top-[4px] left-0 text-4xl'
-const imgWrapperClasses = isHome ? 'h-44 md:h-60 lg:h-auto' : 'h-auto'
----
+If you have a greenfield project you can use `npx @tremor/cli@latest init` to quickly install Tremor. If you have an existing project you should follow their [installation instructions](https://www.tremor.so/docs/getting-started/installation) so you don't overwrite your existing `tailwind.config.ts` file.
 
-<header class={`fixed top-0 grid lg:hidden grid-cols-header w-full`}>
-  <h1
-    class={`${h1Classes} relative z-20 origin-top-left font-black uppercase leading-none text-zinc-100 row-start-1 row-end-2 col-start-1 col-end-3 eh-title-mobile`}
-  >
-    <a href="/">
-      Eric
-      <br />
-       Howey<span class="text-sky-500">.</span>
-    </a>
-  </h1>
+## Our first chart
+
+My son in grade 3 recently had to make a bar chart of his classmates favourite kinds of weather. So let's start there!
+
+Data for Tremor charts has index values which are the value used as labels on the axis. It also has what are called categories which are the values actually charted on the graph.
+
+In this example our index values will be the different types of weather and our single category will be the number of classmates.
+
+```ts
+const data = [
+  {
+    Weather: 'Sunny',
+    Classmates: 10,
+  },
+  {
+    Weather: 'Snowy',
+    Classmates: 5,
+  },
+  {
+    Weather: 'Cloudy',
+    Classmates: 4,
+  },
+  {
+    Weather: 'Rainy',
+    Classmates: 2,
+  },
+  {
+    Weather: 'Foggy',
+    Classmates: 1,
+  },
+]
 ```
