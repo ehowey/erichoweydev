@@ -1,4 +1,4 @@
-import { BarChart, Card } from '@tremor/react'
+import { DonutChart, Card } from '@tremor/react'
 
 const data = [
   {
@@ -23,11 +23,16 @@ const data = [
   },
 ]
 
-export default function BarChartDemo() {
+export default function DonutChartDemo() {
   return (
     <div className="my-10">
       <Card>
-        <BarChart data={data} index="Weather" categories={['Classmates']} />
+        <DonutChart
+          data={data}
+          index="Weather"
+          category="Classmates"
+          variant="pie"
+        />
       </Card>
     </div>
   )

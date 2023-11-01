@@ -11,7 +11,10 @@ demo: https://nextjs-tremor-demo.netlify.app/
 repo: https://github.com/ehowey/nextjs-tremor-demo
 ---
 
+import BlockquoteInfo from '~/components/BlockquoteInfo.astro'
 import BarChart from '~/components/nextjs-tremor-post/BarChart.tsx'
+import DonutChartBasic from '~/components/nextjs-tremor-post/DonutChartBasic.tsx'
+import DonutChartValueFormatter from '~/components/nextjs-tremor-post/DonutChartValueFormatter.tsx'
 
 Charts, graphs, and data visualizations are an important tool when presenting data or trying to explain a complex topic more clearly. They are widely used in websites, apps, and other digital media. Just think back to the last major election and I guarantee it was brimming with charts and graphs!
 
@@ -31,11 +34,13 @@ If you have a greenfield project you can use `npx @tremor/cli@latest init` to qu
 
 My son is in grade 3 recently had to make a bar chart of his classmates favourite kinds of weather. So let's start there!
 
-Data for Tremor charts has index values which are the values used as labels on the axis. It also has what are called categories which are the values actually plotted on the graph.
+Data for Tremor charts has index values which are the values used as labels on the axis. It also has what are called categories which are the values actually plotted on the graph. The data format can vary slightly based on what chart you are using so be sure to check the docs.
 
 In this example our index values will be the different types of weather and our single category will be the number of classmates.
 
-```ts
+```tsx title="BarChart.tsx"
+import { BarChart, Card } from '@tremor/react'
+
 const data = [
   {
     Weather: 'Sunny',
@@ -58,6 +63,112 @@ const data = [
     Classmates: 1,
   },
 ]
+
+export default function BarChartDemo() {
+  return (
+    <div className="my-10">
+      <Card>
+        <BarChart data={data} index="Weather" categories={['Classmates']} />
+      </Card>
+    </div>
+  )
+}
 ```
 
+And here is the result:
+
 <BarChart client:visible />
+
+## Using chart variations
+
+One thing to know about Tremor is that it has _chart variations_, so there is no "pie chart" but rather it is a variation of the `DonutChart` component. Another common chart is a stream chart, this is a variation on the `AreaChart` component.
+
+Here is our same favourite weather chart, from above, but this time rendered as a pie chart. Notice that instead of `categories` (with an array) it only accepts a single `category` prop.
+
+```tsx file="DonutChart.tsx"
+import { DonutChart, Card } from '@tremor/react'
+
+const data = [
+  /* Same data as above... */
+]
+
+export default function DonutChartDemo() {
+  return (
+    <div className="my-10">
+      <Card>
+        <DonutChart
+          data={data}
+          index="Weather"
+          category="Classmates"
+          variant="pie"
+        />
+      </Card>
+    </div>
+  )
+}
+```
+
+And our magnificent pie chart!
+
+<DonutChartBasic client:visible />
+
+## Using the valueFormatter prop
+
+Our pie chart is looking pretty tasty but it would be a lot better if we could show percentages instead of just the raw number of classmates. Most Tremor charts accept a `valueFormatter` prop to customize how the values are displayed. This can let you do things like round numbers, add currency symbols, or as we are going to do convert the numbers to percentages.
+
+Here is what that looks like.
+
+```tsx file="DonutChart.tsx"
+import { DonutChart, Card } from '@tremor/react'
+
+const data = [
+  /* Same data as above... */
+]
+
+const valueFormatter = (number: number) => {
+  // Use reduce method to calculate total number of classmates
+  const totalClassmates = data.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.Classmates,
+    0,
+  )
+  // Calculate the percentage and round it to a whole number
+  const percentage = Math.round((number / totalClassmates) * 100)
+  // Return a string
+  return `${percentage}%`
+}
+
+export default function DonutChartDemo() {
+  return (
+    <div className="my-10">
+      <Card>
+        <DonutChart
+          data={data}
+          valueFormatter={valueFormatter}
+          index="Weather"
+          category="Classmates"
+          variant="pie"
+        />
+      </Card>
+    </div>
+  )
+}
+```
+
+And here is our chart with some much nicer percentage values.
+
+<DonutChartValueFormatter client:visible />
+
+## Adding a custom tooltip
+
+Tremor has recently added the ability to customize the tooltip that appears on hover. This takes things a step beyond the value formatter allowing you to tweak not just the appearance of the numbers displayed but the appearance of the entire tooltip itself.
+
+### The default tooltip
+
+Tremor includes a great default tooltip and while you have full control to make your own tooltip odds are you will want to simply extend the default tooltip so that your styles remain consistent across the charts.
+
+<BlockquoteInfo>
+  This default tooltip is based on the tooltip in use from late 2023, it is
+  possible this has changed over time. You can figure out the default tooltip
+  yourself by using the code inspector in your browser and copy/pasting the
+  Tailwind styling you see there.
+</BlockquoteInfo>
