@@ -1,5 +1,5 @@
 ---
-title: Using Next.js and Tremor for charts, graphs and data visualization
+title: Using Next.js and Tremor for charts, graphs, and data visualization
 author: Eric Howey
 authorLink: https://twitter.com/erchwy
 categories: [Next.js]
@@ -10,6 +10,8 @@ excerpt: Test post
 demo: https://nextjs-tremor-demo.netlify.app/
 repo: https://github.com/ehowey/nextjs-tremor-demo
 ---
+
+import BarChart from '~/components/nextjs-tremor-post/BarChart.tsx'
 
 Charts, graphs, and data visualizations are an important tool when presenting data or trying to explain a complex topic more clearly. They are widely used in websites, apps, and other digital media. Just think back to the last major election and I guarantee it was brimming with charts and graphs!
 
@@ -27,9 +29,9 @@ If you have a greenfield project you can use `npx @tremor/cli@latest init` to qu
 
 ## Our first chart
 
-My son in grade 3 recently had to make a bar chart of his classmates favourite kinds of weather. So let's start there!
+My son is in grade 3 recently had to make a bar chart of his classmates favourite kinds of weather. So let's start there!
 
-Data for Tremor charts has index values which are the value used as labels on the axis. It also has what are called categories which are the values actually charted on the graph.
+Data for Tremor charts has index values which are the values used as labels on the axis. It also has what are called categories which are the values actually plotted on the graph.
 
 In this example our index values will be the different types of weather and our single category will be the number of classmates.
 
@@ -57,3 +59,5 @@ const data = [
   },
 ]
 ```
+
+<BarChart client:visible />

@@ -339,13 +339,6 @@ declare module 'astro:content' {
   collection: "writing";
   data: InferEntrySchema<"writing">
 } & { render(): Render[".mdx"] };
-"test-post/index.mdx": {
-	id: "test-post/index.mdx";
-  slug: "test-post";
-  body: string;
-  collection: "writing";
-  data: InferEntrySchema<"writing">
-} & { render(): Render[".mdx"] };
 "understanding-latent-component-shadowing-in-gatsby-themes/index.mdx": {
 	id: "understanding-latent-component-shadowing-in-gatsby-themes/index.mdx";
   slug: "understanding-latent-component-shadowing-in-gatsby-themes";
@@ -356,6 +349,13 @@ declare module 'astro:content' {
 "using-conditional-fields-in-sanity-for-better-links/index.mdx": {
 	id: "using-conditional-fields-in-sanity-for-better-links/index.mdx";
   slug: "using-conditional-fields-in-sanity-for-better-links";
+  body: string;
+  collection: "writing";
+  data: InferEntrySchema<"writing">
+} & { render(): Render[".mdx"] };
+"using-nextjs-tremor-for-charts-graphs-data-visualization/index.mdx": {
+	id: "using-nextjs-tremor-for-charts-graphs-data-visualization/index.mdx";
+  slug: "using-nextjs-tremor-for-charts-graphs-data-visualization";
   body: string;
   collection: "writing";
   data: InferEntrySchema<"writing">
