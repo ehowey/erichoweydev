@@ -25,7 +25,7 @@ const data = [
 
 export default function DonutChartDemo() {
   return (
-    <div className="my-10">
+    <div className="not-prose my-10">
       <Card>
         <DonutChart
           data={data}

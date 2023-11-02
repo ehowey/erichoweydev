@@ -25,7 +25,7 @@ const data = [
 
 export default function BarChartDemo() {
   return (
-    <div className="my-10">
+    <div className="not-prose my-10">
       <Card>
         <BarChart data={data} index="Weather" categories={['Classmates']} />
       </Card>

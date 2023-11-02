@@ -15,6 +15,8 @@ import BlockquoteInfo from '~/components/BlockquoteInfo.astro'
 import BarChart from '~/components/nextjs-tremor-post/BarChart.tsx'
 import DonutChartBasic from '~/components/nextjs-tremor-post/DonutChartBasic.tsx'
 import DonutChartValueFormatter from '~/components/nextjs-tremor-post/DonutChartValueFormatter.tsx'
+import DonutChartCustomTooltip from '~/components/nextjs-tremor-post/DonutChartCustomTooltip.tsx'
+import AreaChartBasic from '~/components/nextjs-tremor-post/AreaChartBasic.tsx'
 
 Charts, graphs, and data visualizations are an important tool when presenting data or trying to explain a complex topic more clearly. They are widely used in websites, apps, and other digital media. Just think back to the last major election and I guarantee it was brimming with charts and graphs!
 
@@ -164,11 +166,47 @@ Tremor has recently added the ability to customize the tooltip that appears on h
 
 ### The default tooltip
 
-Tremor includes a great default tooltip and while you have full control to make your own tooltip odds are you will want to simply extend the default tooltip so that your styles remain consistent across the charts.
+Tremor includes a great default tooltip and odds are you will want to simply extend the default tooltip so that your styles remain consistent across the charts.
 
 <BlockquoteInfo>
-  This default tooltip is based on the tooltip in use from late 2023, it is
-  possible this has changed over time. You can figure out the default tooltip
-  yourself by using the code inspector in your browser and copy/pasting the
-  Tailwind styling you see there.
+  The default tooltips differ a bit from chart to chart so your mileage may
+  vary. Using a custom tooltip also supercedes the `valueFormatter` prop.
 </BlockquoteInfo>
+
+```tsx
+const defaultTooltip = ({ payload, active, label }) => {
+  if (!active || !payload) return null
+  return (
+    <div className="rounded-tremor-default text-tremor-default bg-tremor-background shadow-tremor-dropdown border-tremor-border dark:bg-dark-tremor-background dark:shadow-dark-tremor-dropdown dark:border-dark-tremor-border border">
+      <div className="border-tremor-border dark:border-dark-tremor-border border-b px-4 py-2">
+        <p className="text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis font-medium">
+          {label}
+        </p>
+      </div>
+      <div className="space-y-1 px-4 py-2">
+        {payload.map((category, idx) => (
+          <div key={idx} class="flex items-center justify-between space-x-8">
+            <div className="flex items-center space-x-2">
+              <span
+                className={`rounded-tremor-full border-tremor-background shadow-tremor-card dark:border-dark-tremor-background dark:shadow-dark-tremor-card h-3 w-3 shrink-0 border-2 bg-${category.color}-500`}
+              ></span>
+              <p className="text-tremor-content dark:text-dark-tremor-content whitespace-nowrap text-right">
+                {category.dataKey}
+              </p>
+            </div>
+            <p className="text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis whitespace-nowrap text-right font-medium tabular-nums">
+              {category.value}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+```
+
+Being able to customize the tooltip means we can do all sorts of nifty things like add a bit more visual interest, calculate composite scores, add explainers and more.
+
+Let's add some weather icons to our pie chart!
+
+<DonutChartCustomTooltip client:visible />
