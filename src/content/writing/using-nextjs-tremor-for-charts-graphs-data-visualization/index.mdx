@@ -87,7 +87,7 @@ One thing to know about Tremor is that it has _chart variations_, so there is no
 
 Here is our same favourite weather chart, from above, but this time rendered as a pie chart. Notice that instead of `categories` (with an array) it only accepts a single `category` prop.
 
-```tsx file="DonutChart.tsx"
+```tsx title="DonutChart.tsx"
 import { DonutChart, Card } from '@tremor/react'
 
 const data = [
@@ -120,7 +120,7 @@ Our pie chart is looking pretty tasty but it would be a lot better if we could s
 
 Here is what that looks like.
 
-```tsx file="DonutChart.tsx"
+```tsx title="DonutChart.tsx"
 import { DonutChart, Card } from '@tremor/react'
 
 const data = [
@@ -208,5 +208,13 @@ const defaultTooltip = ({ payload, active, label }) => {
 Being able to customize the tooltip means we can do all sorts of nifty things like add a bit more visual interest, calculate composite scores, add explainers and more.
 
 Let's add some weather icons to our pie chart!
+
+### Making a custom tooltip
+
+Under the hood Tremor is using a library called [Recharts](https://recharts.org/en-US) for the charts. The custom tooltip in Tremor is an extension of the [custom tooltip API](https://recharts.org/en-US/examples/CustomContentOfTooltip) that Recharts uses. We can also use their types package to get the types we need for our custom tooltip.
+
+```
+npm install --save -D @types/recharts
+```
 
 <DonutChartCustomTooltip client:visible />

@@ -35,6 +35,7 @@
   "devDependencies": {
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
+    "@types/recharts": "^1.8.26",
     "prettier": "^3.0.3",
     "prettier-plugin-astro": "^0.12.1",
     "prettier-plugin-packagejson": "^2.4.6",

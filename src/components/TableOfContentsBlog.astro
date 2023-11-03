@@ -52,14 +52,14 @@ const toc = buildToc(headings)
                 &mdash; {heading.text}
               </a>
               {heading.subheadings.length > 0 && (
-                <ol class="pl-4 text-xs">
+                <ol class="pl-4 text-sm">
                   {heading.subheadings.map((subheading) => (
-                    <li class="pl-1 leading-snug">
+                    <li class="pl-1">
                       <a
                         href={'#' + subheading.slug}
                         class="transition-colors duration-150 hover:text-sky-400"
                       >
-                        {subheading.text}
+                        &dash; {subheading.text}
                       </a>
                     </li>
                   ))}

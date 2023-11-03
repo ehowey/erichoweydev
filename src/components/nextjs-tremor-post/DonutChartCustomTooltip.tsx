@@ -1,4 +1,9 @@
 import { DonutChart, Card } from '@tremor/react'
+import { type TooltipProps } from 'recharts'
+import type {
+  NameType,
+  ValueType,
+} from 'recharts/types/component/DefaultTooltipContent'
 
 const sun = () => {
   return (
@@ -66,7 +71,11 @@ const data = [
 //   return `${percentage}%`
 // }
 
-const customTooltip = ({ payload, active, label }) => {
+const customTooltip = ({
+  payload,
+  active,
+  label,
+}: TooltipProps<ValueType, NameType>) => {
   if (!active || !payload) return null
   return (
     <div className="rounded-tremor-default text-tremor-default bg-tremor-background shadow-tremor-dropdown border-tremor-border dark:bg-dark-tremor-background dark:shadow-dark-tremor-dropdown dark:border-dark-tremor-border border">
