@@ -19,7 +19,7 @@
     "@headlessui/tailwindcss": "^0.2.0",
     "@tailwindcss/typography": "^0.5.10",
     "@tremor/react": "^3.10.1",
-    "astro": "^3.4.0",
+    "astro": "^3.4.3",
     "astro-seo": "^0.8.0",
     "clsx": "^2.0.0",
     "just-prune": "^2.2.0",
