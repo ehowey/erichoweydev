@@ -17,6 +17,7 @@ import DonutChartBasic from '~/components/nextjs-tremor-post/DonutChartBasic.tsx
 import DonutChartValueFormatter from '~/components/nextjs-tremor-post/DonutChartValueFormatter.tsx'
 import DonutChartCustomTooltip from '~/components/nextjs-tremor-post/DonutChartCustomTooltip.tsx'
 import AreaChartBasic from '~/components/nextjs-tremor-post/AreaChartBasic.tsx'
+import ChartLoader from '~/components/nextjs-tremor-post/ChartLoader.tsx'
 
 Charts, graphs, and data visualizations are an important tool when presenting data or trying to explain a complex topic more clearly. They are widely used in websites, apps, and other digital media. Just think back to the last major election and I guarantee it was brimming with charts and graphs!
 
@@ -31,6 +32,8 @@ That isn't to say it is perfect, by being opinionated about design Tremor is les
 If you don't already have a Next.js project with Tailwind installed and configured then you can follow their [getting started guide](https://nextjs.org/docs/getting-started/installation), which will preconfigure Next.js and Tailwind for you.
 
 If you have a greenfield project you can use `npx @tremor/cli@latest init` to quickly install Tremor. If you have an existing project you should follow their [installation instructions](https://www.tremor.so/docs/getting-started/installation) so you don't overwrite your existing `tailwind.config.ts` file.
+
+Under the hood Tremor is using a library called [Recharts](https://recharts.org/en-US) for the charts.
 
 ## Our first chart
 
@@ -166,11 +169,11 @@ Tremor has recently added the ability to customize the tooltip that appears on h
 
 ### The default tooltip
 
-Tremor includes a great default tooltip and odds are you will want to simply extend the default tooltip so that your styles remain consistent across the charts.
+Tremor includes a great default tooltip and odds are you will want to simply extend the default tooltip so that your styles remain consistent across your charts.
 
 <BlockquoteInfo>
   The default tooltips differ a bit from chart to chart so your mileage may
-  vary. Using a custom tooltip also supercedes the `valueFormatter` prop.
+  vary. This is the default from an area chart.
 </BlockquoteInfo>
 
 ```tsx
@@ -205,16 +208,118 @@ const defaultTooltip = ({ payload, active, label }) => {
 }
 ```
 
-Being able to customize the tooltip means we can do all sorts of nifty things like add a bit more visual interest, calculate composite scores, add explainers and more.
+Being able to customize the tooltip means you can do all sorts of nifty things like add icons, calculate composite scores, add explainers, and more.
 
-Let's add some weather icons to our pie chart!
+Let's add some simple weather icons to our pie chart and show scores as a fraction this time!
 
 ### Making a custom tooltip
 
-Under the hood Tremor is using a library called [Recharts](https://recharts.org/en-US) for the charts. The custom tooltip in Tremor is an extension of the [custom tooltip API](https://recharts.org/en-US/examples/CustomContentOfTooltip) that Recharts uses. We can also use their types package to get the types we need for our custom tooltip.
+There are lots of way you could approach this customization, here is one approach. Note that this example includes the types for the custom tooltip as well. The two props to pay attention to here are the `label` and the `payload`. The label is linked with the index value from Tremor. The payload is linked to the category values from Tremor. It can be worth quickly console logging these values because the payload varies slightly between chart types.
 
+```tsx title="DonutChart.tsx" {24-28, 32, 52}
+import { DonutChart, Card } from '@tremor/react'
+import { type TooltipProps } from 'recharts'
+import type {
+  NameType,
+  ValueType,
+} from 'recharts/types/component/DefaultTooltipContent'
+import { CloudIcon, FogIcon, RainIcon, SnowIcon, SunIcon } from './logos'
+
+const data = [
+  {
+    Weather: 'Sunny',
+    Classmates: 10,
+    icon: SunIcon,
+  },
+  /* ...rest of data */
+]
+
+const customTooltip = ({
+  payload,
+  active,
+  label,
+}: TooltipProps<ValueType, NameType>) => {
+  if (!active || !payload) return null
+  const Icon = payload[0].payload.icon
+  const totalClassmates = data.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.Classmates,
+    0,
+  )
+  return (
+    <div className="rounded-tremor-default text-tremor-default bg-tremor-background shadow-tremor-dropdown border-tremor-border dark:bg-dark-tremor-background dark:shadow-dark-tremor-dropdown dark:border-dark-tremor-border border">
+      <div className="border-tremor-border dark:border-dark-tremor-border inline-flex items-center border-b px-4 py-2">
+        <Icon className="mr-2 h-5 w-5" />
+        <p className="text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis font-medium">
+          {label}
+        </p>
+      </div>
+      <div className="space-y-1 px-4 py-2">
+        {payload.map((category, idx) => (
+          <div
+            className="flex items-center justify-between space-x-8"
+            key={idx}
+          >
+            <div className="flex items-center space-x-2">
+              <span
+                className={`rounded-tremor-full border-tremor-background shadow-tremor-card dark:border-dark-tremor-background dark:shadow-dark-tremor-card h-3 w-3 shrink-0 border-2 bg-${category.color}-500`}
+              ></span>
+              <p className="text-tremor-content dark:text-dark-tremor-content whitespace-nowrap text-right">
+                {category.dataKey}
+              </p>
+            </div>
+            <p className="text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis whitespace-nowrap text-right font-medium tabular-nums">
+              {category.value} / {totalClassmates}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default function DonutChartDemo() {
+  return (
+    <div className="not-prose my-10">
+      <Card>
+        <DonutChart
+          data={data}
+          index="Weather"
+          category="Classmates"
+          variant="pie"
+          customTooltip={customTooltip}
+        />
+      </Card>
+    </div>
+  )
+}
 ```
-npm install --save -D @types/recharts
-```
+
+And voila, our chart with an improved tooltip!
 
 <DonutChartCustomTooltip client:visible />
+
+## Using Next.js dynamic imports for better performance
+
+Charts can be resource intensive to load on the client and using [Next.js dynamic imports](https://nextjs.org/docs/pages/building-your-application/optimizing/lazy-loading) to help decrease the time to interactive is an option. Behind the scenes Next.js uses React.lazy() and the Suspense API to show an initial loading state and then the chart after it has loaded.
+
+```tsx
+const ChartLoader = () => (
+  <div
+    role="status"
+    className="animate-pulse rounded border border-gray-200 p-4"
+  >
+    <div className="grid h-80 place-items-center">
+      <span className="text-2xl font-semibold">Loading...</span>
+    </div>
+  </div>
+)
+
+const DonutChart = dynamic(
+  () =>
+    import('~/components/charts/DonutChart')
+  {
+    loading: ChartLoader,
+    ssr: false,
+  },
+)
+```

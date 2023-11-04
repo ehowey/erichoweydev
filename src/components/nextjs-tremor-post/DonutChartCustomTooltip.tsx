@@ -4,72 +4,35 @@ import type {
   NameType,
   ValueType,
 } from 'recharts/types/component/DefaultTooltipContent'
-
-const sun = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-  )
-}
+import { CloudIcon, FogIcon, RainIcon, SnowIcon, SunIcon } from './logos'
 
 const data = [
   {
     Weather: 'Sunny',
     Classmates: 10,
-    icon: sun,
+    icon: SunIcon,
   },
   {
     Weather: 'Snowy',
     Classmates: 5,
-    icon: sun,
+    icon: SnowIcon,
   },
   {
     Weather: 'Cloudy',
     Classmates: 4,
-    icon: sun,
+    icon: CloudIcon,
   },
   {
     Weather: 'Rainy',
     Classmates: 2,
-    icon: sun,
+    icon: RainIcon,
   },
   {
     Weather: 'Foggy',
     Classmates: 1,
-    icon: sun,
+    icon: FogIcon,
   },
 ]
-
-// const valueFormatter = (number: number) => {
-//   // Use reduce method to calculate total number of classmates
-//   const totalClassmates = data.reduce(
-//     (accumulator, currentValue) => accumulator + currentValue.Classmates,
-//     0,
-//   )
-//   // Calculate the percentage and round it to a whole number
-//   const percentage = Math.round((number / totalClassmates) * 100)
-//   // Return a string
-//   return `${percentage}%`
-// }
 
 const customTooltip = ({
   payload,
@@ -77,9 +40,15 @@ const customTooltip = ({
   label,
 }: TooltipProps<ValueType, NameType>) => {
   if (!active || !payload) return null
+  const Icon = payload[0].payload.icon
+  const totalClassmates = data.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.Classmates,
+    0,
+  )
   return (
     <div className="rounded-tremor-default text-tremor-default bg-tremor-background shadow-tremor-dropdown border-tremor-border dark:bg-dark-tremor-background dark:shadow-dark-tremor-dropdown dark:border-dark-tremor-border border">
-      <div className="border-tremor-border dark:border-dark-tremor-border border-b px-4 py-2">
+      <div className="border-tremor-border dark:border-dark-tremor-border inline-flex items-center border-b px-4 py-2">
+        <Icon className="mr-2 h-5 w-5" />
         <p className="text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis font-medium">
           {label}
         </p>
@@ -99,7 +68,7 @@ const customTooltip = ({
               </p>
             </div>
             <p className="text-tremor-content-emphasis dark:text-dark-tremor-content-emphasis whitespace-nowrap text-right font-medium tabular-nums">
-              {category.value}
+              {category.value} / {totalClassmates}
             </p>
           </div>
         ))}
