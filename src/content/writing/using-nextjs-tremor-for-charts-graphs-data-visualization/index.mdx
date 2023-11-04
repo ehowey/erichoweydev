@@ -3,10 +3,10 @@ title: Using Next.js and Tremor for charts, graphs, and data visualization
 author: Eric Howey
 authorLink: https://twitter.com/erchwy
 categories: [Next.js]
-date: 2023-11-01
+date: 2023-11-06
 published: false
-description: Test post
-excerpt: Test post
+description: Learn how to create amazing graphs and charts using Next.js and Tremor. Build more engaging dashboards, visualize complex data, and tell a compelling story!
+excerpt: Charts, graphs, and data visualizations are an important tool when presenting data or trying to explain a complex topic more clearly. They are widely used in websites, apps, and other digital media. Just think back to the last major election and I guarantee it was brimming with charts and graphs!
 demo: https://nextjs-tremor-demo.netlify.app/
 repo: https://github.com/ehowey/nextjs-tremor-demo
 ---
@@ -16,8 +16,6 @@ import BarChart from '~/components/nextjs-tremor-post/BarChart.tsx'
 import DonutChartBasic from '~/components/nextjs-tremor-post/DonutChartBasic.tsx'
 import DonutChartValueFormatter from '~/components/nextjs-tremor-post/DonutChartValueFormatter.tsx'
 import DonutChartCustomTooltip from '~/components/nextjs-tremor-post/DonutChartCustomTooltip.tsx'
-import AreaChartBasic from '~/components/nextjs-tremor-post/AreaChartBasic.tsx'
-import ChartLoader from '~/components/nextjs-tremor-post/ChartLoader.tsx'
 
 Charts, graphs, and data visualizations are an important tool when presenting data or trying to explain a complex topic more clearly. They are widely used in websites, apps, and other digital media. Just think back to the last major election and I guarantee it was brimming with charts and graphs!
 
@@ -25,15 +23,13 @@ Creating these charts is not always easy with lots of potential gotcha moments. 
 
 With Tremor it is easier to land in the pit of success.
 
-That isn't to say it is perfect, by being opinionated about design Tremor is less configurable than some other charting libraries. Tremor also uses Tailwind for styling which is a bonus for some and a dealbreaker for others.
+That isn't to say it is perfect, by being opinionated about design Tremor is less configurable than some other charting libraries. Tremor also uses Tailwind for styling which is a bonus for some and a dealbreaker for others. Under the hood Tremor is using a library called [Recharts](https://recharts.org/en-US) for the charts.
 
 ## Getting setup
 
 If you don't already have a Next.js project with Tailwind installed and configured then you can follow their [getting started guide](https://nextjs.org/docs/getting-started/installation), which will preconfigure Next.js and Tailwind for you.
 
 If you have a greenfield project you can use `npx @tremor/cli@latest init` to quickly install Tremor. If you have an existing project you should follow their [installation instructions](https://www.tremor.so/docs/getting-started/installation) so you don't overwrite your existing `tailwind.config.ts` file.
-
-Under the hood Tremor is using a library called [Recharts](https://recharts.org/en-US) for the charts.
 
 ## Our first chart
 
@@ -123,7 +119,7 @@ Our pie chart is looking pretty tasty but it would be a lot better if we could s
 
 Here is what that looks like.
 
-```tsx title="DonutChart.tsx"
+```tsx title="DonutChart.tsx" {7-17, 25}
 import { DonutChart, Card } from '@tremor/react'
 
 const data = [
@@ -216,7 +212,7 @@ Let's add some simple weather icons to our pie chart and show scores as a fracti
 
 There are lots of way you could approach this customization, here is one approach. Note that this example includes the types for the custom tooltip as well. The two props to pay attention to here are the `label` and the `payload`. The label is linked with the index value from Tremor. The payload is linked to the category values from Tremor. It can be worth quickly console logging these values because the payload varies slightly between chart types.
 
-```tsx title="DonutChart.tsx" {24-28, 32, 52}
+```tsx title="DonutChart.tsx" {24-28, 32, 52, 70}
 import { DonutChart, Card } from '@tremor/react'
 import { type TooltipProps } from 'recharts'
 import type {
@@ -323,3 +319,23 @@ const DonutChart = dynamic(
   },
 )
 ```
+
+## Usage with @tailwindcss/typography
+
+This one is a pretty simple, but important tip. If your charts will be contained within a block of prose you will want to use `not-prose` on a wrapper around your chart.
+
+```tsx
+<div className="not-prose">
+  <MyChart />
+</div>
+```
+
+## All the other bits
+
+Tremor is slowly expanding its library of components with the goal of being the _React library to build dashboards fast_. My personal experience has been that it has some really handy utility components like `<Title>` and `<Subtitle>` that make prettying up your charts very easy to do.
+
+It also gives you some nice progress trackers, inputs, and helper components that are not specifically a chart but help when trying to visualize data or build dashboards.
+
+My experience has been that Tremor hits a sweet spot of configurability and happy defaults. There are lower level charting libraries out there that are less opinionated and give you more control. There are also a whole bunch of no-code SAAS tools for charting and graphs that give you less control.
+
+I hope this has helped. Happy coding and happy charting!
