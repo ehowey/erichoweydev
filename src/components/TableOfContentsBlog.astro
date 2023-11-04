@@ -39,15 +39,15 @@ const toc = buildToc(headings)
 
 {
   toc.length > 0 && (
-    <div class="not-prose">
+    <div class="not-prose max-w-sm">
       <h2 class="text-xl font-bold uppercase text-zinc-100">Page contents</h2>
       <nav class="mt-2 text-base text-zinc-400">
         <ol>
           {toc.map((heading) => (
-            <li class="mb-1 last-of-type:mb-0">
+            <li class="mb-3 leading-snug last-of-type:mb-0">
               <a
                 href={'#' + heading.slug}
-                class="transition-colors duration-150 hover:text-sky-400"
+                class="leading-3 transition-colors duration-150 hover:text-sky-400"
               >
                 &mdash; {heading.text}
               </a>
