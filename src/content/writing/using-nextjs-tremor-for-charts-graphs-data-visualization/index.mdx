@@ -3,10 +3,10 @@ title: Using Next.js and Tremor for charts, graphs, and data visualization
 author: Eric Howey
 authorLink: https://twitter.com/erchwy
 categories: [Next.js]
-date: 2023-11-06
-published: false
+date: 2023-11-04
+published: true
 description: Learn how to create amazing graphs and charts using Next.js and Tremor. Build more engaging dashboards, visualize complex data, and tell a compelling story!
-excerpt: Charts, graphs, and data visualizations are an important tool when presenting data or trying to explain a complex topic more clearly. They are widely used in websites, apps, and other digital media. Just think back to the last major election and I guarantee it was brimming with charts and graphs!
+excerpt: Charts, graphs, and data visualizations are an important tool when presenting data or trying to explain a complex topic more clearly. They are widely used in websites, apps, and other digital media. But creating these charts is not always easy with lots of potential gotcha moments.
 demo: https://nextjs-tremor-demo.netlify.app/
 repo: https://github.com/ehowey/nextjs-tremor-demo
 ---
@@ -16,26 +16,27 @@ import BarChart from '~/components/nextjs-tremor-post/BarChart.tsx'
 import DonutChartBasic from '~/components/nextjs-tremor-post/DonutChartBasic.tsx'
 import DonutChartValueFormatter from '~/components/nextjs-tremor-post/DonutChartValueFormatter.tsx'
 import DonutChartCustomTooltip from '~/components/nextjs-tremor-post/DonutChartCustomTooltip.tsx'
+import AreaChartInteractive from '~/components/nextjs-tremor-post/AreaChartInteractive.tsx'
 
-Charts, graphs, and data visualizations are an important tool when presenting data or trying to explain a complex topic more clearly. They are widely used in websites, apps, and other digital media. Just think back to the last major election and I guarantee it was brimming with charts and graphs!
+Charts, graphs, and data visualizations are an essential tool when presenting data or explaining complex topics more clearly. They are widely used in websites, apps, and other digital media. But creating these charts is not always easy with lots of potential gotcha moments.
 
-Creating these charts is not always easy with lots of potential gotcha moments. I have tried a lot of charting and data visualization libraries and found that [Tremor](https://www.tremor.so/) strikes the right balance between configurability, good design, and happy defaults.
+I have tried a lot of charting and data visualization libraries and found that [Tremor](https://www.tremor.so/) strikes the right balance between configurability, good design, and happy defaults.
 
-With Tremor it is easier to land in the pit of success.
+Tremor makes it easy to land in the pit of success.
 
-That isn't to say it is perfect, by being opinionated about design Tremor is less configurable than some other charting libraries. Tremor also uses Tailwind for styling which is a bonus for some and a dealbreaker for others. Under the hood Tremor is using a library called [Recharts](https://recharts.org/en-US) for the charts.
+That isn't to say it is perfect for all use cases. By being opinionated Tremor makes the trade off of being less configurable than some other lower level data visualization libraries. Tremor is also tightly integrated with Tailwind for styling which can be a dealbreaker for some and a bonus for others. Under the hood Tremor relies on a library called [Recharts](https://recharts.org/en-US) for creating the actual charts.
 
 ## Getting setup
 
 If you don't already have a Next.js project with Tailwind installed and configured then you can follow their [getting started guide](https://nextjs.org/docs/getting-started/installation), which will preconfigure Next.js and Tailwind for you.
 
-If you have a greenfield project you can use `npx @tremor/cli@latest init` to quickly install Tremor. If you have an existing project you should follow their [installation instructions](https://www.tremor.so/docs/getting-started/installation) so you don't overwrite your existing `tailwind.config.ts` file.
+If you have a greenfield project you can use `npx @tremor/cli@latest init` to quickly install Tremor. If you have an existing project you should follow their [installation instructions](https://www.tremor.so/docs/getting-started/installation) so you don't accidentally overwrite your existing `tailwind.config.ts` file.
 
 ## Our first chart
 
-My son is in grade 3 recently had to make a bar chart of his classmates favourite kinds of weather. So let's start there!
+My son is in grade 3 and recently had to make a bar chart of his classmates' favourite kinds of weather. So let's start there!
 
-Data for Tremor charts has index values which are the values used as labels on the axis. It also has what are called categories which are the values actually plotted on the graph. The data format can vary slightly based on what chart you are using so be sure to check the docs.
+Data for Tremor charts has index values which are the values used as labels on the axis. It also has what are called categories which are the values actually plotted on the graph. The data format can vary slightly based on what chart you are using so be sure to check their docs.
 
 In this example our index values will be the different types of weather and our single category will be the number of classmates.
 
@@ -76,7 +77,7 @@ export default function BarChartDemo() {
 }
 ```
 
-And here is the result:
+And here is our basic bar chart.
 
 <BarChart client:visible />
 
@@ -84,12 +85,16 @@ And here is the result:
 
 One thing to know about Tremor is that it has _chart variations_, so there is no "pie chart" but rather it is a variation of the `DonutChart` component. Another common chart is a stream chart, this is a variation on the `AreaChart` component.
 
-Here is our same favourite weather chart, from above, but this time rendered as a pie chart. Notice that instead of `categories` (with an array) it only accepts a single `category` prop.
+Here is our same data, from above, but this time rendered as a pie chart. Notice that instead of `categories` it only accepts a single `category` prop because the donut chart does not support multiple categories like some other charts do. And we have specified `variant="pie"` to render it as a pie chart.
 
-```tsx title="DonutChart.tsx"
+```tsx title="DonutChart.tsx" {18-19}
 import { DonutChart, Card } from '@tremor/react'
 
 const data = [
+  {
+    Weather: 'Sunny',
+    Classmates: 10,
+  },
   /* Same data as above... */
 ]
 
@@ -109,15 +114,13 @@ export default function DonutChartDemo() {
 }
 ```
 
-And our magnificent pie chart!
+And our delicious pie chart!
 
 <DonutChartBasic client:visible />
 
 ## Using the valueFormatter prop
 
 Our pie chart is looking pretty tasty but it would be a lot better if we could show percentages instead of just the raw number of classmates. Most Tremor charts accept a `valueFormatter` prop to customize how the values are displayed. This can let you do things like round numbers, add currency symbols, or as we are going to do convert the numbers to percentages.
-
-Here is what that looks like.
 
 ```tsx title="DonutChart.tsx" {7-17, 25}
 import { DonutChart, Card } from '@tremor/react'
@@ -155,13 +158,13 @@ export default function DonutChartDemo() {
 }
 ```
 
-And here is our chart with some much nicer percentage values.
+And here is our chart with easier to understand percentage values.
 
 <DonutChartValueFormatter client:visible />
 
 ## Adding a custom tooltip
 
-Tremor has recently added the ability to customize the tooltip that appears on hover. This takes things a step beyond the value formatter allowing you to tweak not just the appearance of the numbers displayed but the appearance of the entire tooltip itself.
+Tremor has recently added the ability to customize the tooltip that appears on hover. This takes things a step beyond the value formatter prop allowing you to tweak not just the appearance of the numbers displayed but the appearance of the entire tooltip itself.
 
 ### The default tooltip
 
@@ -210,7 +213,7 @@ Let's add some simple weather icons to our pie chart and show scores as a fracti
 
 ### Making a custom tooltip
 
-There are lots of way you could approach this customization, here is one approach. Note that this example includes the types for the custom tooltip as well. The two props to pay attention to here are the `label` and the `payload`. The label is linked with the index value from Tremor. The payload is linked to the category values from Tremor. It can be worth quickly console logging these values because the payload varies slightly between chart types.
+The two props to pay attention to here are the `label` and the `payload`. The label is linked with the index prop from Tremor. The payload is linked to the category prop from Tremor. It can be worth quickly console logging these values because the payload will vary slightly between chart types depending on how many categories are assigned. Note that this example includes the types for the custom tooltip as well.
 
 ```tsx title="DonutChart.tsx" {24-28, 32, 52, 70}
 import { DonutChart, Card } from '@tremor/react'
@@ -294,9 +297,64 @@ And voila, our chart with an improved tooltip!
 
 <DonutChartCustomTooltip client:visible />
 
+## Interactive charts with click events
+
+Tremor makes it _very easy_ to add basic click events to your chart and exposes this data for further customization and interactivity.
+
+All you need to do is add a `setState` call to the `onValueChange` prop and your chart becomes interactive and that value is exposed to you as a developer. You can `console.log(value)` to see the data that is available.
+
+<BlockquoteInfo>
+  This is a recent addition to Tremor and there is some magic happening here
+  behind the scenes I'm not fully comfortable with. I was expecting to have to
+  manually configure the CSS classes of the chart lines based on the event
+  callback but Tremor does all of this for you. This is a great example of the
+  trade off in Tremor between ease-of-use and configurability.
+</BlockquoteInfo>
+
+Here is an example of click events using an area chart for the weather.
+
+```tsx title="AreaChart.tsx" {19, 27}
+import { AreaChart, Card, type EventProps } from '@tremor/react'
+import { useState } from 'react'
+
+const data = [
+  {
+    month: 'January',
+    rain: 0.2,
+    snow: 3.7,
+  },
+  //...more data
+  {
+    month: 'December',
+    rain: 0.3,
+    snow: 26.1,
+  },
+]
+
+export default function AreaChartDemo() {
+  const [value, setValue] = useState<null | EventProps>(null)
+  return (
+    <div className="not-prose my-10">
+      <Card>
+        <AreaChart
+          data={data}
+          index="month"
+          categories={['rain', 'snow']}
+          onValueChange={(v: EventProps) => setValue(v)}
+        />
+      </Card>
+    </div>
+  )
+}
+```
+
+And here is the chart we get with click events on both the lines and the legend.
+
+<AreaChartInteractive client:visible />
+
 ## Using Next.js dynamic imports for better performance
 
-Charts can be resource intensive to load on the client and using [Next.js dynamic imports](https://nextjs.org/docs/pages/building-your-application/optimizing/lazy-loading) to help decrease the time to interactive is an option. Behind the scenes Next.js uses React.lazy() and the Suspense API to show an initial loading state and then the chart after it has loaded.
+Charts can be resource intensive to load on the client and using [Next.js dynamic imports](https://nextjs.org/docs/pages/building-your-application/optimizing/lazy-loading) is a way to decrease the time-to-interactive score and improve overall performance. Depending on how you are using charts this may not be necessary, but it is an option to consider. Behind the scenes Next.js uses React.lazy() and the Suspense API to show an initial loading state and then display the chart after it has finished loading.
 
 ```tsx
 const ChartLoader = () => (
@@ -322,7 +380,7 @@ const DonutChart = dynamic(
 
 ## Usage with @tailwindcss/typography
 
-This one is a pretty simple, but important tip. If your charts will be contained within a block of prose you will want to use `not-prose` on a wrapper around your chart.
+This one is a simple, but important tip. If your charts will be contained within a block of prose content from Tailwind you will want to use the `not-prose` class on a wrapper around your chart. This prevents the Tailwind prose classes from affecting the visual appearance of your chart.
 
 ```tsx
 <div className="not-prose">
@@ -332,10 +390,8 @@ This one is a pretty simple, but important tip. If your charts will be contained
 
 ## All the other bits
 
-Tremor is slowly expanding its library of components with the goal of being the _React library to build dashboards fast_. My personal experience has been that it has some really handy utility components like `<Title>` and `<Subtitle>` that make prettying up your charts very easy to do.
+Tremor is slowly expanding its library of components with the goal of being the _React library to build dashboards fast_. My personal experience has been that its utility components like `<Title>` and `<Subtitle>` make prettying up your charts fast and painless. Tremor also includes a bunch of nice progress trackers, inputs, and helper components that are useful when creating dashboards and presenting data.
 
-It also gives you some nice progress trackers, inputs, and helper components that are not specifically a chart but help when trying to visualize data or build dashboards.
+My experience has been that Tremor hits a sweet spot of developer experience, great visual design, and happy defaults.
 
-My experience has been that Tremor hits a sweet spot of configurability and happy defaults. There are lower level charting libraries out there that are less opinionated and give you more control. There are also a whole bunch of no-code SAAS tools for charting and graphs that give you less control.
-
-I hope this has helped. Happy coding and happy charting!
+I hope this has helped your data visualization journey. Happy coding and happy charting!
