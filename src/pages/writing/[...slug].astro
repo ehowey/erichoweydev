@@ -35,7 +35,11 @@ const ogImageURL = new URL(
 )
 ---
 
-<LayoutDefault title={frontmatter.title} ogImageURL={ogImageURL}>
+<LayoutDefault
+  title={frontmatter.title}
+  ogImageURL={ogImageURL}
+  description={frontmatter.description}
+>
   <div slot="main">
     <ContainerProse>
       <HeaderBlog frontmatter={frontmatter} />
