@@ -2844,6 +2844,13 @@ const ogImageURL = new URL(
               d="M 702 1602 L 802 1602 L 802 1502 L 702 1502 Z"></path>
           </svg>`
       }
+      const updatedContainer = document.getElementById('eh-svg-container')
+      const updatedPaths = updatedContainer
+        ? Array.from(updatedContainer.getElementsByTagName('path'))
+        : []
+      updatedPaths.forEach((path) => {
+        path.addEventListener('click', handlePathClick)
+      })
     }
     const handleHomeImageClick = (event: MouseEvent) => {
       if (svgContainer) {
