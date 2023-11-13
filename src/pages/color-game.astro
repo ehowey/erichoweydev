@@ -6,6 +6,8 @@ import iconHouse from '~/assets/color-game/icon-house.png'
 import iconDino from '~/assets/color-game/icon-dino.png'
 import iconDragon from '~/assets/color-game/icon-dragon.png'
 import iconLove from '~/assets/color-game/icon-love.png'
+import iconRainbow from '~/assets/color-game/icon-rainbow.png'
+import iconUnicorn from '~/assets/color-game/icon-unicorn.png'
 
 const ogImageURL = new URL(
   `/api/og-image/?title=${encodeURI('You are coloring!')}`,
@@ -1465,7 +1467,7 @@ const ogImageURL = new URL(
             type="button"
             class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
           >
-            <Image src={iconBlank} alt="" width={24} height={24} />
+            <Image src={iconBlank} alt="" width={32} height={32} />
              Blank
           </button>
           <button
@@ -1473,7 +1475,7 @@ const ogImageURL = new URL(
             type="button"
             class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
           >
-            <Image src={iconHouse} alt="" width={24} height={24} />
+            <Image src={iconHouse} alt="" width={32} height={32} />
              House
           </button>
           <button
@@ -1481,7 +1483,7 @@ const ogImageURL = new URL(
             type="button"
             class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
           >
-            <Image src={iconHouse} alt="" width={24} height={24} />
+            <Image src={iconUnicorn} alt="" width={32} height={32} />
              Unicorn
           </button>
           <button
@@ -1489,7 +1491,7 @@ const ogImageURL = new URL(
             type="button"
             class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
           >
-            <Image src={iconDino} alt="" width={24} height={24} />
+            <Image src={iconDino} alt="" width={32} height={32} />
              Dinosaur
           </button>
           <button
@@ -1497,7 +1499,7 @@ const ogImageURL = new URL(
             type="button"
             class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
           >
-            <Image src={iconHouse} alt="" width={24} height={24} />
+            <Image src={iconRainbow} alt="" width={32} height={32} />
              Rainbow
           </button>
           <button
@@ -1505,7 +1507,7 @@ const ogImageURL = new URL(
             type="button"
             class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
           >
-            <Image src={iconLove} alt="" width={24} height={24} />
+            <Image src={iconLove} alt="" width={32} height={32} />
              Love
           </button>
           <button
@@ -1513,7 +1515,7 @@ const ogImageURL = new URL(
             type="button"
             class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
           >
-            <Image src={iconDragon} alt="" width={24} height={24} />
+            <Image src={iconDragon} alt="" width={32} height={32} />
              Dragon
           </button>
         </div>
@@ -1531,7 +1533,10 @@ const ogImageURL = new URL(
   </style>
 
   <script>
+    import JSConfetti from 'js-confetti'
+
     // INITIAL VALUES
+    const jsConfetti = new JSConfetti()
     let color = 'rgb(220, 38, 38)'
 
     // DOM ELEMENTS
@@ -1575,6 +1580,27 @@ const ogImageURL = new URL(
     const handlePathClick = (event: MouseEvent) => {
       const pathElement = event.target as SVGPathElement
       pathElement.setAttribute('fill', color)
+
+      const updatedContainer = document.getElementById('eh-svg-container')
+      const updatedPaths = updatedContainer
+        ? Array.from(updatedContainer.getElementsByTagName('path'))
+        : []
+
+      const isComplete = updatedPaths.every((path) => {
+        if (
+          path.getAttribute('fill') !== 'transparent' &&
+          path.getAttribute('fill') !== 'rgba(0, 0, 0, 0)'
+        ) {
+          return true
+        }
+        return false
+      })
+      console.log(isComplete)
+      if (isComplete) {
+        jsConfetti.addConfetti({
+          emojis: ['🌈', '🦄', '🐲', '✨', '💫'],
+        })
+      }
     }
     const handleReset = () => {
       const updatedContainer = document.getElementById('eh-svg-container')

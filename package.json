@@ -22,6 +22,7 @@
     "astro": "^3.4.3",
     "astro-seo": "^0.8.0",
     "clsx": "^2.0.0",
+    "js-confetti": "^0.11.0",
     "just-prune": "^2.2.0",
     "motion": "^10.16.4",
     "react": "^18.2.0",
