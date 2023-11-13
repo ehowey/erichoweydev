@@ -13,9 +13,19 @@ const ogImageURL = new URL(
   ogImageURL={ogImageURL}
 >
   <main>
+    <nav class="absolute left-0 top-0 z-20 px-4">
+      <ul>
+        <li>
+          <a
+            class="text-sky-400 underline decoration-sky-400/30 transition-colors hover:decoration-sky-400"
+            href="/">&larr; Home</a
+          >
+        </li>
+      </ul>
+    </nav>
     <div class="mb-8 grid grid-cols-1 grid-rows-1 justify-items-center">
       <div
-        class="col-start-1 col-end-2 row-start-1 row-end-1 h-24 w-full overflow-hidden opacity-20 md:h-36"
+        class="col-start-1 col-end-2 row-start-1 row-end-1 h-36 w-full overflow-hidden opacity-20"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -40,10 +50,10 @@ const ogImageURL = new URL(
         </svg>
       </div>
       <div
-        class="z-10 col-start-1 col-end-2 row-start-1 row-end-1 px-4 md:px-8"
+        class="z-10 col-start-1 col-end-2 row-start-1 row-end-1 self-center px-4 md:px-8"
       >
         <h1
-          class="mt-8 text-4xl font-black uppercase leading-none text-zinc-100 sm:text-5xl md:text-6xl"
+          class="text-4xl font-black uppercase leading-none text-zinc-100 sm:text-5xl md:text-6xl"
         >
           You are <span class="inline-block"
             >awesome<span class="ml-1"
@@ -67,8 +77,7 @@ const ogImageURL = new URL(
         Thank-you for being awesome! I appreciate you and hope you are having a
         great day!
       </p>
-      <p>What is one thing that made you smile today?</p>
-      <p><a href="/">Back home &rarr;</a></p>
+      <p>What made you smile today?</p>
     </div>
   </main>
 </LayoutBase>
