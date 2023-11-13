@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import LayoutBase from '~/components/layout/LayoutBase.astro'
-import iconBlank from '~/assets/color-game/icon-blank.png'
+import iconBlank from '~/assets/color-game/icon-empty.png'
 import iconHouse from '~/assets/color-game/icon-house.png'
 import iconDino from '~/assets/color-game/icon-dino.png'
 import iconDragon from '~/assets/color-game/icon-dragon.png'
@@ -16,8 +16,8 @@ const ogImageURL = new URL(
 ---
 
 <LayoutBase
-  title="Color game!"
-  description="A place to let your creativity run wild and make beautiful images. A simpler, easier, coloring book."
+  title="Rainbow blocks!"
+  description="A place to let your creativity run wild and make beautiful images. A simpler, easier, coloring book. Built for my kids, free for everyone."
   ogImageURL={ogImageURL}
 >
   <main>
@@ -63,7 +63,7 @@ const ogImageURL = new URL(
         <h1
           class="text-4xl font-black uppercase leading-none text-zinc-100 sm:text-5xl md:text-6xl"
         >
-          Color game<span class="ml-1"
+          Rainbow Blocks<span class="ml-1"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -82,7 +82,7 @@ const ogImageURL = new URL(
       class="grid grid-cols-layout-base-1col justify-items-center gap-4 toc:grid-cols-layout-base-3col toc:gap-8"
     >
       <div
-        class="w-full bg-zinc-700 px-4 py-4 md:px-8 xl:max-w-lg xl:justify-self-end"
+        class="w-full max-w-[768px] bg-zinc-700 px-4 py-4 md:px-8 xl:max-w-lg xl:justify-self-end"
       >
         <h2 class="text-xl font-bold text-zinc-200">Choose a color</h2>
         <div class="mt-4 flex flex-wrap gap-2 gap-y-4 md:gap-4">
@@ -1458,10 +1458,12 @@ const ogImageURL = new URL(
         </div>
       </div>
       <div
-        class="w-full bg-zinc-700 px-4 py-4 md:px-8 xl:max-w-lg xl:justify-self-start"
+        class="row-start-1 row-end-2 w-full max-w-[768px] bg-zinc-700 px-4 py-4 md:px-8 toc:col-start-3 toc:col-end-4 xl:max-w-lg xl:justify-self-start"
       >
-        <h2 class="text-xl font-bold text-zinc-200">Select a coloring page</h2>
-        <div class="mt-4 flex flex-wrap gap-4">
+        <h2 class="text-xl font-bold text-zinc-200">
+          Choose a design or create one of your own!
+        </h2>
+        <div class="mt-4 flex flex-wrap content-stretch gap-4">
           <button
             id="eh-image-blank"
             type="button"
