@@ -103,6 +103,12 @@ const ogImageURL = new URL(
           <button class="eh-color-picker h-8 w-8 rounded-full bg-teal-500"
             ><span class="sr-only">Teal</span></button
           >
+          <button class="eh-color-picker h-8 w-8 rounded-full bg-yellow-950"
+            ><span class="sr-only">Brown</span></button
+          >
+          <button class="eh-color-picker h-8 w-8 rounded-full bg-amber-200"
+            ><span class="sr-only">Tan</span></button
+          >
           <button class="eh-color-picker h-8 w-8 rounded-full bg-stone-400"
             ><span class="sr-only">Gray</span></button
           >
@@ -3400,8 +3406,7 @@ const ogImageURL = new URL(
     const handleDinosaurImageClick = (event: MouseEvent) => {
       event?.preventDefault()
       if (svgContainer) {
-        svgContainer.innerHTML = `
-<svg viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
+        svgContainer.innerHTML = `<svg viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
     <path id="rectangle-0" fill="transparent"  stroke-width="4" d="M 2 102 L 102 102 L 102 2 L 2 2 Z"/>
     <path id="rectangle-1" fill="transparent"  stroke-width="4" d="M 102 102 L 202 102 L 202 2 L 102 2 Z"/>
     <path id="rectangle-2" fill="transparent"  stroke-width="4" d="M 202 102 L 302 102 L 302 2 L 202 2 Z"/>
@@ -3443,11 +3448,11 @@ const ogImageURL = new URL(
     <path id="rectangle-57" fill="transparent"  stroke-width="4" d="M 602 502 L 702 502 L 702 402 L 602 402 Z"/>
     <path id="rectangle-56" fill="transparent"  stroke-width="4" d="M 702 502 L 802 502 L 802 402 L 702 402 Z"/>
     <path id="rectangle-55" fill="transparent"  stroke-width="4" d="M 2 602 L 102 602 L 102 502 L 2 502 Z"/>
-    <path id="rectangle-54" fill="transparent"  stroke-width="4" d="M 102 602 L 202 602 L 202 502 L 102 502 Z"/>
+    <path id="rectangle-54" fill="transparent"  stroke-width="12" d="M 102 602 L 202 602 L 202 502 L 102 502 Z"/>
     <path id="rectangle-53" fill="transparent"  stroke-width="12" d="M 202 602 L 302 602 L 302 502 L 202 502 Z"/>
     <path id="rectangle-52" fill="transparent"  stroke-width="12" d="M 302 602 L 402 602 L 402 502 L 302 502 Z"/>
     <path id="rectangle-51" fill="transparent"  stroke-width="12" d="M 402 602 L 502 602 L 502 502 L 402 502 Z"/>
-    <path id="rectangle-50" fill="transparent"  stroke-width="4" d="M 502 602 L 602 602 L 602 502 L 502 502 Z"/>
+    <path id="rectangle-50" fill="transparent"  stroke-width="12" d="M 502 602 L 602 602 L 602 502 L 502 502 Z"/>
     <path id="rectangle-49" fill="transparent"  stroke-width="12" d="M 602 602 L 702 602 L 702 502 L 602 502 Z"/>
     <path id="rectangle-48" fill="transparent"  stroke-width="4" d="M 702 602 L 802 602 L 802 502 L 702 502 Z"/>
     <path id="rectangle-47" fill="transparent"  stroke-width="4" d="M 2 702 L 102 702 L 102 602 L 2 602 Z"/>
@@ -3464,7 +3469,7 @@ const ogImageURL = new URL(
     <path id="rectangle-36" fill="transparent"  stroke-width="12" d="M 302 802 L 402 802 L 402 702 L 302 702 Z"/>
     <path id="rectangle-35" fill="transparent"  stroke-width="12" d="M 402 802 L 502 802 L 502 702 L 402 702 Z"/>
     <path id="rectangle-34" fill="transparent"  stroke-width="12" d="M 502 802 L 602 802 L 602 702 L 502 702 Z"/>
-    <path id="rectangle-33" fill="transparent"  stroke-width="4" d="M 602 802 L 702 802 L 702 702 L 602 702 Z"/>
+    <path id="rectangle-33" fill="transparent"  stroke-width="12" d="M 602 802 L 702 802 L 702 702 L 602 702 Z"/>
     <path id="rectangle-32" fill="transparent"  stroke-width="12" d="M 702 802 L 802 802 L 802 702 L 702 702 Z"/>
     <path id="rectangle-127" fill="transparent"  stroke-width="4" d="M 802 102 L 902 102 L 902 2 L 802 2 Z"/>
     <path id="rectangle-126" fill="transparent"  stroke-width="4" d="M 902 102 L 1002 102 L 1002 2 L 902 2 Z"/>
@@ -3522,7 +3527,7 @@ const ogImageURL = new URL(
     <path id="rectangle-74" fill="transparent"  stroke-width="12" d="M 1302 702 L 1402 702 L 1402 602 L 1302 602 Z"/>
     <path id="rectangle-73" fill="transparent"  stroke-width="4" d="M 1402 702 L 1502 702 L 1502 602 L 1402 602 Z"/>
     <path id="rectangle-72" fill="transparent"  stroke-width="4" d="M 1502 702 L 1602 702 L 1602 602 L 1502 602 Z"/>
-    <path id="rectangle-71" fill="transparent"  stroke-width="4" d="M 802 802 L 902 802 L 902 702 L 802 702 Z"/>
+    <path id="rectangle-71" fill="transparent"  stroke-width="12" d="M 802 802 L 902 802 L 902 702 L 802 702 Z"/>
     <path id="rectangle-70" fill="transparent"  stroke-width="4" d="M 902 802 L 1002 802 L 1002 702 L 902 702 Z"/>
     <path id="rectangle-69" fill="transparent"  stroke-width="4" d="M 1002 802 L 1102 802 L 1102 702 L 1002 702 Z"/>
     <path id="rectangle-68" fill="transparent"  stroke-width="4" d="M 1102 802 L 1202 802 L 1202 702 L 1102 702 Z"/>
@@ -3546,7 +3551,7 @@ const ogImageURL = new URL(
     <path id="rectangle-178" fill="transparent"  stroke-width="4" d="M 1302 1002 L 1402 1002 L 1402 902 L 1302 902 Z"/>
     <path id="rectangle-177" fill="transparent"  stroke-width="12" d="M 1402 1002 L 1502 1002 L 1502 902 L 1402 902 Z"/>
     <path id="rectangle-176" fill="transparent"  stroke-width="4" d="M 1502 1002 L 1602 1002 L 1602 902 L 1502 902 Z"/>
-    <path id="rectangle-175" fill="transparent"  stroke-width="4" d="M 802 1102 L 902 1102 L 902 1002 L 802 1002 Z"/>
+    <path id="rectangle-175" fill="transparent"  stroke-width="12" d="M 802 1102 L 902 1102 L 902 1002 L 802 1002 Z"/>
     <path id="rectangle-174" fill="transparent"  stroke-width="4" d="M 902 1102 L 1002 1102 L 1002 1002 L 902 1002 Z"/>
     <path id="rectangle-173" fill="transparent"  stroke-width="4" d="M 1002 1102 L 1102 1102 L 1102 1002 L 1002 1002 Z"/>
     <path id="rectangle-172" fill="transparent"  stroke-width="4" d="M 1102 1102 L 1202 1102 L 1202 1002 L 1102 1002 Z"/>
@@ -3560,7 +3565,7 @@ const ogImageURL = new URL(
     <path id="rectangle-164" fill="transparent"  stroke-width="4" d="M 1102 1202 L 1202 1202 L 1202 1102 L 1102 1102 Z"/>
     <path id="rectangle-163" fill="transparent"  stroke-width="4" d="M 1202 1202 L 1302 1202 L 1302 1102 L 1202 1102 Z"/>
     <path id="rectangle-162" fill="transparent"  stroke-width="4" d="M 1302 1202 L 1402 1202 L 1402 1102 L 1302 1102 Z"/>
-    <path id="rectangle-161" fill="transparent"  stroke-width="4" d="M 1402 1202 L 1502 1202 L 1502 1102 L 1402 1102 Z"/>
+    <path id="rectangle-161" fill="transparent"  stroke-width="12" d="M 1402 1202 L 1502 1202 L 1502 1102 L 1402 1102 Z"/>
     <path id="rectangle-160" fill="transparent"  stroke-width="12" d="M 1502 1202 L 1602 1202 L 1602 1102 L 1502 1102 Z"/>
     <path id="rectangle-159" fill="transparent"  stroke-width="4" d="M 802 1302 L 902 1302 L 902 1202 L 802 1202 Z"/>
     <path id="rectangle-158" fill="transparent"  stroke-width="12" d="M 902 1302 L 1002 1302 L 1002 1202 L 902 1202 Z"/>
