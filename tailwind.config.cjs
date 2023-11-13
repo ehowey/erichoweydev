@@ -102,6 +102,9 @@ module.exports = {
       aspectRatio: {
         '2/1': '2 / 1',
       },
+      backgroundImage: {
+        transparentSvg: `url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="8" height="8" opacity="0.4" viewBox="0 0 8 8"%3E%3Cpath id="Rectangle" fill="%23646464" fill-rule="evenodd" stroke="none" d="M 0 4 L 4 4 L 4 0 L 0 0 Z"/%3E%3Cpath id="Rectangle-copy" fill="%23646464" fill-rule="evenodd" stroke="none" d="M 4 8 L 8 8 L 8 4 L 4 4 Z"/%3E%3Cpath id="path1" fill="%23d5d5d5" fill-rule="evenodd" stroke="none" d="M 4 4 L 8 4 L 8 0 L 4 0 Z"/%3E%3Cpath id="Rectangle-copy-2" fill="%23d5d5d5" fill-rule="evenodd" stroke="none" d="M 0 8 L 4 8 L 4 4 L 0 4 Z"/%3E%3C/svg%3E')`,
+      },
       gridTemplateColumns: {
         // Complex site-specific row configuration
         'layout-base-1col': 'minmax(0, 1fr)',
