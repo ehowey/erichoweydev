@@ -17,6 +17,7 @@
     "@astrojs/sitemap": "^3.0.2",
     "@astrojs/tailwind": "^5.0.2",
     "@headlessui/tailwindcss": "^0.2.0",
+    "@netlify/functions": "^2.4.0",
     "@tailwindcss/typography": "^0.5.10",
     "@tremor/react": "^3.10.1",
     "astro": "^3.4.3",

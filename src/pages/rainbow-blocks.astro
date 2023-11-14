@@ -10,7 +10,7 @@ import iconRainbow from '~/assets/color-game/icon-rainbow.png'
 import iconUnicorn from '~/assets/color-game/icon-unicorn.png'
 
 const ogImageURL = new URL(
-  `/api/og-image/?title=${encodeURI('You are coloring!')}`,
+  `/api/og-image/?title=${encodeURI('Rainbow blocks!')}`,
   Astro.site,
 )
 ---
@@ -134,7 +134,37 @@ const ogImageURL = new URL(
             ><span class="sr-only">Transparent</span>
           </button>
         </div>
-        <div class="mt-8">
+        <div class="mt-8 flex flex-wrap gap-2">
+          <button
+            id="eh-color-download"
+            type="button"
+            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
+          >
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="-ml-0.5 h-4 w-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+                ></path>
+              </svg>
+            </span>
+             Download creation
+          </button>
+        </div>
+      </div>
+      <div
+        id="eh-color-container"
+        class="w-full max-w-[768px] bg-zinc-700 p-4 md:p-8"
+      >
+        <div class="mb-4 flex w-full flex-row justify-between">
           <button
             id="eh-color-reset"
             type="button"
@@ -158,14 +188,7 @@ const ogImageURL = new URL(
             </span>
              Reset
           </button>
-        </div>
-      </div>
-      <div
-        id="eh-color-container"
-        class="w-full max-w-[768px] bg-zinc-700 p-4 md:p-8"
-      >
-        <div class="mb-4">
-          <div class="flex flex-row items-center justify-end space-x-4">
+          <div class="flex flex-row items-center space-x-4">
             <p class="text-sm font-semibold text-zinc-300">Active color</p>
             <span
               id="eh-active-color-box"
@@ -173,7 +196,11 @@ const ogImageURL = new URL(
           </div>
         </div>
         <div id="eh-svg-container" class="stroke-zinc-400">
-          <svg viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            id="eh-svg-image"
+            viewBox="0 0 1604 1604"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               id="rectangle-0"
               fill="transparent"
@@ -1551,6 +1578,7 @@ const ogImageURL = new URL(
       ? Array.from(svgContainer.getElementsByTagName('path'))
       : []
     const resetButton = document.getElementById('eh-color-reset')
+    const downloadButton = document.getElementById('eh-color-download')
     const blankButton = document.getElementById('eh-image-blank')
     const homeButton = document.getElementById('eh-image-home')
     const unicornButton = document.getElementById('eh-image-unicorn')
@@ -1560,6 +1588,7 @@ const ogImageURL = new URL(
     const dragonButton = document.getElementById('eh-image-dragon')
 
     // CLICK HANDLERS
+    // Handle when a color is selected and set active color
     const handleColorClick = (event: MouseEvent) => {
       const buttonElement = event.target as HTMLButtonElement
       const selectedColor = getComputedStyle(buttonElement).backgroundColor
@@ -1579,6 +1608,7 @@ const ogImageURL = new URL(
       buttonElement.setAttribute('aria-current', 'true')
       color = selectedColor
     }
+    // Handle when a block is clicked on and check if all squares are filled in.
     const handlePathClick = (event: MouseEvent) => {
       const pathElement = event.target as SVGPathElement
       pathElement.setAttribute('fill', color)
@@ -1597,13 +1627,13 @@ const ogImageURL = new URL(
         }
         return false
       })
-      console.log(isComplete)
       if (isComplete) {
         jsConfetti.addConfetti({
           emojis: ['🌈', '🦄', '🐲', '✨', '💫'],
         })
       }
     }
+    // Handle reseting image
     const handleReset = () => {
       const updatedContainer = document.getElementById('eh-svg-container')
       const updatedPaths = updatedContainer
@@ -1614,12 +1644,74 @@ const ogImageURL = new URL(
         path.setAttribute('fill', 'transparent')
       })
     }
+    // Handle download
+    const handleDownload = (): void => {
+      const svg = document.getElementById(
+        'eh-svg-image',
+      ) as SVGSVGElement | null
+      if (!svg) {
+        console.error('SVG element not found')
+        return
+      }
+
+      svg.setAttribute('stroke', '#a1a1aa')
+
+      try {
+        const serializer = new XMLSerializer()
+        const svgData: string = serializer.serializeToString(svg)
+        const svgBlob: Blob = new Blob([svgData], {
+          type: 'image/svg+xml;charset=utf-8',
+        })
+        const url: string = URL.createObjectURL(svgBlob)
+
+        const img = new Image()
+        img.onload = (): void => {
+          URL.revokeObjectURL(url) // Revoke the object URL to free up resources
+
+          const canvas = document.createElement('canvas')
+          canvas.width = 1024
+          canvas.height = 1024
+
+          const context = canvas.getContext('2d')
+          if (!context) {
+            console.error('Unable to get canvas context')
+            return
+          }
+
+          context.drawImage(img, 0, 0, canvas.width, canvas.height)
+
+          const a = document.createElement('a')
+          const date: Date = new Date()
+          const formattedDate: string = `${date.getFullYear()}-${(
+            date.getMonth() + 1
+          )
+            .toString()
+            .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
+          a.download = `rainbow-blocks-${formattedDate}.png`
+
+          document.body.appendChild(a)
+          a.href = canvas.toDataURL('image/png')
+          a.click()
+          a.remove()
+        }
+
+        img.onerror = (): void => {
+          console.error('Error loading the image')
+        }
+
+        img.src = url
+      } catch (err) {
+        console.error('Error converting SVG to PNG', err)
+      }
+    }
 
     // IMAGE CLICK HANDLERS
+
+    // Blank image
     const handleBlankImageClick = (event: MouseEvent) => {
       event?.preventDefault()
       if (svgContainer) {
-        svgContainer.innerHTML = `<svg viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
+        svgContainer.innerHTML = `<svg id="eh-svg-image" viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
             <path
               id="rectangle-0"
               fill="transparent"
@@ -2910,9 +3002,10 @@ const ogImageURL = new URL(
         path.addEventListener('click', handlePathClick)
       })
     }
+    // House image
     const handleHomeImageClick = (event: MouseEvent) => {
       if (svgContainer) {
-        svgContainer.innerHTML = `<svg viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
+        svgContainer.innerHTML = `<svg id="eh-svg-image" viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
     <path id="rectangle-0" fill="transparent"  stroke-width="4" d="M 2 102 L 102 102 L 102 2 L 2 2 Z"/>
     <path id="rectangle-1" fill="transparent"  stroke-width="4" d="M 102 102 L 202 102 L 202 2 L 102 2 Z"/>
     <path id="rectangle-2" fill="transparent"  stroke-width="4" d="M 202 102 L 302 102 L 302 2 L 202 2 Z"/>
@@ -3180,12 +3273,12 @@ const ogImageURL = new URL(
         path.addEventListener('click', handlePathClick)
       })
     }
-
+    // Unicorn image
     const handleUnicornImageClick = (event: MouseEvent) => {
       event?.preventDefault()
       if (svgContainer) {
         svgContainer.innerHTML = `
-<svg viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
+<svg id="eh-svg-image" viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
     <path id="rectangle-0" fill="transparent"  stroke-width="4" d="M 2 102 L 102 102 L 102 2 L 2 2 Z"/>
     <path id="rectangle-1" fill="transparent"  stroke-width="4" d="M 102 102 L 202 102 L 202 2 L 102 2 Z"/>
     <path id="rectangle-2" fill="transparent"  stroke-width="4" d="M 202 102 L 302 102 L 302 2 L 202 2 Z"/>
@@ -3453,11 +3546,11 @@ const ogImageURL = new URL(
         path.addEventListener('click', handlePathClick)
       })
     }
-
+    // Dino image
     const handleDinosaurImageClick = (event: MouseEvent) => {
       event?.preventDefault()
       if (svgContainer) {
-        svgContainer.innerHTML = `<svg viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
+        svgContainer.innerHTML = `<svg id="eh-svg-image" viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
     <path id="rectangle-0" fill="transparent"  stroke-width="4" d="M 2 102 L 102 102 L 102 2 L 2 2 Z"/>
     <path id="rectangle-1" fill="transparent"  stroke-width="4" d="M 102 102 L 202 102 L 202 2 L 102 2 Z"/>
     <path id="rectangle-2" fill="transparent"  stroke-width="4" d="M 202 102 L 302 102 L 302 2 L 202 2 Z"/>
@@ -3725,11 +3818,11 @@ const ogImageURL = new URL(
         path.addEventListener('click', handlePathClick)
       })
     }
-
+    // Rainbow image
     const handleRainbowImageClick = (event: MouseEvent) => {
       event?.preventDefault()
       if (svgContainer) {
-        svgContainer.innerHTML = `<svg viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
+        svgContainer.innerHTML = `<svg id="eh-svg-image" viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
     <path id="rectangle-0" fill="transparent"  stroke-width="4" d="M 2 102 L 102 102 L 102 2 L 2 2 Z"/>
     <path id="rectangle-1" fill="transparent"  stroke-width="4" d="M 102 102 L 202 102 L 202 2 L 102 2 Z"/>
     <path id="rectangle-2" fill="transparent"  stroke-width="4" d="M 202 102 L 302 102 L 302 2 L 202 2 Z"/>
@@ -3997,11 +4090,11 @@ const ogImageURL = new URL(
         path.addEventListener('click', handlePathClick)
       })
     }
-
+    // Love image
     const handleLoveImageClick = (event: MouseEvent) => {
       event?.preventDefault()
       if (svgContainer) {
-        svgContainer.innerHTML = `<svg viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
+        svgContainer.innerHTML = `<svg id="eh-svg-image" viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
     <path id="rectangle-0" fill="transparent" stroke-width="4" d="M 2 102 L 102 102 L 102 2 L 2 2 Z"/>
     <path id="rectangle-1" fill="transparent" stroke-width="4" d="M 102 102 L 202 102 L 202 2 L 102 2 Z"/>
     <path id="rectangle-2" fill="transparent" stroke-width="4" d="M 202 102 L 302 102 L 302 2 L 202 2 Z"/>
@@ -4269,11 +4362,11 @@ const ogImageURL = new URL(
         path.addEventListener('click', handlePathClick)
       })
     }
-
+    // Dragon image
     const handleDragonImageClick = (event: MouseEvent) => {
       event?.preventDefault()
       if (svgContainer) {
-        svgContainer.innerHTML = `<svg viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
+        svgContainer.innerHTML = `<svg id="eh-svg-image" viewBox="0 0 1604 1604" xmlns="http://www.w3.org/2000/svg">
     <path id="rectangle-0" fill="transparent"  stroke-width="4" d="M 2 102 L 102 102 L 102 2 L 2 2 Z"/>
     <path id="rectangle-1" fill="transparent"  stroke-width="4" d="M 102 102 L 202 102 L 202 2 L 102 2 Z"/>
     <path id="rectangle-2" fill="transparent"  stroke-width="4" d="M 202 102 L 302 102 L 302 2 L 202 2 Z"/>
@@ -4550,6 +4643,7 @@ const ogImageURL = new URL(
       color.addEventListener('click', handleColorClick)
     })
     resetButton?.addEventListener('click', handleReset)
+    downloadButton?.addEventListener('click', handleDownload)
     blankButton?.addEventListener('click', handleBlankImageClick)
     homeButton?.addEventListener('click', handleHomeImageClick)
     unicornButton?.addEventListener('click', handleUnicornImageClick)
