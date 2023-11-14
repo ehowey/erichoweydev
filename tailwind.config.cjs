@@ -110,6 +110,8 @@ module.exports = {
         'layout-base-1col': 'minmax(0, 1fr)',
         'layout-base-2col': '220px minmax(0, 1fr)',
         'layout-base-3col': 'minmax(0, 1fr) 768px minmax(0, 1fr)',
+        'layout-rainbowblocks-1col': 'minmax(0, 1fr)',
+        'layout-rainbowblocks-3col': 'minmax(0, 1fr) 65ch minmax(0, 1fr)',
         header: 'auto 30px minmax(0, 1fr)',
       },
       gridTemplateRows: {

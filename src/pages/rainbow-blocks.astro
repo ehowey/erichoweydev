@@ -31,7 +31,7 @@ const ogImageURL = new URL(
         </li>
       </ul>
     </nav>
-    <div class="mb-8 grid grid-cols-1 grid-rows-1">
+    <div class="grid grid-cols-1 grid-rows-1">
       <div
         class="col-start-1 col-end-2 row-start-1 row-end-1 h-36 w-full overflow-hidden opacity-20"
       >
@@ -58,7 +58,7 @@ const ogImageURL = new URL(
         </svg>
       </div>
       <div
-        class="z-10 col-start-1 col-end-2 row-start-1 row-end-1 self-center px-4 md:px-8"
+        class="z-10 col-start-1 col-end-2 row-start-1 row-end-1 self-center px-4 md:px-8 lg:px-10"
       >
         <h1
           class="text-4xl font-black uppercase leading-none text-zinc-100 sm:text-5xl md:text-6xl"
@@ -79,12 +79,12 @@ const ogImageURL = new URL(
       </div>
     </div>
     <div
-      class="grid grid-cols-layout-base-1col justify-items-center gap-4 toc:grid-cols-layout-base-3col toc:gap-8"
+      class="grid-cols-layout-rainbowblocks-1col toc:grid-cols-layout-rainbowblocks-3col grid justify-items-center toc:gap-8"
     >
       <div
-        class="w-full max-w-[768px] bg-zinc-700 px-4 py-4 md:px-8 xl:max-w-lg xl:justify-self-end"
+        class="w-full max-w-[65ch] bg-zinc-700 px-4 py-4 md:px-8 xl:max-w-lg xl:justify-self-end"
       >
-        <h2 class="text-xl font-bold text-zinc-200">Choose a color</h2>
+        <h2 class="text-xl font-bold text-zinc-200">Colors</h2>
         <div class="mt-4 flex flex-wrap gap-2 gap-y-4 md:gap-4">
           <button
             class="eh-color-picker eh-color-active h-8 w-8 rounded-full bg-red-600"
@@ -144,11 +144,23 @@ const ogImageURL = new URL(
             ><span class="sr-only">Transparent</span>
           </button>
         </div>
-        <div class="mt-8 flex flex-wrap gap-2">
+        <div class="mt-8 flex flex-wrap gap-2"></div>
+      </div>
+      <div
+        id="eh-color-container"
+        class="w-full max-w-[65ch] bg-zinc-700 px-4 py-5 md:px-8"
+      >
+        <div class="mb-5 flex w-full flex-row justify-between">
+          <div class="flex flex-row items-center space-x-4">
+            <p class="text-sm font-semibold text-zinc-300">Active color</p>
+            <span
+              id="eh-active-color-box"
+              class="h-7 w-7 flex-shrink-0 rounded-sm bg-red-500"></span>
+          </div>
           <button
             id="eh-color-download"
             type="button"
-            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
+            class="inline-flex items-center gap-x-1.5 rounded-md bg-sky-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
           >
             <span>
               <svg
@@ -166,44 +178,8 @@ const ogImageURL = new URL(
                 ></path>
               </svg>
             </span>
-             Share what you made
+             Share your creation
           </button>
-        </div>
-      </div>
-      <div
-        id="eh-color-container"
-        class="w-full max-w-[768px] bg-zinc-700 p-4 md:p-8"
-      >
-        <div class="mb-4 flex w-full flex-row justify-between">
-          <button
-            id="eh-color-reset"
-            type="button"
-            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
-          >
-            <span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="-ml-0.5 h-4 w-4"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
-                ></path>
-              </svg>
-            </span>
-             Reset
-          </button>
-          <div class="flex flex-row items-center space-x-4">
-            <p class="text-sm font-semibold text-zinc-300">Active color</p>
-            <span
-              id="eh-active-color-box"
-              class="h-8 w-8 flex-shrink-0 rounded-sm bg-red-500"></span>
-          </div>
         </div>
         <div id="eh-svg-container" class="stroke-zinc-400">
           <svg
@@ -1493,18 +1469,41 @@ const ogImageURL = new URL(
               d="M 702 1602 L 802 1602 L 802 1502 L 702 1502 Z"></path>
           </svg>
         </div>
+        <div class="mt-4 flex justify-end">
+          <button
+            id="eh-color-reset"
+            type="button"
+            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
+          >
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="-ml-0.5 h-4 w-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+                ></path>
+              </svg>
+            </span>
+             Reset
+          </button>
+        </div>
       </div>
       <div
-        class="row-start-1 row-end-2 w-full max-w-[768px] bg-zinc-700 px-4 py-4 md:px-8 toc:col-start-3 toc:col-end-4 xl:max-w-lg xl:justify-self-start"
+        class="row-start-1 row-end-2 w-full max-w-[65ch] bg-zinc-700 px-4 py-4 md:px-8 toc:col-start-3 toc:col-end-4 xl:max-w-lg xl:justify-self-start"
       >
-        <h2 class="text-xl font-bold text-zinc-200">
-          Choose a design or create one of your own!
-        </h2>
+        <h2 class="text-xl font-bold text-zinc-200">Designs</h2>
         <div class="mt-4 flex flex-wrap content-stretch gap-4">
           <button
             id="eh-image-blank"
             type="button"
-            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
+            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
           >
             <Image src={iconBlank} alt="" width={32} height={32} />
              Blank
@@ -1512,7 +1511,7 @@ const ogImageURL = new URL(
           <button
             id="eh-image-home"
             type="button"
-            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
+            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
           >
             <Image src={iconHouse} alt="" width={32} height={32} />
              House
@@ -1520,7 +1519,7 @@ const ogImageURL = new URL(
           <button
             id="eh-image-unicorn"
             type="button"
-            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
+            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
           >
             <Image src={iconUnicorn} alt="" width={32} height={32} />
              Unicorn
@@ -1528,7 +1527,7 @@ const ogImageURL = new URL(
           <button
             id="eh-image-dinosaur"
             type="button"
-            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
+            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
           >
             <Image src={iconDino} alt="" width={32} height={32} />
              Dinosaur
@@ -1536,7 +1535,7 @@ const ogImageURL = new URL(
           <button
             id="eh-image-rainbow"
             type="button"
-            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
+            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
           >
             <Image src={iconRainbow} alt="" width={32} height={32} />
              Rainbow
@@ -1544,7 +1543,7 @@ const ogImageURL = new URL(
           <button
             id="eh-image-love"
             type="button"
-            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
+            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
           >
             <Image src={iconLove} alt="" width={32} height={32} />
              Love
@@ -1552,7 +1551,7 @@ const ogImageURL = new URL(
           <button
             id="eh-image-dragon"
             type="button"
-            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
+            class="inline-flex items-center gap-x-1.5 rounded-md bg-white/10 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
           >
             <Image src={iconDragon} alt="" width={32} height={32} />
              Dragon
