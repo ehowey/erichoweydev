@@ -1654,11 +1654,24 @@ const ogImageURL = new URL(
         return
       }
 
-      svg.setAttribute('stroke', '#a1a1aa')
+      // Clone the SVG element to manipulate it without affecting the original on the screen
+      const clonedSvg: SVGSVGElement = svg.cloneNode(true) as SVGSVGElement
+
+      // Set a stroke color
+      clonedSvg.setAttribute('stroke', '#a1a1aa')
+
+      // Loop through all path elements and change the fill color if needed
+      clonedSvg.querySelectorAll('path').forEach((path) => {
+        path.setAttribute('stroke-width', '2px')
+        const fill = path.getAttribute('fill') || ''
+        if (fill === 'transparent' || fill === 'rgba(0, 0, 0, 0)') {
+          path.setAttribute('fill', '#3f3f46')
+        }
+      })
 
       try {
         const serializer = new XMLSerializer()
-        const svgData: string = serializer.serializeToString(svg)
+        const svgData: string = serializer.serializeToString(clonedSvg)
         const svgBlob: Blob = new Blob([svgData], {
           type: 'image/svg+xml;charset=utf-8',
         })
