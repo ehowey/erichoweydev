@@ -1662,12 +1662,9 @@ const ogImageURL = new URL(
         const svgBlob: Blob = new Blob([svgData], {
           type: 'image/svg+xml;charset=utf-8',
         })
-        const url: string = URL.createObjectURL(svgBlob)
 
         const img = new Image()
         img.onload = (): void => {
-          URL.revokeObjectURL(url) // Revoke the object URL to free up resources
-
           const canvas = document.createElement('canvas')
           canvas.width = 1024
           canvas.height = 1024
@@ -1680,29 +1677,63 @@ const ogImageURL = new URL(
 
           context.drawImage(img, 0, 0, canvas.width, canvas.height)
 
-          const a = document.createElement('a')
+          // Filename
           const date: Date = new Date()
           const formattedDate: string = `${date.getFullYear()}-${(
             date.getMonth() + 1
           )
             .toString()
             .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`
-          a.download = `rainbow-blocks-${formattedDate}.png`
+          const filename = `rainbow-blocks-${formattedDate}.png`
 
-          document.body.appendChild(a)
-          a.href = canvas.toDataURL('image/png')
-          a.click()
-          a.remove()
+          // Convert canvas to blob
+          canvas.toBlob((blob) => {
+            if (blob) {
+              if (
+                navigator.share &&
+                'canShare' in navigator &&
+                navigator.canShare({ files: [new File([blob], filename)] })
+              ) {
+                // If sharing is possible (including file sharing), then share the image
+                navigator
+                  .share({
+                    files: [new File([blob], filename)],
+                    title: 'Share Image',
+                    text: 'Share this image',
+                  })
+                  .catch((err) => {
+                    // Fallback to download if sharing fails
+                    console.error('Sharing failed:', err)
+                    downloadBlob(blob, filename)
+                  })
+              } else {
+                // Fallback to download if sharing is not supported
+                downloadBlob(blob, filename)
+              }
+            }
+          }, 'image/png')
         }
 
         img.onerror = (): void => {
           console.error('Error loading the image')
         }
 
+        const url: string = URL.createObjectURL(svgBlob)
         img.src = url
       } catch (err) {
         console.error('Error converting SVG to PNG', err)
       }
+    }
+
+    const downloadBlob = (blob: Blob, filename: string): void => {
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = filename
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      URL.revokeObjectURL(url)
     }
 
     // IMAGE CLICK HANDLERS
